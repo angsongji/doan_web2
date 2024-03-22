@@ -1,0 +1,99 @@
+.menuadmin{
+    background-color: var(--green2);
+    
+}
+.menuadmin ul{
+   color: var(--light-gray);
+}
+.menuadmin ul li:hover{
+    
+    color: var(--green1);
+    background-color: var(--green3);
+    
+}
+.contentadmin{
+    background-color: var(--green3);
+}
+.headeradmin{
+   
+    color:var(--green3);
+    background-color: var(--green1);
+    
+}
+.headeradmin span:last-child{
+   
+    color: var(--light-gray);
+ 
+}
+.headeradmin .mode_page{
+  
+    background-color:rgb(19, 50, 97);/*màu của nền buổi tối*/
+    justify-content: flex-end;/*của buổi tối*/
+}
+.headeradmin .mode_page i{
+   
+    color: rgb(138, 151, 171);/*màu của mặt trăng*/
+}
+.searchadmin{
+    
+    background-color: var(--green1);
+}
+.searchadmin input{
+    
+    border: 1px solid var(--green2);
+    background-color: var(--green2);/*tối*/
+    color: var(--light-gray);/*tối*/
+}
+.searchadmin input::placeholder{
+    color: var(--light-gray);
+}
+
+#searchCategory{
+    background-color: var(--green2);
+    border: 1px solid var(--green2);
+    color: var(--light-gray);
+}/*tối*/
+#searchPriceRange span,#searchDateRange span{
+    color: var(--green3);
+}
+.btn_reset,.btn_search{
+ 
+    
+    background-color: var(--green3);
+    color: var(--light-gray);
+}
+#movies{
+  
+   background-color: var(--green1);
+
+}
+.movie h4, .movie h5{
+    
+    color: var(--light-gray);
+}
+.movie h4{
+    
+    color: var(--green3);
+   
+}
+#list_page{
+   
+  
+ 
+}
+#list_page{
+    border-top: 3px solid transparent; /* Đặt border có độ dày 10px và màu trong suốt */
+    border-image: linear-gradient(to right, var(--green2), var(--green1),var(--primary_color)); /* Sử dụng gradient màu làm border image */
+  border-image-slice: 1; /* Đặt chiều dài của border */
+  
+}
+#list_page ul li{
+   
+    color: var(--primary_color);
+    background-color: var(--green2);
+    
+}
+.name_model{
+   
+    color: var(--light-gray);/*tối*/
+}

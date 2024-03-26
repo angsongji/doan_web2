@@ -1,0 +1,40 @@
+:root{
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --primary-color: #79B791;
+}
+body {
+    background-color: var(--primary-color);
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 100%;
+}
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    margin: 0;
+}

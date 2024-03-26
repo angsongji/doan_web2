@@ -97,3 +97,91 @@
    
     color: var(--light-gray);/*tối*/
 }
+
+.user{
+    background-color: var(--light-gray);
+    color: var(--green3);
+}
+.userheader{
+    background-color: var(--green1);
+    color: var(--primary_color);
+    
+}
+.user i{
+    color: var(--green3);
+}
+.dichvu{
+    background-color: var(--green1);
+}
+.dichvu .mota{
+    color: var(--green3);
+}
+.dichvu .mota h5{
+    color:var(--light-gray);
+}
+#lichchieuphim_daytime ul{
+    width: calc(100% + 360px);
+}
+#lichchieuphim_daytime ul{
+    background-color: var(--green2);
+    
+}
+#lichchieuphim_daytime li{
+    background-color: var(--green2);
+    color: var(--green1);
+    border: 1.3px solid var(--green1);
+}
+.lichchieuphim_day{
+    background-color: var(--green1);
+    color: var(--green2);
+}
+#lichchieuphim_daytime #lichchieuphim_selected{
+    background-color: var(--green2);
+    color: var(--primary_color);
+    border: 1.3px solid var(--primary_color);
+}
+#lichchieuphim_daytime #lichchieuphim_selected .lichchieuphim_day{
+    background-color: var(--primary_color);
+    color:  var(--green2);
+}
+.lichchieuphim_phim{
+    background-color: var(--green1);
+    border-bottom: 1px solid var(--primary_color);
+}
+.lichchieuphim_mota_phim .name_movie{
+    color: var(--green3);
+}
+.lichchieuphim_mota_phim .type_movie{
+    color: var(--light-gray);
+}
+#lichchieuphim_content{
+    background-color: var(--green1);
+    border: 0;
+}
+.lichchieuphim_lichchieu .time_start{
+    color: var(--green3);
+}
+#lichchieuphim_content::-webkit-scrollbar{
+    width: 8px;
+    
+}
+#lichchieuphim_content::-webkit-scrollbar-thumb{
+    background-color: var(--primary_color);
+}
+.content_history_ticket{
+    background-color: var(--light-gray);
+}
+.history_ticket{
+    background-color: var(--light-gray);
+    color: var(--green3);
+}
+.header_history_ticket{
+    background-color: var(--green1);
+    color: var(--primary_color);
+}
+.lichchieuphim_header_btn{
+    background-color: var(--green3);
+}
+.lichchieuphim_header_btn i{
+    color: var(--light-gray);
+}

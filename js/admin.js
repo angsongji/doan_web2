@@ -1,49 +1,29 @@
-/*document.querySelectorAll('.menuadmin ul li')[0].addEventListener('click',function{
-    alert("hello");
-});
-function changeContent(li){
-    console.log(li);
-}*/
 
-let adminmenu=document.querySelectorAll('.menuadmin ul li');
-/*clickAdminMenuToChangeContent();
-function clickAdminMenuToChangeContent(){
-    for(let i=0;i<adminmenu.length;i++){
-      //  adminmenu[i].addEventListener('click',changeContent(adminmenu[i].getAttribute('name')));
-       // adminmenu[i].setAttribute('onclick','changeContent('+adminmenu[i].getAttribute('name')+')');
-        //adminmenu[i].setAttribute('onclick','hi()');
-        adminmenu[i].setAttribute('onclick','hi(x)');
+let quantityClickBtnChangeDayLichchieu=0;
+function changeDay(i){
+    let lichchieu_wrap= document.querySelector("#lichchieuphim_daytime ul");
+    switch(i.getAttribute('name')){
+        case "btn_left":
+            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
+            quantityClickBtnChangeDayLichchieu++;
+            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            lichchieu_wrap.style='transform:  translateX(calc('+quantityClickBtnChangeDayLichchieu+'* 72px));';
+            if(quantityClickBtnChangeDayLichchieu==0)
+                document.getElementsByClassName('lichchieuphim_header_btn ')[0].style="display:none;";
+            else
+                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
+            break;
+        default:
+            document.getElementsByClassName('lichchieuphim_header_btn ')[0].style="display:flex;";
+           // console.log(document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)]);
+            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
+            quantityClickBtnChangeDayLichchieu--;
+            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            lichchieu_wrap.style='transform:  translateX(calc('+quantityClickBtnChangeDayLichchieu+'* 72px));';
+            if(quantityClickBtnChangeDayLichchieu==-5)
+                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:none;";
+            else
+                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
+            break;
     }
-}*/
-function changeContent(x){
-    alert('hi');
 }
-function hi(x){
-    alert('hi');
-}
-/*function changeContent(name){
-    
-   let content=document.getElementById('content');
-   
-    switch(name){
-        case 'plphim':{
-            content.innerHTML=`<div id="movies" >
-            <?php require 'pages/moviesadmin.php' ?>
-        </div>`;
-            break;
-        }
-        case 'pllichchieu':{
-            content.innerHTML=`<div class="lichchieuphim" >
-            chua coooooooo
-        </div>`;
-            break;
-        }
-        case 'pldichvu':{
-            content.innerHTML=`<div class="dichvu" >
-            chua co dich vu
-        </div>`;
-            break;
-        }
-        default: break;
-    }
-}*/

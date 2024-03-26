@@ -21,62 +21,46 @@
             <div class="headeradmin">
                 <?php require 'pages/headeradmin.php' ?>
             </div>
-            <div class="name_model" >Tìm kiếm</div>
-                <form class="searchadmin" action="">
-                    <?php require 'pages/searchadmin.php' ?>
-                </form>
-                <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> 
-                <div id="content">  
-                    <?php //require 'pages/usersadmin.php' ?><!--Trang ql nguoi dung-->
-                    <?php //require 'pages/moviesadmin.php' ?><!--Trang ql movie-->
-                    <?php //require 'pages/lichchieuphimadmin.php' ?><!--Trang ql lichchieuphim-->
-                    <?php //require 'pages/dichvuadmin.php' ?><!--Trang ql dich vu-->
-                    <?php //require 'pages/lsdatveadmin.php' ?><!--Trang lich su dat ve-->
-                    <?php //require 'pages/phanquyenadmin.php' ?><!--Trang ql phan quyen-->
-                    <div id="history_ticket_wrap">
-                        <div class="history_ticket header_history_ticket">
-                            
-                                <span>Mã vé</span>
-                                <span>Tên phim</span>
-                                <span>Thời gian</span>
-                                <span>Thành tiền</span>
-                                <span></span>
-                            
-                        </div>
-                        <div class="content_history_ticket">
-                            <div class="history_ticket">
-                                <span>VE019234</span>
-                                <span>MAI</span>
-                                <span>
-                                    <span>19/1/2024</span>
-                                    <span>20:30</span>
-                                </span>
-                                <span>
-                                    <span>90000</span>
-                                    <i class="fa-solid fa-dong-sign"></i>
-                                </span>
-                                <span><i class="fa-solid fa-ellipsis-vertical"></i></span>
-                            </div>
-                            <div class="history_ticket">
-                                <span>VE019234</span>
-                                <span>MAI</span>
-                                <span>
-                                    <span>19/1/2024</span>
-                                    <span>20:30</span>
-                                </span>
-                                <span>
-                                    <span>90000</span>
-                                    <i class="fa-solid fa-dong-sign"></i>
-                                </span>
-                                <span><i class="fa-solid fa-ellipsis-vertical"></i></span>
-                            </div>
-                        </div>
-                    </div>
+            <?php
+                if(isset($_GET['page'])){
+                    echo'<div class="name_model" >Tìm kiếm</div>
+                    <form class="searchadmin" action="">
+                         ';
+                    require "pages/searchadmin.php";
+                    echo' 
+                    </form>
+                    <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
+                }
+            ?>
+            
+            <div id="content">  
+                <?php
+                    if(isset($_GET['page']))
+                    {
+                        require 'pages/'.$_GET['page'].'.php';
+                    }
+                    else{
+                        echo '<div id="none_select_cn">Chua lua chon chuc nang</div>';
+                    }   
+                ?>
+                <?php //require 'pages/usersadmin.php' ?><!--Trang ql nguoi dung-->
+                <?php //require 'pages/moviesadmin.php' ?><!--Trang ql movie-->
+                <?php //require 'pages/lichchieuphimadmin.php' ?><!--Trang ql lichchieuphim-->
+                <?php //require 'pages/dichvuadmin.php' ?><!--Trang ql dich vu-->
+                <?php //require 'pages/lsdatveadmin.php' ?><!--Trang lich su dat ve-->
+                <?php //require 'pages/phanquyenadmin.php' ?><!--Trang ql phan quyen-->
                     
-                </div>
-                <nav id="list_page">
-                    <?php require 'pages/list_page_admin.php' ?>
-                </nav>
+                    
+            </div>
+            <?php
+                    if(isset($_GET['page']))
+                    {
+                        echo '<nav id="list_page">';
+                        require "pages/list_page_admin.php";
+                        echo'</nav>';
+                    }
+            ?>
+            
         </div>
     </div>
     <script src="js/admin.js"></script>

@@ -6,6 +6,9 @@
     --green3: #0D261d;
     --light-gray: #c9c3c3;
 }
+
+ 
+  
 a{
     text-decoration: none;
     
@@ -36,7 +39,9 @@ ul{
     height: fit-content;
     position: sticky;
     top: 0;
+    z-index: 2;
 }
+
 .menuadmin img{
     width: 200px;
     height: 200px;
@@ -45,13 +50,18 @@ ul{
     
 }
 .menuadmin ul{
+
+    width: 100%;
     flex-wrap: wrap;
     display: flex;
     justify-content: flex-end;
-    width: 100%;
     list-style: none;
+}
+.menuadmin ul a{
+    text-decoration:none;
+    display: flex;
     margin: 0 0 20px 0;
-    padding: 0;
+    width: 95%;
    color: var(--second_color);/*sáng*/
    /* color: var(--light-gray); */
 }
@@ -61,9 +71,9 @@ ul{
     grid-template-columns: 20% 80%;
     display: grid;
     /*background-color: var(--primary_color);*/
-    width: 95%;
-    margin:5px;
-    margin-right: 0;
+    width: 100%;
+  /*margin:5px;
+  margin-right: 0;*/
     height: 40px;
     border-radius:  20px 0 0 20px ;
     position: relative;
@@ -85,10 +95,11 @@ ul{
 }
 .contentadmin{
   
-    display: grid;
-    grid-template-columns: 100%;
-    justify-content: center;
-    width: 100%;
+    /*display: grid;
+    grid-template-columns: 100%;*/
+    display: flex;
+    flex-direction: column;
+   
     background-color: var(--second_color);/*sáng*/
     /* background-color: var(--green3); */
 }
@@ -128,7 +139,7 @@ ul{
 .headeradmin .mode_page{
     width:80px;
     height: 35px;
-    background-color:rgb(138, 151, 171);/*sáng*/
+    background-color:#f3f2f2;/*sáng*/
     display: flex;
     border-radius: 50px;
     align-items: center;
@@ -139,9 +150,18 @@ ul{
    color: rgb(255, 242, 0);/*sáng*/
   
 }
+#none_select_cn{
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width:98%;height: 100vh;background-color:white;
+    margin: 10px 0 0 10px;
+}
 .searchadmin{
+    
     font-size: 15px;
-    margin: 10px 0;
     margin-left: 10px;
     height: 60px;
     width: 98%;
@@ -184,6 +204,7 @@ ul{
 .btn_reset:hover,.btn_search:hover{
     transform: scale(1.05);
 }
+
 #movies/*,#dichvu_wrap*/{
     border-radius: 10px;
     width:98%;
@@ -241,12 +262,16 @@ ul{
     top: 5px;
     left: 5px;
 }
+
 #list_page{
     border-top: 3px solid transparent; /* Đặt border có độ dày 10px và màu trong suốt */
   border-image: linear-gradient(to right,var(--primary_color), var(--green1), var(--green2)); /* Sử dụng gradient màu làm border image */
   border-image-slice: 1; /* Đặt chiều dài của border */
     display: flex;
     justify-content: center;
+    
+    height: 55px;
+    margin-top: 10px;
 }
 #list_page ul{
     display: flex;
@@ -266,7 +291,9 @@ ul{
     cursor: pointer;
 }
 .name_model{
-    transform: translateY(50%);font-weight: 600;width: 95%;padding-left: 20px;margin-bottom: 5px;
+   
+    font-weight: 600;width: 95%;
+    padding: 10px 0 10px 20px;
    
 }
 #dichvu_wrap{
@@ -294,7 +321,7 @@ ul{
 .dichvu img{
     width: 130px;
     height: 200px;
-  
+  border-radius: 8px;
 }
 .dichvu .mota{
     margin-left: 10px;
@@ -329,10 +356,16 @@ ul{
 }
 #users_wrap,#lichchieuphim_wrap{
     width: 98%;
-    margin-left: 10px;
+    margin:10px 0 0 10px;
     box-shadow: 0 0 5px 0 gray;
-    background-color: #254e3c;
-    height: 100px;
+    background-color: white;
+}
+.user{
+    display: grid;
+    grid-template-columns: 5% 50% 26% 19%;
+    padding:  13px 0;
+    border-bottom: 1px solid var(--light-gray);
+    position: relative;
 }
 .userheader{
     background-color: var(--primary_color);
@@ -341,13 +374,7 @@ ul{
     font-weight: 600;
 }
 
-.user{
-    display: grid;
-    grid-template-columns: 5% 50% 30% 15%;
-    padding:  13px 0;
-    border-bottom: 1px solid var(--light-gray);
-    position: relative;
-}
+
 .user span{
      justify-self: center;
 }
@@ -361,11 +388,13 @@ ul{
 }
 #lichchieuphim_header{
    position: relative;
+   overflow: hidden; 
 
 }
 .lichchieuphim_header_btn{
     height: 100%;
     position: absolute;
+    z-index: 2;
     width: 40px;
     background-color: var(--light-gray);
     opacity: 0.5;
@@ -385,17 +414,17 @@ ul{
 }
 
 #lichchieuphim_wrap{
-    background-color: white;
     height: fit-content;
     margin-top: 10px;
 }
 #lichchieuphim_daytime ul{
+    transform: translateX(0px);
     display: flex;
-   width: 100%;
- 
+   width: calc(100% + 350px);
 }
 #lichchieuphim_daytime li{
-    width: 6.2%;
+    border-radius:5px ;
+    width: 62px;
     border: 1.3px solid var(--light-gray);
     color: var(--light-gray);
     margin: 10px 0 10px 10px;
@@ -433,7 +462,7 @@ ul{
     border-top: 1px solid var(--light-gray);
     padding-bottom:5px ;
     margin-bottom: 10px;
-    height: 300px;
+    height: 350px;
     overflow-y: auto;
 }
 
@@ -527,8 +556,8 @@ ul{
 }
 .phanquyen_wrap{
     width: 98%;
-    margin-left: 10px;
-    border: 1px solid var(--primary_color);
+    margin:10px 0 0 10px;
+    
 
 }
 .phanquyen_wrap_header,.phanquyen_wrap_content{
@@ -544,6 +573,12 @@ ul{
 .phanquyen_wrap_content{
     background-color: white;
     color: black;
+    
+    
+}
+.phanquyen_wrap_function{
+    margin-top: 8px;
+    border: 1px solid var(--primary_color);
 }
 #history_ticket_wrap{
     width: 98%;
@@ -568,6 +603,7 @@ ul{
     height: 40px;
     background-color:  var(--primary_color);
     color: white;
+    margin-top: 10px;
 }
 .history_ticket span{
 

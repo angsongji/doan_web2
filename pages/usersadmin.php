@@ -7,26 +7,26 @@ echo '<div id="users_wrap">
                             <span class="user_status">TÌNH TRẠNG</span>
                         </div>
                         <div id="usercontent">
-                        <div class="user">
-                            <span class="user_id">1</span>
-                            <span class="user_email">nguyenvana2134@gmail.com</span>
-                            <span class="user_name">Tui tên A</span>
-                            <span class="user_status">
-                                <label for="userStatus">Khóa</label>
-                                <input type="checkbox" name="userStatus">
-                            </span>
-                            <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                            <div class="user">
+                                <span class="user_id">1</span>
+                                <span class="user_email">nguyenvana2134@gmail.com</span>
+                                <span class="user_name">Tui tên A</span>
+                                <span class="user_status">
+                                    <label for="userStatus">Khóa</label>
+                                    <input type="checkbox" name="userStatus">
+                                </span>
+                                <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                            </div>
+                            <div class="user">
+                                <span class="user_id">1</span>
+                                <span class="user_email">nguyenvana2134@gmail.com</span>
+                                <span class="user_name">Tui tên A</span>
+                                <span class="user_status">
+                                    <label for="userStatus">Khóa</label>
+                                    <input type="checkbox" name="userStatus">
+                                </span>
+                                <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                            </div>
                         </div>
-                        <div class="user">
-                            <span class="user_id">1</span>
-                            <span class="user_email">nguyenvana2134@gmail.com</span>
-                            <span class="user_name">Tui tên A</span>
-                            <span class="user_status">
-                                <label for="userStatus">Khóa</label>
-                                <input type="checkbox" name="userStatus">
-                            </span>
-                            <i class="fa-solid fa-pen-to-square fa-fw"></i>
-                        </div>
-                        </div>
-                    </div>';
+        </div>';
 ?>

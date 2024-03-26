@@ -1,28 +1,123 @@
 <?php 
+function leapyear($year){
+    if($year%4==0){
+        if($year%100!=0) return true;
+        else if($year%400==0) return true;
+    }
+    return false;
+}
+function calendar($month,$year){
+    switch($month){
+        case 1:
+        case 3: 
+        case 5:   
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            return 31;
+            break;
+        case 2:
+            if(leapyear($year)) return 29;
+            else return 28;
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            return 30;
+            break;
+    }
+}
+
+function nameDayVietnamese($num){
+    switch($num){
+        case 2:
+            return "Thứ 2";
+            break;
+        case 3:
+            return "Thứ 3";
+            break;   
+        case 4:
+            return "Thứ 4";
+            break; 
+        case 5:
+            return "Thứ 5";
+            break;
+        case 6:
+            return "Thứ 6";
+            break;   
+        case 7:
+            return "Thứ 7";
+            break; 
+        case 8:
+            return "Chủ nhật";
+            break;
+    }
+}
+function numberDay($day){
+    switch($day){
+        case "Mon":
+            return 2;
+            break;
+        case "Tue":
+            return 3;
+            break;
+        case "Wed":
+            return 4;
+            break;
+        case "Thu":
+            return 5;
+            break;
+        case "Fri":
+            return 6;
+            break;
+        case "Sat":
+            return 7;
+            break;
+        case "Sun":
+            return 8;
+            break;
+        
+    }
+}
+$numberDay= numberDay(date('D'));
+$day= (int)date('d');
+$month= (int)date('m');
+$year= (int)date('y');
 echo '<div id="lichchieuphim_wrap">
 <div id="lichchieuphim_header">
-    <span class="lichchieuphim_header_btn btn_left"><i class="fa-solid fa-chevron-left"></i></span>
-    <span class="lichchieuphim_header_btn btn_right"><i class="fa-solid fa-chevron-right"></i></span>
- <nav id="lichchieuphim_daytime"> 
-    <ul>
-        <li id="lichchieuphim_selected">
-            <span class="lichchieuphim_day">6</span>
-            <span class="lichchieuphim_mota">Hôm nay</span>
-        </li>
-        <li >
-            <span class="lichchieuphim_day">6</span>
-            <span class="lichchieuphim_mota">Hôm nay</span>
-        </li>
-        <li >
-            <span class="lichchieuphim_day">6</span>
-            <span class="lichchieuphim_mota">Hôm nay</span>
-        </li>
-        <li >
-            <span class="lichchieuphim_day">6</span>
-            <span class="lichchieuphim_mota">Hôm nay</span>
-        </li>
-    </ul>
- </nav>
+    <span class="lichchieuphim_header_btn btn_left" style="display:none;"><i class="fa-solid fa-chevron-left" name="btn_left" onclick="changeDay(this)"></i></span>
+    <span class="lichchieuphim_header_btn btn_right"><i class="fa-solid fa-chevron-right" name="btn_right" onclick="changeDay(this)"></i></span>
+    <nav id="lichchieuphim_daytime"> 
+    <ul>';
+    for($i=0;$i<19;$i++){
+        if($day<=calendar($month,$year)){
+            echo'<li';
+            if($i==0)
+                echo' id="lichchieuphim_selected"';
+
+            echo'><span class="lichchieuphim_day">';
+            echo $day++;
+            if($month!= (int)date('m')) echo '/'.$month;
+            echo '</span><span class="lichchieuphim_mota">';
+            if($i==0) echo 'Hôm nay';
+            else      echo nameDayVietnamese($numberDay);
+            if(++$numberDay==9) $numberDay=2;
+            echo '</span></li>';
+        }
+        else {
+            if($year==12) $year++;
+            $month++;
+            $day=1;
+        }
+        
+        
+        
+                
+    }
+echo'</ul>
+    </nav>
 </div>
 <div id="lichchieuphim_content">
     <div class="lichchieuphim_phim">
@@ -85,6 +180,5 @@ echo '<div id="lichchieuphim_wrap">
     </div>
 </div>
 </div>';
-
 
 ?>

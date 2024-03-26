@@ -14,21 +14,22 @@
     }else{
         echo '<img src="img/logoweb_admin.png">';
     }
-    $servername = "localhost";
-    $username = "root";
-    $password = "Oanh2004!";
-    $dbname = "rapchieuphim";
-// Tạo kết nối
-    $conn =new mysqli($servername, $username, $password, $dbname);
-    $sql = "SELECT * FROM chucnang ";
-    $result = $conn->query($sql);
-    $conn->close();
     $chucnang=array();
-    while($row = $result->fetch_assoc()) {
-        array_push($chucnang,$row['TENCHUCNANG']);
-    }
+//     $servername = "localhost";
+//     $username = "root";
+//     $password = "Oanh2004!";
+//     $dbname = "rapchieuphim";
+// // Tạo kết nối
+//     $conn =new mysqli($servername, $username, $password, $dbname);
+//     $sql = "SELECT * FROM chucnang ";
+//     $result = $conn->query($sql);
+//     $conn->close();
+//     
+//     while($row = $result->fetch_assoc()) {
+//         array_push($chucnang,$row['TENCHUCNANG']);
+//     }
     
-  /*  array_push($chucnang,"Quản lí nguời dùng");
+   array_push($chucnang,"Quản lí nguời dùng");
     array_push($chucnang,"Quản lí phim");
     array_push($chucnang,"Quản lí lịch chiếu phim");
     array_push($chucnang,"Quản lí dịch vụ");
@@ -36,7 +37,7 @@
     array_push($chucnang,"Báo cáo doanh thu");
     array_push($chucnang,"Phân quyền chức năng");
     array_push($chucnang,"Đăng xuất");
-   */
+   
 
     $liItem='';
     foreach($chucnang as $tenchucnang ){

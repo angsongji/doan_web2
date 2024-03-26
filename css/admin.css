@@ -204,7 +204,6 @@ ul{
 .btn_reset:hover,.btn_search:hover{
     transform: scale(1.05);
 }
-
 #movies/*,#dichvu_wrap*/{
     border-radius: 10px;
     width:98%;
@@ -262,7 +261,6 @@ ul{
     top: 5px;
     left: 5px;
 }
-
 #list_page{
     border-top: 3px solid transparent; /* Đặt border có độ dày 10px và màu trong suốt */
   border-image: linear-gradient(to right,var(--primary_color), var(--green1), var(--green2)); /* Sử dụng gradient màu làm border image */
@@ -373,7 +371,6 @@ ul{
     padding:  7px 0;
     font-weight: 600;
 }
-
 
 .user span{
      justify-self: center;

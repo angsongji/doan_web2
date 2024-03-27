@@ -26,6 +26,6 @@
 
 <body>
 </body>
-<script src="../js/main_user.js"></script>
+
 
 </html>

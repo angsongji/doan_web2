@@ -14,48 +14,34 @@
                 <h1>VoAnhTuan</h1>
             </div>
             <div class="option__wrapper">
-                <div class="option-item information_user">
+                <button class="option-item information_user">
                     <span><i class="fa-solid fa-user"></i></span>
                     <span>Thông tin tài khoản</span>
-                </div>
+                </button>
 
-                <div class="option-item change_password">
+                <button class="option-item change_password">
                     <span><i class="fa-solid fa-lock"></i></span>
                     <span>Đổi mật khẩu</span>
-                </div>
+                </button>
             </div>
         </div>
     </div>
     <div class="right-side">
-    <form action="#" name="formInformationUser" method="POST">
-        <div class="right-side__tittle">
-            <h1>Cập nhật thông tin</h1>
-        </div>
-        <div class="right-side__wrapper">
-            <div class="right-info__item">
-                <label class="right-info__item-name">Tên tài khoản</label>
-                <input type="text" class="right-info__item-input readonly" value="VoAnhTuan" readonly>
-            </div>
-            <div class="right-info__item">
-                <label for="Tên của bạn" class="right-info__item-name">Tên của bạn</label>
-                <input type="text" class="right-info__item-input" id="Tên của bạn">
-            </div>
-            <div class="right-info__item">
-                <label for="Địa chỉ email" class="right-info__item-name">Địa chỉ email</label>
-                <input type="text" class="right-info__item-input" id="Địa chỉ email">
-            </div>
-            <div class="right-info__item">
-                <label for="Số điện thoại" class="right-info__item-name">Số điện thoại</label>
-                <input type="text" class="right-info__item-input" id="Số điện thoại">
-            </div>
-            <div class="right-info__item">
-                <label for="Địa chỉ" class="right-info__item-name">Địa chỉ</label>
-                <input type="text" class="right-info__item-input" id="Địa chỉ">
-            </div>
-        </div>
-        <div class="btn-update">
-            <h2>Cập nhật</h2>
-        </div>
-    </form>
+    <?php 
+    // basename($_SERVER['PHP_SELF']) === 'informationUser.php'
+    if(isset($_GET['id'])&&$_GET['id']==='pass'){
+        include "update_pass_user.php";
+    }else{
+        include "update_user.php";
+    }
+    ?>
     </div>
 </div>
+<script>
+    document.querySelector(".information_user").addEventListener("click",()=>{
+        window.location.href = "informationUser.php";
+    });
+    document.querySelector(".change_password").addEventListener("click",()=>{
+        window.location.href = "informationUser.php?id=pass";
+    });
+</script>

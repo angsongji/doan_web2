@@ -27,6 +27,7 @@
         </div>
     </div>
     <div class="right-side">
+    <form action="#" name="formInformationUser" method="POST">
         <div class="right-side__tittle">
             <h1>Cập nhật thông tin</h1>
         </div>
@@ -55,5 +56,6 @@
         <div class="btn-update">
             <h2>Cập nhật</h2>
         </div>
+    </form>
     </div>
 </div>

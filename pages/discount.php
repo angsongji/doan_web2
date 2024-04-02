@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/discount.css">
 </head>
 <body>
-    <?php include "../pages/header.php"; ?>
+    <?php include "./header.php"; ?>
      <!-- menu  -->
      <div class="menu" id="menu">
         <ul class="menu__list">

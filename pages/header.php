@@ -28,7 +28,7 @@
                         <i class="fa-regular fa-user"></i>
                     </a>
                     <div class="header__list">
-                        <a href="#">Thông tin <i class="fa-solid fa-circle-info"></i></a>
+                        <a href="./informationUser.php">Thông tin <i class="fa-solid fa-circle-info"></i></a>
                         <a href="#">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
                     </div>
                 </li>

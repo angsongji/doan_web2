@@ -11,7 +11,10 @@
 </head>
 
 <body>
-    <?php include "./pages/header.php";?>
+    <?php
+        $base_img_path = "img/";
+        include "./pages/header.php";
+     ?>
 
     <?php include "./pages/footer.php"; ?>
 </body>

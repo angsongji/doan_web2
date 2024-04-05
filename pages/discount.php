@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="../css/discount.css">
 </head>
 <body>
-    <?php include "./header.php"; ?>
+    <?php
+        $base_img_path = "../img/";
+        include "./header.php";
+      ?>
      <!-- menu  -->
      <div class="menu" id="menu">
         <ul class="menu__list">
@@ -341,7 +344,9 @@
     </div>
     <!-- end rules  -->
 
-    <?php include "../pages/footer.php"; ?>
+    <?php 
+        include "../pages/footer.php"; 
+        ?>
     <script src="../js/discount.js"></script>
 </body>
 </html>

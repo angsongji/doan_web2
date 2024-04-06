@@ -1,6 +1,6 @@
 <?php 
 echo '
-<footer>
+<footer class="footer">
         <div class="footer__main">
             <div class="container">
                 <div class="footer__list">
@@ -17,37 +17,37 @@ echo '
                         <li>DỊCH VỤ NỔI BẬT</li>
                         <li>
                             <a href="#">
-                                <img src="../img/logo.jpg" alt="">
+                                <img src="./img/logo.jpg" alt="">
                                 <span>Vé xem phim</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="../img/car.svg" alt="">
+                                <img src="./img/car.svg" alt="">
                                 <span>Bảo hiểm Ô tô</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="../img/plane.svg" alt="">
+                                <img src="./img/plane.svg" alt="">
                                 <span>Vé máy bay</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="../img/hotel.svg" alt="">
+                                <img src="./img/hotel.svg" alt="">
                                 <span>Khách sạn</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="../img/wallet.jpg" alt="">
+                                <img src="./img/wallet.jpg" alt="">
                                 <span>Ví nhân ái</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="../img/price.webp" alt="">
+                                <img src="./img/price.webp" alt="">
                                 <span>Vay nhanh</span>
                             </a>
                         </li>
@@ -95,7 +95,7 @@ echo '
                                 ĐƯỢC CHỨNG NHẬN BỞI
                             </div>
                             <div class="footer__img">
-                                <img src="../img/congthuong.jpg" alt="bocongthuong">
+                                <img src="./img/congthuong.jpg" alt="bocongthuong">
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ echo '
                 <div class="footer__wrap">
                     <div class="footer__info">
                         <div class="footer__logo">
-                            <img src="../../img/logo.jpg" alt="logo">
+                            <img src="./img/logo.jpg" alt="logo">
                         </div>
                         <div class="footer__text">
                             <span>CÔNG TY CỔ PHẦN DỊCH VỤ MEME TRỰC TUYẾN</span>

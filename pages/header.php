@@ -5,11 +5,11 @@
         <div class="header__wrap">
             <div class="header__logo">
                 <a href="/" class="header__img-logo">
-                    <img src="../img/logo.jpg" alt="logo">
+                    <img src="./img/logo.jpg" alt="logo">
                 </a>
                 <a href="/" class="header__title">
                     <div class="header__img-camera">
-                        <img src="../img/camera.svg" alt="">
+                        <img src="./img/camera.svg" alt="">
                     </div>
                     <div class="header__text">
                         <span>Đặt vé</span>

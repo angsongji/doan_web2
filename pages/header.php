@@ -17,17 +17,18 @@
                 </a>
             </div>
             <ul class="header__menu">
+                <li><a href="#">Trang chủ</a></li>
                 <li><a href="#">Review phim</a></li>
                 <li><a href="#">Top phim</a></li>
                 <li><a href="#">Blog phim</a></li>
-                <li><a href="#">Khuyến mãi</a></li>
+                <li><a href="../index?pages=discount.php">Khuyến mãi</a></li>
                 <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
                 <li>
                     <a href="#">
                         <i class="fa-regular fa-user"></i>
                     </a>
                     <div class="header__list">
-                        <a href="./informationUser.php">Thông tin <i class="fa-solid fa-circle-info"></i></a>
+                        <a href="../index?pages=contentUser.php">Thông tin <i class="fa-solid fa-circle-info"></i></a>
                         <a href="#">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
                     </div>
                 </li>

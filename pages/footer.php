@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 <?php 
 echo '
 <footer class="footer">
+=======
+
+<footer>
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
         <div class="footer__main">
             <div class="container">
                 <div class="footer__list">
@@ -17,37 +22,61 @@ echo '
                         <li>DỊCH VỤ NỔI BẬT</li>
                         <li>
                             <a href="#">
+<<<<<<< HEAD
                                 <img src="./img/logo.jpg" alt="">
+=======
+                                <img src="<?php echo $base_img_path; ?>logo.jpg" alt="">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                                 <span>Vé xem phim</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+<<<<<<< HEAD
                                 <img src="./img/car.svg" alt="">
+=======
+                                <img src="<?php echo $base_img_path; ?>car.svg" alt="">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                                 <span>Bảo hiểm Ô tô</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+<<<<<<< HEAD
                                 <img src="./img/plane.svg" alt="">
+=======
+                                <img src="<?php echo $base_img_path; ?>plane.svg" alt="">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                                 <span>Vé máy bay</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+<<<<<<< HEAD
                                 <img src="./img/hotel.svg" alt="">
+=======
+                                <img src="<?php echo $base_img_path; ?>hotel.svg" alt="">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                                 <span>Khách sạn</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+<<<<<<< HEAD
                                 <img src="./img/wallet.jpg" alt="">
+=======
+                                <img src="<?php echo $base_img_path; ?>wallet.jpg" alt="">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                                 <span>Ví nhân ái</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+<<<<<<< HEAD
                                 <img src="./img/price.webp" alt="">
+=======
+                                <img src="<?php echo $base_img_path; ?>price.webp" alt="">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                                 <span>Vay nhanh</span>
                             </a>
                         </li>
@@ -95,7 +124,11 @@ echo '
                                 ĐƯỢC CHỨNG NHẬN BỞI
                             </div>
                             <div class="footer__img">
+<<<<<<< HEAD
                                 <img src="./img/congthuong.jpg" alt="bocongthuong">
+=======
+                                <img src="<?php echo $base_img_path; ?>congthuong.jpg" alt="bocongthuong">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                             </div>
                         </div>
                     </div>
@@ -107,7 +140,11 @@ echo '
                 <div class="footer__wrap">
                     <div class="footer__info">
                         <div class="footer__logo">
+<<<<<<< HEAD
                             <img src="./img/logo.jpg" alt="logo">
+=======
+                            <img src="<?php echo $base_img_path; ?>logo.jpg" alt="logo">
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
                         </div>
                         <div class="footer__text">
                             <span>CÔNG TY CỔ PHẦN DỊCH VỤ MEME TRỰC TUYẾN</span>
@@ -123,6 +160,4 @@ echo '
             </div>
         </div>
     </footer>
-';
 
-?>

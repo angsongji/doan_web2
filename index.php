@@ -13,8 +13,16 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <?php include "./pages/header.php";?>
     <?php include "./pages/home.php";?>
+=======
+    <?php
+        $base_img_path = "img/";
+        include "./pages/header.php";
+     ?>
+
+>>>>>>> 911f12042ba81d5d522b106778f49c8776843027
     <?php include "./pages/footer.php"; ?>
     <script src="./js/trangchu.js"></script>
 </body>

@@ -375,6 +375,7 @@ ul{
 .user span{
      justify-self: center;
 }
+.user_id{margin-left: 5px;}
 .user_status input:hover,.user i:hover{cursor: pointer;}
 .user i{
     position: absolute;

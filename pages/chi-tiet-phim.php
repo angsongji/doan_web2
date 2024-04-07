@@ -15,7 +15,6 @@
         include('container-popup.php');
         include('container-popup-menu-chon-ghe.php');
         include('container-popup-menu-chon-nuoc.php');
-        include('header.php');
     ?>
 
     <main>
@@ -27,10 +26,5 @@
         ?>
     </main>
 
-    <footer>
-        <?php
-            include('footer.php');
-        ?>
-    </footer>
 </body>
 </html>

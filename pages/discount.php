@@ -9,11 +9,8 @@
     <link rel="stylesheet" href="../css/discount.css">
 </head>
 <body>
-    <?php
-        $base_img_path = "../img/";
-        include "./header.php";
-      ?>
-     <!-- menu  -->
+    
+     <!-- menu  reponsive-->
      <div class="menu" id="menu">
         <ul class="menu__list">
             <li><a href="#">Review phim</a></li>
@@ -344,9 +341,7 @@
     </div>
     <!-- end rules  -->
 
-    <?php 
-        include "../pages/footer.php"; 
-        ?>
+  
     <script src="../js/discount.js"></script>
 </body>
 </html>

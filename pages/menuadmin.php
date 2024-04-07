@@ -15,28 +15,41 @@
         echo '<img src="img/logoweb_admin.png">';
     }
     $chucnang=array();
-//     $servername = "localhost";
-//     $username = "root";
-//     $password = "Oanh2004!";
-//     $dbname = "rapchieuphim";
-// // Tạo kết nối
-//     $conn =new mysqli($servername, $username, $password, $dbname);
-//     $sql = "SELECT * FROM chucnang ";
-//     $result = $conn->query($sql);
-//     $conn->close();
-//     
-//     while($row = $result->fetch_assoc()) {
-//         array_push($chucnang,$row['TENCHUCNANG']);
-//     }
+// Include file chứa class connectDatabase
+require_once('database/connectDatabase.php');
+
+// Thực hiện kết nối đến cơ sở dữ liệu
+$servername = "localhost"; // Tên máy chủ cơ sở dữ liệu
+$username = "root"; // Tên người dùng cơ sở dữ liệu
+$password = "Oanh2004!"; // Mật khẩu của người dùng cơ sở dữ liệu
+$database = "rapchieuphim"; // Tên cơ sở dữ liệu
+$connection = new connectDatabase($servername, $username, $password, $database);
+
+// Thực hiện truy vấn (ví dụ)
+$query = "SELECT * FROM chucnang"; // Truy vấn SQL của bạn
+$result = $connection->executeQuery($query);
+
+// Xử lý kết quả nếu cần
+if ($result) {
+    // Thực hiện các thao tác với kết quả
+    while ($row = $result->fetch_assoc()) {
+        array_push($chucnang,$row['TENCHUCNANG']);
+    }
+} else {
+    // Xử lý khi truy vấn thất bại
+}
+
+// Ngắt kết nối đến cơ sở dữ liệu khi đã xong
+$connection->disconnect();
     
-   array_push($chucnang,"Quản lí nguời dùng");
-    array_push($chucnang,"Quản lí phim");
-    array_push($chucnang,"Quản lí lịch chiếu phim");
-    array_push($chucnang,"Quản lí dịch vụ");
-    array_push($chucnang,"Lịch sử đặt vé");
-    array_push($chucnang,"Báo cáo doanh thu");
-    array_push($chucnang,"Phân quyền chức năng");
-    array_push($chucnang,"Đăng xuất");
+//    array_push($chucnang,"Quản lí nguời dùng");
+//     array_push($chucnang,"Quản lí phim");
+//     array_push($chucnang,"Quản lí lịch chiếu phim");
+//     array_push($chucnang,"Quản lí dịch vụ");
+//     array_push($chucnang,"Lịch sử đặt vé");
+//     array_push($chucnang,"Báo cáo doanh thu");
+//     array_push($chucnang,"Phân quyền chức năng");
+//     array_push($chucnang,"Đăng xuất");
    
 
     $liItem='';
@@ -66,7 +79,7 @@
                 $icon="fa-solid fa-mug-saucer";
                 $href="admin.php?page=dichvuadmin";
                 break;
-            case "Quản lí hóa đơn":
+            case "Lịch sử đặt vé":
                 $nameChucnang="qldatve";
                 $icon="fa-solid fa-ticket";
                 $href="admin.php?page=lsdatveadmin";
@@ -84,7 +97,7 @@
             case "Đăng xuất":
                 $nameChucnang="dangxuat";
                 $icon="fa-regular fa-circle-left";
-                $href="index.php";
+                $href="/";
                 break;    
         }
         if($tenchucnang != "Đăng xuất" && isset($_GET['mode']))

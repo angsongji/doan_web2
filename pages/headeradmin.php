@@ -15,7 +15,7 @@
                 $chucnang="Quản lí dịch vụ";
                 break;
             case "lsdatveadmin":
-                $chucnang="Quản lí hóa đơn";
+                $chucnang="Lịch sử đặt vé";
                 break;
             case "baocaodoanhthu":
                 $chucnang="Báo cáo doanh thu";

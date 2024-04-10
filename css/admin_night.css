@@ -185,3 +185,6 @@
 .lichchieuphim_header_btn i{
     color: var(--light-gray);
 }
+#change_lichchieuphim_phim{
+    background-color: var(--green2);
+}

@@ -9,6 +9,7 @@
         if(isset($_GET['mode']) && $_GET['mode']=="night")
             echo '<link rel="stylesheet" href="css/admin_night.css" />';
     ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>MEME</title>
 </head>
@@ -63,6 +64,7 @@
             
         </div>
     </div>
+    <div id="unclick_behind_this_screen" ></div>
     <script src="js/admin.js"></script>
 </body>
 </html>

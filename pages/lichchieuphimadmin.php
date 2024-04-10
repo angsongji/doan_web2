@@ -145,7 +145,7 @@ echo'</ul>
                 </div>
             </div>
         </div>
-        <span class="edit_suatchieu"><i class="fa-solid fa-pen-to-square fa-fw"></i></span>
+        <span class="edit_suatchieu" style="cursor:pointer;"><i class="fa-solid fa-pen-to-square fa-fw"></i></span>
     </div>
     <div class="lichchieuphim_phim">
         <img src="img/33735630744753025-jWYfucBwXG3ePh97bM5ReT1q65X.jpg">
@@ -179,6 +179,57 @@ echo'</ul>
         <i class="fa-solid fa-plus"></i>
     </div>
 </div>
-</div>';
+    <div class="lichchieuphim_phim" id="change_lichchieuphim_phim">
+        <img src="img/33735630744753025-jWYfucBwXG3ePh97bM5ReT1q65X.jpg">
+        <div class="lichchieuphim_right">
+            <h3 class="name_movie" style="margin:0;">Ten</h3>
+            <div class="lichchieuphim_lichchieu_wrap">
+                <div class="lichchieuphim_lichchieu">
+                    <span class="time_start">9:00</span>
+                    <span>~<span>
+                    <span class="time_end">14:30</span>
+                </div>
+                <div class="lichchieuphim_lichchieu">
+                    <span class="time_start">9:00</span>
+                    <span>~<span>
+                    <span class="time_end">14:30</span>
+                </div>
+            </div>
+            <div id="hide_choose_new_suatchieu">Chọn suất chiếu để chỉnh sửa</div>
+            <div id="div_choose_new_suatchieu">
+                <span>Bắt đầu</span>
+                <span>Kết thúc</span>
+                 <div class="lichchieuphim_lichchieu" style="border:0">
+                    <span class="time_start">
+                        <select>
+                            <option>Chọn giờ</option>
+                        </select>
+                    </span>
+                    <span>~<span>
+                    <span class="time_end">
+                        <select>
+                            <option>Chọn phút</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="lichchieuphim_lichchieu" style="border:0;cursor:auto;">
+                    <span class="time_start">9:00</span>
+                    <span>~<span>
+                    <span class="time_end">14:30</span>
+                </div>
+                <div style="display:flex;align-items:center;">
+                    <button style="cursor:pointer;width:fit-content;font-size:14px;padding:10px;border-radius:5px;background-color:var(--primary_color);border:0;Color:white;">Xác nhận</button>
+                    <i class="fa-solid fa-trash" style="font-size:25px;Color: var(--primary_color);margin-left:25px;cursor:pointer;"></i>
+                </div>
+            </div>
+           
+        </div>
+        <span class="edit_suatchieu" id="exit_edit_suatchieu" style="cursor:pointer;"><i class="fa-solid fa-x"></i></span>
+
+    </div>
+</div>
+
+
+';
 
 ?>

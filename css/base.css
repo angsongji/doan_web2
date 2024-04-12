@@ -231,6 +231,14 @@ ul {
 .footer__main {
     padding: 40px 0;
     background: #171717;
+    position: relative;
+    bottom: -1000px;
+    width: 100%;
+}
+
+.footer__bottom{
+    position: relative;
+    bottom: -1000px;
 }
 
 .footer__list {

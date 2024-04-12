@@ -16,37 +16,37 @@
                         <li>DỊCH VỤ NỔI BẬT</li>
                         <li>
                             <a href="#">
-                                <img src="<?php echo $base_img_path; ?>logo.jpg" alt="">
+                                <img src="./img/logo.jpg" alt="">
                                 <span>Vé xem phim</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="<?php echo $base_img_path; ?>car.svg" alt="">
+                                <img src="./img/car.svg" alt="">
                                 <span>Bảo hiểm Ô tô</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="<?php echo $base_img_path; ?>plane.svg" alt="">
+                                <img src="./img/plane.svg" alt="">
                                 <span>Vé máy bay</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="<?php echo $base_img_path; ?>hotel.svg" alt="">
+                                <img src="./img/hotel.svg" alt="">
                                 <span>Khách sạn</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="<?php echo $base_img_path; ?>wallet.jpg" alt="">
+                                <img src="./img/wallet.jpg" alt="">
                                 <span>Ví nhân ái</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="<?php echo $base_img_path; ?>price.webp" alt="">
+                                <img src="./img/price.webp" alt="">
                                 <span>Vay nhanh</span>
                             </a>
                         </li>
@@ -94,7 +94,7 @@
                                 ĐƯỢC CHỨNG NHẬN BỞI
                             </div>
                             <div class="footer__img">
-                                <img src="<?php echo $base_img_path; ?>congthuong.jpg" alt="bocongthuong">
+                                <img src="./img/congthuong.jpg" alt="bocongthuong">
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="footer__wrap">
                     <div class="footer__info">
                         <div class="footer__logo">
-                            <img src="<?php echo $base_img_path; ?>logo.jpg" alt="logo">
+                            <img src="./img/logo.jpg" alt="logo">
                         </div>
                         <div class="footer__text">
                             <span>CÔNG TY CỔ PHẦN DỊCH VỤ MEME TRỰC TUYẾN</span>

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khuyến mãi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/discount.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/discount.css">
 </head>
 <body>
     
@@ -24,7 +24,7 @@
     <!-- img-main  -->
     <div class="img-main">
         <div class="img-main__bg">
-            <img src="../img/bgmain.jpg" alt="">
+            <img src="./img/bgmain.jpg" alt="">
         </div>
     </div>
     <!--end img-main  -->
@@ -41,12 +41,12 @@
             </div>
             <div class="new-friend__wrap">
                 <div class="new-friend__img">
-                    <img src="../img/bgmain.jpg" alt="">
+                    <img src="./img/bgmain.jpg" alt="">
                 </div>
                 <div class="new-friend__box">
                     <div class="new-friend__item" onclick="openTab(event,'tab1')">
                         <div class="new-friend__icon">
-                            <img src="../img/nhapma.svg" alt="">
+                            <img src="./img/nhapma.svg" alt="">
                         </div>
                         <span>Nhập mã</span>
                         <div class="new-friend__cpy">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="new-friend__item" onclick="openTab(event,'tab2')">
                         <div class="new-friend__icon">
-                            <img src="../img/nhapma.svg" alt="">
+                            <img src="./img/nhapma.svg" alt="">
                         </div>
                         <span>Hoặc mã</span>
                         <div class="new-friend__cpy">
@@ -76,7 +76,7 @@
                     </div>
                     <div class="new-friend__item" onclick="openTab(event,'tab3')">
                         <div class="new-friend__icon">
-                            <img src="../img/lienket.svg" alt="code">
+                            <img src="./img/lienket.svg" alt="code">
                         </div>
                         <span>Liên kết Ngân hàng</span>
                     </div>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="new-friend__item" onclick="openTab(event,'tab4')">
                         <div class="new-friend__icon">
-                            <img src="../img/naptien.svg" alt="">
+                            <img src="./img/naptien.svg" alt="">
                         </div>
                         <span>Nạp tiền vào MoMo</span>
                     </div>
@@ -117,7 +117,7 @@
             <div class="gift-card__wrap">
                 <div class="gift-card__box" onclick="openModal()">
                     <div class="gift-card__img">
-                        <img src="../img/9000đ.jpg" alt="">
+                        <img src="./img/9000đ.jpg" alt="">
                         <div class="gift-card__bg">
                             <div class="gift-card__seen">
                                 Xem chi tiết
@@ -135,7 +135,7 @@
                 </div>
                 <div class="gift-card__box" onclick="openModal()">
                     <div class="gift-card__img">
-                        <img src="../img/9000đ.jpg" alt="">
+                        <img src="./img/9000đ.jpg" alt="">
                         <div class="gift-card__bg">
                             <div class="gift-card__seen">
                                 Xem chi tiết
@@ -342,6 +342,6 @@
     <!-- end rules  -->
 
   
-    <script src="../js/discount.js"></script>
+    <script src="./js/discount.js"></script>
 </body>
 </html>

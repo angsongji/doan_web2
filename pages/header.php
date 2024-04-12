@@ -3,12 +3,12 @@
     <div class="container">
         <div class="header__wrap">
             <div class="header__logo">
-                <a href="/" class="header__img-logo">
-                    <img src="<?php echo $base_img_path; ?>logo.jpg" alt="logo">
+                <a href="index.php" class="header__img-logo">
+                    <img src="./img/logo.jpg" alt="logo">
                 </a>
-                <a href="/" class="header__title">
+                <a href="index.php" class="header__title">
                     <div class="header__img-camera">
-                        <img src="<?php echo $base_img_path; ?>camera.svg" alt="">
+                        <img src="./img/camera.svg" alt="">
                     </div>
                     <div class="header__text">
                         <span>Đặt vé</span>
@@ -20,14 +20,14 @@
                 <li><a href="#">Review phim</a></li>
                 <li><a href="#">Top phim</a></li>
                 <li><a href="#">Blog phim</a></li>
-                <li><a href="../index?pages=discount.php">Khuyến mãi</a></li>
+                <li><a href="index.php?pages=discount.php">Khuyến mãi</a></li>
                 <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
                 <li>
                     <a href="#">
                         <i class="fa-regular fa-user"></i>
                     </a>
                     <div class="header__list">
-                        <a href="../index?pages=contentUser.php">Thông tin <i class="fa-solid fa-circle-info"></i></a>
+                        <a href="index.php?pages=contentUser.php">Thông tin <i class="fa-solid fa-circle-info"></i></a>
                         <a href="#">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
                     </div>
                 </li>

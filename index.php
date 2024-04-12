@@ -15,6 +15,9 @@
                 echo'<link rel="stylesheet" href="../css/base_user.css">
                      <link rel="stylesheet" href="../css/user.css">';
                 break;
+            case 'discount.php':
+                echo '<link rel="stylesheet" href="./css/base.css">
+                <link rel="stylesheet" href="./css/discount.css">';
         }
     }
     ?>
@@ -23,7 +26,6 @@
 
 <body>
     <?php
-        $base_img_path = "img/";
         include "./pages/header.php";
      ?>
     <?php
@@ -32,6 +34,7 @@
         switch($pages){
             case 'discount.php':
                 include "./pages/discount.php";
+                echo '<script src="./js/discount.js"></script>';
                 break;
             case 'contentUser.php':
                 include "./pages/contentUser.php";
@@ -40,4 +43,5 @@
     }
     ?>
     <?php include "./pages/footer.php"; ?>
+    
 </body>

@@ -74,18 +74,51 @@ body {
 }
 
 #menu-bap-nuoc {
-    background-color: red;
+    background-color: white;
     height: auto;
 }
 
 #menu-bap-nuoc .mon {
-    height: 150px;
-    background-color: green;
+    height: 140px;
+    background-color: white;
     margin-bottom: 10px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.322);
+
+    display: flex;
+    flex-direction: row;
+}
+
+#menu-bap-nuoc .mon .thong-tin-dich-vu {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu-bap-nuoc .mon .thong-tin-dich-vu div {
+    margin-bottom: 5px;
+}
+
+#menu-bap-nuoc .mon img {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover;
+}
+
+.so-luong-dich-vu input {
+    width: 25px;
+    text-align: center;
+}
+
+.so-luong-dich-vu button {
+    width: 20px;
 }
 
 #menu-bap-nuoc .mon:nth-last-child(1) {
     margin-bottom: 130px;
+}
+
+#menu-bap-nuoc .mon:first-child {
+    margin-top: 60px;
 }
 
 #tong-tien-bap-nuoc {

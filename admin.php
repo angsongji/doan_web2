@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='shortcut icon' href='img/iconweb2.ico' />
-    <link rel="stylesheet" href="css/admin.css" />
+    <link rel='shortcut icon' href='./img/iconweb2.ico' />
+    <link rel="stylesheet" href="./css/admin.css" />
     <?php 
         if(isset($_GET['mode']) && $_GET['mode']=="night")
             echo '<link rel="stylesheet" href="css/admin_night.css" />';
@@ -16,18 +16,18 @@
 <body>
     <div class="wrapadmin">
         <nav class="menuadmin">
-            <?php require 'pages/menuadmin.php' ?>
+            <?php require './pages/menuadmin.php' ?>
         </nav>
         <div class="contentadmin" >
             <div class="headeradmin">
-                <?php require 'pages/headeradmin.php' ?>
+                <?php require './pages/headeradmin.php' ?>
             </div>
             <?php
                 if(isset($_GET['page'])){
                     echo'<div class="name_model" >Tìm kiếm</div>
                     <form class="searchadmin" action="">
                          ';
-                    require "pages/searchadmin.php";
+                    require "./pages/searchadmin.php";
                     echo' 
                     </form>
                     <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
@@ -38,7 +38,7 @@
                 <?php
                     if(isset($_GET['page']))
                     {
-                        require 'pages/'.$_GET['page'].'.php';
+                        require './pages/'.$_GET['page'].'.php';
                     }
                     else{
                         echo '<div id="none_select_cn">Chua lua chon chuc nang</div>';
@@ -57,7 +57,7 @@
                     if(isset($_GET['page']))
                     {
                         echo '<nav id="list_page">';
-                        require "pages/list_page_admin.php";
+                        require "./pages/list_page_admin.php";
                         echo'</nav>';
                     }
             ?>
@@ -65,6 +65,6 @@
         </div>
     </div>
     <div id="unclick_behind_this_screen" ></div>
-    <script src="js/admin.js"></script>
+    <script src="./js/admin.js"></script>
 </body>
 </html>

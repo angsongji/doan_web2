@@ -16,40 +16,40 @@
     }
     $chucnang=array();
 // Include file chứa class connectDatabase
-require_once('database/connectDatabase.php');
+// require_once('database/connectDatabase.php');
 
-// Thực hiện kết nối đến cơ sở dữ liệu
-$servername = "localhost"; // Tên máy chủ cơ sở dữ liệu
-$username = "root"; // Tên người dùng cơ sở dữ liệu
-$password = "Oanh2004!"; // Mật khẩu của người dùng cơ sở dữ liệu
-$database = "rapchieuphim"; // Tên cơ sở dữ liệu
-$connection = new connectDatabase($servername, $username, $password, $database);
+// // Thực hiện kết nối đến cơ sở dữ liệu
+// $servername = "localhost"; // Tên máy chủ cơ sở dữ liệu
+// $username = "root"; // Tên người dùng cơ sở dữ liệu
+// $password = ""; // Mật khẩu của người dùng cơ sở dữ liệu
+// $database = "cinema"; // Tên cơ sở dữ liệu
+// $connection = new connectDatabase($servername, $username, $password, $database);
 
-// Thực hiện truy vấn (ví dụ)
-$query = "SELECT * FROM chucnang"; // Truy vấn SQL của bạn
-$result = $connection->executeQuery($query);
+// // Thực hiện truy vấn (ví dụ)
+// $query = "SELECT * FROM chucnang"; // Truy vấn SQL của bạn
+// $result = $connection->executeQuery($query);
 
-// Xử lý kết quả nếu cần
-if ($result) {
-    // Thực hiện các thao tác với kết quả
-    while ($row = $result->fetch_assoc()) {
-        array_push($chucnang,$row['TENCHUCNANG']);
-    }
-} else {
-    // Xử lý khi truy vấn thất bại
-}
+// // Xử lý kết quả nếu cần
+// if ($result) {
+//     // Thực hiện các thao tác với kết quả
+//     while ($row = $result->fetch_assoc()) {
+//         array_push($chucnang,$row['TENCHUCNANG']);
+//     }
+// } else {
+//     // Xử lý khi truy vấn thất bại
+// }
 
-// Ngắt kết nối đến cơ sở dữ liệu khi đã xong
-$connection->disconnect();
+// // Ngắt kết nối đến cơ sở dữ liệu khi đã xong
+// $connection->disconnect();
     
-//    array_push($chucnang,"Quản lí nguời dùng");
-//     array_push($chucnang,"Quản lí phim");
-//     array_push($chucnang,"Quản lí lịch chiếu phim");
-//     array_push($chucnang,"Quản lí dịch vụ");
-//     array_push($chucnang,"Lịch sử đặt vé");
-//     array_push($chucnang,"Báo cáo doanh thu");
-//     array_push($chucnang,"Phân quyền chức năng");
-//     array_push($chucnang,"Đăng xuất");
+   array_push($chucnang,"Quản lí nguời dùng");
+    array_push($chucnang,"Quản lí phim");
+    array_push($chucnang,"Quản lí lịch chiếu phim");
+    array_push($chucnang,"Quản lí dịch vụ");
+    array_push($chucnang,"Lịch sử đặt vé");
+    array_push($chucnang,"Báo cáo doanh thu");
+    array_push($chucnang,"Phân quyền chức năng");
+    array_push($chucnang,"Đăng xuất");
    
 
     $liItem='';

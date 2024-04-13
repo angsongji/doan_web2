@@ -8,7 +8,7 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="form_login__item-input">
-                        <input type="text" placeholder="Tên người dùng hoặc email">
+                        <input class="input_item1" type="text" placeholder="Tên người dùng hoặc email">
                     </div>
                 </div>
                 <div class="form_login__item">
@@ -16,8 +16,8 @@
                         <i class="fa-solid fa-lock"></i>
                     </div>
                     <div class="form_login__item-input">
-                        <input type="password" placeholder="Mật khẩu" class="password">
-                        <span class="toggle-password" onclick="touchEye()">
+                        <input id="myElement" class="input_item1 password" type="password" placeholder="Mật khẩu" >
+                        <span class="toggle-password eye_pass">
                             <i class="fa-solid fa-eye"></i>
                         </span>
                     </div>

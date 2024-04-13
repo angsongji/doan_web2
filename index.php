@@ -13,8 +13,8 @@
         $pages=$_GET['pages'];
         switch($pages){
             case 'contentUser.php':
-                echo'<link rel="stylesheet" href="../css/base_user.css">
-                     <link rel="stylesheet" href="../css/user.css">';
+                echo'<link rel="stylesheet" href="./css/base_user.css">
+                     <link rel="stylesheet" href="./css/user.css">';
                 break;
             case 'discount.php':
                 echo '<link rel="stylesheet" href="./css/base.css">

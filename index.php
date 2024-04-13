@@ -29,9 +29,9 @@
     <?php
         include "./pages/header.php";
      ?>
-    <?php 
+    <!-- <?php 
        include "./pages/home.php";
-    ?>
+    ?> -->
     <?php
     if(isset($_GET['pages'])){
         $pages=$_GET['pages'];
@@ -44,8 +44,11 @@
                 include "./pages/contentUser.php";
                 break;
         }
+    }else {
+        include "./pages/home.php";
     }
     ?>
+    
     <?php include "./pages/footer.php"; ?>
     
 </body>

@@ -97,7 +97,7 @@
             case "Đăng xuất":
                 $nameChucnang="dangxuat";
                 $icon="fa-regular fa-circle-left";
-                $href="/";
+                $href="./";
                 break;    
         }
         if($tenchucnang != "Đăng xuất" && isset($_GET['mode']))

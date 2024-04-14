@@ -1,6 +1,3 @@
-<?php 
-echo '
-    <section>
         <div class="content">
             <div class="wrapper row">
                 <div class="phimDangChieu">Phim đang chiếu</div>
@@ -53,8 +50,6 @@ echo '
                 </div>
                
 
-            </div>
-                
             </div>
             <div class="phimsapchieu">
                 <div class="hinhanhsapchieu">
@@ -168,10 +163,4 @@ echo '
                     <i class="fa-solid fa-circle-play" id="start20"></i>
                 </div>
             </div>
-                </div>
-                
         </div>
-    </section>
-    <script src="../js/trangchu.js"></script>'
-
-?>

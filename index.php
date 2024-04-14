@@ -26,12 +26,10 @@
 </head>
 
 <body>
+    <div class=main_wrap>
     <?php
         include "./pages/header.php";
      ?>
-    <!-- <?php 
-       include "./pages/home.php";
-    ?> -->
     <?php
     if(isset($_GET['pages'])){
         $pages=$_GET['pages'];
@@ -49,6 +47,9 @@
     }
     ?>
     
-    <?php include "./pages/footer.php"; ?>
+    <?php //include "./pages/footer.php"; ?>
+    </div>
     
 </body>
+<script src="../js/trangchu.js"></script>
+</html>

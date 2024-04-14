@@ -22,8 +22,8 @@
     <div class="main">
         <div class="logo"></div>
         <?php //include "./sign_in_success.php" ?>
-        <?php include "./sign_in.php" ?>
-        <?php //include "./log_in.php" ?>
+        <?php //include "./sign_in.php" ?>
+        <?php include "./log_in.php" ?>
     </div>
 </body>
 <script src="../js/eye_passwd.js"></script>

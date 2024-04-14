@@ -32,9 +32,11 @@
 .form_login__item{
     display: flex;
     align-items: center;
-    margin: 15px 30px;
+    margin:0px 30px;
     height: 40px;
 }
+
+
 .form_login__item-icon{
     padding: 10px 25px;
     width: 1px;
@@ -233,6 +235,10 @@
     font-size: 1.7rem;
     color: red;
 }
+.error.empty{
+    display: none;
+}
+
 
 .form_signin__item-input{
     display: flex;

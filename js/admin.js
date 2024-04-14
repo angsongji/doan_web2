@@ -128,4 +128,7 @@ $('.lichchieuphim_phim').ready(function(){
     });
 });
 
+///phân quyền
+
+    
 

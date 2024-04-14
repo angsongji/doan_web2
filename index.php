@@ -46,7 +46,6 @@
     include "./pages/footer.php";
     ?>
     
-    <?php include "./pages/footer.php"; ?>
     <script src="./js/header.js"></script>
     
 </body>

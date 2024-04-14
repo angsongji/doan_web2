@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/trangchu.css">
     <?php
-    if(isset($_GET['pages'])){
-        $pages=$_GET['pages'];
-        switch($pages){
+    if (isset($_GET['pages'])) {
+        $pages = $_GET['pages'];
+        switch ($pages) {
             case 'contentUser.php':
                 echo'<link rel="stylesheet" href="./css/base_user.css">
                      <link rel="stylesheet" href="./css/user.css">';
@@ -22,11 +22,10 @@
         }
     }
     ?>
-    
+
 </head>
 
 <body>
-    <div class=main_wrap>
     <?php
         include "./pages/header.php";
      ?>
@@ -42,14 +41,11 @@
                 include "./pages/contentUser.php";
                 break;
         }
-    }else {
+    }else{
         include "./pages/home.php";
     }
+    include "./pages/footer.php";
     ?>
     
-    <?php //include "./pages/footer.php"; ?>
-    </div>
-    
 </body>
-<script src="../js/trangchu.js"></script>
 </html>

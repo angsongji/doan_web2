@@ -1,81 +1,161 @@
 <?php 
-   // function thaotac($array_thaotac){
-        //$array_thaotac=array(
-        //    array("them"=>false,"sua"=>true,"xoa"=>true),
-        //    array("them"=>true,"sua"=>true,"xoa"=>true)
-        //);
-        /*for($i=0;$i<count($array_thaotac[0]);$i++){
-            
-            for($j=0;$j<count($array_thaotac);$j++){
-                switch($i){
-                    case 0:
-                        $array_thaotac[$j]['them']
-                        break;
-                    case 1:
-                        
-                        break;
-                    case 2:
-                        
-                        break;
-                }
+    $MAQUYEN="QAD";
+    $EDIT= false;
+    if (isset($_GET['MAQUYEN'])){
+        $MAQUYEN = $_GET['MAQUYEN'];
+        require_once('../database/connectDatabase.php');
+    }
+    if (isset($_GET['EDIT'])){
+        $EDIT = $_GET['EDIT'];
+        require_once('../database/connectDatabase.php');
+    }
+    
+
+    $quyen = listAllQuyen();
+    echo '<div class="phanquyen_wrap" name="'.$MAQUYEN.'">
+            <ul class="phanquyen_wrap_quyen">';
+    foreach ($quyen as $key => $value) {
+        if($key == $MAQUYEN)
+        echo '<li class="btn_phanquyen" id="quyen_selected" name="'.$key.'">'.$value.'</li>';
+        else
+        echo '<li class="btn_phanquyen" name="'.$key.'">'.$value.'</li>';
+    }
+    echo '<li class="btn_thaotacphanquyen" name="new_quyen"><i class="fa-solid fa-plus"></i></li>';
+    if($EDIT)
+        echo '<li class="btn_thaotacphanquyen" name="submit_edit_quyen"><i class="fa-solid fa-check"></i></li>';
+    else
+        echo '<li class="btn_thaotacphanquyen" name="edit_quyen"><i class="fa-solid fa-pen"></i></li>';
+    echo '</ul>';
+
+    $hanhdong=["Xem","Thêm","Sửa","Xóa"];
+    echo ' 
+          <div class="phanquyen_wrap_header">
+            <div name="cotdetrong"></div>';
+            foreach($hanhdong as $h){
+                echo '<div class="phanquyen_hanhdong">'.$h.'</div>';
             }
-        }
-        foreach ($array_thaotac as $row) {
-            foreach ($mang_con as $thaotac => $isset){
-                switch($thaotac){
-                    case "them":
-
-                        break;
-                    case "sua":
-                        
-                        break;
-                    case "xoa":
-                        
-                        break;
-                }
-                
+           
+    echo '</div>';
+    $chucnang = listAllChucnang();
+    foreach ($chucnang as $key => $value) {
+        echo '<div class="phanquyen_wrap_function">
+                <div class="phanquyen_wrap_content">';
+        echo '<div class="phanquyen_name">'.$value.'</div>';
+        foreach($hanhdong as $h){
+            if($EDIT){
+                if(isQuyen_Chucnang_Hanhdong($MAQUYEN,$key,$h))
+                echo '<input type="checkbox" name="'.$h.'" checked>';
+            else
+                echo '<input type="checkbox" name="'.$h.'">';
+            }else{
+                if(isQuyen_Chucnang_Hanhdong($MAQUYEN,$key,$h))
+                    echo '<input type="checkbox" name="'.$h.'" checked disabled>';
+                else
+                    echo '<input type="checkbox" name="'.$h.'" disabled>';
             }
+        } 
+        echo '  </div>
+              </div>';
+    }
+    echo '</div>';
+    echo '
+    <script>
+        $(".phanquyen_wrap_quyen>.btn_phanquyen").click(function(){
+            let maquyen = $(this).attr("name");
+            $.ajax({
+                url: "./pages/phanquyenadmin.php", // Đường dẫn tới trang content.php
+                type: "GET",
+                data: {MAQUYEN: maquyen},
+                success: function(response) {
+                    $("#content").html(response); // Thay đổi nội dung của #content
+                }
+            });
+        });
+        $(".btn_thaotacphanquyen").on("click",function(){
+            let typebtn = $(this).attr("name");
+            let maquyen = $(".phanquyen_wrap").attr("name");
+            switch(typebtn){
+                case "new_quyen":
+                    alert("new");
+                    break;
+                case "edit_quyen":
+                    $.ajax({
+                        url: "./pages/phanquyenadmin.php", // Đường dẫn tới trang content.php
+                        type: "GET",
+                        data: {EDIT: true,MAQUYEN: maquyen},
+                        success: function(response) {
+                            $("#content").html(response); // Thay đổi nội dung của #content
+                        }
+                    });
+                    break;
+                case "submit_edit_quyen":
+                    $.ajax({
+                        url: "./pages/phanquyenadmin.php", // Đường dẫn tới trang content.php
+                        type: "GET",
+                        data: {MAQUYEN: maquyen},
+                        success: function(response) {
+                            $("#content").html(response); // Thay đổi nội dung của #content
+                        }
+                    });
+                    break;
+            }
+        });
+    </script>
+    ';
+function listAllChucnang(){
+    
+    $sql="SELECT * FROM chucnang";
+    $conn = new connectDatabase();
+    $result=$conn->executeQuery($sql);
+    $conn->disconnect();
+    if ($result) {
+        $chucnang = [];
+        // Thực hiện các thao tác với kết quả
+        while ($row = $result->fetch_assoc()) {
+            $ma = $row['MACHUCNANG'];
+            $ten = $row['TENCHUCNANG'];
+
+            // Thêm cặp khóa và giá trị vào mảng chucnang
+            $chucnang[$ma] = $ten;
         }
-    }*/
-    echo '<div class="phanquyen_wrap"> 
-    <div class="phanquyen_wrap_header">
-    <div class="phanquyen_loai">Ten chuc nang</div>
-    <div class="phanquyen_loai">Admin</div>
-    <div class="phanquyen_loai">Khach hang</div>
-    <div class="phanquyen_loai">Nhan vien</div>
-    </div>
-    <div class="phanquyen_wrap_function">
-        <div class="phanquyen_wrap_content">
-        <div class="phanquyen_name">Quan li nguoi dung</div>
-        <input type="checkbox">
-        <input type="checkbox">
-        <input type="checkbox">
-        </div>
-        <div class="phanquyen_wrap_content thaotac">
-        <div class="phanquyen_name">Them </div>
-        <input type="checkbox">
-        <input type="checkbox">
-        <input type="checkbox">
-        </div>
-    </div>
-    <div class="phanquyen_wrap_function">
-        <div class="phanquyen_wrap_content">
-        <div class="phanquyen_name">Quan li nguoi dung</div>
-        <input type="checkbox">
-        <input type="checkbox">
-        <input type="checkbox">
-        </div>
-    </div>
-    <div class="phanquyen_wrap_function">
-        <div class="phanquyen_wrap_content">
-        <div class="phanquyen_name">Quan li nguoi dung</div>
-        <input type="checkbox">
-        <input type="checkbox">
-        <input type="checkbox">
-        </div>
-    </div>
-</div>';
+        return $chucnang;
+    }
+}
 
+function listAllQuyen(){
+    
+    $sql="SELECT * FROM quyen";
+    $conn = new connectDatabase();
+    $result=$conn->executeQuery($sql);
+    $conn->disconnect();
+    if ($result) {
+        $chucnang = [];
+        // Thực hiện các thao tác với kết quả
+        while ($row = $result->fetch_assoc()) {
+            $ma = $row['MAQUYEN'];
+            $ten = $row['TENQUYEN'];
 
+            // Thêm cặp khóa và giá trị vào mảng chucnang
+            $chucnang[$ma] = $ten;
+        }
+        return $chucnang;
+    }
+}
+
+function isQuyen_Chucnang_Hanhdong($MAQ,$MACHUCNANG,$hanhdong){
+    
+    $sql="SELECT * FROM chitietquyen_chucnang WHERE MAQUYEN='".$MAQ."' AND MACHUCNANG='".$MACHUCNANG."' AND HANHDONG='".$hanhdong."'";
+    $conn = new connectDatabase();
+    $result=$conn->executeQuery($sql);
+    $conn->disconnect();
+    if ($result){
+        if ($result->num_rows > 0)
+            return true;
+        else 
+            return false;
+        
+        
+    }
+}
 
 ?>

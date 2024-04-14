@@ -1,2628 +1,477 @@
-/* Phim dang chieu */
-.wrapper{
-    /* background-image: url('./img/anhghe1.jpg'); */
-    height: 500px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(1, 5fr);
-    grid-gap: 20px;
-    background-attachment: fixed;
-    min-width: 50%;
-    background-color: black;
+:root{
+    --primary-color: #ee4d2d;
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #dbdbdb;
+    --star-gold-color: #ffce3e;
+    --primary-hover-color: #ed5c3f;
+
+    --header-height: 120px;
+    --navbar-height: 33px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height));
 }
-.hinhanh{
-    position: relative;
+
+*{
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    /* HACK 1 rem = 10px  */
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Reponsive */
+
+.grid{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
     
 }
-.hinhanh img{
-    height: 300px;
+
+.grid__full-width{
+    width: 100%;
+    position: relative;
 }
-.hinhanh .ngoisao{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top: 420px;
+
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
 }
-.hinhanh h5,
-.hinhanh h3,
-.hinhanh p,
-.hinhanh h1,
-.hinhanh h6{
-    position: absolute;
-    color: white;
+
+/*Test  */
+
+.grid__column-2{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16.6667%;
+}
+
+.grid__column-2-4{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;
+}
+
+.grid__column-10{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3333%;
+}
+
+.grid__column{
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 100%;
+}
+
+/* ------------------------------------------------- */
+.phimdangchieu {
+    background-image: url(../img/BackgroundCinema.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.wrap-bottom {
+    padding-bottom: 50px;
+
+}
+
+
+
+.home-tittle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 22px;
+    border-radius: 2px;
+}
+
+.sparkle {
+    line-height: 3rem;
+    font-size: 2.5rem;
+    font-weight: 900;
     display: inline-block;
+    position: relative;
+    background: linear-gradient(45deg, #f00, #ff0, #00f);
+    /* Màu sắc của ngôi sao */
+    background-size: 200% 200%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: sparkle 2s linear infinite;
 }
-.hinhanh h5{
-    top: 440px;
-}
-.hinhanh h3{
-    bottom: 50px;
-}
-.hinhanh p{
-    bottom: 30px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh h1{
-    font-size: 50px;
-    bottom: 50px;
-}
-.hinhanh h6{
-    font-size: 15px;
-}
-#start, #next{
-    position: fixed;
-    font-size: 45px;
-    color: rgb(150, 137, 137);
-    top: 230px;
-}
-#start{
-    left: 200px;  
-}
-#next{
-    right: 220px;
-}
-.phimDangChieu{
-    position: absolute;
-    left: 600px;
-    top: 40px;
-    color: white;
-    font-size: 40px;
-}
-/* .phimDangChieu{
-    position: absolute;
-    left: 600px;
-    top: 40px;
-    color:white;
-    font-size: 40px;
-}
-.hinhanh1 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:150px;
-}
-.hinhanh1 .ngoisao1{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top:460px;
-}
-.hinhanh1 h5{
-    position: absolute;
-    color: white;
-    top: 440px;
-    left: 170px;
-}
-.hinhanh1 h3{
-    position: absolute;
-    color: white;
-    bottom:50px;
-    left: 150px;
-}
-.hinhanh1 p{
-    position: absolute;
-    color: bisque;
-    bottom:30px;
-    left: 150px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh1 h1{
-    position: absolute;
-    color: rgb(53, 81, 208);
-    font-size: 50px;
-    left:155px;
-    bottom: 50px;
-}
-#start1{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 230px;
-    top: 230px;
-}
-.hinhanh1 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(146, 39, 39);
-    width: 25px;
-    top: 70px;
-    left: 160px;
-}
-.hinhanh2 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:390px;
-}
-.hinhanh2 h3{
-    position: absolute;
-    color: white;
-    bottom:50px;
-    left: 390px;
-}
-.hinhanh2 p{
-    position: absolute;
-    color: bisque;
-    bottom:30px;
-    left: 390px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh2 h1{
-    position: absolute;
-    color: rgb(53, 81, 208);
-    font-size: 50px;
-    left:400px;
-    bottom: 50px;
-}
-.hinhanh2 .ngoisao2{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top:460px;
-}
-.hinhanh2 h5{
-    position: absolute;
-    color: white;
-    top: 440px;
-    left: 410px;
-}
-#start2{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 470px;
-    top: 230px;
-}
-.hinhanh2 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(203, 183, 33);
-    width: 25px;
-    top: 70px;
-    left: 400px;
-}
-.hinhanh3 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:620px;
-}
-.hinhanh3 h3{
-    position: absolute;
-    color: white;
-    bottom:50px;
-    left: 620px;
-}
-.hinhanh3 p{
-    position: absolute;
-    color: bisque;
-    bottom:30px;
-    left: 620px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh3 h1{
-    position: absolute;
-    color: rgb(53, 81, 208);
-    font-size: 50px;
-    left:630px;
-    bottom: 50px;
-}
-.hinhanh3 .ngoisao3{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top:460px;
-}
-.hinhanh3 h5{
-    position: absolute;
-    color: white;
-    top: 440px;
-    left: 640px;
-}
-#start3{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 700px;
-    top: 230px;
-}
-.hinhanh3 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(203, 183, 33);
-    width: 25px;
-    top: 70px;
-    left: 630px;
-}
-.hinhanh4 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:850px;
-}
-.hinhanh4 h3{
-    position: absolute;
-    color: white;
-    bottom:50px;
-    left: 850px;
-}
-.hinhanh4 p{
-    position: absolute;
-    color: bisque;
-    bottom:30px;
-    left: 850px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh4 h1{
-    position: absolute;
-    color: rgb(53, 81, 208);
-    font-size: 50px;
-    left:860px;
-    bottom: 50px;
-}
-.hinhanh4 .ngoisao4{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top:460px;
-}
-.hinhanh4 h5{
-    position: absolute;
-    color: white;
-    top: 440px;
-    left: 870px;
-}
-#start4{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 930px;
-    top: 230px;
-}
-.hinhanh4 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(209, 103, 38);
-    width: 25px;
-    top: 70px;
-    left: 860px;
-}
-.hinhanh5 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:1080px;
-}
-.hinhanh5 h3{
-    position: absolute;
-    color: white;
-    bottom:50px;
-    left: 1080px;
-}
-.hinhanh5 p{
-    position: absolute;
-    color: bisque;
-    bottom:30px;
-    left: 1080px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh5 h1{
-    position: absolute;
-    color: rgb(53, 81, 208);
-    font-size: 50px;
-    left:1090px;
-    bottom: 50px;
-}
-.hinhanh5 .ngoisao5{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top:460px;
-}
-.hinhanh5 h5{
-    position: absolute;
-    color: white;
-    top: 440px;
-    left: 1100px;
-}
-#start5{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 1160px;
-    top: 230px;
-}
-.hinhanh5 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(146, 39, 39);
-    width: 25px;
-    top: 70px;
-    left: 1090px;
-}
-#next1{
-    position: absolute;
-    color:white;
-    font-size: 45px;
-    top:230px;
-    right: 180px;
-} */
 
-/* Phim sap chieu */
 
-.phimsapchieu{
+@keyframes sparkle {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200% 200%;
+    }
+}
+
+.product-item {
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.product-item__img {
+    padding-top: 130%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+.product-item__movie-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white-color);
+    line-height: 1.8rem;
+    height: 1.8rem;
+    margin-top: 5px;
+    overflow: hidden;
+
+    /* display: block; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+
+    transition: all 0.1s linear;
+}
+
+
+.product-item__category-name {
+    font-size: 1.2rem;
+    color: #777;
+    transition: all 0.1s linear;
+}
+
+.wrap__name:hover .product-item__movie-name {
+    color: red;
+}
+
+.wrap__name:hover .product-item__category-name {
+    color: red;
+}
+
+.product-item__action {
+    display: flex;
+    /* justify-content: space-between;
+    margin: 6px 10px 0; */
+}
+
+.product-item__rating {
+    font-size: 0.9rem;
+    color: #d5d5d5;
+    /* margin-left: auto; để ngôi sao đẩy sát vào chữ đã bán  */
+    margin-left: auto;
+}
+
+.goldStar {
+    color: gold;
+}
+
+.product-item__mark {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-left: 6px;
+}
+
+.product-item__age-limit {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 23px;
+    height: 20px;
+    text-align: center;
+    color: rgba(255, 216, 64, 0.94);
+    background-color: currentColor;
+    border-radius: 3px;
+    display: flex;
+}
+
+.product-item__age-limit-label {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    color: var(--white-color);
+    font-weight: 600;
+    margin: auto;
+}
+
+.product-item__play {
+    position: absolute;
+    display: flex;
+    left: calc(50% - 20px);
+    top: calc(40% - 20px);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    border: solid 2px #fff;
+    background-color: rgba(153, 153, 153, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.product-item__play-icon {
+    font-size: 1.8rem;
+    margin: auto;
+    color: #fff;
+}
+
+.product-item:hover .product-item__img {
+    animation: zoomEffect 0.3s ease forwards;
+}
+
+@keyframes zoomEffect {
+    from {
+        background-size: 100%;
+        ;
+        /* Từ kích thước ban đầu */
+    }
+
+    to {
+        background-size: 105%;
+        ;
+        /* Đến kích thước khi hover */
+    }
+}
+
+.product-item:not(:hover) .product-item__img {
+    animation: zoomOutEffect 0.3s ease forwards;
+}
+
+@keyframes zoomOutEffect {
+    from {
+        background-size: 105%;
+        ;
+        /* Từ kích thước ban đầu */
+    }
+
+    to {
+        background-size: 100%;
+        ;
+        /* Đến kích thước khi hover */
+    }
+}
+
+
+
+
+
+
+.product-item:hover .product-item__play {
+    animation: zoomEffectPlay 0.3s ease forwards;
+    ;
+}
+
+@keyframes zoomEffectPlay {
+    from {
+        left: calc(50% - 20px);
+        top: calc(40% - 20px);
+        width: 40px;
+        height: 40px;
+    }
+
+    to {
+        width: 46px;
+        height: 46px;
+        left: calc(50% - 23px);
+        top: calc(40% - 23px);
+    }
+}
+
+.product-item:not(:hover) .product-item__play {
+    animation: zoomOutEffectPlay 0.3s ease forwards;
+    ;
+}
+
+
+@keyframes zoomOutEffectPlay {
+    from {
+        width: 46px;
+        height: 46px;
+        left: calc(50% - 23px);
+        top: calc(40% - 23px);
+    }
+
+    to {
+
+        left: calc(50% - 20px);
+        top: calc(40% - 20px);
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+.btn_next-film {
+    position: absolute;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    right: 2%;
+    top: 44%;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #fff;;
+    /* background-color: red; */
+    /* transition: transform 0.3s ease;  */
+}
+
+.btn_prev-film {
+    position: absolute;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    left: 2%;
+    top: 44%;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #fff;;
+}
+
+.btn_next-film i {
+    font-size: 1.8rem;
+    margin: auto;
+    color: #000;
+}
+
+.btn_prev-film i {
+    font-size: 1.8rem;
+    margin: auto;
+    color: #000;
+}
+/* ----------------------------------------------------------------- */
+
+.phimsapchieu {
+    background-color: #fff;
+}
+
+.text-phimsapchieu {
+    line-height: 3rem;
+    font-size: 2.5rem;
+    font-weight: 900;
+    background-image: linear-gradient(to right, #f35ec4, #f7a1e9, #efb0ce);
+    /* Màu nền gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Ẩn màu chữ */
+    animation: animateText 3s linear infinite;
+    /* Chuyển động lặp lại */
+}
+
+@keyframes animateText {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); /* Phóng to chữ */
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .product-item__movie-name.individual{
+    color: #000;
+  }
+
+  .wrap__name:hover .product-item__movie-name.individual {
+    color: rgb(234, 66, 122);
+}
+
+.wrap__name:hover .product-item__category-name.individual {
+    color: rgb(234, 66, 122);
+}
+
+.btn_next-film.individual {
+    background-color: #ccc;
+    border: solid 1px #000;
+}
+.btn_prev-film.individual {
+    background-color: #ccc;
+    border: solid 1px #000;
+}
+
+/* ------------------------------------------------------ */
+
+.menuphim {
+    background-color: #fafafa;
+}
+
+.home-filter{
+    display: flex;
+    align-items: center;
+    padding: 50px 0 12px;
+}
+.text-menu{
+    line-height: 3rem;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #000;
+    flex: 1;
+}
+
+.home-filer__navbar{
+    flex: 1.4;
+}
+
+.home-filer__navbar{
+    display: flex;
+}
+.home-filer__navbar-item{
+    width: 110px;
+    height: 30px; /* Chiều cao */
+    /* Các thuộc tính khác tùy chọn */
+    font-size: 1.4rem;
+    padding: 5px;
+    margin: auto 10px;
+}
+
+.home-filer__navbar-item.searchHome{
     width: 100%;
-    height: 500px;
-    background-color: aquamarine;
-    display: grid;
-    grid-template-columns: repeat(1, 5fr);
-    grid-gap: 20px;
-    background-attachment: fixed;
-    min-width: 50%;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 7px 24px 7px 10px;
+    border: 1px solid #999; /* Màu viền mặc định */
+    font-size: 1.4rem;
+    outline: 0;
+    margin-right: 0;
 }
-.phimSapChieu{
-    position: absolute;
-    left: 600px;
-    top: 40px;
-    color:rgb(55, 166, 100);
-    font-size: 40px;
-}
-.hinhanhsapchieu{
+
+
+
+
+.search-container{
+    display: flex;
     position: relative;
 }
-.hinhanhsapchieu img{
-    height: 300px;
-}
-.hinhanhsapchieu .ngoisao{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top: 420px;
-}
-.hinhanhsapchieu h5,
-.hinhanhsapchieu h3,
-.hinhanhsapchieu p,
-.hinhanhsapchieu h1,
-.hinhanhsapchieu h6{
-    position: absolute;
-    color: white;
-}
-.hinhanhsapchieu h5{
-    top: 440px;
-}
-.hinhanhsapchieu h3{
-    bottom: 50px;
-}
-.hinhanhsapchieu p{
-    bottom: 30px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanhsapchieu h1{
-    font-size: 50px;
-    bottom: 50px;
-}
-.hinhanhsapchieu h6{
-    font-size: 15px;
-}
-#start, #next{
-    position: absolute;
-    font-size: 45px;
-    color: rgb(150, 137, 137);
-    top: 200px;
-}
-#start{
-    left: 200px;
-}
-#next{
-    right: 220px;
-}
-/* .hinhanh6 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:150px;
-}
-.hinhanh6 h3{
-    position: absolute;
-    bottom:50px;
-    left: 150px;
-}
-.hinhanh6 p{
-    position: absolute;
-    color: black;
-    bottom:30px;
-    left: 150px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh6 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(34, 147, 73);
-    width: 20px;
-    top: 70px;
-    left: 160px;
-    text-align: center;
-}
-#start6{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 230px;
-    top: 230px;
-}
-.hinhanh7 img{
-    position: absolute;
-    width: 220px;
-    height: 300px;
-    top: 100px;
-    left:420px;
-}
-.hinhanh7 h3{
-    position: absolute;
-    bottom:50px;
-    left: 420px;
-}
-.hinhanh7 p{
-    position: absolute;
-    color: black;
-    bottom:30px;
-    left: 420px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start7{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 500px;
-    top: 230px;
-}
-.hinhanh7 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(34, 147, 73);
-    width: 25px;
-    top: 70px;
-    left: 430px;
-    text-align: center;
-}
-.hinhanh8 img{
-    position: absolute;
-    width: 250px;
-    height: 300px;
-    top: 100px;
-    left:670px;
-}
-.hinhanh8 h3{
-    position: absolute;
-    bottom:50px;
-    left: 670px;
-}
-.hinhanh8 p{
-    position: absolute;
-    color: black;
-    bottom:30px;
-    left: 670px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start8{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 780px;
-    top: 230px;
-}
-.hinhanh8 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(203, 183, 33);
-    width: 25px;
-    top: 70px;
-    left: 690px;
-}
-.hinhanh9 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:950px;
-}
-.hinhanh9 h3{
-    position: absolute;
-    bottom:50px;
-    left: 950px;
-}
-.hinhanh9 p{
-    position: absolute;
-    color: black;
-    bottom:30px;
-    left: 950px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start9{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 1030px;
-    top: 230px;
-}
-.hinhanh9 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(209, 103, 38);
-    width: 25px;
-    top: 70px;
-    left: 960px;
-}
-.hinhanh10 img{
-    position: absolute;
-    height: 300px;
-    top: 100px;
-    left:1180px;
-}
-.hinhanh10 h3{
-    position: absolute;
-    bottom:50px;
-    left: 1180px;
-}
-.hinhanh10 p{
-    position: absolute;
-    color: black;
-    bottom:30px;
-    left: 1180px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start10{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 1260px;
-    top: 230px;
-}
-.hinhanh10 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(40, 40, 180);
-    width: 25px;
-    top: 70px;
-    left: 1190px;
-    text-align: center;
-}
-#next2{
-    position: absolute;
-    color:rgb(255, 255, 255);
-    font-size: 45px;
-    top:230px;
-    right: 95px;
-} */
-@media only screen and (max-width: 800px){
-    .wrapper{
-        background-image: url('/images/anhghe1.jpg');
-        height: 450px;
-        width: 200%;
-        position: relative;
-        background-color: black;
-    }
-    .hinhanh1 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:150px;
-    }
-    .hinhanh1 .ngoisao1{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh1 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 170px;
-    }
-    .hinhanh1 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 150px;
-    }
-    .hinhanh1 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh1 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:155px;
-        bottom: 30px;
-    }
-    #start1{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 220px;
-        top: 220px;
-    }
-    .hinhanh1 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 70px;
-        left: 160px;
-    }
-    .hinhanh2 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:390px;
-    }
-    .hinhanh2 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 390px;
-    }
-    .hinhanh2 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 390px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh2 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:395px;
-        bottom: 30px;
-    }
-    .hinhanh2 .ngoisao2{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh2 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 410px;
-    }
-    #start2{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 460px;
-        top: 220px;
-    }
-    .hinhanh2 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 400px;
-    }
-    .hinhanh3 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:620px;
-    }
-    .hinhanh3 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 620px;
-    }
-    .hinhanh3 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 620px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh3 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:625px;
-        bottom: 30px;
-    }
-    .hinhanh3 .ngoisao3{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh3 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 640px;
-    }
-    #start3{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 690px;
-        top: 220px;
-    }
-    .hinhanh3 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 630px;
-    }
-    .hinhanh4 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:850px;
-    }
-    .hinhanh4 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 850px;
-    }
-    .hinhanh4 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 850px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh4 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:855px;
-        bottom: 30px;
-    }
-    .hinhanh4 .ngoisao4{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh4 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 870px;
-    }
-    #start4{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 920px;
-        top: 220px;
-    }
-    .hinhanh4 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(209, 103, 38);
-        width: 25px;
-        top: 70px;
-        left: 860px;
-    }
-    .hinhanh5 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:1080px;
-    }
-    .hinhanh5 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 1080px;
-    }
-    .hinhanh5 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 1080px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh5 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:1085px;
-        bottom: 30px;
-    }
-    .hinhanh5 .ngoisao5{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh5 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 1100px;
-    }
-    #start5{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1150px;
-        top: 220px;
-    }
-    .hinhanh5 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 70px;
-        left: 1090px;
-    }
-    #next{
-        position: absolute;
-        color:white;
-        font-size: 45px;
-        top:220px;
-        right: 170px;
-    }
-}
-@media only screen and (max-width: 575px){
-    .wrapper{
-        background-image: url('/images/anhghe1.jpg');
-        height: 450px;
-        width: 300%;
-        position: relative;
-        background-color: black;
-        
-    }
-    #next{
-        position: absolute;
-        color:white;
-        font-size: 45px;
-        top:220px;
-        right: 100px;
-        display: none;
-    }
-}
-@media only screen and (min-width: 801px){
-    .wrapper{
-        background-image: url('/images/anhghe1.jpg');
-        height: 450px;
-        width: 100%;
-        position: relative;
-        background-color: black;
-    }
-    .hinhanh1 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:150px;
-    }
-    .hinhanh1 .ngoisao1{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh1 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 170px;
-    }
-    .hinhanh1 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 150px;
-    }
-    .hinhanh1 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh1 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:155px;
-        bottom: 30px;
-    }
-    #start1{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 220px;
-        top: 220px;
 
-    }
-    .hinhanh1 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 70px;
-        left: 160px;
-    }
-    .hinhanh2 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:390px;
-    }
-    .hinhanh2 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 390px;
-    }
-    .hinhanh2 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 390px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh2 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:395px;
-        bottom: 30px;
-    }
-    .hinhanh2 .ngoisao2{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh2 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 410px;
-    }
-    #start2{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 460px;
-        top: 220px;
-    }
-    .hinhanh2 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 400px;
-    }
-    .hinhanh3 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:620px;
-    }
-    .hinhanh3 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 620px;
-    }
-    .hinhanh3 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 620px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh3 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:625px;
-        bottom: 30px;
-    }
-    .hinhanh3 .ngoisao3{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh3 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 640px;
-    }
-    #start3{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 690px;
-        top: 220px;
-    }
-    .hinhanh3 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 630px;
-    }
-    .hinhanh4 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:850px;
-    }
-    .hinhanh4 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 850px;
-    }
-    .hinhanh4 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 850px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh4 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:855px;
-        bottom: 30px;
-    }
-    .hinhanh4 .ngoisao4{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh4 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 870px;
-    }
-    #start4{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 920px;
-        top: 220px;
-    }
-    .hinhanh4 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(209, 103, 38);
-        width: 25px;
-        top: 70px;
-        left: 860px;
-    }
-    .hinhanh5 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:1080px;
-    }
-    .hinhanh5 h3{
-        position: absolute;
-        color: white;
-        bottom:40px;
-        left: 1080px;
-    }
-    .hinhanh5 p{
-        position: absolute;
-        color: bisque;
-        bottom:25px;
-        left: 1080px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh5 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:1085px;
-        bottom: 30px;
-    }
-    .hinhanh5 .ngoisao5{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        top:420px;
-    }
-    .hinhanh5 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 1100px;
-    }
-    #start5{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1150px;
-        top: 220px;
-    }
-    .hinhanh5 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 70px;
-        left: 1090px;
-    }
-    #next{
-        position: absolute;
-        color:white;
-        font-size: 45px;
-        top:220px;
-        right: 100px;
-    }
-}
-@media only screen and (min-width: 830px){
-    .wrapper{
-        background-image: url('/images/anhghe1.jpg');
-        height: 450px;
-        width: 165%;
-        position: relative;
-        background-color: black;
-    }
-}
-@media only screen and (min-width: 1000px){
-    .wrapper{
-        background-image: url('/images/anhghe1.jpg');
-        height: 450px;
-        width: 130%;
-        position: relative;
-        background-color: black;
-    }
-    
-}
-@media only screen and (min-width: 1200px){
-    .wrapper{
-        background-image: url('/images/anhghe1.jpg');
-        height: 450px;
-        width: 100%;
-        position: relative;
-        background-color: black;
-    }
-    #next{
-        right: 190px;
-    }
-}
-@media only screen and (max-width: 800px){
-    .phimsapchieu{
-        width: 200%;
-        height: 450px;
-        position: relative;
-        background-color: rgb(239, 240, 244);
-    }
-    .hinhanh6 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:150px;
-    }
-    .hinhanh6 h3{
-        position: absolute;
-        bottom:30px;
-        left: 150px;
-        color: black;
-    }
-    .hinhanh6 p{
-        position: absolute;
-        color: black;
-        bottom:20px;
-        left: 150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh6 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(34, 147, 73);
-        width: 20px;
-        top: 70px;
-        left: 160px;
-        text-align: center;
-    }
-    #start6{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 230px;
-        top: 220px;
-        cursor: pointer;
-    }
-    .hinhanh7 img{
-        position: absolute;
-        width: 220px;
-        height: 270px;
-        top: 100px;
-        left:420px;
-    }
-    .hinhanh7 h3{
-        position: absolute;
-        bottom:30px;
-        left: 420px;
-        color: black;
-    }
-    .hinhanh7 p{
-        position: absolute;
-        color: black;
-        bottom:20px;
-        left: 420px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start7{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 510px;
-        top: 220px;
-    }
-    .hinhanh7 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(34, 147, 73);
-        width: 25px;
-        top: 70px;
-        left: 430px;
-        text-align: center;
-    }
-    .hinhanh8 img{
-        position: absolute;
-        width: 240px;
-        height: 270px;
-        top: 100px;
-        left:670px;
-    }
-    .hinhanh8 h3{
-        position: absolute;
-        bottom:30px;
-        left: 670px;
-        color: black;
-    }
-    .hinhanh8 p{
-        position: absolute;
-        color: black;
-        bottom: 20px;
-        left: 670px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start8{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 770px;
-        top: 210px;
-    }
-    .hinhanh8 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 690px;
-    }
-    .hinhanh9 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:950px;
-    }
-    .hinhanh9 h3{
-        position: absolute;
-        bottom:30px;
-        left: 950px;
-        color: black;
-    }
-    .hinhanh9 p{
-        position: absolute;
-        color: black;
-        bottom:20px;
-        left: 950px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start9{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1030px;
-        top: 210px;
-    }
-    .hinhanh9 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(209, 103, 38);
-        width: 25px;
-        top: 70px;
-        left: 960px;
-    }
-    .hinhanh10 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:1180px;
-    }
-    .hinhanh10 h3{
-        position: absolute;
-        bottom:30px;
-        left: 1180px;
-        color: black;
-    }
-    .hinhanh10 p{
-        position: absolute;
-        color: black;
-        bottom:20px;
-        left: 1180px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start10{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1260px;
-        top: 210px;
-    }
-    .hinhanh10 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(40, 40, 180);
-        width: 25px;
-        top: 70px;
-        left: 1190px;
-        text-align: center;
-    }
-    #next2{
-        position: absolute;
-        color:rgb(255, 255, 255);
-        font-size: 45px;
-        top:210px;
-        right: 85px;
-    }
-}
-@media only screen and (max-width: 575px){
-    .phimsapchieu{
-        height: 450px;
-        width: 300%;
-        position: relative;
-        
-    }
-    #next2{
-        position: absolute;
-        color:white;
-        font-size: 45px;
-        top:220px;
-        right: 20px;
-    }
-}
-@media only screen and (min-width: 801px){
-    .phimsapchieu{
-        height: 450px;
-        width: 100%;
-        position: relative;
-        background-color: rgb(239, 240, 244);
-    }
-    .hinhanh6 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:150px;
-    }
-    .hinhanh6 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 170px;
-    }
-    .hinhanh6 h3{
-        position: absolute;
-        color: black;
-        bottom:40px;
-        left: 150px;
-    }
-    .hinhanh6 p{
-        position: absolute;
-        color: black;
-        bottom:25px;
-        left: 150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh6 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:155px;
-        bottom: 30px;
-    }
-    #start6{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 220px;
-        top: 220px;
-    }
-    .hinhanh6 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 70px;
-        left: 160px;
-    }
-    .hinhanh7 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:390px;
-    }
-    .hinhanh7 h3{
-        position: absolute;
-        color: black;
-        bottom:40px;
-        left: 390px;
-    }
-    .hinhanh7 p{
-        position: absolute;
-        color: black;
-        bottom:25px;
-        left: 390px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh7 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:395px;
-        bottom: 30px;
-    }
-    .hinhanh7 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 410px;
-    }
-    #start7{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 460px;
-        top: 220px;
-    }
-    .hinhanh7 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 400px;
-    }
-    .hinhanh8 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:620px;
-    }
-    .hinhanh8 h3{
-        position: absolute;
-        color: black;
-        bottom:40px;
-        left: 620px;
-    }
-    .hinhanh8 p{
-        position: absolute;
-        color: black;
-        bottom:25px;
-        left: 620px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh8 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:625px;
-        bottom: 30px;
-    }
-    .hinhanh8 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 640px;
-    }
-    #start8{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 690px;
-        top: 220px;
-    }
-    .hinhanh8 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 70px;
-        left: 630px;
-    }
-    .hinhanh9 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:850px;
-    }
-    .hinhanh9 h3{
-        position: absolute;
-        color: black;
-        bottom:40px;
-        left: 850px;
-    }
-    .hinhanh9 p{
-        position: absolute;
-        color: black;
-        bottom:25px;
-        left: 850px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh9 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:855px;
-        bottom: 30px;
-    }
-    .hinhanh9 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 870px;
-    }
-    #start9{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 920px;
-        top: 220px;
-    }
-    .hinhanh9 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(209, 103, 38);
-        width: 25px;
-        top: 70px;
-        left: 860px;
-    }
-    .hinhanh10 img{
-        position: absolute;
-        height: 270px;
-        top: 100px;
-        left:1080px;
-    }
-    .hinhanh10 h3{
-        position: absolute;
-        color: black;
-        bottom:40px;
-        left: 1080px;
-    }
-    .hinhanh10 p{
-        position: absolute;
-        color: black;
-        bottom:25px;
-        left: 1080px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh10 h1{
-        position: absolute;
-        color: rgb(53, 81, 208);
-        font-size: 50px;
-        left:1085px;
-        bottom: 30px;
-    }
-    .hinhanh10 h5{
-        position: absolute;
-        color: white;
-        top: 400px;
-        left: 1100px;
-    }
-    #start10{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1150px;
-        top: 220px;
-    }
-    .hinhanh10 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 70px;
-        left: 1090px;
-    }
-    #next2{
-        position: absolute;
-        color:white;
-        font-size: 45px;
-        top:220px;
-        right: 220px;
-    }
-}
-@media only screen and (min-width: 830px){
-    .phimsapchieu{
-        height: 450px;
-        width: 165%;
-        position: relative;
-        
-    }
-}
-@media only screen and (min-width: 1000px){
-    .phimsapchieu{
-        height: 450px;
-        width: 130%;
-        position: relative;
-        
-    }
-    
-}
-@media only screen and (min-width: 1200px){
-    .phimsapchieu{
-        height: 450px;
-        width: 100%;
-        position: relative;
-        
-    }
-    #next{
-        right: 190px;
-    }
-}
-/* @media only screen and (max-width: 575px){
-    .phimsapchieu{
-        width: 300%;
-        height: 450px;
-        position: relative;
-        background-color: aquamarine;
-    }
-    #next2{
-        position: absolute;
-        color:rgb(255, 255, 255);
-        font-size: 45px;
-        top:210px;
-        right: 20px;
-    }
-} */
-
-/* Tim kiem */
-.locphim{
-    position: relative;
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(1, 5fr);
-    grid-gap: 20px;
-    background-attachment: fixed;
-    min-width: 50%;
-}
-.LocPhim{
+.search-icon{
     position: absolute;
-    top: 100px;
-    left: 150px;
-    font-size: 30px;
-}
-#theloai{
-    position: absolute;
-    width: 130px;
-    height: 30px;
-    top: 105px;
-    left: 600px;
-    text-align: center;
-    font-size: 15px;
-}
-#quocgia{
-    position: absolute;
-    width: 130px;
-    height: 30px;
-    top: 105px;
-    left: 750px;
-    text-align: center;
-    font-size: 15px;
-}
-#nam{
-    position: absolute;
-    width: 130px;
-    height: 30px;
-    top: 105px;
-    left: 900px;
-    text-align: center;
-    font-size: 15px;
-}
-#nhaptimkiem{
-    position: absolute;
-    width: 125px;
-    height: 30px;
-    top: 105px;
-    left: 1050px;
-    text-align: center;
-    font-size: 15px;
-}
-.hinhanh11 img{
-    position: absolute;
-    width: 230px;
-    height: 300px;
-    top: 180px;
-    left:150px;
-}
-.hinhanh11 h3{
-    position: absolute;
-    top:470px;
-    left: 150px;
-}
-.hinhanh11 p{
-    position: absolute;
-    color: black;
-    top:500px;
-    left: 150px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh11 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(146, 39, 39);
-    width: 25px;
-    top: 150px;
-    left: 160px;
-    text-align: center;
-}
-#start11{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 240px;
-    top: 300px;
-}
-.hinhanh12 img{
-    position: absolute;
-    height: 300px;
-    top: 180px;
-    left:410px;
-}
-.hinhanh12 h3{
-    position: absolute;
-    top:470px;
-    left: 410px;
-}
-.hinhanh12 p{
-    position: absolute;
-    color: black;
-    top:500px;
-    left: 410px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start12{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 490px;
-    top: 300px;
-}
-.hinhanh12 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(209, 103, 38);
-    width: 25px;
-    top: 150px;
-    left: 420px;
-    text-align: center;
-}
-.hinhanh13 img{
-    position: absolute;
-    width: 230px;
-    height: 300px;
-    top: 180px;
-    left:645px;
-}
-.hinhanh13 h3{
-    position: absolute;
-    top:470px;
-    left: 645px;
-}
-.hinhanh13 p{
-    position: absolute;
-    color: black;
-    top: 500px;
-    left: 650px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start13{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 740px;
-    top: 300px;
-}
-.hinhanh13 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(203, 183, 33);;
-    width: 25px;
-    top: 150px;
-    left: 655px;
-    text-align: center;
-}
-.hinhanh14 img{
-    position: absolute;
-    width: 200px;
-    height: 300px;
-    top: 180px;
-    left:910px;
-}
-.hinhanh14 h3{
-    position: absolute;
-    top:470px;
-    left: 910px;
-}
-.hinhanh14 p{
-    position: absolute;
-    color: black;
-    top: 500px;
-    left: 910px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start14{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 990px;
-    top: 300px;
-}
-.hinhanh14 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(203, 183, 33);
-    width: 25px;
-    top: 150px;
-    left: 920px;
-}
-.hinhanh15 img{
-    position: absolute;
-    height: 300px;
-    top: 180px;
-    left:1150px;
-}
-.hinhanh15 h3{
-    position: absolute;
-    top: 470px;
-    left: 1150px;
-}
-.hinhanh15 p{
-    position: absolute;
-    color: black;
-    top: 500px;
-    left: 1150px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start15{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 1230px;
-    top: 300px;
-}
-.hinhanh15 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(40, 40, 180);
-    width: 25px;
-    top: 150px;
-    left: 1160px;
-    text-align: center;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
-.hinhanh16 img{
-    position: absolute;
-    width: 230px;
-    height: 300px;
-    top: 560px;
-    left:150px;
-}
-.hinhanh16 h3{
-    position: absolute;
-    bottom:-910px;
-    left: 150px;
-}
-.hinhanh16 p{
-    position: absolute;
-    color: black;
-    bottom:-930px;
-    left: 150px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-.hinhanh16 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(146, 39, 39);
-    width: 25px;
-    top: 535px;
-    left: 160px;
-    text-align: center;
-}
-#start16{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 240px;
-    top: 680px;
-}
-.hinhanh17 img{
-    position: absolute;
-    height: 300px;
-    top: 560px;
-    left:410px;
-}
-.hinhanh17 h3{
-    position: absolute;
-    bottom:-910px;
-    left: 410px;
-}
-.hinhanh17 p{
-    position: absolute;
-    color: black;
-    bottom:-930px;
-    left: 410px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start17{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 490px;
-    top: 680px;
-}
-.hinhanh17 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(209, 103, 38);
-    width: 25px;
-    top: 535px;
-    left: 420px;
-    text-align: center;
-}
-.hinhanh18 img{
-    position: absolute;
-    height: 300px;
-    top: 560px;
-    left:650px;
-}
-.hinhanh18 h3{
-    position: absolute;
-    bottom:-910px;
-    left: 650px;
-}
-.hinhanh18 p{
-    position: absolute;
-    color: black;
-    bottom: -930px;
-    left: 650px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start18{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 730px;
-    top: 680px;
-}
-.hinhanh18 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(203, 183, 33);;
-    width: 25px;
-    top: 535px;
-    left: 655px;
-    text-align: center;
-}
-.hinhanh19 img{
-    position: absolute;
-    height: 300px;
-    top: 560px;
-    left: 890px;
-}
-.hinhanh19 h3{
-    position: absolute;
-    bottom:-910px;
-    left: 890px;
-}
-.hinhanh19 p{
-    position: absolute;
-    color: black;
-    bottom: -930px;
-    left: 890px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start19{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 970px;
-    top: 680px;
-}
-.hinhanh19 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(146, 39, 39);
-    width: 25px;
-    top: 535px;
-    left: 900px;
-}
-.hinhanh20 img{
-    position: absolute;
-    height: 300px;
-    top: 560px;
-    left:1150px;
-}
-.hinhanh20 h3{
-    position: absolute;
-    bottom:-910px;
-    left: 1150px;
-}
-.hinhanh20 p{
-    position: absolute;
-    color: black;
-    bottom:-930px;
-    left: 1150px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-#start20{
-    position: absolute;
-    color: rgb(150, 137, 137);
-    font-size: 45px;
-    left: 1230px;
-    top: 680px;
-}
-.hinhanh20 h6{
-    position: absolute;
-    color: white;
-    font-size: 15px;
-    background-color: rgb(40, 40, 180);
-    width: 25px;
-    top: 535px;
-    left: 1160px;
-    text-align: center;
-}
-
-@media only screen and (max-width: 800px){
-    .locphim{
-        width: 200%;
-        position: relative;
-    }
-    .LocPhim{
-        position: absolute;
-        top: 100px;
-        left: 150px;
-        font-size: 30px;
-    }
-    #theloai{
-        position: absolute;
-        width: 130px;
-        height: 30px;
-        top: 105px;
-        left: 600px;
-        text-align: center;
-        font-size: 15px;
-    }
-    #quocgia{
-        position: absolute;
-        width: 130px;
-        height: 30px;
-        top: 105px;
-        left: 750px;
-        text-align: center;
-        font-size: 15px;
-    }
-    #nam{
-        position: absolute;
-        width: 130px;
-        height: 30px;
-        top: 105px;
-        left: 900px;
-        text-align: center;
-        font-size: 15px;
-    }
-    #nhaptimkiem{
-        position: absolute;
-        width: 125px;
-        height: 30px;
-        top: 105px;
-        left: 1050px;
-        text-align: center;
-        font-size: 15px;
-    }
-    .hinhanh11 img{
-        position: absolute;
-        width: 230px;
-        height: 300px;
-        top: 180px;
-        left:150px;
-    }
-    .hinhanh11 h3{
-        position: absolute;
-        top:470px;
-        left: 150px;
-    }
-    .hinhanh11 p{
-        position: absolute;
-        color: black;
-        top:500px;
-        left: 150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh11 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 150px;
-        left: 160px;
-        text-align: center;
-    }
-    #start11{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 240px;
-        top: 300px;
-    }
-    .hinhanh12 img{
-        position: absolute;
-        height: 300px;
-        top: 180px;
-        left:410px;
-    }
-    .hinhanh12 h3{
-        position: absolute;
-        top:470px;
-        left: 410px;
-    }
-    .hinhanh12 p{
-        position: absolute;
-        color: black;
-        top:500px;
-        left: 410px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start12{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 490px;
-        top: 300px;
-    }
-    .hinhanh12 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(209, 103, 38);
-        width: 25px;
-        top: 150px;
-        left: 420px;
-        text-align: center;
-    }
-    .hinhanh13 img{
-        position: absolute;
-        width: 230px;
-        height: 300px;
-        top: 180px;
-        left:645px;
-    }
-    .hinhanh13 h3{
-        position: absolute;
-        top:470px;
-        left: 645px;
-    }
-    .hinhanh13 p{
-        position: absolute;
-        color: black;
-        top: 500px;
-        left: 650px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start13{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 740px;
-        top: 300px;
-    }
-    .hinhanh13 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);;
-        width: 25px;
-        top: 150px;
-        left: 655px;
-        text-align: center;
-    }
-    .hinhanh14 img{
-        position: absolute;
-        width: 200px;
-        height: 300px;
-        top: 180px;
-        left:910px;
-    }
-    .hinhanh14 h3{
-        position: absolute;
-        top:470px;
-        left: 910px;
-    }
-    .hinhanh14 p{
-        position: absolute;
-        color: black;
-        top: 500px;
-        left: 910px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start14{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 990px;
-        top: 300px;
-    }
-    .hinhanh14 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);
-        width: 25px;
-        top: 150px;
-        left: 920px;
-    }
-    .hinhanh15 img{
-        position: absolute;
-        height: 300px;
-        top: 180px;
-        left:1150px;
-    }
-    .hinhanh15 h3{
-        position: absolute;
-        top: 470px;
-        left: 1150px;
-    }
-    .hinhanh15 p{
-        position: absolute;
-        color: black;
-        top: 500px;
-        left: 1150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start15{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1230px;
-        top: 300px;
-    }
-    .hinhanh15 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(40, 40, 180);
-        width: 25px;
-        top: 150px;
-        left: 1160px;
-        text-align: center;
-    }
-    
-    .hinhanh16 img{
-        position: absolute;
-        width: 230px;
-        height: 300px;
-        top: 560px;
-        left:150px;
-    }
-    .hinhanh16 h3{
-        position: absolute;
-        bottom:-910px;
-        left: 150px;
-    }
-    .hinhanh16 p{
-        position: absolute;
-        color: black;
-        bottom:-930px;
-        left: 150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    .hinhanh16 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 535px;
-        left: 160px;
-        text-align: center;
-    }
-    #start16{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 240px;
-        top: 680px;
-    }
-    .hinhanh17 img{
-        position: absolute;
-        height: 300px;
-        top: 560px;
-        left:410px;
-    }
-    .hinhanh17 h3{
-        position: absolute;
-        bottom:-910px;
-        left: 410px;
-    }
-    .hinhanh17 p{
-        position: absolute;
-        color: black;
-        bottom:-930px;
-        left: 410px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start17{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 490px;
-        top: 680px;
-    }
-    .hinhanh17 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(209, 103, 38);
-        width: 25px;
-        top: 535px;
-        left: 420px;
-        text-align: center;
-    }
-    .hinhanh18 img{
-        position: absolute;
-        height: 300px;
-        top: 560px;
-        left:650px;
-    }
-    .hinhanh18 h3{
-        position: absolute;
-        bottom:-910px;
-        left: 650px;
-    }
-    .hinhanh18 p{
-        position: absolute;
-        color: black;
-        bottom: -930px;
-        left: 650px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start18{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 730px;
-        top: 680px;
-    }
-    .hinhanh18 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(203, 183, 33);;
-        width: 25px;
-        top: 535px;
-        left: 655px;
-        text-align: center;
-    }
-    .hinhanh19 img{
-        position: absolute;
-        height: 300px;
-        top: 560px;
-        left: 890px;
-    }
-    .hinhanh19 h3{
-        position: absolute;
-        bottom:-910px;
-        left: 890px;
-    }
-    .hinhanh19 p{
-        position: absolute;
-        color: black;
-        bottom: -930px;
-        left: 890px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start19{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 970px;
-        top: 680px;
-    }
-    .hinhanh19 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(146, 39, 39);
-        width: 25px;
-        top: 535px;
-        left: 900px;
-    }
-    .hinhanh20 img{
-        position: absolute;
-        height: 300px;
-        top: 560px;
-        left:1150px;
-    }
-    .hinhanh20 h3{
-        position: absolute;
-        bottom:-910px;
-        left: 1150px;
-    }
-    .hinhanh20 p{
-        position: absolute;
-        color: black;
-        bottom:-930px;
-        left: 1150px;
-        opacity: 0.7;
-        font-size: 14px;
-    }
-    #start20{
-        position: absolute;
-        color: rgb(150, 137, 137);
-        font-size: 45px;
-        left: 1230px;
-        top: 680px;
-    }
-    .hinhanh20 h6{
-        position: absolute;
-        color: white;
-        font-size: 15px;
-        background-color: rgb(40, 40, 180);
-        width: 25px;
-        top: 535px;
-        left: 1160px;
-        text-align: center;
-    }
-}
-@media only screen and (max-width: 575px){
-    .locphim{
-        width: 300%;
-        position: relative;
-        
-    }
-}
-@media only screen and (min-width: 801px){
-    .locphim{
-        width: 100%;
-        position: relative;
-    }
-}
-@media only screen and (min-width: 830px){
-    .phimsapchieu{
-        width: 165%;
-        position: relative;
-    }
-}
-@media only screen and (min-width: 1000px){
-    .locphim{
-        width: 100%;
-        position: relative;
-        
-    }
-}
-@media only screen and (min-width: 1200px){
-    .phimsapchieu{
-        width: 100%;
-        position: relative;
-    }
-}

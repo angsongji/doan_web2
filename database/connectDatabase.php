@@ -6,11 +6,11 @@ class connectDatabase{
     private $database;
     public  $conn;
 
-    public function __construct($s,$u,$p,$d){
-        $this->servername=$s;
-        $this->username=$u;
-        $this->password=$p;
-        $this->database=$d;
+    public function __construct(){
+        $this->servername = "localhost"; // Tên máy chủ cơ sở dữ liệu
+        $this->username = "root"; // Tên người dùng cơ sở dữ liệu
+        $this->password = "Oanh2004!"; // Mật khẩu của người dùng cơ sở dữ liệu
+        $this->database = "cinema"; // Tên cơ sở dữ liệu
         $this->conn= new mysqli($this->servername,$this->username,$this->password,$this->database);
         
         if ($this->conn->connect_error) {

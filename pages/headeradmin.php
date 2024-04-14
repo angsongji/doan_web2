@@ -18,10 +18,16 @@
                 $chucnang="Lịch sử đặt vé";
                 break;
             case "baocaodoanhthu":
-                $chucnang="Báo cáo doanh thu";
+                $chucnang="Thống kê";
                 break;
             case "phanquyenadmin":
                 $chucnang="Phân quyền chức năng";
+                break;
+            case "uudaiadmin":
+                $chucnang="Ưu đãi";
+                break;
+            case "phongchieu":
+                $chucnang="Phòng chiếu";
                 break;
         }
         echo '<span>'. $chucnang .'</span>';

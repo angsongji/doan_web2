@@ -1,7 +1,8 @@
-
+let body = document.querySelector("body");
 function openModal() {
     const modal = document.querySelector("#modal");
     modal.style.display = "block";
+    body.classList.add("modal-info");
 }
 
 function closeModal() {
@@ -13,6 +14,7 @@ function closeModal() {
     close[1].addEventListener("click", () => {
         modal.style.display = "none";
     })
+    body.classList.remove("modal-info");
 }
 
 let bool = false;
@@ -30,18 +32,16 @@ function openTab(event, tabName) {
     bool = !bool;
 }
 
-let varMenu = true;
-function openMenu() {
-    const menu = document.querySelector("#menu");
-    const bars = document.getElementById("bars");
 
-    if(varMenu) {
-        menu.style.display = "block";
-        bars.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
-    }else {
-        menu.style.display = "none";
-        bars.innerHTML = `<i class="fa-solid fa-bars"></i>`;
-    }
-
-    varMenu = !varMenu;
+document.querySelectorAll(".copyIcon").forEach(function(icon, index) {
+    icon.addEventListener("click", function() {
+      var copiedText = document.querySelectorAll(".textToCopy")[index].innerText;
+      copyTextToClipboard(copiedText);
+    });
+});
+  
+function copyTextToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+    });
 }
+

@@ -11,14 +11,14 @@
 <body>
     
      <!-- menu  reponsive-->
-     <div class="menu" id="menu">
+    <!-- <div class="menu" id="menu">
         <ul class="menu__list">
             <li><a href="#">Review phim</a></li>
             <li><a href="#">Top phim</a></li>
             <li><a href="#">Blog phim</a></li>
             <li><a href="#">Khuyến mãi</a></li>
         </ul>
-    </div>
+    </div> -->
     <!-- end menu  -->
 
     <!-- img-main  -->
@@ -33,7 +33,7 @@
     <div class="new-friend">
         <div class="container">
             <div class="new-friend__title">
-                Nhập MEME9K/MEMEAL9K - Bạn mới MOMO nhận vé xem phim chỉ 9K!
+                Nhập MEME9K/MEMEAL9K - Bạn mới MEME nhận vé xem phim chỉ 9K!
             </div>
             <div class="new-friend__contentbg">
                 Ưu đãi cực sốc cho khách hàng mới khi lần đầu đăng ký dùng MEME: Thẻ quà xem phim chỉ 9K áp
@@ -50,8 +50,8 @@
                         </div>
                         <span>Nhập mã</span>
                         <div class="new-friend__cpy">
-                            <span>MOMO9K</span>
-                            <i class="fa-regular fa-copy"></i>
+                            <span class="textToCopy" >MEME9K</span>
+                            <i class="fa-regular fa-copy copyIcon" ></i>
                         </div>
                     </div>
                     <div class="new-friend__text">
@@ -65,8 +65,8 @@
                         </div>
                         <span>Hoặc mã</span>
                         <div class="new-friend__cpy">
-                            <span>MOMOMEME9K</span>
-                            <i class="fa-regular fa-copy"></i>
+                            <span class="textToCopy">SIUMEME9K</span>
+                            <i class="fa-regular fa-copy copyIcon" ></i>
                         </div>
                     </div>
                     <div class="new-friend__text">

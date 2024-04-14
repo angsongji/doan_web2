@@ -46,6 +46,5 @@
     }
     include "./pages/footer.php";
     ?>
-
-
 </body>
+

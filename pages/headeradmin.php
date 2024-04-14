@@ -29,7 +29,7 @@
     echo '<span>
         <div class="mode_page">';
     if(isset($_GET['mode'])){
-        $url='../admin.php?';
+        $url='./admin.php?';
         $mode=$_GET['mode'];
         switch($mode){
             case "day":{
@@ -47,7 +47,7 @@
         }
     }
     else{
-        $url='../admin.php?mode=night';
+        $url='./admin.php?mode=night';
         if(isset($_GET['page'])) $url=$url.'&page='.$_GET['page'];
         echo '<a href="'.$url.'"><i class="fa-solid fa-cloud-sun"></i></a>';    
     }     

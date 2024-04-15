@@ -51,7 +51,4 @@
     
     <script src="./js/header.js"></script>
 </body>
-<<<<<<< HEAD
-=======
 
->>>>>>> 91f6a0f0e10caf19665694d66d4741c43b18c319

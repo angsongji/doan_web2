@@ -96,7 +96,7 @@ $('#show_infor_movie_new').find('#click_show_theloai').ready(function(){
                 $('#click_show_theloai>div').html('Click de an the loai');
                 $('#show_list_theloai').css('display','block');
                 $('#click_show_theloai').attr('name','hide');
-                break;
+               break;
             case "hide":
                 $('#click_show_theloai>div').html('Click de chon the loai');
                 $('#show_list_theloai').css('display','none');
@@ -104,7 +104,7 @@ $('#show_infor_movie_new').find('#click_show_theloai').ready(function(){
                 break;
         }
     });
-});
+}); 
 
 
 $('.lichchieuphim_phim').ready(function(){

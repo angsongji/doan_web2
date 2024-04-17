@@ -72,7 +72,7 @@ foreach ($chucnang as $tenchucnang) {
         case "Phim":
             $nameChucnang = "qlphim";
             $icon = "fa-solid fa-video";
-            $href = "admin.php?page=moviesadmin";
+            $href = "admin.php?page=chucnangPhim";
             break;
         case "Lịch chiếu phim":
             $nameChucnang = "pllichchieu";

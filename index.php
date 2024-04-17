@@ -19,6 +19,15 @@
             case 'discount.php':
                 echo '<link rel="stylesheet" href="./css/base.css">
                 <link rel="stylesheet" href="./css/discount.css">';
+                break;
+            case 'history_ticket.php':
+                echo '<link rel="stylesheet" href="./css/base_user.css">
+                <link rel="stylesheet" href="./css/ticket_css.css">';
+                break;
+            case 'ticket.php':
+                echo '<link rel="stylesheet" href="./css/base_user.css">
+                <link rel="stylesheet" href="./css/ticket_css.css">';
+                break;
         }
     }
     ?>
@@ -39,6 +48,12 @@
                 break;
             case 'contentUser.php':
                 include "./pages/contentUser.php";
+                break;
+            case 'history_ticket.php':
+                include "./pages/history_ticket.php";
+                break;
+            case 'ticket.php':
+                include "./pages/ticket.php";
                 break;
         }
     }else{

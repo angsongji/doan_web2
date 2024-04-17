@@ -14,15 +14,15 @@
                 <h1>VoAnhTuan</h1>
             </div>
             <div class="option__wrapper">
-                <button class="option-item information_user">
+                <div class="option-item information_user">
                     <span><i class="fa-solid fa-user"></i></span>
                     <span>Thông tin tài khoản</span>
-                </button>
+                </div>
 
-                <button class="option-item change_password">
+                <div class="option-item change_password">
                     <span><i class="fa-solid fa-lock"></i></span>
                     <span>Đổi mật khẩu</span>
-                </button>
+                </div>
             </div>
         </div>
     </div>
@@ -39,9 +39,9 @@
 </div>
 <script>
     document.querySelector(".information_user").addEventListener("click",()=>{
-        window.location.href = "informationUser.php";
+        window.location.href = "index.php?pages=contentUser.php";
     });
     document.querySelector(".change_password").addEventListener("click",()=>{
-        window.location.href = "informationUser.php?id=pass";
+        window.location.href = "index.php?pages=contentUser.php&id=pass";
     });
 </script>

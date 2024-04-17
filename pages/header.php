@@ -193,6 +193,8 @@
                         <div class="header__list">
                             <a href="index.php?pages=contentUser.php">Thông tin <i
                                     class="fa-solid fa-circle-info"></i></a>
+                                    <a href="index.php?pages=history_ticket.php">Lịch sử vé
+                                        <i class="fa-solid fa-ticket"></i></a>
                             <a href="#">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
                         </div>
                     </li>

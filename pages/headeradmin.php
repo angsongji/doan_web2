@@ -5,7 +5,7 @@
             case "usersadmin":
                 $chucnang="Quản lí nguời dùng";
                 break;
-            case "moviesadmin":
+            case "chucnangPhim":
                 $chucnang="Quản lí phim";
                 break;
             case "lichchieuphimadmin":

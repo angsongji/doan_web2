@@ -262,7 +262,9 @@ CREATE TABLE `theloai` (
 CREATE TABLE `uudai` (
   `CODE` varchar(10) NOT NULL,
   `TENUUDAI` varchar(255) DEFAULT NULL,
-  `PHANTRAMUUDAI` int NOT NULL
+  `PHANTRAMUUDAI` int NOT NULL,
+  `DIEUKIEN` varchar(255) NOT NULL,
+  `TRANGTHAI` smallint 	DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1177,16 +1179,16 @@ VALUES
 ('MDV007', 'Combo 2 nước + 1 bắp', 'combo2nuoc1bap.jpg', 'TIẾT KIỆM 15K!!! Gồm: 2 nước có gas + 1 bắp', 60000),
 ('MDV008', 'Combo 2 bắp 1 nước', 'combo2bap1nuoc.jpg', 'TIẾT KIỆM 15K!!! Gồm: 2 bắp + 1 nước có gas', 70000);
 
-INSERT INTO uudai(CODE, TENUUDAI, PHANTRAMUUDAI)
+INSERT INTO uudai(CODE, TENUUDAI, PHANTRAMUUDAI,DIEUKIEN,TRANGTHAI)
 VALUES 
-('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5),
-('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10),
-('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15),
-('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20),
-('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25),
-('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30),
-('MUD007', 'Khách hàng mới giảm 5%', 5),
-('MUD008', 'Ưu đãi thứ 3 hàng tuần', 15);
+('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5,'150000',1),
+('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10,'250000',0),
+('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15,'350000',0),
+('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20,'450000',1),
+('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25,'500000',1),
+('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30,'1000000',0),
+('MUD007', 'Khách hàng mới giảm 5%', 5,'KHM',1),
+('MUD008', 'Ưu đãi thứ 3 hàng tuần', 15,'TUESDAY',1);
 
 
 

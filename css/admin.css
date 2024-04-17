@@ -216,7 +216,7 @@ ul{
 #movies/*,#dichvu_wrap*/{
     border-radius: 10px;
     width:98%;
-    margin: 10px 0 10px 10px;
+    margin: 0 0 10px 10px;
    background-color: white;/*sáng*/
    
    
@@ -361,32 +361,35 @@ ul{
 .dichvu > i:hover{
     cursor: pointer;
 }
-#users_wrap,#lichchieuphim_wrap{
+#users_wrap,#lichchieuphim_wrap,#theloai_wrap{
     width: 98%;
     margin:10px 0 0 10px;
     box-shadow: 0 0 5px 0 gray;
     background-color: white;
 }
-.user{
+.user,.theloai{
     display: grid;
     grid-template-columns: 5% 50% 26% 19%;
     padding:  13px 0;
     border-bottom: 1px solid var(--light-gray);
     position: relative;
 }
-.userheader{
+.theloai{
+    grid-template-columns: 10% 16% 65% 9%;
+}
+.userheader,.headertheloai{
     background-color: var(--primary_color);
     color: white;
     padding:  7px 0;
     font-weight: 600;
 }
 
-.user span{
+.user span, .theloai span{
      justify-self: center;
 }
 .user_id{margin-left: 5px;}
-.user_status input:hover,.user i:hover{cursor: pointer;}
-.user i{
+.user_status input:hover,.user i:hover,.theloai i:hover{cursor: pointer;}
+.user i,.theloai i{
     position: absolute;
     top: 13px;
     right: 7px;
@@ -567,7 +570,7 @@ ul{
     
 
 }
-.phanquyen_wrap_header,.phanquyen_wrap_content,.phanquyen_wrap_quyen{
+.phanquyen_wrap_header,.phanquyen_wrap_content,.phanquyen_wrap_quyen,.chucnangcon_wrap{
     padding: 8px;
    
     border-left: 0;
@@ -583,12 +586,12 @@ ul{
     
     
 }
-.phanquyen_wrap_quyen{
+.phanquyen_wrap_quyen,.chucnangcon_wrap{
     display: flex;
     background-color: var(--second_color);
 
 }
-.phanquyen_wrap_quyen li{
+.phanquyen_wrap_quyen li,.chucnangcon_wrap li{
   
     padding: 0 10px;
     display: flex;
@@ -600,11 +603,11 @@ ul{
     color: var(--overlay-gray);
     border: 1px solid var(--overlay-gray);
 }
-.phanquyen_wrap_quyen li:hover, .phanquyen_wrap_content input[type='checkbox']:hover{  cursor: pointer;}
-.phanquyen_wrap_quyen #quyen_selected{
+.phanquyen_wrap_quyen li:hover, .phanquyen_wrap_content input[type='checkbox']:hover,.chucnangcon_wrap li:hover{  cursor: pointer;}
+.phanquyen_wrap_quyen #quyen_selected,.chucnangcon_wrap #chucnangconPhim_selected,.phanquyen_wrap_quyen li:hover,.chucnangcon_wrap li:hover{
     color: var(--second_color);
     background-color: var(--primary_color);
-    border: 0;
+    border: 1px solid transparent;
 }
 .phanquyen_wrap_function{
     margin-top: 8px;
@@ -878,4 +881,8 @@ display: none;
     /* display: grid; */
     grid-template-columns: 60% 40%;
     grid-template-rows: auto auto;
+}
+.chucnangcon_wrap{
+    margin-left: 10px;
+    margin-top: 8px;
 }

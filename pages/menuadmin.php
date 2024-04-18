@@ -53,6 +53,7 @@ $connection->disconnect();
 // array_push($chucnang, "Lịch sử đặt vé");
 // array_push($chucnang, "Báo cáo doanh thu");
 // array_push($chucnang, "Phân quyền chức năng");
+array_push($chucnang, "Vé");
 array_push($chucnang, "Thống kê");
 array_push($chucnang, "Đăng xuất");
 

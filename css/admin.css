@@ -261,11 +261,10 @@ ul{
     color: var(--primary_color);
 }
 .movie .age_movie{
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 5px;
     padding: 3px;
     color: white;
-    background-color: red;
     position: absolute;
     top: 5px;
     left: 5px;
@@ -326,16 +325,16 @@ ul{
     align-items: center;
 }
 .dichvu img{
-    width: 130px;
-    height: 200px;
+    width: 50%;
+    height: auto;
   border-radius: 8px;
 }
 .dichvu .mota{
     margin-left: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    justify-content: space-evenly;
+    height: 85%;
 }
 .dichvu .mota h3,h4,h5{margin: 0;padding: 0;}
 .dichvu .mota h3,h4{
@@ -347,7 +346,7 @@ ul{
     font-weight: 300;
 }
 .dichvu > i{
-    font-size: 22px;
+    font-size: 18px;
     position: absolute;
     top:6px;
     right: 6px;
@@ -369,11 +368,15 @@ ul{
 }
 .user,.theloai{
     display: grid;
-    grid-template-columns: 5% 50% 26% 19%;
     padding:  13px 0;
     border-bottom: 1px solid var(--light-gray);
     position: relative;
 }
+.user{
+    grid-template-columns: 16% 16% 20% 20% 10% 15% 3%;
+    align-items: center;
+}
+
 .theloai{
     grid-template-columns: 10% 16% 65% 9%;
 }
@@ -382,10 +385,14 @@ ul{
     color: white;
     padding:  7px 0;
     font-weight: 600;
+    margin-top: 20px;
 }
 
 .user span, .theloai span{
      justify-self: center;
+}
+.theloai > span:nth-child(3){
+    justify-self: left;
 }
 .user_id{margin-left: 5px;}
 .user_status input:hover,.user i:hover,.theloai i:hover{cursor: pointer;}
@@ -622,8 +629,8 @@ ul{
 .history_ticket {
     
     display: grid;
-    grid-template-columns: 15% 35% 25% 20% 5%;
-    height: 35px;
+    grid-template-columns: 12% 13% 30% 20% 20% 5%;
+    height: 45px;
     align-items: center;
     border-bottom:1px solid var(--light-gray) ;
     font-weight: 600;
@@ -636,7 +643,7 @@ ul{
     height: 40px;
     background-color:  var(--primary_color);
     color: white;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .history_ticket span{
 
@@ -645,7 +652,6 @@ ul{
 }
 .content_history_ticket{
     display: grid;
-    gap:10px;
     
 }
 

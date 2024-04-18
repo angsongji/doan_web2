@@ -15,14 +15,6 @@
                 <label for="Địa chỉ email" class="right-info__item-name">Địa chỉ email</label>
                 <input type="text" class="right-info__item-input" id="Địa chỉ email">
             </div>
-            <div class="right-info__item">
-                <label for="Số điện thoại" class="right-info__item-name">Số điện thoại</label>
-                <input type="text" class="right-info__item-input" id="Số điện thoại">
-            </div>
-            <div class="right-info__item">
-                <label for="Địa chỉ" class="right-info__item-name">Địa chỉ</label>
-                <input type="text" class="right-info__item-input" id="Địa chỉ">
-            </div>
         </div>
         <div class="btn__update-wrap">
             <input type="submit" value="Đăng ký" class="btn__update">

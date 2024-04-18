@@ -15,6 +15,7 @@
             case 'contentUser.php':
                 echo'<link rel="stylesheet" href="./css/base_user.css">
                      <link rel="stylesheet" href="./css/user.css">';
+                     
                 break;
             case 'discount.php':
                 echo '<link rel="stylesheet" href="./css/base.css">

@@ -54,29 +54,8 @@
                         }
                     }
 
+                
                     if(empty($_POST['Password'])){
-                        if($chuoiEmpty==""){
-                            $chuoiEmpty = "errorPassword=empty";  
-                        }else{
-                            $chuoiEmpty .="&errorPassword=empty";  
-                        }
-                        $count++;
-                    }else if(!preg_match('/^.{8,}$/', $_POST['Password'])){
-                        if($chuoiEmpty==""){
-                                $chuoiEmpty = "errorPassword=wrong";  
-                        }else{
-                                $chuoiEmpty .="&errorPassword=wrong";  
-                        }
-                        $count++;
-                    }else{
-                        if($chuoiEmpty==""){
-                                 $chuoiEmpty .="Password=".$_POST['Password'];   
-                        }else{
-                                $chuoiEmpty .="&Password=".$_POST['Password'];   
-                            }
-                        }
-
-                        if(empty($_POST['Password'])){
                         if($chuoiEmpty==""){
                             $chuoiEmpty = "errorPassword=empty";  
                         }else{

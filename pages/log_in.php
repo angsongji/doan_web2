@@ -1,25 +1,26 @@
 <?php
     session_start();
     if(isset($_POST["btn_logIn"])){
+        $chuoiEmpty="";
+        $count=0;
         $tenDN = $_POST['TenDNorEmail'];
         $password = $_POST['Password'];
 
-        $sqlDN = "SELECT USERNAME, PASSWORD, EMAIL FROM taikhoan";
 
+        $sqlDN = "SELECT USERNAME, PASSWORD, EMAIL FROM taikhoan";
         require_once('../database/connectDatabase.php');
         $conn = new connectDatabase();
 
         $result = $conn->executeQuery($sqlDN);
         $flag = 0;
+
         if ($result->num_rows > 0) {
-            // Lặp qua từng hàng dữ liệu và hiển thị
             while($row = $result->fetch_assoc()) {
                 $userNameSQL = $row["USERNAME"];
                 $passSQL = $row["PASSWORD"];
                 $emailSQL = $row["EMAIL"];
                 if(($tenDN==$userNameSQL||$tenDN==$emailSQL)&&$password==$passSQL){
                     $flag++;
-                    $_SESSION['TenDN'] = $userNameSQL;
                     break;
                 }
             }
@@ -27,14 +28,43 @@
             echo "Không có dữ liệu trong bảng.";
         }
 
-        if($flag>0){  
-            header('location:../index.php'); // header là hàm chuyển trang
-        }else{
-            header('location:log_sign.php?pages=log_in&tenDN='.$tenDN);
+        if(empty($tenDN)){
+            $chuoiEmpty = "errorTenDN=empty";
+            $count++;
+        }else if($flag==0){
+            $chuoiEmpty = "errorTenDN=wrong";
+            $count++;
         }
+
+        if(empty($password)){
+            if($chuoiEmpty==""){
+                $chuoiEmpty = "errorPass=empty";  
+            }else{
+                $chuoiEmpty .="&errorPass=empty";  
+            }
+            $count++;
+        }else if($flag==0){
+            if($chuoiEmpty==""){
+                $chuoiEmpty = "errorPass=wrong";  
+            }else{
+                $chuoiEmpty .="&errorPass=wrong";  
+            }
+            $count++;
+        }
+
+        if($count>0){
+//            echo "<script>window.location.href = 'index.php?pages=contentUser.php&id=pass&" .$chuoiEmpty. "';</script>";
+            header('location:log_sign.php?pages=log_in&'.$chuoiEmpty);
+        }else{
+            $_SESSION['TenDN'] = $userNameSQL;
+            header('location:../index.php');
+
+        }
+        $conn->disconnect();
+
     }
 ?>
-
+<title>Đăng nhập</title>
 <div class="wrapper_login">
             <div class="title">
                 <h2>Đăng nhập vào Meme</h2>
@@ -48,10 +78,12 @@
                         <input class="input_item1" type="text" placeholder="Tên người dùng hoặc email" name="TenDNorEmail">
                     </div>
                 </div>
-                    <span class="error"  style="margin-left: 81px;">
+                    <span class="error" style="margin-left: 81px;">
                     <?php
-                        if(isset($_GET['tenDN'])){
-                            echo "Tên đăng nhập hoặc email có thể không đúng";
+                        if(isset($_GET['errorTenDN'])&&$_GET['errorTenDN']=='empty'){
+                            echo "Chua nhap ten DN";
+                        }else if(isset($_GET['errorTenDN'])&&$_GET['errorTenDN']=='wrong'){
+                            echo "Co the ten dn chua dung";
                         }
                     ?>
                     </span>
@@ -68,10 +100,12 @@
                     </div>
                     
                 </div>
-                <span class="error"  style="margin-left: 81px;">
+                <span class="error" style="margin-left: 81px;">
                 <?php
-                        if(isset($_GET['tenDN'])){
-                            echo "Mật khẩu có thể không đúng";
+                        if(isset($_GET['errorPass'])&&$_GET['errorPass']=='empty'){
+                            echo "Chua nhap pass";
+                        }else if(isset($_GET['errorPass'])&&$_GET['errorPass']=='wrong'){
+                            echo "Co the ten pass chua dung";
                         }
                     ?>
                     </span>
@@ -88,11 +122,3 @@
                 </div>
             </div>
         </div>
-
-
-    <?php
-        if(isset($_GET['tenDN'])){
-        $tendn = $_GET['tenDN'];
-        echo "<script>form_login.TenDNorEmail.value ='$tendn';</script>";
-            }
-    ?>

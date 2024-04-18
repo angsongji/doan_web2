@@ -1,3 +1,4 @@
+<title>Đăng ký</title>
 <div class="wrapper_signin">
             <div class="title">
                 <h2>Đăng ký tài khoản Meme</h2>

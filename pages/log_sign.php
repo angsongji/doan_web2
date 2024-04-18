@@ -14,7 +14,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/base_user.css">
     <link rel="stylesheet" href="../css/log_in.css">
-    <title>Đăng ký</title>
 </head>
 
 <body>

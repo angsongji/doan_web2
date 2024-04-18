@@ -103,6 +103,7 @@
 }
 .right-info__item{
     display: flex;
+    position: relative;
     padding: 20px 30px;
     font-size: 1.7rem;
     align-items: center;

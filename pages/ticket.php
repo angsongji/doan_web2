@@ -1,3 +1,4 @@
+<title>Chi tiết vé</title>
 <div class="main_ve">
         <div class="grid">
             <div class="grid__row">

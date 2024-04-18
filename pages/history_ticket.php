@@ -1,4 +1,5 @@
-    <div class="main_lsmv">
+<title>Lịch sử mua vé</title>
+<div class="main_lsmv">
         <div class="panel_filter">
             <a class="logo" href="index.php">
                 <img class="logo_item" src="./img/logo.jpg" alt="">

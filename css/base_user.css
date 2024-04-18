@@ -38,7 +38,14 @@ ul {
 label {
     margin: 0;
 }
-
+.errorPass{
+    font-size: 1.9rem;
+    color: red;
+    margin-left: 100px;
+    position: absolute;
+    top: 54px;
+    left: 89px;
+}
 
 .horizontal-line {
     width: 96%; /* Độ rộng của đường ngang */

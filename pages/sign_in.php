@@ -1,8 +1,9 @@
+<title>Đăng ký</title>
 <div class="wrapper_signin">
             <div class="title">
                 <h2>Đăng ký tài khoản Meme</h2>
             </div>
-            <form action="regex_sign_in.php" class="form_signin" name="formLogIn" method="POST">
+            <form action="regex_sign_in.php" class="form_signin" name="form_signin" method="POST">
                 <div class="form_signin__item">
                     <div class="form_signin__item-input">
                         <input name="Name" class="input_item" type="text" placeholder="Tên của bạn">
@@ -82,21 +83,21 @@
 
 if(isset($_GET['Name'])){
     $name = $_GET['Name'];
-    echo "<script>formLogIn.Name.value ='$name';</script>";
+    echo "<script>form_signin.Name.value ='$name';</script>";
 }
     if(isset($_GET['Email'])){
         $email = $_GET['Email'];
-        echo "<script>formLogIn.Email.value ='$email';</script>";
+        echo "<script>form_signin.Email.value ='$email';</script>";
     }
 
     if(isset($_GET['Name_account'])){
         $name_account = $_GET['Name_account'];
-        echo "<script>formLogIn.Name_account.value ='$name_account';</script>";
+        echo "<script>form_signin.Name_account.value ='$name_account';</script>";
     }
 
     if(isset($_GET['Password'])){
         $password = $_GET['Password'];
-        echo "<script>formLogIn.Password.value ='$password';</script>";
+        echo "<script>form_signin.Password.value ='$password';</script>";
     }
 
     ?>

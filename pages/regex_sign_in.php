@@ -54,29 +54,8 @@
                         }
                     }
 
+                
                     if(empty($_POST['Password'])){
-                        if($chuoiEmpty==""){
-                            $chuoiEmpty = "errorPassword=empty";  
-                        }else{
-                            $chuoiEmpty .="&errorPassword=empty";  
-                        }
-                        $count++;
-                    }else if(!preg_match('/^.{8,}$/', $_POST['Password'])){
-                        if($chuoiEmpty==""){
-                                $chuoiEmpty = "errorPassword=wrong";  
-                        }else{
-                                $chuoiEmpty .="&errorPassword=wrong";  
-                        }
-                        $count++;
-                    }else{
-                        if($chuoiEmpty==""){
-                                 $chuoiEmpty .="Password=".$_POST['Password'];   
-                        }else{
-                                $chuoiEmpty .="&Password=".$_POST['Password'];   
-                            }
-                        }
-
-                        if(empty($_POST['Password'])){
                         if($chuoiEmpty==""){
                             $chuoiEmpty = "errorPassword=empty";  
                         }else{
@@ -121,11 +100,43 @@
                             }
                             $count++;
                         }
-                $count++;    
+                        
         if($count>0){
-            header("location: log_sign.php?".$chuoiEmpty);
+            header("location: log_sign.php?pages=sign_in&".$chuoiEmpty);
         }else{
 
+            $tenTK = $_POST['Name_account'];
+            $passwd = $_POST['Password'];
+
+            $ngay = new DateTime();
+            $date = $ngay->format('Y-m-d');
+
+            $trangThai = 1;
+
+            $email = $_POST['Email'];
+            
+            $name = $_POST['Name'];
+            
+            $tenAnh = "userImg.jpg";
+            
+            $maQuyen = "QKH";
+
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $time = date("H:i:s");
+
+            $sqlUser = "INSERT INTO taikhoan (USERNAME,PASSWORD,NGAYTAOTK,TRANGTHAI,EMAIL,HOTEN,NAMEANH,MAQUYEN,THOIGIANTAOTK) 
+                        VALUES ('$tenTK','$passwd','$date',$trangThai,'$email','$name','$tenAnh','$maQuyen','$time')";  
+        
+        require_once('../database/connectDatabase.php');
+
+        $conn = new connectDatabase();
+
+        $result = $conn->executeQuery($sqlUser);
+
+        $conn->disconnect();
+
+        header("location: log_sign.php?pages=sign_in_success");
+            
         }
     }
 

@@ -4,6 +4,7 @@
     flex-direction: column;
 }
 .logo{
+    display: block;
     margin: 0 auto auto auto;
     width: 150px;
     height: 150px;
@@ -11,7 +12,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    cursor: pointer;
 }
 .wrapper_login{
     margin: 0 auto auto auto;

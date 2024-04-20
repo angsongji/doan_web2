@@ -38,6 +38,9 @@
     <?php
         include "./pages/header.php";
      ?>
+    <!-- <?php 
+       include "./pages/home.php";
+    ?> -->
     <?php
     if(isset($_GET['pages'])){
         $pages=$_GET['pages'];
@@ -62,5 +65,6 @@
     include "./pages/footer.php";
     ?>
     
+    <script src="./js/header.js"></script>
 </body>
 </html>

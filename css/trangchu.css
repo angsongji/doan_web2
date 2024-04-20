@@ -42,10 +42,18 @@ html{
 
 .grid__row{
     display: flex;
+    align-items: center;
+    overflow-x: auto;
+    /* scroll-behavior: smooth; /* Hiệu ứng cho thanh cuộn mượt hơn :>  */
+    /* scrollbar-width: none; */ 
     flex-wrap: wrap;
     margin-left: -5px;
     margin-right: -5px;
 }
+
+/* .grid__row::-webkit-scrollbar {
+    display: none;
+} */
 
 /*Test  */
 
@@ -474,4 +482,6 @@ html{
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+
 

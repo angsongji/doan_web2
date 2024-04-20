@@ -4,10 +4,10 @@
             <div class="grid">
                 <div class="grid__row">
                     <div class="grid__full-width">
-                        <span class="btn_next-film">
+                        <span class="btn_next-film" id="btnNext">
                             <i class="fa-solid fa-chevron-right"></i>
                         </span>
-                        <span class="btn_prev-film">
+                        <span class="btn_prev-film" id="btnprev">
                             <i class="fa-solid fa-chevron-left"></i>
                         </span>
                         <div class="grid__column wrap-bottom">
@@ -127,6 +127,7 @@
                                         </a>
                                     </div>
 
+                                   
                                     <div class="grid__column-2-4">
                                         <a class="product-item" href="#">
                                             <div class="product-item__img"

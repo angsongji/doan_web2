@@ -1,0 +1,38 @@
+#chartContainer .canvasjs-chart-credit {
+    display: none;
+}
+
+#chartContainer {
+    max-width: 0 auto;
+    width: 1225px; 
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#chartContainer .canvasjs-chart-container {
+    width: auto; 
+}
+
+#chartContainer .canvasjs-chart-container .canvasjs-chart-canvas {
+    width: auto; 
+}
+
+#chartContainer .canvasjs-chart-canvas {
+    min-width: 600px; 
+}
+
+#dateForm {
+    padding: 20px;
+    text-align: right;
+    font-size: 14px;
+}
+
+#dateForm button{
+    color: #ffff;
+    background: #79B791;
+    border: 1px solid #79B791;
+    padding: 2px;
+    cursor: pointer;
+}
+

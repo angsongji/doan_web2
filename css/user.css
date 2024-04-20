@@ -12,7 +12,7 @@
 .left-side{
     flex: 1;
     background-color: palevioletred;
-    height: 400px;
+    height: 420px;
 }
 .right-side{
     flex:2;

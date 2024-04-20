@@ -7,7 +7,7 @@
         $password = $_POST['Password'];
 
 
-        $sqlDN = "SELECT USERNAME, PASSWORD, EMAIL FROM taikhoan";
+        $sqlDN = "SELECT USERNAME, PASSWORD FROM taikhoan";
         require_once('../database/connectDatabase.php');
         $conn = new connectDatabase();
 
@@ -18,8 +18,7 @@
             while($row = $result->fetch_assoc()) {
                 $userNameSQL = $row["USERNAME"];
                 $passSQL = $row["PASSWORD"];
-                $emailSQL = $row["EMAIL"];
-                if(($tenDN==$userNameSQL||$tenDN==$emailSQL)&&$password==$passSQL){
+                if($tenDN==$userNameSQL&&$password==$passSQL){
                     $flag++;
                     break;
                 }
@@ -75,7 +74,7 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="form_login__item-input">
-                        <input class="input_item1" type="text" placeholder="Tên người dùng hoặc email" name="TenDNorEmail">
+                        <input class="input_item1" type="text" placeholder="Tên tài khoản" name="TenDNorEmail">
                     </div>
                 </div>
                     <span class="error" style="margin-left: 81px;">
@@ -105,7 +104,7 @@
                         if(isset($_GET['errorPass'])&&$_GET['errorPass']=='empty'){
                             echo "Chua nhap pass";
                         }else if(isset($_GET['errorPass'])&&$_GET['errorPass']=='wrong'){
-                            echo "Co the ten pass chua dung";
+                            echo "Co the pass chua dung";
                         }
                     ?>
                     </span>

@@ -122,16 +122,7 @@ CREATE TABLE `ghe` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhanh`
---
 
-CREATE TABLE `hinhanh` (
-  `MAPM` varchar(10) NOT NULL,
-  `STT` int NOT NULL,
-  `NAMEANH` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `lichchieuphim`
@@ -184,7 +175,8 @@ CREATE TABLE `phim` (
   `DOTUOI` tinyint(4) DEFAULT NULL,
   `LUOTXEM` int(11) DEFAULT NULL,
   `TRANGTHAI` tinyint(4) DEFAULT NULL,
-  `TENPHIM` varchar(255) DEFAULT NULL
+  `TENPHIM` varchar(255) DEFAULT NULL,
+  `NAMEANH` varchar(255)  DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -262,7 +254,9 @@ CREATE TABLE `theloai` (
 CREATE TABLE `uudai` (
   `CODE` varchar(10) NOT NULL,
   `TENUUDAI` varchar(255) DEFAULT NULL,
-  `PHANTRAMUUDAI` int NOT NULL
+  `PHANTRAMUUDAI` int NOT NULL,
+  `DIEUKIEN` varchar(255) NOT NULL,
+  `TRANGTHAI` smallint 	DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -276,6 +270,8 @@ CREATE TABLE `ve` (
   `USERNAME` varchar(255) DEFAULT NULL,
   `MALICHCHIEU` varchar(10) DEFAULT NULL,
   `TONGTIEN` int(11) DEFAULT NULL,
+  `NGAY` date NOT NULL,
+  `THOIGIAN` time NOT NULL,
   `PHUONGTHUCTHANHTOAN` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -355,10 +351,6 @@ ALTER TABLE `ghe`
   ADD PRIMARY KEY (`MAGHE`);
 
 --
--- Chỉ mục cho bảng `hinhanh`
---
-ALTER TABLE `hinhanh`
-  ADD PRIMARY KEY (`MAPM`,`STT`);
 
 --
 -- Chỉ mục cho bảng `lichchieuphim`
@@ -421,46 +413,26 @@ ALTER TABLE `ve`
   ADD PRIMARY KEY (`MAVE`);
 
 
-INSERT INTO phim (MAPM, PATHTRAILER, MOTA, THOILUONG, NGAYCHIEU, QUOCGIA, DANHGIA, DOTUOI, LUOTXEM, TRANGTHAI, TENPHIM) 
+INSERT INTO phim(MAPM, PATHTRAILER, MOTA, THOILUONG, NGAYCHIEU, QUOCGIA, DANHGIA, DOTUOI, LUOTXEM, TRANGTHAI, TENPHIM,NAMEANH)
 VALUES
-('PM001', 'https://www.youtube.com/watch?v=8Pq08VsVUFk', 'Ký ức tình đầu ùa về khi Jimmy nhận được tấm bưu thiếp từ Ami. Cậu quyết định một mình bước lên chuyến tàu đến Nhật Bản gặp lại người con gái cậu đã bỏ lỡ 18 năm trước. Mối tình day dứt thời thanh xuân, liệu sẽ có một kết cục nào tốt đẹp khi đoàn tụ?', '123 phút', '2024-04-08', 'Trung Quốc', 8.4, 13, 1000, 0, 'Thanh Xuân 18x2: Lữ Trình Hướng Về Em'),
-('PM002', 'https://www.youtube.com/watch?v=AVAnQaJ49l8', 'When a young American woman is sent to Rome to bengin a life of service to the church, she encounters a darkness that causes her to question her own faith and uncovers a terrifying conspiracy that hopes to bring about the birth of evil incarnate.', '123 phút', '2024-04-05', 'Mỹ', 5.7, 18, 700, 0, 'Điềm Báo Của Quỳ'),
-('PM003', 'https://www.youtube.com/watch?v=QGlgPf9jGMA', 'Trong một tương lai gần, một nhóm các phóng viên chiến trường quả cảm phải đấu tranh với thời gian và bom đạn nguy hiểm để đến kịp Nhà Trắng giữa bối cảnh nội chiến Hoa Kỳ đang tiến đến cao trào.', '109 phút', '2024-04-12', 'Hoa Kỳ', 7.8, 16, 1200, 0, 'Ngày Tàn Của Đế Quốc'),
-('PM004', 'https://www.youtube.com/watch?v=Y4Fbcvq-9RU', 'Sau các sự kiện của Ghostbusters: Afterlife, gia đình Spengler đang tìm kiếm cuộc sống mới ở Thành phố New York. Nhóm săn ma bao gồm Ray, Winston và Podcast sử dụng công nghệ mới để chống lại các mối đe dọa chết người cổ xưa đang ẩn náu trong các vật dụng hàng ngày. Thế nhưng, họ sẽ phải đối đầu với một thế lực đen tối hùng mạnh mới.', '119 phút', '2024-04-12', 'Mỹ', 5.0, 13, 2000, 0, 'Biệt Đội Săn Ma: Kỷ Nguyên Băng Giá'),
-('PM005', 'https://www.youtube.com/watch?v=B2Jlyq_Tf3Y', 'Sau cuộc đối đầu nổ lực, Godzilla và Kong phải hợp tác chống lại một mối đe dọa khổng lồ chưa được khám phá ẩn sâu trong thế giới của chúng ta, thách thức sự tồn tại của chính chúng – và của chúng ta.', '125 phút', '2024-03-29', 'Mỹ', 9.3, 0, 2400, 0, 'Godzilla x Kong: Đế Chế Mới'),
-('PM006', 'https://www.youtube.com/watch?v=N_ieracfsts', 'Chuyện phim xoay quanh Lee Soo-yeon (Park Ji-yeon) - một nữ minh tinh màn bạc đang ở đỉnh cao sự nghiệp nhưng bất chợt tuột dốc không phanh vì tai nạn chết người do chính cô gây ra trong lúc say rượu. Sau thời gian dài “ở ẩn” để trả giá cho sai lầm, Lee Soo-yeon bắt đầu nuôi mộng trở lại với khán giả nhưng bê bối từ quá khứ của cô luôn bị người đời đay nghiến, châm chọc. Lòng đố kỵ và khát khao danh vọng trỗi dậy trong Soo-yeon khi hằng ngày chứng kiến sự thành công của “ngôi sao mới lên” Song Ga-young (Kim Nu-ri) - hậu bối cùng công ty quản lý được sắp xếp sống chung với Soo-yeon trong căn hộ sang trọng. Sau một cuộc tranh cãi gay gắt với Ga-young, Soo-yeon đã tìm đến rượu để “an thần”, nhưng khi thức dậy cô đã phát hiện Ga-young chết trong căn hộ đầy bí ẩn. Liệu án mạng này sẽ ảnh hưởng như thế nào đến con đường lấy lại hào quang của Soo-yeon khi chính cô là nghi phạm duy nhất?', '112 phút', '2024-04-12', 'Hàn Quốc', 10.0, 18, 3000, 0, 'Hào Quang Đẫm Máu'),
-('PM007', 'https://www.youtube.com/watch?v=DqRVx0wfOBQ', 'Toy Story phiên bản kinh dị sắp làm khán giả ngất luôn tại rạp! Chú gấu nhồi bông trông thì bình thường dễ thương nhưng lại sai khiến cô bạn nhỏ chơi một trò chơi đen tối với những thử thách kỳ lạ!', '114 phút', '2024-04-12', 'Mỹ', 9.0, 13, 2100, 0, 'Người “Bạn” Trong Tưởng Tượng'),
-('PM008', 'https://www.youtube.com/watch?v=zEOXpArv940', 'Kid, một thanh niên vô danh sống trong một câu lạc bộ chiến đấu ngầm, nơi mà đêm này qua đêm khác anh đeo mặt nạ khỉ đột để chiến đấu trong lồng sắt kiếm tiền. Sau nhiều năm kìm nén cơn thịnh nộ trong bản thân mình, Kid tìm ra cách thâm nhập vào khu vực của giới thượng lưu độc ác thành phố. Khi những kí ức đau thương thời thơ ấu của anh trở về, đôi bàn tay đầy sẹo bí ẩn của anh sẽ đặt dấu chấm hết cho những kẻ đã cướp đi cuộc sống này.', '113 phút', '2024-04-05', 'Hoa Kỳ', 8.2, 18, 1700, 0, 'Monkey Man Báo Thù'),
-('PM009', 'https://www.youtube.com/watch?v=5APPENpUdu0', 'Trong bối cảnh năm 1885 tại Pháp, đầu bếp tài ba Eugenie đã làm việc cho nhà quý tộc sành ăn Dodin Bouffant suốt 20 năm qua. Công việc nấu nướng và lòng ngưỡng mộ mà cả hai dành cho nhau dần dẫn tới một mối quan hệ lãng mạn. Họ cùng nhau tạo ra những tuyệt tác ẩm thực, khiến ngay cả những đầu bếp lừng lẫy nhất thế giới cũng phải thán phục. Nhưng Eugenie yêu thích sự tự do của mình và chưa bao giờ muốn kết hôn với Dodin. Khi Dodin nhận ra tình cảm sâu sắc của mình dành cho người phụ nữ đã luôn kề bên những năm tháng qua, cũng là lúc ông phát hiện Eugenie lâm bệnh nặng. Liệu mối tình lãng mạn này có thể kết thúc với hạnh phúc trọn vẹn?', '135 phút', '2024-03-22', 'Pháp', 8.5, 13, 1100, 0, 'Muôn Vị Nhân Gian'),
-('PM010', 'https://www.youtube.com/watch?v=Svt6DK9T130', 'Hãy theo dõi hành trình thần thoại của Paul Atreides khi anh đoàn kết với Chani và Fremen trong khi trên con đường trả thù những kẻ âm mưu phá hoại gia đình anh. Đứng trước sự lựa chọn giữa tình yêu của đời mình và số phận của vũ trụ đã biết, Paul cố gắng ngăn chặn một tương lai khủng khiếp mà chỉ có anh mới có thể nhìn thấy.', '166 phút', '2024-03-01', 'Mỹ', 9.4, 16, 4000, 0, 'Dune: Hành Tinh Cát – Phần Hai'),
-('PM011', 'https://www.youtube.com/watch?v=vPwSfR_O9Jo', 'Câu chuyện bắt đầu từ lúc Thế giới sụp đổ, Furiosa phải tự cứu lấy mình để trở về nhà. Một cuộc phiêu lưu hành động độc lập khốc liệt, tiền truyện về quái nữ đồng hành với Max Rockatansky.', '100 phút', '2024-05-17', 'Mỹ', 9.0, 16, 0, 1, 'Furiosa: Câu Chuyện Từ Max Điên'),
-('PM012', 'https://www.youtube.com/watch?v=d1ZHdosjNX8', 'Trách nhiệm thuộc về ai?', '127 phút', '2024-04-26', 'Việt Nam', 9.6, 0, 0, 1, 'Lật Mặt 7: Một Điều Ước'),
-('PM013', 'https://www.youtube.com/watch?v=JToYSVWY4N8', 'Hồn ma Nak với sức mạnh khủng khiếp nhất, đáng sợ nhất mà bộ đôi mỏ hỗn Balloon & First phải đối mặt để giải cứu cho trai đẹp Min Joon. Liệu hội bạn này sẽ giải được nghiệp mình tạo ra hay sẽ tan rã từ đây?', '112 phút', '2024-05-31', 'Thái Lan', 9.5, 16, 0, 1, 'Ngôi Đền Kỳ Quái 4'),
-('PM014', 'https://www.youtube.com/watch?v=hlBA_G5_PGk', 'Trong bộ phim hoạt hình này, chú mèo mê đồ ăn Garfield bị cuốn vào một vụ trộm để giúp cha mình - một tên trộm đường phố, khỏi một chú mèo biểu diễn khác đang muốn trả thù ông. Bắt đầu như một mối quan hệ hợp tác miễn cưỡng và kết thúc bằng việc Garfield và Vic nhận ra rằng cha con họ không hề khác biệt như vẻ ngoài của mình.', '100 phút', '2024-05-31', 'Mỹ', 9.1, 0, 0, 1, 'Garfield – Mèo Béo Siêu Quậy'),
-('PM015', 'https://www.youtube.com/watch?v=m30S4Ax9BOM', 'Một vài thế hệ trong tương lai sau thời đại của Caesar, loài khỉ trở thành loài thống trị và sống hòa bình trong khi loài người bị suy yếu và sống trong bóng tối. Khi một nhà lãnh đạo khỉ độc tài mới xây dựng đế chế của mình, một chú khỉ trẻ bắt đầu một cuộc hành trình đầy gian nan, khiến anh ta phải nghi ngờ tất cả những gì anh ta biết về quá khứ và phải đưa ra những lựa chọn sẽ định hình tương lai cho cả loài khỉ và loài người.', '123 phút', '2024-05-24', 'Mỹ', 8.8, 16, 0, 1, 'Hành Tinh Khỉ: Vương Quốc Mới'),
-('PM016', 'https://www.youtube.com/watch?v=bo2Y9Soatsg', 'Colt Seavers là một diễn viên đóng thế “lão làng. Bất ngờ, anh được mời làm “bản sao” cho một nhân vật nổi tiếng trong phim do người yêu cũ – Jody (Emily Blunt) đạo diễn. Mọi chuyện dần chệch hướng khi ngôi sao của bộ phim bỗng mất tích, không ai có thể liên lạc được. Để cứu lấy công việc và giành lại tình yêu của đời mình, Colt vướng vào âm mưu khó lường khi cố gắng đi tìm diễn viên đó.', '114 phút', '2024-05-03', 'Mỹ', 7.5, 13, 0, 1, 'Kẻ Thế Thân'),
-('PM017', 'https://www.youtube.com/watch?v=dFnSgtLNgtQ', 'Một cuộc phiêu lưu hoàn toàn mới bên trong đầu của Riley với một bộ của xúc mới', '123 phút', '2024-06-14', 'Mỹ', 9.9, 0, 0, 1, 'Những Mảnh Ghép Cảm Xúc 2'),
-('PM018', 'https://www.youtube.com/watch?v=U46X1pXfolk', 'Bà Dương và ông Thoại luôn cố gắng để xây dựng một hình ảnh gia đình tài giỏi và danh giá trong mắt mọi người. Tuy nhiên dưới lớp vỏ bọc hào nhoáng ấy là những biến cố và lục dục gia đình đầy sóng gió. Nhìn kĩ hơn một chút bức tranh gia đình hạnh phúc ấy, rất nhiều “khuyết điểm” sẽ lộ ra gây bất ngờ', '115 phút', '2024-04-18', 'Việt Nam', 8.7, 0, 0, 1, 'Cái Giá Của Hạnh Phúc');
-INSERT INTO hinhanh (MAPM, STT, NAMEANH) 
-VALUES 
-('PM001', 1, 'thanhxuan18x2.jpg'),
-('PM002', 1, 'diembaocuaquy.jpg'),
-('PM003', 1, 'ngaytancuadequoc.jpg'),
-('PM004', 1, 'bietdoisanma.jpg'),
-('PM005', 1, 'Kong.jpg'),
-('PM006', 1, 'haoquangdammau.jpg'),
-('PM007', 1, 'nguoibantrongtuongtuong.jpg'),
-('PM008', 1, 'monkeymanbaothu.jpg'),
-('PM009', 1, 'muonvinhangian.jpg'),
-('PM010', 1, 'dune.jpg'),
-('PM011', 1, 'furiosa.jpg'),
-('PM012', 1, 'latmat7.jpg'),
-('PM013', 1, 'ngoidenkyquai.jpg'),
-('PM014', 1, 'meobeosieuquay.jpg'),
-('PM015', 1, 'hanhtinhkhi.jpg'),
-('PM016', 1, 'kethethan.jpg'),
-('PM017', 1, 'nhungmanhghepcamxuc.jpg'),
-('PM018', 1, 'caigiacuahanhphuc.jpg');
+('PM001', 'https://www.youtube.com/watch?v=8Pq08VsVUFk', 'Ký ức tình đầu ùa về khi Jimmy nhận được tấm bưu thiếp từ Ami. Cậu quyết định một mình bước lên chuyến tàu đến Nhật Bản gặp lại người con gái cậu đã bỏ lỡ 18 năm trước. Mối tình day dứt thời thanh xuân, liệu sẽ có một kết cục nào tốt đẹp khi đoàn tụ?', '123 phút', '2024-04-08', 'Trung Quốc', 8.4, 13, 1000, 0, 'Thanh Xuân 18x2: Lữ Trình Hướng Về Em','thanhxuan18x2.jpg'),
+('PM002', 'https://www.youtube.com/watch?v=AVAnQaJ49l8', 'When a young American woman is sent to Rome to bengin a life of service to the church, she encounters a darkness that causes her to question her own faith and uncovers a terrifying conspiracy that hopes to bring about the birth of evil incarnate.', '123 phút', '2024-04-05', 'Mỹ', 5.7, 18, 700, 0, 'Điềm Báo Của Quỷ','diembaocuaquy.jpg'),
+('PM003', 'https://www.youtube.com/watch?v=QGlgPf9jGMA', 'Trong một tương lai gần, một nhóm các phóng viên chiến trường quả cảm phải đấu tranh với thời gian và bom đạn nguy hiểm để đến kịp Nhà Trắng giữa bối cảnh nội chiến Hoa Kỳ đang tiến đến cao trào.', '109 phút', '2024-04-12', 'Hoa Kỳ', 7.8, 16, 1200, 0, 'Ngày Tàn Của Đế Quốc','ngaytancuadequoc.jpg'),
+('PM004', 'https://www.youtube.com/watch?v=Y4Fbcvq-9RU', 'Sau các sự kiện của Ghostbusters: Afterlife, gia đình Spengler đang tìm kiếm cuộc sống mới ở Thành phố New York. Nhóm săn ma bao gồm Ray, Winston và Podcast sử dụng công nghệ mới để chống lại các mối đe dọa chết người cổ xưa đang ẩn náu trong các vật dụng hàng ngày. Thế nhưng, họ sẽ phải đối đầu với một thế lực đen tối hùng mạnh mới.', '119 phút', '2024-04-12', 'Mỹ', 5.0, 13, 2000, 0, 'Biệt Đội Săn Ma: Kỷ Nguyên Băng Giá','bietdoisanma.jpg'),
+('PM005', 'https://www.youtube.com/watch?v=B2Jlyq_Tf3Y', 'Sau cuộc đối đầu nổ lực, Godzilla và Kong phải hợp tác chống lại một mối đe dọa khổng lồ chưa được khám phá ẩn sâu trong thế giới của chúng ta, thách thức sự tồn tại của chính chúng – và của chúng ta.', '125 phút', '2024-03-29', 'Mỹ', 9.3, 0, 2400, 0, 'Godzilla x Kong: Đế Chế Mới','Kong.jpg'),
+('PM006', 'https://www.youtube.com/watch?v=N_ieracfsts', 'Chuyện phim xoay quanh Lee Soo-yeon (Park Ji-yeon) - một nữ minh tinh màn bạc đang ở đỉnh cao sự nghiệp nhưng bất chợt tuột dốc không phanh vì tai nạn chết người do chính cô gây ra trong lúc say rượu. Sau thời gian dài “ở ẩn” để trả giá cho sai lầm, Lee Soo-yeon bắt đầu nuôi mộng trở lại với khán giả nhưng bê bối từ quá khứ của cô luôn bị người đời đay nghiến, châm chọc. Lòng đố kỵ và khát khao danh vọng trỗi dậy trong Soo-yeon khi hằng ngày chứng kiến sự thành công của “ngôi sao mới lên” Song Ga-young (Kim Nu-ri) - hậu bối cùng công ty quản lý được sắp xếp sống chung với Soo-yeon trong căn hộ sang trọng. Sau một cuộc tranh cãi gay gắt với Ga-young, Soo-yeon đã tìm đến rượu để “an thần”, nhưng khi thức dậy cô đã phát hiện Ga-young chết trong căn hộ đầy bí ẩn. Liệu án mạng này sẽ ảnh hưởng như thế nào đến con đường lấy lại hào quang của Soo-yeon khi chính cô là nghi phạm duy nhất?', '112 phút', '2024-04-12', 'Hàn Quốc', 10.0, 18, 3000, 0, 'Hào Quang Đẫm Máu','haoquangdammau.jpg'),
+('PM007', 'https://www.youtube.com/watch?v=DqRVx0wfOBQ', 'Toy Story phiên bản kinh dị sắp làm khán giả ngất luôn tại rạp! Chú gấu nhồi bông trông thì bình thường dễ thương nhưng lại sai khiến cô bạn nhỏ chơi một trò chơi đen tối với những thử thách kỳ lạ!', '114 phút', '2024-04-12', 'Mỹ', 9.0, 13, 2100, 0, 'Người “Bạn” Trong Tưởng Tượng','nguoibantrongtuongtuong.jpg'),
+('PM008', 'https://www.youtube.com/watch?v=zEOXpArv940', 'Kid, một thanh niên vô danh sống trong một câu lạc bộ chiến đấu ngầm, nơi mà đêm này qua đêm khác anh đeo mặt nạ khỉ đột để chiến đấu trong lồng sắt kiếm tiền. Sau nhiều năm kìm nén cơn thịnh nộ trong bản thân mình, Kid tìm ra cách thâm nhập vào khu vực của giới thượng lưu độc ác thành phố. Khi những kí ức đau thương thời thơ ấu của anh trở về, đôi bàn tay đầy sẹo bí ẩn của anh sẽ đặt dấu chấm hết cho những kẻ đã cướp đi cuộc sống này.', '113 phút', '2024-04-05', 'Hoa Kỳ', 8.2, 18, 1700, 0, 'Monkey Man Báo Thù','monkeymanbaothu.jpg'),
+('PM009', 'https://www.youtube.com/watch?v=5APPENpUdu0', 'Trong bối cảnh năm 1885 tại Pháp, đầu bếp tài ba Eugenie đã làm việc cho nhà quý tộc sành ăn Dodin Bouffant suốt 20 năm qua. Công việc nấu nướng và lòng ngưỡng mộ mà cả hai dành cho nhau dần dẫn tới một mối quan hệ lãng mạn. Họ cùng nhau tạo ra những tuyệt tác ẩm thực, khiến ngay cả những đầu bếp lừng lẫy nhất thế giới cũng phải thán phục. Nhưng Eugenie yêu thích sự tự do của mình và chưa bao giờ muốn kết hôn với Dodin. Khi Dodin nhận ra tình cảm sâu sắc của mình dành cho người phụ nữ đã luôn kề bên những năm tháng qua, cũng là lúc ông phát hiện Eugenie lâm bệnh nặng. Liệu mối tình lãng mạn này có thể kết thúc với hạnh phúc trọn vẹn?', '135 phút', '2024-03-22', 'Pháp', 8.5, 13, 1100, 0, 'Muôn Vị Nhân Gian','muonvinhangian.jpg'),
+('PM010', 'https://www.youtube.com/watch?v=Svt6DK9T130', 'Hãy theo dõi hành trình thần thoại của Paul Atreides khi anh đoàn kết với Chani và Fremen trong khi trên con đường trả thù những kẻ âm mưu phá hoại gia đình anh. Đứng trước sự lựa chọn giữa tình yêu của đời mình và số phận của vũ trụ đã biết, Paul cố gắng ngăn chặn một tương lai khủng khiếp mà chỉ có anh mới có thể nhìn thấy.', '166 phút', '2024-03-01', 'Mỹ', 9.4, 16, 4000, 0, 'Dune: Hành Tinh Cát – Phần Hai','dune.jpg'),
+('PM011', 'https://www.youtube.com/watch?v=vPwSfR_O9Jo', 'Câu chuyện bắt đầu từ lúc Thế giới sụp đổ, Furiosa phải tự cứu lấy mình để trở về nhà. Một cuộc phiêu lưu hành động độc lập khốc liệt, tiền truyện về quái nữ đồng hành với Max Rockatansky.', '100 phút', '2024-05-17', 'Mỹ', 9.0, 16, 0, 1, 'Furiosa: Câu Chuyện Từ Max Điên', 'furiosa.jpg'),
+('PM012', 'https://www.youtube.com/watch?v=d1ZHdosjNX8', 'Trách nhiệm thuộc về ai?', '127 phút', '2024-04-26', 'Việt Nam', 9.6, 0, 0, 1, 'Lật Mặt 7: Một Điều Ước', 'latmat7.jpg'),
+('PM013', 'https://www.youtube.com/watch?v=JToYSVWY4N8', 'Hồn ma Nak với sức mạnh khủng khiếp nhất, đáng sợ nhất mà bộ đôi mỏ hỗn Balloon & First phải đối mặt để giải cứu cho trai đẹp Min Joon. Liệu hội bạn này sẽ giải được nghiệp mình tạo ra hay sẽ tan rã từ đây?', '112 phút', '2024-05-31', 'Thái Lan', 9.5, 16, 0, 1, 'Ngôi Đền Kỳ Quái 4', 'ngoidenkyquai.jpg'),
+('PM014', 'https://www.youtube.com/watch?v=hlBA_G5_PGk', 'Trong bộ phim hoạt hình này, chú mèo mê đồ ăn Garfield bị cuốn vào một vụ trộm để giúp cha mình - một tên trộm đường phố, khỏi một chú mèo biểu diễn khác đang muốn trả thù ông. Bắt đầu như một mối quan hệ hợp tác miễn cưỡng và kết thúc bằng việc Garfield và Vic nhận ra rằng cha con họ không hề khác biệt như vẻ ngoài của mình.', '100 phút', '2024-05-31', 'Mỹ', 9.1, 0, 0, 1, 'Garfield – Mèo Béo Siêu Quậy','garfield.jpg'),
+('PM015', 'https://www.youtube.com/watch?v=m30S4Ax9BOM', 'Một vài thế hệ trong tương lai sau thời đại của Caesar, loài khỉ trở thành loài thống trị và sống hòa bình trong khi loài người bị suy yếu và sống trong bóng tối. Khi một nhà lãnh đạo khỉ độc tài mới xây dựng đế chế của mình, một chú khỉ trẻ bắt đầu một cuộc hành trình đầy gian nan, khiến anh ta phải nghi ngờ tất cả những gì anh ta biết về quá khứ và phải đưa ra những lựa chọn sẽ định hình tương lai cho cả loài khỉ và loài người.', '123 phút', '2024-05-24', 'Mỹ', 8.8, 16, 0, 1, 'Hành Tinh Khỉ: Vương Quốc Mới', 'hanhtinhkhi.jpg'),
+('PM016', 'https://www.youtube.com/watch?v=bo2Y9Soatsg', 'Colt Seavers là một diễn viên đóng thế “lão làng. Bất ngờ, anh được mời làm “bản sao” cho một nhân vật nổi tiếng trong phim do người yêu cũ – Jody (Emily Blunt) đạo diễn. Mọi chuyện dần chệch hướng khi ngôi sao của bộ phim bỗng mất tích, không ai có thể liên lạc được. Để cứu lấy công việc và giành lại tình yêu của đời mình, Colt vướng vào âm mưu khó lường khi cố gắng đi tìm diễn viên đó.', '114 phút', '2024-05-03', 'Mỹ', 7.5, 13, 0, 1, 'Kẻ Thế Thân', 'kethethan.jpg'),
+('PM017', 'https://www.youtube.com/watch?v=dFnSgtLNgtQ', 'Một cuộc phiêu lưu hoàn toàn mới bên trong đầu của Riley với một bộ của xúc mới', '123 phút', '2024-06-14', 'Mỹ', 9.9, 0, 0, 1, 'Những Mảnh Ghép Cảm Xúc 2', 'nhungmanhghepcamxuc.jpg'),
+('PM018', 'https://www.youtube.com/watch?v=U46X1pXfolk', 'Bà Dương và ông Thoại luôn cố gắng để xây dựng một hình ảnh gia đình tài giỏi và danh giá trong mắt mọi người. Tuy nhiên dưới lớp vỏ bọc hào nhoáng ấy là những biến cố và lục dục gia đình đầy sóng gió. Nhìn kĩ hơn một chút bức tranh gia đình hạnh phúc ấy, rất nhiều “khuyết điểm” sẽ lộ ra gây bất ngờ', '115 phút', '2024-04-18', 'Việt Nam', 8.7, 0, 0, 1, 'Cái Giá Của Hạnh Phúc', 'caigiacuahanhphuc.jpg');
 
 INSERT INTO theloai (MATHELOAI, TENTHELOAI, MOTA) 
 VALUES 
@@ -655,44 +627,15 @@ VALUES
 ('PM018','SC0009','PC3','LC0018');
 
 
-INSERT INTO ve(MAVE, USERNAME,MALICHCHIEU, TONGTIEN,PHUONGTHUCTHANHTOAN) 
+INSERT INTO ve(MAVE, USERNAME,MALICHCHIEU, TONGTIEN,NGAY,THOIGIAN,PHUONGTHUCTHANHTOAN) 
 VALUES
-('MV0001','Tuan123', 'LC0001',100000,'Ngân hàng'),
-('MV0002','Tuan13', 'LC0001',100000,'Momo'),
-('MV0003','Oanh314', 'LC0002',100000,'Ngân hàng'),
-('MV0004','Oanh342', 'LC0002',100000,'Momo'),
-('MV0005','Quynh131', 'LC0003',100000,'Momo'),
-('MV0006','Quynh131', 'LC0003',100000,'Momo'),
-('MV0007','Quynh422', 'LC0004',100000,'ZaloPay'),
-('MV0008','Tien425', 'LC0004',100000,'Ngân hàng'),
-('MV0009','Tien414', 'LC0005',100000,'ZaloPay'),
-('MV0010','Trung144', 'LC0005',100000,'Momo'),
-('MV0011','Trung492', 'LC0006',100000,'Momo'),
-('MV0012','Tuan123', 'LC0006',100000,'ZaloPay'),
-('MV0013','Quynh422', 'LC0007',100000,'Momo'),
-('MV0014','Oanh314', 'LC0007',100000,'ZaloPay'),
-('MV0015','Trung492', 'LC0008',100000,'Ngân hàng'),
-('MV0016','Tuan123', 'LC0008',100000,'Ngân hàng'),
-('MV0017','Tien425', 'LC0009',100000,'Ngân hàng'),
-('MV0018','Oanh314', 'LC0009',100000,'Momo'),
-('MV0019','Trung492', 'LC0010',100000,'Momo'),
-('MV0020','Tuan123', 'LC0010',100000,'ZaloPay'),
-('MV0021','Trung492', 'LC0011',100000,'Momo'),
-('MV0022','Oanh314', 'LC0011',100000,'Momo'),
-('MV0023','Tien425', 'LC0012',100000,'Ngân hàng'),
-('MV0024','Quynh131', 'LC0012',100000,'Momo'),
-('MV0025','Tien425', 'LC0013',100000,'Momo'),
-('MV0026','Quynh131', 'LC0013',100000,'ZaloPay'),
-('MV0027','Tuan123', 'LC0014',100000,'Ngân hàng'),
-('MV0028','Quynh422', 'LC0014',100000,'ZaloPay'),
-('MV0029','Tuan13', 'LC0015',100000,'Ngân hàng'),
-('MV0030','Trung492', 'LC0015',100000,'Ngân hàng'),
-('MV0031','Tien425', 'LC0016',100000,'ZaloPay'),
-('MV0032','Quynh422', 'LC0016',100000,'ZaloPay'),
-('MV0033','Tien425', 'LC0017',100000,'ZaloPay'),
-('MV0034','Tuan123', 'LC0017',100000,'Ngân hàng'),
-('MV0035','Tuan13', 'LC0018',100000,'ZaloPay'),
-('MV0036','Tien425', 'LC0018',100000,'Ngân hàng');
+('MV0001','Tuan123', 'LC0001',100000,'2024-3-1','10:40:32','Ngân hàng'),
+('MV0002','Tuan13', 'LC0001',100000,'2024-1-1','14:41:22','Momo'),
+('MV0003','Oanh314', 'LC0002',100000,'2024-4-23','12:11:12','Ngân hàng'),
+('MV0004','Oanh342', 'LC0002',100000,'2024-2-21','15:10:52','Momo'),
+('MV0005','Quynh131', 'LC0003',100000,'2024-1-11','12:16:12','Momo'),
+('MV0006','Quynh131', 'LC0003',100000,'2024-4-11','11:17:42','Momo'),
+('MV0007','Quynh422', 'LC0004',100000,'2024-3-12','17:37:46','ZaloPay');
 
 INSERT INTO chitietve_ghe(MAVE, MAGHE,PRICE) 
 VALUES
@@ -702,36 +645,7 @@ VALUES
 ('MV0004','PC2B2',100000),
 ('MV0005','PC3A6',100000),
 ('MV0006','PC3A8',100000),
-('MV0007','PC4E2',100000),
-('MV0008','PC4C3',100000),
-('MV0009','PC5C1',100000),
-('MV0010','PC5E9',100000),
-('MV0011','PC1B4',100000),
-('MV0012','PC1B3',100000),
-('MV0013','PC2A2',100000),
-('MV0014','PC2A1',100000),
-('MV0015','PC3D6',100000),
-('MV0016','PC3D8',100000),
-('MV0017','PC4F6',100000),
-('MV0018','PC4F7',100000),
-('MV0019','PC5E1',100000),
-('MV0020','PC5A6',100000),
-('MV0021','PC1E3',100000),
-('MV0022','PC1B5',100000),
-('MV0023','PC2D2',100000),
-('MV0024','PC2D4',100000),
-('MV0025','PC3A1',100000),
-('MV0026','PC3A8',100000),
-('MV0027','PC4C3',100000),
-('MV0028','PC4B2',100000),
-('MV0029','PC5E1',100000),
-('MV0030','PC5A1',100000),
-('MV0031','PC1C6',100000),
-('MV0032','PC1B2',100000),
-('MV0033','PC2B6',100000),
-('MV0034','PC2E2',100000),
-('MV0035','PC3E3',100000),
-('MV0036','PC3B8',100000);
+('MV0007','PC4E2',100000);
 
 INSERT INTO chitietthongke(NGAY, MAPM, TONGDOANHTHU, TONGVE) 
 VALUES
@@ -1177,16 +1091,16 @@ VALUES
 ('MDV007', 'Combo 2 nước + 1 bắp', 'combo2nuoc1bap.jpg', 'TIẾT KIỆM 15K!!! Gồm: 2 nước có gas + 1 bắp', 60000),
 ('MDV008', 'Combo 2 bắp 1 nước', 'combo2bap1nuoc.jpg', 'TIẾT KIỆM 15K!!! Gồm: 2 bắp + 1 nước có gas', 70000);
 
-INSERT INTO uudai(CODE, TENUUDAI, PHANTRAMUUDAI)
+INSERT INTO uudai(CODE, TENUUDAI, PHANTRAMUUDAI,DIEUKIEN,TRANGTHAI)
 VALUES 
-('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5),
-('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10),
-('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15),
-('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20),
-('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25),
-('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30),
-('MUD007', 'Khách hàng mới giảm 5%', 5),
-('MUD008', 'Ưu đãi thứ 3 hàng tuần', 15);
+('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5,'150000',1),
+('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10,'250000',0),
+('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15,'350000',0),
+('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20,'450000',1),
+('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25,'500000',1),
+('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30,'1000000',0),
+('MUD007', 'Khách hàng mới giảm 5%', 5,'KHM',1),
+('MUD008', 'Ưu đãi thứ 3 hàng tuần', 15,'TUESDAY',1);
 
 
 

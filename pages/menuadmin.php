@@ -53,6 +53,7 @@ $connection->disconnect();
 // array_push($chucnang, "Lịch sử đặt vé");
 // array_push($chucnang, "Báo cáo doanh thu");
 // array_push($chucnang, "Phân quyền chức năng");
+array_push($chucnang, "Vé");
 array_push($chucnang, "Thống kê");
 array_push($chucnang, "Đăng xuất");
 
@@ -72,7 +73,7 @@ foreach ($chucnang as $tenchucnang) {
         case "Phim":
             $nameChucnang = "qlphim";
             $icon = "fa-solid fa-video";
-            $href = "admin.php?page=moviesadmin";
+            $href = "admin.php?page=chucnangPhim";
             break;
         case "Lịch chiếu phim":
             $nameChucnang = "pllichchieu";

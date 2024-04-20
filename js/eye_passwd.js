@@ -18,13 +18,5 @@
     });
     } 
    
-
-// document.querySelector('.btn_log_sign').addEventListener('click',()=>{
-//     document.querySelector('.wrapper_signin').style.display='none';
-//     document.querySelector('.wrapper_sucess-signin').style.display='block';
-// });
-// document.querySelector('.forgot').addEventListener('click',()=>{
-//     document.querySelector('.wrapper_login').style.display='none';
-//     document.querySelector('.wrapper_forgot').style.display='block';
-// });
+    
 

@@ -1,3 +1,4 @@
+<title>Trang chủ</title>
 <div class="main_home">
         <div class="phimdangchieu">
             <div class="grid">

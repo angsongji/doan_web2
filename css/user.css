@@ -12,7 +12,7 @@
 .left-side{
     flex: 1;
     background-color: palevioletred;
-    height: 497px;
+    height: 400px;
 }
 .right-side{
     flex:2;
@@ -47,13 +47,13 @@
     margin: 0 auto;
  
 }
-.anhr{
+.avatar_item{
     border-radius: 4px;
     padding-top: 100%;
-    background-image: url(../img/userImg.jpg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    cursor: pointer;
 }
 
 .user-name{
@@ -103,6 +103,7 @@
 }
 .right-info__item{
     display: flex;
+    position: relative;
     padding: 20px 30px;
     font-size: 1.7rem;
     align-items: center;

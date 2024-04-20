@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <div class="header">
         <div class="container">
             <div class="header__wrap">
@@ -190,11 +194,7 @@
                         <a href="#">
                             <i class="fa-regular fa-user"></i>
                         </a>
-                        <div class="header__list">
-                            <a href="index.php?pages=contentUser.php">Thông tin <i
-                                    class="fa-solid fa-circle-info"></i></a>
-                            <a href="#">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
-                        </div>
+                        <?php include "TrangThaiDangNhap.php" ?>
                     </li>
                 </ul>
                 <div class="header__sm">

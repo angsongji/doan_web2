@@ -25,14 +25,9 @@
         <?php
             include('trailer.php');
             include('film-info.php');
-            include('film-content.php');
+            
             include('film-calendar.php');
         ?>
     </main>
 </body>
-<footer>
-        <?php
-            include('../pages/footer.php');
-        ?>
-</footer>
 </html>

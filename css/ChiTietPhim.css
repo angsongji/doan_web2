@@ -64,8 +64,9 @@ body {
 
 #icon-close-menu-chon-nuoc {
     position: absolute;
-    top: -10px;
-    right: 5px;
+    top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
     font-size: 40px;
 
     color: white;
@@ -187,8 +188,9 @@ body {
 
 #icon-close-menu-chon-ghe {
     position: absolute;
-    top: -10px;
-    right: 5px;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
     font-size: 40px;
 
     color: white;
@@ -575,6 +577,7 @@ main {
     display: grid;
     grid-template-columns: 2fr 4fr;
     grid-auto-rows: auto;
+    margin: 10px 0;
 }
 
 .img img {
@@ -584,13 +587,16 @@ main {
 }
 
 .img {
-    margin: 30px 0 0 10px;
+    /* margin: 30px 0 0 10px; */
+   
 }
 
 .filmInfo .name .container-info {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
-
+.filmInfo .name .container-info p{
+    margin-left: 5px;
+}
 #like {
     display: flex;
 }
@@ -619,12 +625,13 @@ main {
 }
 
 .name h2 {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 /* || Film Content */
 .filmContent {
-    background-color: white;
+    
+    /* background-color: white; */
     display: flex;
     flex-direction: column;
 }
@@ -637,6 +644,7 @@ main {
 
 .filmContent #container-category .title {
     margin: 10px;
+    margin-left: 0;
 }
 
 .filmContent #container-category .category {
@@ -654,16 +662,11 @@ main {
     font-size: 14px;
 }
 
-.filmContent #container-category .category div:hover {
-    border: 2px solid var(--color-web);
-}
-
 .content-title {
     margin-top: 10px;
 }
 
 .content-title h4 {
-    margin-left: 10px;
     border-left: 5px solid var(--color-web);
     padding-left: 5px;
 }
@@ -678,12 +681,13 @@ main {
 
 /* || Film Calendar */
 .filmCalendar {
+    margin-top: 10px;
     background-color: white;
     position: relative;
 }
 
 .filmCalendar h4 {
-    margin-left: 10px;
+    margin-left: 20px;
     border-left: 5px solid var(--color-web);
     padding-left: 5px;
 }
@@ -872,18 +876,24 @@ footer {
 @media screen and (min-width: 992px) {
     .img img {
         height: 400px;
-        top: 0px;
+        width: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
         z-index: 13;
     }
 
-    .name {
+    /* .name {
         margin-left: 10%;
-    }
+    } */
 
     .filmContent #container-category {
         display: grid;
         grid-template-columns: 2fr 10fr;
         grid-auto-rows: auto;
+    }
+    .filmContent #container-category h5{
+        font-size: 16px;
     }
 
     .trailer {

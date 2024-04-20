@@ -14,7 +14,8 @@
     <figure class="img">
         <img src="../img/<?php echo $rowFilmInfo['NAMEANH'] ?>" alt="">
     </figure>
-
+    
+    <div>
     <div class="name">
         <h2><?php echo $rowFilmInfo['TENPHIM'] ?></h2>
 
@@ -35,13 +36,14 @@
         </div>
 
         <div class="container-info" id="region">
-            <label for="region">Quốc gia: <span><?php echo $rowFilmInfo['QUOCGIA'] ?></span></label>
+            <label for="region"><span style="font-size: 16px;font-weight: bold;">Quốc gia:</span> <span><?php echo $rowFilmInfo['QUOCGIA'] ?></span></label>
         </div>
     </div>
-
+    <?php include('film-content.php');?>
+    </div>
     <?php
             }
         }
-        $connect->disconnect();
+
     ?>
 </div>

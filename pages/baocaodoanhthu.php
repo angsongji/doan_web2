@@ -1,6 +1,5 @@
 <script>
 var chart;
-
 function showGraph() {
     var selectedType = document.getElementById("selectType").value;
     var from_date = document.getElementById("from_date").value;

@@ -6,8 +6,12 @@
     <title>Chi tiết phim</title>
     <script src="https://kit.fontawesome.com/459a7e2db3.js" crossorigin="anonymous"></script>
     <script defer src="../js/chi-tiet-film.js"></script>
-    <script defer src="../js/chon-ghe.js"></script>
     <link rel="stylesheet" href="../css/ChiTietPhim.css">
+    <link rel="stylesheet" href="../css/base.css">
+    
+    <?php
+        include("../database/connectDatabase.php");
+    ?>
 </head>
 
 <body>
@@ -25,6 +29,10 @@
             include('film-calendar.php');
         ?>
     </main>
-
 </body>
+<footer>
+        <?php
+            include('../pages/footer.php');
+        ?>
+</footer>
 </html>

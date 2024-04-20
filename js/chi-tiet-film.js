@@ -58,18 +58,6 @@ btnRight.addEventListener(
     }
 )
 
-// Xử lý chọn ngày xem phim 
-const day = document.querySelectorAll('.day');
-for(let i = 0; i < day.length; i++) {
-    day[i].addEventListener(
-        'click',
-        (e) => {
-            
-        },
-        false
-    )
-}
-
 // Xử lý sự kiện đóng menu-chon-ghe
 const iconCloseMenuChonGhe = document.querySelector('#icon-close-menu-chon-ghe');
 const containerPopupMenuChonGhe = document.querySelector('.container-popup-menu-chon-ghe');
@@ -98,11 +86,24 @@ for(let i = 0; i < hour.length; i++) {
 const iconCloseMenuChonNuoc = document.querySelector('#icon-close-menu-chon-nuoc');
 const containerPopupMenuChonNuoc = document.querySelector('.container-pop-up-menu-chon-nuoc');
 
+
 iconCloseMenuChonNuoc.addEventListener(
     "click",
     (e) => {
         containerPopupMenuChonNuoc.style.display = "none";
+        for( let i = 0; i < soLuongs.length; i++) {
+                let soLuongStr = soLuongs[i].textContent.trim();
+                let soLuong = isNaN(soLuongStr) ? 0 : parseInt(soLuongStr); 
+                soLuong = 0; 
 
+                let tongCongStr = tongCongs.textContent.trim();
+                let tongCong = isNaN(tongCongStr) ? 0 : parseInt(tongCongStr);
+                tongCong = 0; 
+            
+                soLuongs[i].textContent = soLuong.toString();
+                tongCongs.textContent = tongCong.toString();
+        }
+        
         containerPopupMenuChonGhe.style.display = "flex";
     },
     false
@@ -110,7 +111,6 @@ iconCloseMenuChonNuoc.addEventListener(
 
 // Xử lý sự kiện mở menu-chon-ghe
 const btnMuaVe = document.querySelector("#btn-mua-ve");
-console.log(btnMuaVe);
 
 btnMuaVe.addEventListener(
     "click",

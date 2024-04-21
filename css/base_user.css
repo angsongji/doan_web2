@@ -47,6 +47,15 @@ label {
     left: 89px;
 }
 
+.errorUser{
+    font-size: 1.9rem;
+    color: red;
+    margin-left: 100px;
+    position: absolute;
+    top: 54px;
+    left: 89px;
+}
+
 .horizontal-line {
     width: 96%; /* Độ rộng của đường ngang */
     border-bottom: 1px solid #000; /* Màu và độ dày của đường ngang */

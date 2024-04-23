@@ -1,3 +1,20 @@
+<?php
+$tenDN="";
+if(isset($_SESSION['TenDN'])){
+    $tenDN = $_SESSION['TenDN'];
+    require_once('./database/connectDatabase.php');
+$conn = new connectDatabase();
+$sql = "SELECT MAPHONGCHIEU, suatchieu.NGAY, THOIGIANBATDAU, TENPHIM, NAMEANH, MAVE
+    FROM ve
+    JOIN lichchieuphim ON ve.MALICHCHIEU = lichchieuphim.MALICHCHIEU
+    JOIN suatchieu ON lichchieuphim.MASC = suatchieu.MASC
+    JOIN phim ON lichchieuphim.MAPM = phim.MAPM
+    WHERE USERNAME = '$tenDN' ";
+
+$result = $conn->executeQuery($sql);
+}
+?>
+
 <title>Lịch sử mua vé</title>
 <div class="main_lsmv">
         <div class="panel_filter">
@@ -26,14 +43,32 @@
 
         </div>
         <div class="ticket-history">
-            <a class="ticket" href="index.php?pages=ticket.php">
+            <!-- <a class="ticket" href="index.php?pages=ticket.php">
                 <img src="./img/hanhtinhkhi.jpg" alt="Phim 1">
                 <div class="ticket-info">
                     <span class="film_name">Hành tinh khỉ</span>
                     <span class="text_ticket">Phòng chiếu: A1</span>
                     <span class="text_ticket">Ngày giờ chiếu: 13/04/2024 - 18:00</span>
                 </div>
-            </a>
+            </a> -->
+            <?php
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<a class='ticket' href='index.php?pages=ticket.php&mave=" . $row["MAVE"] . "'>";
+                        echo "<img src='./img/".$row["NAMEANH"]."'>";
+                        echo "<div class='ticket-info'>";
+                        echo "<span class='film_name'>".$row["TENPHIM"]."</span>";
+                        echo "<span class='text_ticket'>Phòng chiếu: ".$row["MAPHONGCHIEU"]."</span>";
+                        echo "<span class='text_ticket'>Ngày giờ chiếu: ".$row["NGAY"]."-".$row["THOIGIANBATDAU"]."</span>";
+
+                        echo "</div>";
+                        echo "</a>";
+                    }
+                } else {
+                    echo "<script>console.log('khong co ve')</script>";
+                }
+                $conn->disconnect();
+            ?>
             
             <!-- Thêm các vé xem phim khác vào đây -->
         </div>

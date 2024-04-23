@@ -58,6 +58,7 @@
         }
     }else{
         include "./pages/home.php";
+        echo '<script src="./js/slideShow_film.js"></script>';
     }
     include "./pages/footer.php";
     ?>

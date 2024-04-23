@@ -983,7 +983,7 @@ CREATE TABLE `uudai` (
   `CODE` varchar(10) NOT NULL,
   `TENUUDAI` varchar(255) DEFAULT NULL,
   `PHANTRAMUUDAI` int(11) NOT NULL,
-  `DIEUKIEN` varchar(255) NOT NULL,
+  `DIEUKIEN` int NOT NULL,
   `TRANGTHAI` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -992,14 +992,12 @@ CREATE TABLE `uudai` (
 --
 
 INSERT INTO `uudai` (`CODE`, `TENUUDAI`, `PHANTRAMUUDAI`, `DIEUKIEN`, `TRANGTHAI`) VALUES
-('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5, '150000', 1),
-('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10, '250000', 0),
-('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15, '350000', 0),
-('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20, '450000', 1),
-('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25, '500000', 1),
-('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30, '1000000', 0),
-('MUD007', 'Khách hàng mới giảm 5%', 5, 'KHM', 1),
-('MUD008', 'Ưu đãi thứ 3 hàng tuần', 15, 'TUESDAY', 1);
+('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5, 150000, 1),
+('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10, 250000, 0),
+('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15, 350000, 0),
+('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20, 450000, 1),
+('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25, 500000, 1),
+('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30, 1000000, 0);
 
 -- --------------------------------------------------------
 
@@ -1014,25 +1012,46 @@ CREATE TABLE `ve` (
   `TONGTIEN` int(11) DEFAULT NULL,
   `NGAY` date NOT NULL,
   `THOIGIAN` time NOT NULL,
-  `PHUONGTHUCTHANHTOAN` varchar(255) DEFAULT NULL
+  `PHUONGTHUCTHANHTOAN` varchar(255) DEFAULT NULL,
+  `MAUUDAI`varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve`
 --
 
-INSERT INTO `ve` (`MAVE`, `USERNAME`, `MALICHCHIEU`, `TONGTIEN`, `NGAY`, `THOIGIAN`, `PHUONGTHUCTHANHTOAN`) VALUES
-('MV0001', 'Tuan123', 'LC0001', 100000, '2024-03-01', '10:40:32', 'Ngân hàng'),
-('MV0002', 'Tuan13', 'LC0001', 100000, '2024-01-01', '14:41:22', 'Momo'),
-('MV0003', 'Oanh314', 'LC0002', 100000, '2024-04-23', '12:11:12', 'Ngân hàng'),
-('MV0004', 'Oanh342', 'LC0002', 100000, '2024-02-21', '15:10:52', 'Momo'),
-('MV0005', 'Quynh131', 'LC0003', 100000, '2024-01-11', '12:16:12', 'Momo'),
-('MV0006', 'Quynh131', 'LC0003', 100000, '2024-04-11', '11:17:42', 'Momo'),
-('MV0007', 'Quynh422', 'LC0004', 100000, '2024-03-12', '17:37:46', 'ZaloPay');
+INSERT INTO `ve` (`MAVE`, `USERNAME`, `MALICHCHIEU`, `TONGTIEN`, `NGAY`, `THOIGIAN`, `PHUONGTHUCTHANHTOAN`,`MAUUDAI`) VALUES
+('MV0001', 'Tuan123', 'LC0001', 100000, '2024-03-01', '10:40:32', 'Ngân hàng',''),
+('MV0002', 'Tuan13', 'LC0001', 100000, '2024-01-01', '14:41:22', 'Momo',''),
+('MV0003', 'Oanh314', 'LC0002', 100000, '2024-04-23', '12:11:12', 'Ngân hàng',''),
+('MV0004', 'Oanh342', 'LC0002', 100000, '2024-02-21', '15:10:52', 'Momo',''),
+('MV0005', 'Quynh131', 'LC0003', 100000, '2024-01-11', '12:16:12', 'Momo',''),
+('MV0006', 'Quynh131', 'LC0003', 100000, '2024-04-11', '11:17:42', 'Momo',''),
+('MV0007', 'Quynh422', 'LC0004', 100000, '2024-03-12', '17:37:46', 'ZaloPay','');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `ve`
+--
+CREATE TABLE `chitietve_dichvu` (
+`MAVE` varchar(10) NOT NULL,
+`MADICHVU` varchar(10) NOT NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+
+--
+-- Chỉ mục cho bảng `chitietve_dichvu`
+--
+ALTER TABLE `chitietve_dichvu`
+  ADD PRIMARY KEY (`MAVE`,`MADICHVU`);
 
 --
 -- Chỉ mục cho bảng `chitietphim_dienvien`

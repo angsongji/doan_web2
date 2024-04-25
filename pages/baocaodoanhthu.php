@@ -1,5 +1,22 @@
 <script>
 var chart;
+
+window.onload = function() {
+    showDefaultGraph();
+};
+
+function showDefaultGraph() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            updateChart(data[0], data[1]);
+        }
+    };
+    xhttp.open("GET", "pages/xulydoanhthu.php?type=thongketong", true);
+    xhttp.send();
+}
+
 function showGraph() {
     var selectedType = document.getElementById("selectType").value;
     var from_date = document.getElementById("from_date").value;

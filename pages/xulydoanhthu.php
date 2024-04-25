@@ -4,6 +4,7 @@
 
     $data1 = array();
     $data2 = array();
+    
 
     if(isset($_GET['type'])) {
         if ($_GET['type'] == 'thongketong') {

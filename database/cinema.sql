@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 21, 2024 lúc 12:10 AM
+-- Thời gian đã tạo: Th4 24, 2024 lúc 09:56 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -217,6 +217,25 @@ INSERT INTO `chitietthongke` (`NGAY`, `MAPM`, `TONGDOANHTHU`, `TONGVE`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `chitietve_dichvu`
+--
+
+CREATE TABLE `chitietve_dichvu` (
+  `MAVE` varchar(10) NOT NULL,
+  `MADICHVU` varchar(10) NOT NULL,
+  `SoLuong` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietve_dichvu`
+--
+
+INSERT INTO `chitietve_dichvu` (`MAVE`, `MADICHVU`, `SoLuong`) VALUES
+('MV0008', 'MDV001', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `chitietve_ghe`
 --
 
@@ -237,7 +256,9 @@ INSERT INTO `chitietve_ghe` (`MAVE`, `MAGHE`, `PRICE`) VALUES
 ('MV0004', 'PC2B2', 100000),
 ('MV0005', 'PC3A6', 100000),
 ('MV0006', 'PC3A8', 100000),
-('MV0007', 'PC4E2', 100000);
+('MV0007', 'PC4E2', 100000),
+('MV0008', 'PC3A1', 100000),
+('MV0008', 'PC3A2', 100000);
 
 -- --------------------------------------------------------
 
@@ -919,12 +940,10 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`USERNAME`, `PASSWORD`, `NGAYTAOTK`, `TRANGTHAI`, `EMAIL`, `HOTEN`, `NAMEANH`, `MAQUYEN`, `THOIGIANTAOTK`, `SODIENTHOAI`) VALUES
-('', NULL, NULL, NULL, 'quynhnt@gmail.com', 'Quynh', NULL, NULL, NULL, NULL),
 ('Oanhle2222', 'Hoichima33', '2023-09-21', 1, '3122hehehe@gmail.com', 'Oanh le', 'Loi-ich-hien-mau.jpg', 'QKH', '20:30:00', ''),
 ('Quynhquynh', 'meomeo122', '2023-10-02', 1, 'quynh@gmail.com', 'Quynh12', 'Quynhquynh.png', 'QQL', '8:30:00', NULL),
 ('Trung442', 'trung3312', '2023-08-02', 1, 'trung22@gmail.com', 'Trunggg', 'Trung442.png', 'QAD', '10:30:00', NULL),
-('tuan123', '12345678', '2024-04-20', 1, 'anhtu123@gmail.com', 'teo', 'userImg.jpg', 'QKH', '04:22:07', '0123456789'),
-('Tuankhung2', '12345678', '2023-10-21', 1, 'tuan33@gmail.com', 'Tuan vo', 'GumballSeason3.png', 'QKH', '21:30:00', NULL);
+('tuan123', '12345678', '2024-04-20', 1, 'anhtu123@gmail.com', 'teo', 'userImg.jpg', 'QKH', '04:22:07', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -983,7 +1002,7 @@ CREATE TABLE `uudai` (
   `CODE` varchar(10) NOT NULL,
   `TENUUDAI` varchar(255) DEFAULT NULL,
   `PHANTRAMUUDAI` int(11) NOT NULL,
-  `DIEUKIEN` int NOT NULL,
+  `DIEUKIEN` int(11) NOT NULL,
   `TRANGTHAI` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1013,45 +1032,26 @@ CREATE TABLE `ve` (
   `NGAY` date NOT NULL,
   `THOIGIAN` time NOT NULL,
   `PHUONGTHUCTHANHTOAN` varchar(255) DEFAULT NULL,
-  `MAUUDAI`varchar(10) DEFAULT NULL
+  `MAUUDAI` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve`
 --
 
-INSERT INTO `ve` (`MAVE`, `USERNAME`, `MALICHCHIEU`, `TONGTIEN`, `NGAY`, `THOIGIAN`, `PHUONGTHUCTHANHTOAN`,`MAUUDAI`) VALUES
-('MV0001', 'Tuan123', 'LC0001', 100000, '2024-03-01', '10:40:32', 'Ngân hàng',''),
-('MV0002', 'Tuan13', 'LC0001', 100000, '2024-01-01', '14:41:22', 'Momo',''),
-('MV0003', 'Oanh314', 'LC0002', 100000, '2024-04-23', '12:11:12', 'Ngân hàng',''),
-('MV0004', 'Oanh342', 'LC0002', 100000, '2024-02-21', '15:10:52', 'Momo',''),
-('MV0005', 'Quynh131', 'LC0003', 100000, '2024-01-11', '12:16:12', 'Momo',''),
-('MV0006', 'Quynh131', 'LC0003', 100000, '2024-04-11', '11:17:42', 'Momo',''),
-('MV0007', 'Quynh422', 'LC0004', 100000, '2024-03-12', '17:37:46', 'ZaloPay','');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `ve`
---
-CREATE TABLE `chitietve_dichvu` (
-`MAVE` varchar(10) NOT NULL,
-`MADICHVU` varchar(10) NOT NULL
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
+INSERT INTO `ve` (`MAVE`, `USERNAME`, `MALICHCHIEU`, `TONGTIEN`, `NGAY`, `THOIGIAN`, `PHUONGTHUCTHANHTOAN`, `MAUUDAI`) VALUES
+('MV0001', 'tuan123', 'LC0001', 100000, '2024-03-01', '10:40:32', 'Ngân hàng', ''),
+('MV0002', 'Quynhquynh', 'LC0001', 100000, '2024-01-01', '14:41:22', 'Momo', ''),
+('MV0003', 'Oanhle2222', 'LC0002', 100000, '2024-04-23', '12:11:12', 'Ngân hàng', ''),
+('MV0004', 'Quynhquynh', 'LC0002', 100000, '2024-02-21', '15:10:52', 'Momo', ''),
+('MV0005', 'tuan123', 'LC0003', 100000, '2024-01-11', '12:16:12', 'Momo', ''),
+('MV0006', 'Trung442', 'LC0003', 100000, '2024-04-11', '11:17:42', 'Momo', ''),
+('MV0007', 'Oanhle2222', 'LC0004', 100000, '2024-03-12', '17:37:46', 'ZaloPay', ''),
+('MV0008', 'tuan123', 'LC0008', 220000, '2024-04-24', '14:15:00', 'Ngân hàng', 'MUD001');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
-
-
---
--- Chỉ mục cho bảng `chitietve_dichvu`
---
-ALTER TABLE `chitietve_dichvu`
-  ADD PRIMARY KEY (`MAVE`,`MADICHVU`);
 
 --
 -- Chỉ mục cho bảng `chitietphim_dienvien`
@@ -1076,6 +1076,12 @@ ALTER TABLE `chitietquyen_chucnang`
 --
 ALTER TABLE `chitietthongke`
   ADD PRIMARY KEY (`NGAY`,`MAPM`);
+
+--
+-- Chỉ mục cho bảng `chitietve_dichvu`
+--
+ALTER TABLE `chitietve_dichvu`
+  ADD PRIMARY KEY (`MAVE`,`MADICHVU`);
 
 --
 -- Chỉ mục cho bảng `chitietve_ghe`

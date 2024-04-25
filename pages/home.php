@@ -65,7 +65,7 @@ $resultPSC = $conn->executeQuery($sqlPSC);
                 if ($resultPDC->num_rows > 0) {
                     while($row = $resultPDC->fetch_assoc()) {
                         echo "<div class='grid__column-2-4'>";
-                        echo"<a class='product-item' href='./pages/chi-tiet-phim.php?maPhim=".$row["MAPM"]."'>";
+                        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&maPhim=".$row["MAPM"]."'>";
                         echo"<div class='product-item__img' style='background-image: url(./img/".$row["NAMEANH"].");'></div>";
                         echo"<div class='wrap__name'>";
                         echo"<h4 class='product-item__movie-name'>".$row["TENPHIM"]."</h4>";
@@ -165,7 +165,7 @@ $resultPSC = $conn->executeQuery($sqlPSC);
                 if ($resultPSC->num_rows > 0) {
                     while($row = $resultPSC->fetch_assoc()) {
                         echo "<div class='grid__column-2-4'>";
-                        echo"<a class='product-item' href='./pages/chi-tiet-phim.php?maPhim=".$row["MAPM"]."'>";
+                        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&maPhim=".$row["MAPM"]."'>";
                         echo"<div class='product-item__img' style='background-image: url(./img/".$row["NAMEANH"].");'></div>";
                         echo"<div class='wrap__name'>";
                         echo"<h4 class='product-item__movie-name individual'>".$row["TENPHIM"]."</h4>";

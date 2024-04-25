@@ -78,7 +78,7 @@ foreach ($chucnang as $tenchucnang) {
         case "Lịch chiếu phim":
             $nameChucnang = "pllichchieu";
             $icon = "fa-solid fa-calendar-days";
-            $href = "admin.php?page=lichchieuphimadmin";
+            $href = "admin.php?page=chucnangLichchieuphim";
             break;
         case "Dịch vụ":
             $nameChucnang = "qldichvu";

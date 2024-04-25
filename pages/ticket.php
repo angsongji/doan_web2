@@ -4,12 +4,13 @@ if(isset($_GET['mave'])){
     $maVe=$_GET['mave'];
     require_once('./database/connectDatabase.php');
 $conn = new connectDatabase();
-$sql = "SELECT   suatchieu.NGAY AS NGAYCHIEU, ve.NGAY AS NGAYDATVE, THOIGIAN, PHUONGTHUCTHANHTOAN, TONGTIEN, MAPHONGCHIEU, THOIGIANBATDAU, TENPHIM, HOTEN, EMAIL, SODIENTHOAI
+$sql = "SELECT   suatchieu.NGAY AS NGAYCHIEU, ve.NGAY AS NGAYDATVE, THOIGIAN, PHUONGTHUCTHANHTOAN, TONGTIEN, MAPHONGCHIEU, THOIGIANBATDAU, TENPHIM, HOTEN, EMAIL, SODIENTHOAI, PHANTRAMUUDAI
     FROM ve
     JOIN lichchieuphim ON ve.MALICHCHIEU = lichchieuphim.MALICHCHIEU
     JOIN suatchieu ON lichchieuphim.MASC = suatchieu.MASC
     JOIN phim ON lichchieuphim.MAPM = phim.MAPM
     JOIN taikhoan ON ve.USERNAME = taikhoan.USERNAME
+    LEFT JOIN uudai ON ve.MAUUDAI = uudai.CODE
     WHERE ve.MAVE = '$maVe' ";
 
 $result = $conn->executeQuery($sql);
@@ -19,7 +20,27 @@ if ($result->num_rows > 0) {
 } else {
     echo "<script>console.log('khong co ve')</script>";
 }
+
+$sqlDichVu = "SELECT SoLuong, TENDICHVU, PRICE
+    FROM ve
+    JOIN chitietve_dichvu ON ve.MAVE = chitietve_dichvu.MAVE
+    JOIN dichvu ON chitietve_dichvu.MADICHVU = dichvu.MADICHVU
+    WHERE ve.MAVE = '$maVe' ";
+
+$sqlGhe = "SELECT MAGHE
+FROM ve
+JOIN chitietve_ghe ON ve.MAVE = chitietve_ghe.MAVE
+WHERE ve.MAVE = '$maVe' ";
+
+$sqlGiaGhe = "SELECT PRICE
+FROM ve
+JOIN chitietve_ghe ON ve.MAVE = chitietve_ghe.MAVE
+WHERE ve.MAVE = '$maVe' ";
 }
+$resultDichVu = $conn->executeQuery($sqlDichVu);
+$resultGhe = $conn->executeQuery($sqlGhe);
+$resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
+
 ?>
 
 <title>Chi tiết vé</title>
@@ -94,7 +115,7 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
-                                        205.000đ
+                                    <?php echo $row["TONGTIEN"]; ?>đ
                                     </span>
                                 </div>
                             </div>
@@ -106,7 +127,14 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
-                                        0đ
+                                        <?php
+                                        if($row["PHANTRAMUUDAI"]!=NULL){
+                                            $tienUD = ( $row["PHANTRAMUUDAI"] /100 ) * $row["TONGTIEN"];
+                                        }else{
+                                            $tienUD =0;
+                                        }
+                                        
+                                        echo $tienUD; ?>đ
                                     </span>
                                 </div>
                             </div>
@@ -118,7 +146,8 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
-                                        205.000đ
+                                    <?php $tienPhaiTra = $row["TONGTIEN"] - $tienUD;
+                                    echo $tienPhaiTra;?>đ
                                     </span>
                                 </div>
                             </div>
@@ -232,7 +261,18 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="detail_item-content">
                                     <span class="detail_item-content_text bold">
-                                        A1,A2
+                                    
+                                    <?php
+                            if ($resultGhe->num_rows > 0) {
+                                $tenGhe = "";
+                                while($rowGhe = $resultGhe->fetch_assoc()) {
+                                    $ghe = substr($rowGhe["MAGHE"], 3);
+                                    $tenGhe .= $ghe . ", ";
+                                }
+                                $tenGhe = rtrim($tenGhe, ", ");
+                            }
+                            echo $tenGhe;
+                            ?>
                                     </span>
                                 </div>
                             </div>
@@ -276,7 +316,16 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="detail_item-content Padding10">
                                     <span class="detail_item-content_text">
-                                    <?php echo $row["TONGTIEN"] ; ?>đ
+                                        
+                                    <?php 
+                            if ($resultGiaGhe->num_rows > 0) {
+                                $totalsVe = 0;
+                                while($rowGiaGhe = $resultGiaGhe->fetch_assoc()) {
+                                    $totalsVe += $rowGiaGhe['PRICE'];
+                                }
+                                echo $totalsVe;
+                            }
+                             ?>đ
                                     </span>
                                 </div>
                             </div>
@@ -288,11 +337,36 @@ if ($result->num_rows > 0) {
                                 </span>
                             </div>
                             <div class="horizontal-line"></div>
-                            <div class="detail_food-item">
+                            <?php
+                            if ($resultDichVu->num_rows > 0) {
+                                $totals = 0;
+                                while($row = $resultDichVu->fetch_assoc()) {
+                                    echo "<div class='detail_food-item'>";
+                                    echo "<div class='detail_food-item_name'>";
+                                    echo "<span class='detail_food-item_name-text bold'>".$row["TENDICHVU"]."</span>";
+                                    echo "</div>";
+                                    echo "<div class='detail_food-item_price'>";
+                                    echo "<div class='detail_food-item_price-multi'>";
+                                    echo "<span class='detail_food-item_quantity'>".$row["SoLuong"]."</span>";
+                                    echo "<span class='bold'>X</span>";
+                                    echo "<span class='detail_food-item_cost'>".$row["PRICE"]."đ</span>";
+                                    echo "</div>";
+                                    echo "<div class='detail_food-item_price-total'>";
+                                    $total =  $row["SoLuong"] * $row["PRICE"];
+                                    echo "<span class='detail_food-item_price-total_text bol'>".$total."đ</span>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    $totals += $total;
+                                }
+                                
+                            } else {
+                                echo "<script>console.log('khong co ve')</script>";
+                            }
+                            ?>
+                            <!-- <div class="detail_food-item">
                                 <div class="detail_food-item_name">
-                                    <span class="detail_food-item_name-text bold">
-                                        Bắp rang bơ
-                                    </span>
+                                    <span class="detail_food-item_name-text bold">Bắp rang bơ</span>
                                 </div>
                                 <div class="detail_food-item_price">
                                     <div class="detail_food-item_price-multi">
@@ -301,31 +375,12 @@ if ($result->num_rows > 0) {
                                         <span class="detail_food-item_cost">40.000đ</span>
                                     </div>
                                     <div class="detail_food-item_price-total">
-                                        <span class="detail_food-item_price-total_text bold">
-                                            40.000đ
-                                        </span>
+                                        <span class="detail_food-item_price-total_text bold">40.000đ</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="detail_food-item">
-                                <div class="detail_food-item_name">
-                                    <span class="detail_food-item_name-text bold">
-                                        CocaCola
-                                    </span>
-                                </div>
-                                <div class="detail_food-item_price">
-                                    <div class="detail_food-item_price-multi">
-                                        <span class="detail_food-item_quantity">1</span>
-                                         <span class="bold">X</span>
-                                        <span class="detail_food-item_cost">30.000đ</span>
-                                    </div>
-                                    <div class="detail_food-item_price-total">
-                                        <span class="detail_food-item_price-total_text bold">
-                                            30.000đ
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> -->
+
+
                             <div class="padding_bottom"></div>
                             <div class="detail_item horizontal-line ggg">
                                 <div class="detail_item-label Padding10">
@@ -335,7 +390,7 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="detail_item-content Padding10 ">
                                     <span class="detail_item-content_text">
-                                        70.000đ
+                                        <?php echo $totals; ?>đ
                                     </span>
                                 </div>
                             </div>

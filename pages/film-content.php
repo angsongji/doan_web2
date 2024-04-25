@@ -1,98 +1,89 @@
 <?php
-    echo '
-        <div class="filmContent">
-            <div id="container-category">
-                <div class="title">
-                    <h5>Nhà sản xuất: </h5>
-                </div>
-                <div class="category">
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                </div>
+    $connect = new connectDatabase();
+    if(isset($_GET['MAPM'])) {
+        $MAPM = $_GET['MAPM'];
+        $filmContentSql1 = "SELECT * FROM chitietphim_theloai ctptl 
+                        INNER JOIN theloai tl ON ctptl.MATHELOAI = tl.MATHELOAI 
+                        WHERE ctptl.MAPM = '$MAPM'";
+        $filmContentQuery1 = $connect->executeQuery($filmContentSql1);
 
-                <div class="title">
-                    <h5>Thể loại: </h5>
-                </div>
-                <div class="category">
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                </div>
+        $filmContentSql2 = "SELECT * FROM chitietphim_dienvien ctpdv
+                        INNER JOIN dienvien dv ON ctpdv.MADV = dv.MADV
+                        WHERE ctpdv.MAPM = '$MAPM'";
+        $filmContentQuery2 = $connect->executeQuery($filmContentSql2);
 
-                <div class="title">
-                    <h5>Đạo diễn: </h5>
-                </div>
-                <div class="category">
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                </div>
+        $filmContentSql3 = "SELECT * FROM phim 
+                            WHERE MAPM = '$MAPM'";
+        $filmContentQuery3  = $connect->executeQuery($filmContentSql3);
 
-                <div class="title">
-                    <h5>Diễn viên: </h5>
-                </div>
-                <div class="category">
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                    <div>
-                        Hoạt Hình
-                    </div>     
-                </div>
-            </div>
-            
-            <div class="content-title">
-                <h4>Nội Dung Phim: </h4>
-                <div class="content">
-                    <p>Phim lấy bối cảnh ở làng thợ rèn, kể về hồi kết của trận ác chiến giữa Tanjiro với Thượng Huyền Tứ Hantengu, và việc Nezuko khắc chế được mặt trời. Thêm vào đó, tập đầu tiên của phần "Đại Trụ Đặc Huấn", mở màn cho khóa đặc huấn của các Đại Trụ cho cuộc quyết chiến với Kibutsuji Muzan.</p>
-                </div>
-            </div>
-        </div>
-    ';
+    } else {
+        echo "Không Tìm Thấy Mã Phim";
+    }
 ?>
+
+<div class="filmContent">
+    <div id="container-category">
+        <div class="title">
+            <h5>Nhà sản xuất: </h5>
+        </div>
+        <div class="category">   
+              
+        </div>
+
+        <div class="title">
+            <h5>Thể loại: </h5>
+        </div>
+        <div class="category">
+            <?php
+                while( $rowTL = mysqli_fetch_assoc($filmContentQuery1) ) {
+            ?>
+                <div>
+                    <?php echo $rowTL['TENTHELOAI'] ?>
+                </div>     
+            <?php
+                }
+            ?>
+        </div>
+
+        <div class="title">
+            <h5>Đạo diễn: </h5>
+        </div>
+        <div class="category">
+    
+        </div>
+
+        <div class="title">
+            <h5>Diễn viên: </h5>
+        </div>
+        <div class="category">
+            <?php
+                while( $rowDV = mysqli_fetch_assoc($filmContentQuery2) ) {
+            ?>
+                <div>
+                    <?php echo $rowDV['TENDV'] ?>
+                </div>     
+            <?php
+                }
+                
+            ?>
+        </div>
+    </div>
+    
+    <div class="content-title">
+        <h4>Nội Dung Phim: </h4>
+        <div class="content">
+            <?php
+                while( $rowND = mysqli_fetch_assoc($filmContentQuery3) ) {
+            ?>
+                <p>
+                    <?php echo $rowND['MOTA'] ?>
+                </p>   
+            <?php
+                }
+
+                $connect->disconnect();
+            ?>
+            <p></p>
+        </div>
+    </div>
+</div>

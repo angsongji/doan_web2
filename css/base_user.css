@@ -80,6 +80,8 @@ label {
     flex-wrap: wrap;
     margin-left: -5px;
     margin-right: -5px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 /*Test  */

@@ -1,7 +1,7 @@
 <?php 
 
 echo '
-<div class="chucnang_wrap">
+<div class="chucnang_wrap" name="chucnangPhim">
         <ul class="chucnangcon_wrap">
             ';
         if(isset($_GET['pagecon'])){

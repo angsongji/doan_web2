@@ -1,13 +1,26 @@
 <?php
+
+require_once('../database/connectDatabase.php');
+
+$conn = new connectDatabase();
         $chuoiEmpty = "";
         $count = 0;
+        
+
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             if(empty($_POST['Name'])){
                 $count++;
                 $chuoiEmpty = "errorName=empty";
+            }else if(!preg_match('/^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/', $_POST['Name'])){
+                    $chuoiEmpty = "errorName=wrong";  
+                $count++;
             }else{
                 $chuoiEmpty .="Name=".$_POST['Name'];  
                 }
+
+            $inputEmail = $_POST['Email']; 
+            $sqlEmail = "SELECT EMAIL FROM taikhoan WHERE EMAIL = '$inputEmail'";
+            $resultEmail = $conn->executeQuery($sqlEmail);
 
             if(empty($_POST['Email'])){
                 if($chuoiEmpty==""){
@@ -24,35 +37,53 @@
                         $chuoiEmpty .="&errorEmail=wrong";  
                 }
                 $count++;
+            }else if ($resultEmail->num_rows > 0) {
+                if($chuoiEmpty==""){
+                    $chuoiEmpty = "errorEmail=trung";  
+                }else{
+                    $chuoiEmpty .="&errorEmail=trung";  
+                }
+                    $count++;
             }else{
                 if($chuoiEmpty==""){
-                         $chuoiEmpty .="Email=".$_POST['Email'];   
-                }else{
-                        $chuoiEmpty .="&Email=".$_POST['Email'];   
+                        $chuoiEmpty .="Email=".$_POST['Email'];   
+                    }else{
+                       $chuoiEmpty .="&Email=".$_POST['Email'];   
                     }
                 }
 
-                if(empty($_POST['Name_account'])){
-                    if($chuoiEmpty==""){
-                        $chuoiEmpty = "errorName_account=empty";  
-                    }else{
+            $inputNameAcc = $_POST['Name_account'];
+            $sqlTenDN = "SELECT USERNAME FROM taikhoan WHERE USERNAME = '$inputNameAcc'";
+            $resultTenDN = $conn->executeQuery($sqlTenDN);
+            if(empty($_POST['Name_account'])){
+                if($chuoiEmpty==""){
+                    $chuoiEmpty = "errorName_account=empty";  
+                }else{
                         $chuoiEmpty .="&errorName_account=empty";  
                     }
                     $count++;
-                }else if(!preg_match('/^(?=.*[a-zA-Z])(?=.*\d).{6,}$/', $_POST['Name_account'])){
+            }else if(!preg_match('/^(?=.*[a-zA-Z])(?=.*\d).{6,}$/', $_POST['Name_account'])){
                     if($chuoiEmpty==""){
                             $chuoiEmpty = "errorName_account=wrong";  
                     }else{
                             $chuoiEmpty .="&errorName_account=wrong";  
                     }
                     $count++;
-                }else{
+            }else if ($resultTenDN->num_rows > 0) {
                     if($chuoiEmpty==""){
-                             $chuoiEmpty .="Name_account=".$_POST['Name_account'];   
+                            $chuoiEmpty = "errorName_account=trung";  
                     }else{
-                            $chuoiEmpty .="&Name_account=".$_POST['Name_account'];   
+                            $chuoiEmpty .="&errorName_account=trung";  
+                    }
+                        $count++;
+            }else{
+                        if($chuoiEmpty==""){
+                            $chuoiEmpty .="Name_account=".$_POST['Name_account'];   
+                        }else{
+                           $chuoiEmpty .="&Name_account=".$_POST['Name_account'];   
                         }
                     }
+                
 
                 
                     if(empty($_POST['Password'])){
@@ -100,7 +131,7 @@
                             }
                             $count++;
                         }
-                        
+        }                
         if($count>0){
             header("location: log_sign.php?pages=sign_in&".$chuoiEmpty);
         }else{
@@ -124,20 +155,19 @@
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $time = date("H:i:s");
 
-            $sqlUser = "INSERT INTO taikhoan (USERNAME,PASSWORD,NGAYTAOTK,TRANGTHAI,EMAIL,HOTEN,NAMEANH,MAQUYEN,THOIGIANTAOTK) 
-                        VALUES ('$tenTK','$passwd','$date',$trangThai,'$email','$name','$tenAnh','$maQuyen','$time')";  
-        
-        require_once('../database/connectDatabase.php');
+            $soDienThoai = "";
 
-        $conn = new connectDatabase();
+            $sqlUser = "INSERT INTO taikhoan (USERNAME,PASSWORD,NGAYTAOTK,TRANGTHAI,EMAIL,HOTEN,NAMEANH,MAQUYEN,THOIGIANTAOTK,SODIENTHOAI) 
+                        VALUES ('$tenTK','$passwd','$date',$trangThai,'$email','$name','$tenAnh','$maQuyen','$time','$soDienThoai')";  
+        
+        
 
         $result = $conn->executeQuery($sqlUser);
 
-        $conn->disconnect();
+        
 
         header("location: log_sign.php?pages=sign_in_success");
             
         }
-    }
-
+    $conn->disconnect();
 ?>

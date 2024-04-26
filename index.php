@@ -38,6 +38,7 @@
     <?php
         include "./pages/header.php";
      ?>
+
     <?php
     if(isset($_GET['pages'])){
         $pages=$_GET['pages'];
@@ -58,9 +59,11 @@
         }
     }else{
         include "./pages/home.php";
+        echo '<script src="./js/slideShow_film.js"></script>';
     }
     include "./pages/footer.php";
     ?>
     
+    <script src="./js/header.js"></script>
 </body>
 </html>

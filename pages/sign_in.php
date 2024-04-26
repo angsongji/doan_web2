@@ -11,6 +11,8 @@
                     <span class="error"><?php 
                         if(isset($_GET['errorName'])&&$_GET['errorName']=='empty'){
                             echo 'Không được để trống thông tin';
+                        }else if(isset($_GET['errorName'])&&$_GET['errorName']=='wrong'){
+                            echo 'Khong dc nhap so va ky tu dac biet nha con cho';
                         }?> 
 
                     </span>
@@ -24,6 +26,8 @@
                             echo 'Không được để trống thông tin';
                         }else if(isset($_GET['errorEmail'])&&$_GET['errorEmail']=='wrong'){
                             echo 'Email sai!';
+                        }else if(isset($_GET['errorEmail'])&&$_GET['errorEmail']=='trung'){
+                            echo 'Email trung!';
                         }?> 
 
                     </span>
@@ -37,6 +41,8 @@
                             echo 'Không được để trống thông tin';
                         }else if(isset($_GET['errorName_account'])&&$_GET['errorName_account']=='wrong'){
                             echo 'Ten Dang nhap sai!';
+                        }else if(isset($_GET['errorName_account'])&&$_GET['errorName_account']=='trung'){
+                            echo 'Ten bi trung roi con cho!';
                         }?>
                     </span>
                 </div>

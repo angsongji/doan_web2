@@ -7,21 +7,50 @@
                     khoản Meme.
                     Chúng tôi sẽ gửi lại mật khẩu cũ cho bạn.</p>
             </div>
-            <form action="" class="form_forgot">
+            <form action="log_sign.php?pages=forget_password" class="form_forgot" name="form_forget_pass" method="POST">
                 <div class="form_forgot__item">
                     <div class="form_forgot__item-label">
                         <label for="email">Địa chỉ email của bạn</label>
                     </div>
                     <div class="form_forgot__item-input">
-                        <input type="text" name="" id="email">
+                        <input type="text" name="Email" id="email">
                     </div>
+                    <button type="submit" class="btn_password" name="btn_password">
+                        <span>Gửi mật khẩu cho tôi</span>
+                    </button>
                 </div>
-
             </form>
-            <div class="btn_password">
-                <span>Gửi mật khẩu cho tôi</span>
-            </div>
             <div class="notification_password">
-                <span>Mật khẩu của bạn là: 4u2u49u924u42</span>
+                <span>
+                    <?php
+                    if(isset($_GET['pass'])&&$_GET['pass']=='KhongToanTai'){
+                        echo "Email không tồn tại";
+                    }else if(isset($_GET['pass'])&&$_GET['pass']!='KhongToanTai'){
+                        echo "Mật khẩu của bạn là: ".$_GET['pass'] ;
+                    }
+                    ?>
+                </span>
             </div>
         </div>
+
+<?php
+
+    if(isset($_POST["btn_password"])){
+        $inputEmail = $_POST['Email'];
+        $sql = "SELECT PASSWORD FROM taikhoan WHERE EMAIL = '$inputEmail'";
+        require_once('../database/connectDatabase.php');
+        $conn = new connectDatabase();
+        $result = $conn->executeQuery($sql);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            header('Location: log_sign.php?pages=forget_password&pass='. $row["PASSWORD"]);
+            exit();
+        } else {
+            header('Location: log_sign.php?pages=forget_password&pass=KhongToanTai');
+            exit();
+        }
+
+        $conn->disconnect();
+    }
+
+?>

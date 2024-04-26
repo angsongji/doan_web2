@@ -125,6 +125,8 @@
 }
 /* forgot */
 .wrapper_forgot{
+    display: flex;
+    flex-direction: column;
     margin: 20px auto auto auto;
     width: 700px;
     border-radius: 5px;
@@ -171,25 +173,29 @@
 }
 
 .btn_password{
-    margin-left: 500px;
-    margin-top: 30px;
-    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
     background-color: var(--primary-color);
-    padding: 10px 10px;
-    width: 150px;
+    padding: 5px 10px;
+    margin-top: 15px ;
+    border-radius: 5px;
 }
 
 .btn_password span{
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.btn_password:hover{
+    background-color: rgba(121, 183, 145,0.7);
+    color: #999;
+    cursor: pointer;
 }
 
 .notification_password{
-    margin: 10px 30px;
+    margin: 60px 30px 10px;    
 }
 .notification_password span{
     font-size: 1.5rem;

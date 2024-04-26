@@ -1,4 +1,5 @@
 <?php
+    require_once("../database/connectDatabase.php");
     $connect = new connectDatabase();
     if(isset($_GET['MAPM'])) {
         $MAPM = $_GET['MAPM'];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 21, 2024 lúc 12:10 AM
+-- Thời gian đã tạo: Th4 24, 2024 lúc 09:56 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -217,6 +217,25 @@ INSERT INTO `chitietthongke` (`NGAY`, `MAPM`, `TONGDOANHTHU`, `TONGVE`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `chitietve_dichvu`
+--
+
+CREATE TABLE `chitietve_dichvu` (
+  `MAVE` varchar(10) NOT NULL,
+  `MADICHVU` varchar(10) NOT NULL,
+  `SoLuong` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietve_dichvu`
+--
+
+INSERT INTO `chitietve_dichvu` (`MAVE`, `MADICHVU`, `SoLuong`) VALUES
+('MV0008', 'MDV001', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `chitietve_ghe`
 --
 
@@ -237,7 +256,9 @@ INSERT INTO `chitietve_ghe` (`MAVE`, `MAGHE`, `PRICE`) VALUES
 ('MV0004', 'PC2B2', 100000),
 ('MV0005', 'PC3A6', 100000),
 ('MV0006', 'PC3A8', 100000),
-('MV0007', 'PC4E2', 100000);
+('MV0007', 'PC4E2', 100000),
+('MV0008', 'PC3A1', 100000),
+('MV0008', 'PC3A2', 100000);
 
 -- --------------------------------------------------------
 
@@ -706,32 +727,40 @@ CREATE TABLE `lichchieuphim` (
   `MAPM` varchar(10) DEFAULT NULL,
   `MASC` varchar(10) DEFAULT NULL,
   `MAPHONGCHIEU` varchar(10) DEFAULT NULL,
-  `MALICHCHIEU` varchar(10) NOT NULL
+  `MALICHCHIEU` varchar(10) NOT NULL,
+`THOIGIANKETTHUC` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `lichchieuphim`
 --
 
-INSERT INTO `lichchieuphim` (`MAPM`, `MASC`, `MAPHONGCHIEU`, `MALICHCHIEU`) VALUES
-('PM001', 'SC0001', 'PC1', 'LC0001'),
-('PM002', 'SC0001', 'PC2', 'LC0002'),
-('PM003', 'SC0002', 'PC3', 'LC0003'),
-('PM004', 'SC0002', 'PC4', 'LC0004'),
-('PM005', 'SC0003', 'PC5', 'LC0005'),
-('PM006', 'SC0003', 'PC1', 'LC0006'),
-('PM007', 'SC0004', 'PC2', 'LC0007'),
-('PM008', 'SC0004', 'PC3', 'LC0008'),
-('PM009', 'SC0005', 'PC4', 'LC0009'),
-('PM010', 'SC0005', 'PC5', 'LC0010'),
-('PM011', 'SC0006', 'PC1', 'LC0011'),
-('PM012', 'SC0006', 'PC2', 'LC0012'),
-('PM013', 'SC0007', 'PC3', 'LC0013'),
-('PM014', 'SC0007', 'PC4', 'LC0014'),
-('PM015', 'SC0008', 'PC5', 'LC0015'),
-('PM016', 'SC0008', 'PC1', 'LC0016'),
-('PM017', 'SC0009', 'PC2', 'LC0017'),
-('PM018', 'SC0009', 'PC3', 'LC0018');
+INSERT INTO `lichchieuphim` (`MAPM`, `MASC`, `MAPHONGCHIEU`, `MALICHCHIEU`,`THOIGIANKETTHUC`) VALUES
+('PM001', 'SC0001', 'PC1', 'LC0001','9:33'),
+('PM002', 'SC0001', 'PC2', 'LC0002','9:33'),
+('PM003', 'SC0002', 'PC3', 'LC0003','11:09'),
+('PM004', 'SC0002', 'PC4', 'LC0004','11:19'),
+('PM005', 'SC0003', 'PC5', 'LC0005','13:35'),
+('PM006', 'SC0003', 'PC1', 'LC0006','13:22'),
+('PM007', 'SC0004', 'PC2', 'LC0007','15:24'),
+('PM008', 'SC0004', 'PC3', 'LC0008','15:23'),
+('PM009', 'SC0005', 'PC4', 'LC0009','17:45'),
+('PM010', 'SC0005', 'PC5', 'LC0010','18:16'),
+('PM011', 'SC0006', 'PC1', 'LC0011','19:10'),
+('PM012', 'SC0006', 'PC2', 'LC0012','19:37'),
+('PM013', 'SC0007', 'PC3', 'LC0013','21:22'),
+('PM014', 'SC0007', 'PC4', 'LC0014','21:10'),
+('PM015', 'SC0008', 'PC5', 'LC0015','23:33'),
+('PM016', 'SC0008', 'PC1', 'LC0016','23:24'),
+('PM017', 'SC0009', 'PC2', 'LC0017','1:33'),
+('PM018', 'SC0009', 'PC3', 'LC0018','1:25'),
+(	'PM001','SC00010','PC1','LC000010','11:33'),
+(	'PM001','SC00010','PC2','LC000011','11:33'),
+(	'PM001','SC00011','PC1','LC000012','12:33'),
+(	'PM001','SC00011','PC2','LC000013','12:33'),
+(	'PM001','SC00012','PC4','LC000014','13:33'),
+(	'PM002','SC00011','PC3','LC000015','12:33'),
+(	'PM003','SC00012','PC1','LC000016','14:33');
 
 -- --------------------------------------------------------
 
@@ -885,15 +914,18 @@ CREATE TABLE `suatchieu` (
 --
 
 INSERT INTO `suatchieu` (`MASC`, `NGAY`, `THOIGIANBATDAU`) VALUES
-('SC0001', '2024-04-11', '7:30:00'),
-('SC0002', '2024-04-11', '9:30:00'),
-('SC0003', '2024-04-11', '11:30:00'),
-('SC0004', '2024-04-11', '13:30:00'),
-('SC0005', '2024-04-11', '15:30:00'),
-('SC0006', '2024-04-11', '17:30:00'),
-('SC0007', '2024-04-11', '19:30:00'),
-('SC0008', '2024-04-11', '21:30:00'),
-('SC0009', '2024-04-11', '23:30:00');
+('SC0001', '2024-04-11', '7:30'),
+('SC0002', '2024-04-11', '9:30'),
+('SC0003', '2024-04-11', '11:30'),
+('SC0004', '2024-04-11', '13:30'),
+('SC0005', '2024-04-11', '15:30'),
+('SC0006', '2024-04-11', '17:30'),
+('SC0007', '2024-04-11', '19:30'),
+('SC0008', '2024-04-11', '21:30'),
+('SC0009', '2024-04-11', '23:30'),
+('SC00010','2024-04-26','9:30'),
+('SC00011','2024-04-26','10:30'),
+('SC00012','2024-04-26','11:30');
 
 -- --------------------------------------------------------
 
@@ -919,12 +951,10 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`USERNAME`, `PASSWORD`, `NGAYTAOTK`, `TRANGTHAI`, `EMAIL`, `HOTEN`, `NAMEANH`, `MAQUYEN`, `THOIGIANTAOTK`, `SODIENTHOAI`) VALUES
-('', NULL, NULL, NULL, 'quynhnt@gmail.com', 'Quynh', NULL, NULL, NULL, NULL),
 ('Oanhle2222', 'Hoichima33', '2023-09-21', 1, '3122hehehe@gmail.com', 'Oanh le', 'Loi-ich-hien-mau.jpg', 'QKH', '20:30:00', ''),
 ('Quynhquynh', 'meomeo122', '2023-10-02', 1, 'quynh@gmail.com', 'Quynh12', 'Quynhquynh.png', 'QQL', '8:30:00', NULL),
 ('Trung442', 'trung3312', '2023-08-02', 1, 'trung22@gmail.com', 'Trunggg', 'Trung442.png', 'QAD', '10:30:00', NULL),
-('tuan123', '12345678', '2024-04-20', 1, 'anhtu123@gmail.com', 'teo', 'userImg.jpg', 'QKH', '04:22:07', '0123456789'),
-('Tuankhung2', '12345678', '2023-10-21', 1, 'tuan33@gmail.com', 'Tuan vo', 'GumballSeason3.png', 'QKH', '21:30:00', NULL);
+('tuan123', '12345678', '2024-04-20', 1, 'anhtu123@gmail.com', 'teo', 'userImg.jpg', 'QKH', '04:22:07', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -983,7 +1013,7 @@ CREATE TABLE `uudai` (
   `CODE` varchar(10) NOT NULL,
   `TENUUDAI` varchar(255) DEFAULT NULL,
   `PHANTRAMUUDAI` int(11) NOT NULL,
-  `DIEUKIEN` varchar(255) NOT NULL,
+  `DIEUKIEN` int(11) NOT NULL,
   `TRANGTHAI` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -992,14 +1022,12 @@ CREATE TABLE `uudai` (
 --
 
 INSERT INTO `uudai` (`CODE`, `TENUUDAI`, `PHANTRAMUUDAI`, `DIEUKIEN`, `TRANGTHAI`) VALUES
-('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5, '150000', 1),
-('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10, '250000', 0),
-('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15, '350000', 0),
-('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20, '450000', 1),
-('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25, '500000', 1),
-('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30, '1000000', 0),
-('MUD007', 'Khách hàng mới giảm 5%', 5, 'KHM', 1),
-('MUD008', 'Ưu đãi thứ 3 hàng tuần', 15, 'TUESDAY', 1);
+('MUD001', 'Hoá Đơn trên 150.000đ giảm 5%', 5, 150000, 1),
+('MUD002', 'Hoá Đơn trên 250.000đ giảm 10%', 10, 250000, 0),
+('MUD003', 'Hoá Đơn trên 350.000đ giảm 15%', 15, 350000, 0),
+('MUD004', 'Hoá Đơn trên 450.000đ giảm 20%', 20, 450000, 1),
+('MUD005', 'Hoá Đơn trên 500.000đ giảm 25%', 25, 500000, 1),
+('MUD006', 'Hoá Đơn trên 1.000.000đ giảm 40%', 30, 1000000, 0);
 
 -- --------------------------------------------------------
 
@@ -1014,21 +1042,23 @@ CREATE TABLE `ve` (
   `TONGTIEN` int(11) DEFAULT NULL,
   `NGAY` date NOT NULL,
   `THOIGIAN` time NOT NULL,
-  `PHUONGTHUCTHANHTOAN` varchar(255) DEFAULT NULL
+  `PHUONGTHUCTHANHTOAN` varchar(255) DEFAULT NULL,
+  `MAUUDAI` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ve`
 --
 
-INSERT INTO `ve` (`MAVE`, `USERNAME`, `MALICHCHIEU`, `TONGTIEN`, `NGAY`, `THOIGIAN`, `PHUONGTHUCTHANHTOAN`) VALUES
-('MV0001', 'Tuan123', 'LC0001', 100000, '2024-03-01', '10:40:32', 'Ngân hàng'),
-('MV0002', 'Tuan13', 'LC0001', 100000, '2024-01-01', '14:41:22', 'Momo'),
-('MV0003', 'Oanh314', 'LC0002', 100000, '2024-04-23', '12:11:12', 'Ngân hàng'),
-('MV0004', 'Oanh342', 'LC0002', 100000, '2024-02-21', '15:10:52', 'Momo'),
-('MV0005', 'Quynh131', 'LC0003', 100000, '2024-01-11', '12:16:12', 'Momo'),
-('MV0006', 'Quynh131', 'LC0003', 100000, '2024-04-11', '11:17:42', 'Momo'),
-('MV0007', 'Quynh422', 'LC0004', 100000, '2024-03-12', '17:37:46', 'ZaloPay');
+INSERT INTO `ve` (`MAVE`, `USERNAME`, `MALICHCHIEU`, `TONGTIEN`, `NGAY`, `THOIGIAN`, `PHUONGTHUCTHANHTOAN`, `MAUUDAI`) VALUES
+('MV0001', 'tuan123', 'LC0001', 100000, '2024-03-01', '10:40:32', 'Ngân hàng', ''),
+('MV0002', 'Quynhquynh', 'LC0001', 100000, '2024-01-01', '14:41:22', 'Momo', ''),
+('MV0003', 'Oanhle2222', 'LC0002', 100000, '2024-04-23', '12:11:12', 'Ngân hàng', ''),
+('MV0004', 'Quynhquynh', 'LC0002', 100000, '2024-02-21', '15:10:52', 'Momo', ''),
+('MV0005', 'tuan123', 'LC0003', 100000, '2024-01-11', '12:16:12', 'Momo', ''),
+('MV0006', 'Trung442', 'LC0003', 100000, '2024-04-11', '11:17:42', 'Momo', ''),
+('MV0007', 'Oanhle2222', 'LC0004', 100000, '2024-03-12', '17:37:46', 'ZaloPay', ''),
+('MV0008', 'tuan123', 'LC0008', 220000, '2024-04-24', '14:15:00', 'Ngân hàng', 'MUD001');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -1057,6 +1087,12 @@ ALTER TABLE `chitietquyen_chucnang`
 --
 ALTER TABLE `chitietthongke`
   ADD PRIMARY KEY (`NGAY`,`MAPM`);
+
+--
+-- Chỉ mục cho bảng `chitietve_dichvu`
+--
+ALTER TABLE `chitietve_dichvu`
+  ADD PRIMARY KEY (`MAVE`,`MADICHVU`);
 
 --
 -- Chỉ mục cho bảng `chitietve_ghe`

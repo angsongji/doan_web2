@@ -25,8 +25,9 @@
         echo '<li class="btn_thaotacphanquyen" name="submit_edit_quyen"><i class="fa-solid fa-check"></i></li>';
     else
         echo '<li class="btn_thaotacphanquyen" name="edit_quyen"><i class="fa-solid fa-pen"></i></li>';
+    
+    echo '<li class="btn_thaotacphanquyen" name="remove_quyen"><i class="fa-solid fa-trash"></i></li>';
     echo '</ul>';
-
     $hanhdong=["Xem","Thêm","Sửa","Xóa"];
     echo ' 
           <div class="phanquyen_wrap_header">
@@ -97,6 +98,10 @@
                             $("#content").html(response); // Thay đổi nội dung của #content
                         }
                     });
+                    break;
+                case "remove_quyen":
+                    alert("remove");
+                    break;
                     break;
             }
         });

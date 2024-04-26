@@ -47,6 +47,7 @@
             exit();
         } else {
             header('Location: log_sign.php?pages=forget_password&pass=KhongToanTai');
+            exit();
         }
 
         $conn->disconnect();

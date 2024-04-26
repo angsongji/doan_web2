@@ -531,7 +531,7 @@ ul{
     font-weight: 600;
     
 }
-.lichchieuphim_mota_phim .type_movie{
+.lichchieuphim_mota_phim .thoiluong_movie{
     color: gray;
     font-size: 0.9rem;
 }
@@ -565,6 +565,7 @@ ul{
     margin-left:20px;
 }
 .edit_suatchieu{
+    cursor: pointer;
     position: absolute;
     top:5px;
     right: 10px;
@@ -752,30 +753,33 @@ ul{
     left:50%;
     transform: translate(-50%,-50%);
     z-index: 21;
-    display: none;
+    display: flex;
     align-items: center;
     padding-right: 10px;
     
 }
 .show_change_movie{
     display: flex;
-    
+
 }
 .show_change_movie img{
-    width: 250px;
-    height: 380px;
+    width: 100%;
+    height: 100%;
 }
 #show_infor_movie_old{
-    width: 40vw;
+    min-width: 50vw;
+    /* width: 40vw; */
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 #show_infor_movie_new{
-    padding: 10px;
+    width: 100%;
     border-left: 1px solid black;
     display: none;
 }
 .show_infor_movie{
+    position: relative;
     display: block;
-    width: calc( 40vw - 250px );
    padding: 10px 0 0 10px;
 }
 .show_infor_movie .infor_age_movie{
@@ -789,6 +793,8 @@ ul{
     margin-bottom: 10px;
 }
 .show_infor_movie .noidung_movie{
+    overflow-y: auto;
+    height: 100px;
     width: 95%;
     word-wrap: break-word;
     margin: 10px 0;
@@ -806,15 +812,16 @@ ul{
     font-size:14px;
 }
 .show_trailer_movie{
+    
     color: var(--primary_color);
     text-decoration: underline;
 }
 .click_show_change_movie{
-    margin-top: 20px;
+    margin: 20px 0;
    display: flex;
    justify-content: space-evenly;
    align-items: center;
-   
+  
 
 }
 .click_show_change_movie>i{
@@ -841,11 +848,11 @@ font-size: 14px;
 font-weight: 600;
 }
 .show_infor_movie input{
+    border: 0;
     padding: 2px 5px;
-    outline: none;
     cursor: pointer;
 }
-#click_show_theloai{
+#list_theloai{
     border-radius: 5px;
    color: var(--second_color);
     background-color: var(--light-gray);
@@ -867,6 +874,24 @@ display: none;
     display: block;
  padding: 3px;
     font-size: 15px;
+}
+#add_phim_lichchieuphim:hover{cursor: pointer;}
+#add_phim_lichchieuphim{
+    box-shadow: 10px 3px  10px var(--light-gray);
+    border-radius: 5px;
+    padding-left: 10px;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%,100%);
+    
+    position: absolute;
+    background-color: var(--primary_color);
+    color: white;
+    width: fit-content;
+
+}
+#add_phim_lichchieuphim i{
+    margin: 10px;
 }
 #change_lichchieuphim_phim{
     margin: 0;

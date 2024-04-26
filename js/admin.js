@@ -184,6 +184,29 @@ $('.lichchieuphim_phim').ready(function(){
     });
 });
 
-
+$("#lichchieuphim_content").ready(function(){
+    $(".btn_changeDayLichchieuphim").on('click',function(){
+        let day = $(this).attr('name');
+        
+        $.ajax({
+            url: "./pages/lichchieuphimadmin.php", 
+                type: "GET",
+                data: {day: day},
+                success: function(response) {
+                    $("#content").html(response); // Thay đổi nội dung của #content
+                    // $('#unclick_behind_this_screen').css('display' , 'block');
+                    // $.ajax({
+                    //     url: "./js/admin.js",
+                    //     success: function(response) {
+                    //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                    //     },
+                    //     error: function(xhr, status, error) {
+                    //         // Xử lý lỗi nếu có
+                    //     }
+                    // });
+                }
+        });
+    });
+});
     
 

@@ -47,8 +47,33 @@ $('#users_wrap').ready(function(){
        });
     });
 });
+
+$(".chucnangcon_wrap").find(".chucnangcon_Phim").ready(function(){
+    $(".chucnangcon_Phim").on('click',function(){
+        let luachon = $(this).attr("name");
+                $.ajax({
+                    url: "./pages/chucnangPhim.php", 
+                    type: "GET",
+                    data: {pagecon: luachon},
+                    success: function(response) {
+                        $("#content").html(response); // Thay đổi nội dung của #content
+                        $.ajax({
+                            url: "./js/admin.js",
+                            success: function(response) {
+                                // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                            },
+                            error: function(xhr, status, error) {
+                                // Xử lý lỗi nếu có
+                            }
+                        });
+                    }
+                });
+    });
+});
+
+
 //movie
-$('#movies').ready(function(){
+$('#movies').find('.movie').ready(function(){
     $('.movie').on('mouseenter',function(){
         $(this).find('.click_change_infor_movie').css({
             'display':'flex',
@@ -58,29 +83,50 @@ $('#movies').ready(function(){
         $(this).find('.click_change_infor_movie').css('display','none');
     });
     $('.movie').on('click',function(){
+            let maphim = $(this).attr('name');
+            
+            $.ajax({
+                url: "./pages/chucnangPhim.php", 
+                type: "GET",
+                data: {MAPM: maphim},
+                success: function(response) {
+                    $("#content").html(response); // Thay đổi nội dung của #content
+                    $('#unclick_behind_this_screen').css('display' , 'block');
+                    $.ajax({
+                        url: "./js/admin.js",
+                        success: function(response) {
+                            // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                        },
+                        error: function(xhr, status, error) {
+                            // Xử lý lỗi nếu có
+                        }
+                    });
+                }
+            });
+        });
             $('#movie_change_infor').ready(function(){
-            $('#unclick_behind_this_screen').css('display' , 'block');
-            $('#movie_change_infor').css('display','flex');
+           
+            // $('#movie_change_infor').css('display','flex');
             $('#movie_change_infor').find('#btn_exit').on('click',function(){
                 $('#unclick_behind_this_screen').css('display' , 'none');
                 $('#movie_change_infor').css('display','none');
             });
         });
-    });
+    
     
     $('#movie_change_infor').find('#click_show_infor_movie_new').ready(function(){
         $('#movie_change_infor').find('#click_show_infor_movie_new').on('click',function(){
             let status=$('#movie_change_infor').find('#click_show_infor_movie_new').attr('name');
         switch(status){
             case "show":
-                $('#movie_change_infor').css('padding-left','15px');
-                $('#movie_change_infor').find('#click_show_infor_movie_new').html('<i class="fa-solid fa-arrow-left" style="margin-right:10px;"></i>Quay lai');
+
+                $('#movie_change_infor').find('#click_show_infor_movie_new').html('<i class="fa-solid fa-arrow-left" style="margin-right:10px;"></i>Quay lại');
                 $('#movie_change_infor').find('#show_infor_movie_new').css('display','block');
                 $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','hide');
                 break;
             case "hide":
-                $('#movie_change_infor').css('padding-left','0');
-                $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chinh sua phim <i class="fa-solid fa-arrow-right"></i>');
+
+                $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chỉnh sửa phim<i class="fa-solid fa-arrow-right"></i>');
                 $('#movie_change_infor').find('#show_infor_movie_new').css('display','none');
                 $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','show');
                 break;
@@ -93,12 +139,12 @@ $('#show_infor_movie_new').find('#click_show_theloai').ready(function(){
         let status= $('#show_infor_movie_new').find('#click_show_theloai').attr('name');
         switch(status){
             case "show":
-                $('#click_show_theloai>div').html('Click de an the loai');
+                $('#click_show_theloai').html('Click để ẩn thể loại');
                 $('#show_list_theloai').css('display','block');
                 $('#click_show_theloai').attr('name','hide');
                break;
             case "hide":
-                $('#click_show_theloai>div').html('Click de chon the loai');
+                $('#click_show_theloai').html('Click để chọn thể loại');
                 $('#show_list_theloai').css('display','none');
                 $('#click_show_theloai').attr('name','show');
                 break;

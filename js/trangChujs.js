@@ -98,3 +98,34 @@ slider2.addEventListener("scroll", () => {
         btnNext2.style.display = "flex";
     }
 });
+
+        function searchFilm() {
+            let input = document.getElementById('searchFilmMenu').value;
+            let value_theLoai = document.getElementById('cbb_category').value;
+            let value_quocGia = document.getElementById('cbb_country').value;
+            let value_Nam = document.getElementById('cbb_years').value;
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', './pages/search.php?query=' + input +'&theLoai='+ value_theLoai +'&quocGia='+ value_quocGia+'&nam='+value_Nam, true);
+            xhr.onload = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('conchimnon').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        document.getElementById('searchFilmMenu').addEventListener('keyup',()=>{
+            searchFilm();
+        });
+        document.getElementById('cbb_category').addEventListener('change',()=>{
+            searchFilm();
+        });
+        document.getElementById('cbb_country').addEventListener('change',()=>{
+            searchFilm();
+        });
+        document.getElementById('cbb_years').addEventListener('change',()=>{
+            searchFilm();
+        });
+document.addEventListener("DOMContentLoaded", function() {
+    searchFilm();
+});

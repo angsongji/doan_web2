@@ -58,18 +58,6 @@ btnRight.addEventListener(
     }
 )
 
-// Xử lý chọn ngày xem phim 
-const day = document.querySelectorAll('.day');
-for(let i = 0; i < day.length; i++) {
-    day[i].addEventListener(
-        'click',
-        (e) => {
-            
-        },
-        false
-    )
-}
-
 // Xử lý sự kiện đóng menu-chon-ghe
 const iconCloseMenuChonGhe = document.querySelector('#icon-close-menu-chon-ghe');
 const containerPopupMenuChonGhe = document.querySelector('.container-popup-menu-chon-ghe');
@@ -83,34 +71,86 @@ iconCloseMenuChonGhe.addEventListener(
 )
 
 // Xử lý sự kiện mở menu-chon-ghe
-const hour = document.querySelectorAll(".hour");
-for(let i = 0; i < hour.length; i++) {
-    hour[i].addEventListener(
-        "click",
-        (e) => {
-            containerPopupMenuChonGhe.style.display = "flex";
-        },
-        false
-    )
-}
+
+// function guiThongTinDenXuLyHienThiPhongChieu(maphim, masuatchieu) {
+//     return new Promise((resolve, reject) => {
+//         if (masuatchieu === "") {
+//             reject("MASUATCHIEU is empty");
+//         } else {
+//             var xmlhttp = new XMLHttpRequest();
+//             xmlhttp.onreadystatechange = function() {
+//                 if (this.readyState === 4 && this.status === 200) {
+//                     document.getElementById("chon-phong").innerHTML = this.responseText;
+//                     resolve("URL updated successfully");
+//                 }
+//             };
+//             xmlhttp.open("GET", "../pages/xu-ly-hien-thi-phong-chieu.php?MAPM=" + maphim + "&&MASC=" + masuatchieu, true);
+//             xmlhttp.send();
+//         }
+//     });
+// }   
+
+// function hienThiMenuChonGhe() {
+//     return new Promise((resolve, reject) => {
+//         containerPopupMenuChonGhe.style.display = "flex";
+//         resolve("Menu displayed successfully");
+//     });
+// }   
+
+// const xuLySuKienHienThiMenuChonGhe = async (maphim, masuatchieu) => {
+//     try {
+//         const guiThongTinDenXuLyHienThiPhongChieuPromise = guiThongTinDenXuLyHienThiPhongChieu(maphim, masuatchieu);
+//         console.log(await guiThongTinDenXuLyHienThiPhongChieuPromise);
+//         const hienThiMenuChonGhePromise = hienThiMenuChonGhe();
+//         console.log(await hienThiMenuChonGhePromise);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// const hour = document.querySelectorAll(".hour");
+
+// for(let i = 0; i < hour.length; i++) {
+//     hour[i].addEventListener(
+//         "click",
+//         (e) => {
+//             xuLySuKienHienThiMenuChonGhe(
+//                 hour[i].getAttribute('maphim'), 
+//                 hour[i].getAttribute('masuatchieu'));
+//         },
+//         false
+//     )
+// }
 
 // Xử lý sự kiện đóng menu-chon-nuoc
 const iconCloseMenuChonNuoc = document.querySelector('#icon-close-menu-chon-nuoc');
 const containerPopupMenuChonNuoc = document.querySelector('.container-pop-up-menu-chon-nuoc');
 
+
 iconCloseMenuChonNuoc.addEventListener(
     "click",
     (e) => {
         containerPopupMenuChonNuoc.style.display = "none";
+        for( let i = 0; i < soLuongs.length; i++) {
+                let soLuongStr = soLuongs[i].textContent.trim();
+                let soLuong = isNaN(soLuongStr) ? 0 : parseInt(soLuongStr); 
+                soLuong = 0; 
 
+                let tongCongStr = tongCongs.textContent.trim();
+                let tongCong = isNaN(tongCongStr) ? 0 : parseInt(tongCongStr);
+                tongCong = 0; 
+            
+                soLuongs[i].textContent = soLuong.toString();
+                tongCongs.textContent = tongCong.toString();
+        }
+        
         containerPopupMenuChonGhe.style.display = "flex";
     },
     false
 )
 
-// Xử lý sự kiện mở menu-chon-ghe
+// Xử lý sự kiện mở menu-chon-nuoc
 const btnMuaVe = document.querySelector("#btn-mua-ve");
-console.log(btnMuaVe);
 
 btnMuaVe.addEventListener(
     "click",

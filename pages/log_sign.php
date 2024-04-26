@@ -14,16 +14,34 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/base_user.css">
     <link rel="stylesheet" href="../css/log_in.css">
-    <title>Đăng ký</title>
 </head>
 
 <body>
     <!-- Start -->
     <div class="main">
-        <div class="logo"></div>
-        <?php include "./sign_in_success.php" ?>
+        <a href="../index.php" class="logo"></a>
+    <?php
+    if(isset($_GET['pages'])){
+        $pages=$_GET['pages'];
+        switch($pages){
+            case 'log_in':
+                include "./log_in.php";
+                break;
+            case 'sign_in':
+                include "./sign_in.php";
+                break;
+            case 'forget_password':
+                include "./forget_password.php";
+                break;
+            case 'sign_in_success':
+                include "./sign_in_success.php";
+                break;
+        }
+    }
+    ?>
+        
     </div>
 </body>
-
+<script src="../js/eye_passwd.js"></script>
 
 </html>

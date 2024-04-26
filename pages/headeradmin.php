@@ -5,7 +5,7 @@
             case "usersadmin":
                 $chucnang="Quản lí nguời dùng";
                 break;
-            case "moviesadmin":
+            case "chucnangPhim":
                 $chucnang="Quản lí phim";
                 break;
             case "lichchieuphimadmin":
@@ -18,10 +18,16 @@
                 $chucnang="Lịch sử đặt vé";
                 break;
             case "baocaodoanhthu":
-                $chucnang="Báo cáo doanh thu";
+                $chucnang="Thống kê";
                 break;
             case "phanquyenadmin":
                 $chucnang="Phân quyền chức năng";
+                break;
+            case "uudaiadmin":
+                $chucnang="Ưu đãi";
+                break;
+            case "phongchieu":
+                $chucnang="Phòng chiếu";
                 break;
         }
         echo '<span>'. $chucnang .'</span>';
@@ -29,7 +35,7 @@
     echo '<span>
         <div class="mode_page">';
     if(isset($_GET['mode'])){
-        $url='../admin.php?';
+        $url='./admin.php?';
         $mode=$_GET['mode'];
         switch($mode){
             case "day":{
@@ -47,7 +53,7 @@
         }
     }
     else{
-        $url='../admin.php?mode=night';
+        $url='./admin.php?mode=night';
         if(isset($_GET['page'])) $url=$url.'&page='.$_GET['page'];
         echo '<a href="'.$url.'"><i class="fa-solid fa-cloud-sun"></i></a>';    
     }     

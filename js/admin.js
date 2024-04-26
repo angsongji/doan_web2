@@ -51,8 +51,18 @@ $('#users_wrap').ready(function(){
 $(".chucnangcon_wrap").find(".chucnangcon_Phim").ready(function(){
     $(".chucnangcon_Phim").on('click',function(){
         let luachon = $(this).attr("name");
+        let url_link='';
+        switch($(".chucnang_wrap").attr('name')){
+             case "chucnangPhim":
+                url_link='./pages/chucnangPhim.php';
+                break;        
+            case "chucnangLichchieuphim":
+                url_link='./pages/chucnangLichchieuphim.php';
+                break;   
+        }
                 $.ajax({
-                    url: "./pages/chucnangPhim.php", 
+                    
+                    url: url_link, 
                     type: "GET",
                     data: {pagecon: luachon},
                     success: function(response) {

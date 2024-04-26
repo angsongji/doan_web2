@@ -1,5 +1,6 @@
 <style>
     .actor__wrap {
+        justify-content: space-evenly;
             display: flex;
             align-items: center;
             flex-wrap: wrap;

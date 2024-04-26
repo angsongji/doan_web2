@@ -8,7 +8,7 @@
             case "chucnangPhim":
                 $chucnang="Quản lí phim";
                 break;
-            case "lichchieuphimadmin":
+            case "chucnangLichchieuphim":
                 $chucnang="Quản lí lịch chiếu phim";
                 break;
             case "dichvuadmin":

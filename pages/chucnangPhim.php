@@ -1,7 +1,7 @@
 <?php 
 
 echo '
-<div class="chucnang_wrap">
+<div class="chucnang_wrap" name="chucnangPhim">
         <ul class="chucnangcon_wrap">
             ';
         if(isset($_GET['pagecon'])){
@@ -36,24 +36,29 @@ echo' </ul>
     <div class="content_chucnangcon_wrap">';
     if(isset($_GET['pagecon']))
         require($_GET["pagecon"]);
-    else 
-        require("./pages/moviesadmin.php");
+    else {
+        if(isset($_GET['MAPM']))
+            require("./moviesadmin.php");
+        else
+            require("./pages/moviesadmin.php");
+    }
+        
     echo'</div>
 </div>';
-echo '
-    <script>
-        $(".chucnangcon_wrap>.chucnangcon_Phim").click(function(){
-            let luachon = $(this).attr("name");
-            $.ajax({
-                url: "./pages/chucnangPhim.php", 
-                type: "GET",
-                data: {pagecon: luachon},
-                success: function(response) {
-                    $("#content").html(response); // Thay đổi nội dung của #content
-                }
-            });
-        });
-    </script>
-    ';
+// echo '
+//     <script>
+//         $(".chucnangcon_wrap>.chucnangcon_Phim").click(function(){
+//             let luachon = $(this).attr("name");
+//             $.ajax({
+//                 url: "./pages/chucnangPhim.php", 
+//                 type: "GET",
+//                 data: {pagecon: luachon},
+//                 success: function(response) {
+//                     $("#content").html(response); // Thay đổi nội dung của #content
+//                 }
+//             });
+//         });
+//     </script>
+//     ';
 
 ?>

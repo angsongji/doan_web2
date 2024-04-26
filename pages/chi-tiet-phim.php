@@ -15,19 +15,20 @@
 </head>
 
 <body>
+
+    <main>
+        <?php
+            include('trailer.php');
+            include('film-info.php');
+            include('film-calendar.php');
+        ?>
+    </main>
+
     <?php
         include('container-popup.php');
         include('container-popup-menu-chon-ghe.php');
         include('container-popup-menu-chon-nuoc.php');
     ?>
 
-    <main>
-        <?php
-            include('trailer.php');
-            include('film-info.php');
-            
-            include('film-calendar.php');
-        ?>
-    </main>
 </body>
 </html>

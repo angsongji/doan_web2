@@ -56,6 +56,9 @@
             case 'ticket.php':
                 include "./pages/ticket.php";
                 break;
+            case 'chi-tiet-phim.php':
+                include "./pages/chi-tiet-phim.php";
+                break;
         }
     }else{
         include "./pages/home.php";

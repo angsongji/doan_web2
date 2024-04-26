@@ -300,21 +300,9 @@ body {
     cursor: pointer;
 }
 
-/* .ghe-vip div {
-    background-color: red;
-    min-width: 25px;
-    min-height: 25px;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ghe-vip div:hover {
     cursor: pointer;
-} */
+}
 
 .ghe-don div.daChon {
     background-color: var(--color-web);
@@ -322,9 +310,6 @@ body {
 .ghe-doi div.daChon {
     background-color: var(--color-web);
 }
-/* .ghe-vip div.daChon {
-    background-color: var(--color-web);
-} */
 
 #icon-loai-ghe {
     background-color: black;
@@ -367,6 +352,27 @@ body {
 #icon-loai-ghe .loai-ghe {
     height: 25px;
     width: 25px;
+}
+
+#icon-loai-ghe .row .phong {
+    color: black;
+    height: 25px;
+    width: 40px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    border: 1px solid black;
+
+    text-align: center;
+}
+
+#icon-loai-ghe .row .phong:hover {
+    cursor: pointer;
+    background-color: var(--color-web);
+    color: white;
+}
+
+#icon-loai-ghe .row span {
+    margin-right: 10px;
 }
 
 #mua-ve {
@@ -660,6 +666,10 @@ main {
     border-radius: 8px;
     padding: 5px 15px;
     font-size: 14px;
+}
+
+.filmContent #container-category .category div:hover {
+    border: 2px solid var(--color-web);
 }
 
 .content-title {

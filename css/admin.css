@@ -531,7 +531,7 @@ ul{
     font-weight: 600;
     
 }
-.lichchieuphim_mota_phim .type_movie{
+.lichchieuphim_mota_phim .thoiluong_movie{
     color: gray;
     font-size: 0.9rem;
 }
@@ -565,6 +565,7 @@ ul{
     margin-left:20px;
 }
 .edit_suatchieu{
+    cursor: pointer;
     position: absolute;
     top:5px;
     right: 10px;
@@ -873,6 +874,24 @@ display: none;
     display: block;
  padding: 3px;
     font-size: 15px;
+}
+#add_phim_lichchieuphim:hover{cursor: pointer;}
+#add_phim_lichchieuphim{
+    box-shadow: 10px 3px  10px var(--light-gray);
+    border-radius: 5px;
+    padding-left: 10px;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%,100%);
+    
+    position: absolute;
+    background-color: var(--primary_color);
+    color: white;
+    width: fit-content;
+
+}
+#add_phim_lichchieuphim i{
+    margin: 10px;
 }
 #change_lichchieuphim_phim{
     margin: 0;

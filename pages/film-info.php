@@ -12,7 +12,7 @@
     ?>
 
     <figure class="img">
-        <img src="../img/<?php echo $rowFilmInfo['NAMEANH'] ?>" alt="">
+        <img src="./img/<?php echo $rowFilmInfo['NAMEANH'] ?>" alt="">
     </figure>
     
     <div>

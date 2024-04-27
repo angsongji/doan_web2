@@ -1,5 +1,5 @@
 <?php
-    require_once("../database/connectDatabase.php");
+    require_once("./database/connectDatabase.php");
     $connect = new connectDatabase();
     if(isset($_GET['MAPM'])) {
         $MAPM = $_GET['MAPM'];
@@ -10,6 +10,7 @@
 
         $filmCalendarSql2 = "SELECT * FROM lichchieuphim lcp
                         INNER JOIN suatchieu sc ON lcp.MASC = sc.MASC
+                        INNER JOIN phim p ON lcp.MAPM = p.MAPM
                         WHERE lcp.MAPM = '$MAPM'";
         $filmCalendarQuery2 = $connect->executeQuery($filmCalendarSql2);
 
@@ -72,7 +73,8 @@
             ?>
                         <div class="hour" 
                             style="display: none;" 
-                            maphim = "<?php echo $rowTG['MAPM']; ?>";
+                            tenphim = "<?php echo $rowTG['TENPHIM']; ?>"
+                            maphim = "<?php echo $rowTG['MAPM']; ?>"
                             masuatchieu = "<?php echo $rowTG['MASC']; ?>"
                             ngaychieu = "<?php echo $rowTG['NGAY']; ?>"
                         >

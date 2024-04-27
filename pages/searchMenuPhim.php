@@ -79,7 +79,7 @@ $resultFilm = $conn->executeQuery($sqlFilm);
 if ($resultFilm->num_rows > 0) {
     while($row = $resultFilm->fetch_assoc()) {
         echo "<div class='grid__column-2-4'>";
-        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&maPhim=".$row["MAPM"]."'>";
+        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&MAPM=".$row["MAPM"]."'>";
         echo"<div class='product-item__img' style='background-image: url(./img/".$row["NAMEANH"].");'></div>";
         echo"<div class='wrap__name'>";
         echo"<h4 class='product-item__movie-name individual textMenuFilm'>".$row["TENPHIM"]."</h4>";

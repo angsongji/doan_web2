@@ -36,4 +36,20 @@ document.getElementById("modalSearchSM").addEventListener("click", () => {
         body.classList.remove("modal-open");
     }
     modalvar = !modalvar;
-})
+});
+
+function searchFilmHeader() {
+    let input = document.getElementById('searchFilm').value;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', './pages/searchPhimHeader.php?query=' + input, true);
+    xhr.onload = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('scrollable_list').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send();
+}
+
+document.getElementById('searchFilm').addEventListener('keyup',()=>{
+    searchFilmHeader();
+});

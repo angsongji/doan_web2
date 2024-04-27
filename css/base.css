@@ -427,8 +427,7 @@ ul {
     padding: 40px 0;
     background: #171717;
     position: relative;
-    /* bottom: -1000px; */
-    width: 100%;
+    /* bottom: -1000px; *
 }
 
 .footer__bottom{

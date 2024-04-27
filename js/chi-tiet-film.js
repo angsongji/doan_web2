@@ -126,7 +126,6 @@ iconCloseMenuChonGhe.addEventListener(
 const iconCloseMenuChonNuoc = document.querySelector('#icon-close-menu-chon-nuoc');
 const containerPopupMenuChonNuoc = document.querySelector('.container-pop-up-menu-chon-nuoc');
 
-
 iconCloseMenuChonNuoc.addEventListener(
     "click",
     (e) => {

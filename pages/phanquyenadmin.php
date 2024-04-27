@@ -13,7 +13,9 @@
 
     $quyen = listAllQuyen();
     echo '<div class="phanquyen_wrap" name="'.$MAQUYEN.'">
-            <ul class="phanquyen_wrap_quyen">';
+            <ul class="phanquyen_wrap_quyen">
+//--------------------------------------------------------------------------------------
+            <li class="btn_phanquyen" id="quyen_selected" name="cc">cc</li> ';
     foreach ($quyen as $key => $value) {
         if($key == $MAQUYEN)
         echo '<li class="btn_phanquyen" id="quyen_selected" name="'.$key.'">'.$value.'</li>';
@@ -77,6 +79,7 @@
             let maquyen = $(".phanquyen_wrap").attr("name");
             switch(typebtn){
                 case "new_quyen":
+// Nội dung cần sửa của Tuấn------------------------------------------------------------------------
                     alert("new");
                     break;
                 case "edit_quyen":

@@ -25,167 +25,17 @@ session_start();
                     <li><a href="#">Blog phim</a></li>
                     <li><a href="index.php?pages=discount.php">Khuyến mãi</a></li>
                     <li class="header__search">
-                        <a href="#" id="modalSearch">
+                        <div id="modalSearch">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                        </a>
+                        </div>
                         <ul class="search" id="search">
                             <div class="search_input">
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" placeholder="Nhập tên phim">
+                                <input type="text" placeholder="Nhập tên phim" id="searchFilm">
                             </div>
                             <div class="scrollable-content">
                                 <h4>Phim đang chiếu</h4>
-                                <div class="scrollable-list">
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
+                                <div class="scrollable-list" id="scrollable_list">                                    
                                 </div>
                             </div>
                         </ul>
@@ -209,8 +59,10 @@ session_start();
                             </div>
                             <div class="scrollable-content">
                                 <h4>Phim đang chiếu</h4>
+                                <!-- ooo -->
+                                
                                 <div class="scrollable-list">
-                                    <li>
+                                    <!-- <li>
                                         <a href="">
                                             <div class="scrollable-list__img">
                                                 <img src="./img/logo.jpg" alt="">
@@ -234,132 +86,8 @@ session_start();
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div class="scrollable-list__img">
-                                                <img src="./img/logo.jpg" alt="">
-                                            </div>
-                                            <div class="scrollable-list__content">
-                                                <div class="scrollable-list__name">
-                                                    Điềm Báo của Quỷ
-                                                </div>
-                                                <div class="scrollable-list__type">
-                                                    Kinh Dị
-                                                </div>
-                                                <div class="scrollable-list__icon">
-                                                    <div class="scrollable-list__star">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <span>5.9</span>
-                                                    </div>
-                                                    <div class="scrollable-list__signal">
-                                                        <img src="./img/signal-streams.svg" alt="">
-                                                        <span>Đang chiếu</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
+                                    </li> -->
+                                    
                                 </div>
                             </div>
                         </ul>

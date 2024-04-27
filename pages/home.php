@@ -15,6 +15,28 @@ $sqlFilm = "SELECT TENPHIM, NAMEANH, MAPM, DANHGIA, DOTUOI
     FROM phim
     WHERE TRANGTHAI = 1 OR TRANGTHAI = 2";
 $resultFilm = $conn->executeQuery($sqlFilm);
+function chuoiTheLoai($maPM) {
+    $sql = "SELECT TENTHELOAI
+            FROM phim
+            JOIN chitietphim_theloai ON phim.MAPM = chitietphim_theloai.MAPM
+            JOIN theloai ON chitietphim_theloai.MATHELOAI = theloai.MATHELOAI 
+            WHERE phim.MAPM = '$maPM'";
+    $conn = new connectDatabase();
+    $result = $conn->executeQuery($sql);
+    $conn->disconnect();
+    if ($result->num_rows > 0) {
+        $tenTheLoai = "";
+        while($rowTheLoai = $result->fetch_assoc()) {
+            $tenTheLoai .= $rowTheLoai["TENTHELOAI"] . ", ";
+        }
+        // Loại bỏ dấu phẩy cuối cùng
+        $tenTheLoai = rtrim($tenTheLoai, ", ");
+        return $tenTheLoai;
+    } else {
+        return "Không có thể loại";
+    }
+}
+
 ?>
 
 <title>Trang chủ</title>
@@ -70,29 +92,14 @@ $resultFilm = $conn->executeQuery($sqlFilm);
                 if ($resultPDC->num_rows > 0) {
                     while($row = $resultPDC->fetch_assoc()) {
                         echo "<div class='grid__column-2-4'>";
-                        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&maPhim=".$row["MAPM"]."'>";
+                        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&MAPM=".$row["MAPM"]."'>";
                         echo"<div class='product-item__img' style='background-image: url(./img/".$row["NAMEANH"].");'></div>";
                         echo"<div class='wrap__name'>";
                         echo"<h4 class='product-item__movie-name'>".$row["TENPHIM"]."</h4>";
 
                         $maPhim = $row["MAPM"];
-                        $sqlTheLoaiPDC = "SELECT TENTHELOAI
-                        FROM phim
-                        
-                        JOIN chitietphim_theloai ON phim.MAPM = chitietphim_theloai.MAPM
-                        JOIN theloai ON chitietphim_theloai.MATHELOAI = theloai.MATHELOAI 
-                        WHERE phim.MAPM = '$maPhim' ";
-                        $resultTheLoaiPDC = $conn->executeQuery($sqlTheLoaiPDC);
-                        if ($resultTheLoaiPDC->num_rows > 0) {
-                            // Output dữ liệu từ cột
-                            $tenTheLoai = "";
-                            while($rowTheLoai = $resultTheLoaiPDC->fetch_assoc()) {
-                                $tenTheLoai .= $rowTheLoai["TENTHELOAI"] . ", ";
-                            }
-                            // Loại bỏ dấu phẩy cuối cùng
-                            $tenTheLoai = rtrim($tenTheLoai, ", ");
-                            echo"<h6 class='product-item__category-name'>".$tenTheLoai."</h6>";
-                        }
+                        $tenTheloai = chuoiTheLoai($maPhim);
+                        echo"<h6 class='product-item__category-name'>".$tenTheloai."</h6>";
 
                         
                         echo"</div>";
@@ -170,27 +177,14 @@ $resultFilm = $conn->executeQuery($sqlFilm);
                 if ($resultPSC->num_rows > 0) {
                     while($row = $resultPSC->fetch_assoc()) {
                         echo "<div class='grid__column-2-4'>";
-                        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&maPhim=".$row["MAPM"]."'>";
+                        echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&MAPM=".$row["MAPM"]."'>";
                         echo"<div class='product-item__img' style='background-image: url(./img/".$row["NAMEANH"].");'></div>";
                         echo"<div class='wrap__name'>";
                         echo"<h4 class='product-item__movie-name individual'>".$row["TENPHIM"]."</h4>";
 
                         $maPhim = $row["MAPM"];
-                        $sqlTheLoaiPSC = "SELECT TENTHELOAI
-                        FROM phim
-                        
-                        JOIN chitietphim_theloai ON phim.MAPM = chitietphim_theloai.MAPM
-                        JOIN theloai ON chitietphim_theloai.MATHELOAI = theloai.MATHELOAI 
-                        WHERE phim.MAPM = '$maPhim' ";
-                        $resultTheLoaiPSC = $conn->executeQuery($sqlTheLoaiPSC);
-                        if ($resultTheLoaiPSC->num_rows > 0) {
-                            $tenTheLoai = "";
-                            while($rowTheLoai = $resultTheLoaiPSC->fetch_assoc()) {
-                                $tenTheLoai .= $rowTheLoai["TENTHELOAI"] . ", ";
-                            }
-                            $tenTheLoai = rtrim($tenTheLoai, ", ");
-                            echo"<h6 class='product-item__category-name individual'>".$tenTheLoai."</h6>";
-                        }
+                        $tenTheloai = chuoiTheLoai($maPhim);
+                        echo"<h6 class='product-item__category-name individual'>".$tenTheloai."</h6>";
 
                         
                         echo"</div>";
@@ -227,7 +221,7 @@ $resultFilm = $conn->executeQuery($sqlFilm);
                                 <span class="text-menu">
                                     Tìm phim chiếu rạp trên MeMe
                                 </span>
-                                <form action="#" id="form_filer-navbar" name="form_filer-navbar" method="POST">
+
                                 <div class="home-filer__navbar">
                                     <select class="cbb_category home-filer__navbar-item" name="cbb_category" id="cbb_category">
                                         <option value="Thể loại">Thể loại</option>
@@ -294,59 +288,10 @@ $resultFilm = $conn->executeQuery($sqlFilm);
                                 </form>
                             </div>
                             <div class="home-product">
+
                                 <div class="grid__row" id="conchimnon">
-                                    <?php
-                // if ($resultFilm->num_rows > 0) {
-                //     while($row = $resultFilm->fetch_assoc()) {
-                //         echo "<div class='grid__column-2-4'>";
-                //         echo"<a class='product-item' href='./index.php?pages=chi-tiet-phim.php&maPhim=".$row["MAPM"]."'>";
-                //         echo"<div class='product-item__img' style='background-image: url(./img/".$row["NAMEANH"].");'></div>";
-                //         echo"<div class='wrap__name'>";
-                //         echo"<h4 class='product-item__movie-name individual textMenuFilm'>".$row["TENPHIM"]."</h4>";
-
-                //         $maPhim = $row["MAPM"];
-                //         $sqlTheLoaiFilm = "SELECT TENTHELOAI
-                //         FROM phim
-                        
-                //         JOIN chitietphim_theloai ON phim.MAPM = chitietphim_theloai.MAPM
-                //         JOIN theloai ON chitietphim_theloai.MATHELOAI = theloai.MATHELOAI 
-                //         WHERE phim.MAPM = '$maPhim' ";
-                //         $resultTheLoaiFilm = $conn->executeQuery($sqlTheLoaiFilm);
-                //         if ($resultTheLoaiFilm->num_rows > 0) {
-                //             // Output dữ liệu từ cột
-                //             $tenTheLoai = "";
-                //             while($rowTheLoai = $resultTheLoaiFilm->fetch_assoc()) {
-                //                 $tenTheLoai .= $rowTheLoai["TENTHELOAI"] . ", ";
-                //             }
-                //             // Loại bỏ dấu phẩy cuối cùng
-                //             $tenTheLoai = rtrim($tenTheLoai, ", ");
-                //             echo"<h6 class='product-item__category-name individual'>".$tenTheLoai."</h6>";
-                //         }
-
-                        
-                //         echo"</div>";
-                //         echo"<div class='product-item__action'>";
-                //         echo"<span class='product-item__star'><i class='goldStar fa-solid fa-star'></i></span>";
-                //         echo"<span class='product-item__mark darkColor'>".$row["DANHGIA"]."</span>";
-                //         echo"</div>";
-                //         echo"<div class='product-item__age-limit'>";
-                //         echo"<div class='product-item__age-limit-label'>";
-                //         echo $row["DOTUOI"]."+";
-                //         echo"</div>";
-                //         echo"</div>";
-                //         echo"<div class='product-item__play'>";
-                //         echo"<span class='product-item__play-icon'><i class='fa-solid fa-play'></i></span>";
-                //         echo"</div>";
-                //         echo"</a>";
-                //         echo"</div>";
-                        
-                //     }
-                // } else {
-                //     echo "<script>console.log('khong co phim')</script>";
-                // }
-            ?>
-
-                                   
+                    
+                                </div>
 
                                 </div>
                             </div>

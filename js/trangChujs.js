@@ -105,7 +105,8 @@ slider2.addEventListener("scroll", () => {
             let value_quocGia = document.getElementById('cbb_country').value;
             let value_Nam = document.getElementById('cbb_years').value;
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', './pages/search.php?query=' + input +'&theLoai='+ value_theLoai +'&quocGia='+ value_quocGia+'&nam='+value_Nam, true);
+            xhr.open('GET', './pages/searchMenuPhim.php?query=' + input +'&theLoai='+ value_theLoai +'&quocGia='+ value_quocGia+'&nam='+value_Nam, true);
+
             xhr.onload = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     document.getElementById('conchimnon').innerHTML = xhr.responseText;

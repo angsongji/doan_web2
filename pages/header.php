@@ -41,9 +41,7 @@ session_start();
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fa-regular fa-user"></i>
-                        </a>
+                        
                         <?php include "TrangThaiDangNhap.php" ?>
                     </li>
                 </ul>

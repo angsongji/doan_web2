@@ -39,6 +39,7 @@ JOIN chitietve_ghe ON ve.MAVE = chitietve_ghe.MAVE
 WHERE ve.MAVE = '$maVe' ";
 }
 $resultDichVu = $conn->executeQuery($sqlDichVu);
+$resultGiaDichVu = $conn->executeQuery($sqlDichVu);
 $resultGhe = $conn->executeQuery($sqlGhe);
 $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
 if ($resultGiaGhe->num_rows > 0) {
@@ -47,9 +48,9 @@ if ($resultGiaGhe->num_rows > 0) {
         $totalsVe += $rowGiaGhe['PRICE'];
     } 
 }
-if ($resultDichVu->num_rows > 0) {
+if ($resultGiaDichVu->num_rows > 0) {
     $totals = 0;
-    while($row1 = $resultDichVu->fetch_assoc()) {
+    while($row1 = $resultGiaDichVu->fetch_assoc()) {
         $total =  $row1["SoLuong"] * $row1["PRICE"];
         $totals += $total;
     }
@@ -363,8 +364,9 @@ if ($resultDichVu->num_rows > 0) {
                                     echo "<span class='bold'>X</span>";
                                     echo "<span class='detail_food-item_cost'>".$row["PRICE"]."đ</span>";
                                     echo "</div>";
+                                    $giaTungDV = $row["SoLuong"] * $row["PRICE"];
                                     echo "<div class='detail_food-item_price-total'>";
-                                    echo "<span class='detail_food-item_price-total_text bol'>".$total."đ</span>";
+                                    echo "<span class='detail_food-item_price-total_text bol'>".$giaTungDV."đ</span>";
                                     echo "</div>";
                                     echo "</div>";
                                     echo "</div>";

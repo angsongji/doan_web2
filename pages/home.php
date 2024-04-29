@@ -15,7 +15,6 @@ $sqlFilm = "SELECT TENPHIM, NAMEANH, MAPM, DANHGIA, DOTUOI
     FROM phim
     WHERE TRANGTHAI = 1 OR TRANGTHAI = 2";
 $resultFilm = $conn->executeQuery($sqlFilm);
-
 function chuoiTheLoai($maPM) {
     $sql = "SELECT TENTHELOAI
             FROM phim
@@ -286,12 +285,14 @@ function chuoiTheLoai($maPM) {
                                         </span>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                             <div class="home-product">
-                            
+
                                 <div class="grid__row" id="conchimnon">
                     
                                 </div>
+
                                 </div>
                             </div>
                         </div>

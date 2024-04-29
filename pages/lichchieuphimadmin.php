@@ -81,6 +81,7 @@ function numberDay($day){
         
     }
 }
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 $numberDay= numberDay(date('D'));
 $day= (int)date('d');
 $month= (int)date('m');
@@ -91,11 +92,14 @@ echo '<div id="lichchieuphim_wrap">
     <span class="lichchieuphim_header_btn btn_right"><i class="fa-solid fa-chevron-right" name="btn_right" onclick="changeDay(this)"></i></span>
     <nav id="lichchieuphim_daytime"> 
     <ul>';
+    // (isset($_GET['day'])<=calendar($month,$year))?isset($_GET['day']):$day
     for($i=0;$i<19;$i++){
         if($day<=calendar($month,$year)){
             echo'<li class="btn_changeDayLichchieuphim" ';
             if(isset($_GET['day'])){
-                if($year.'/'.$month.'/'.$day == $_GET['day'])
+                $arr_dayCurrent = explode("/", $_GET['day']);
+                if($arr_dayCurrent[2]>calendar($month-1,$year))  $_GET['day'] = $year.'/'.$month.'/1';
+                if($year.'/'.$month.'/'.$day ==  $_GET['day'])
                     echo' id="lichchieuphim_selected"';
 
             }
@@ -118,6 +122,7 @@ echo '<div id="lichchieuphim_wrap">
             if($year==12) $year++;
             $month++;
             $day=1;
+            
         }
         
         
@@ -130,8 +135,12 @@ echo'</ul>
 // echo '<div id="add_phim_lichchieuphim" name="'.$day.'">Thêm phim<i class="fa-solid fa-plus"></i></div>';
 $listPhimtheongay;
 $dayChange;
-if(isset($_GET['day']))
+if(isset($_GET['day'])){
+
+    
     $dayChange = $_GET['day'];
+}
+    
 else 
     $dayChange = date('Y/m/d');
 $listPhimtheongay = getListChitietPhimtheoNgay($dayChange);

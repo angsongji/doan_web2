@@ -15,15 +15,40 @@ function changeDay(i){
             break;
         default:
             document.getElementsByClassName('lichchieuphim_header_btn ')[0].style="display:flex;";
-           // console.log(document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)]);
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
+           
+            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
             quantityClickBtnChangeDayLichchieu--;
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            let itemIsSelected = document.getElementById('lichchieuphim_selected');
+            let dayCurrent = itemIsSelected.getAttribute('name');
+            let arr_dayCurrent = dayCurrent.split('/');
+            arr_dayCurrent[2] = parseInt(arr_dayCurrent[2]) + 1;
+            let dayNew = arr_dayCurrent.join("/");
+            
             lichchieu_wrap.style='transform:  translateX(calc('+quantityClickBtnChangeDayLichchieu+'* 72px));';
+            
             if(quantityClickBtnChangeDayLichchieu==-5)
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:none;";
             else
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
+                $.ajax({
+                    url: "./pages/lichchieuphimadmin.php", 
+                        type: "GET",
+                        data: {day: dayNew},
+                        success: function(response) {
+                            $("#content").html(response); // Thay đổi nội dung của #content
+                            // $('#unclick_behind_this_screen').css('display' , 'block');
+                            // $.ajax({
+                            //     url: "./js/admin.js",
+                            //     success: function(response) {
+                            //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                            //     },
+                            //     error: function(xhr, status, error) {
+                            //         // Xử lý lỗi nếu có
+                            //     }
+                            // });
+                        }
+                });
             break;
     }
 }

@@ -687,3 +687,15 @@ ul {
     }
 }
 /*end footer  */
+
+
+.avatar_DN{
+  overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài khung hình */
+}
+
+.avatar_DN img {
+    width: 30px; /* Điều chỉnh kích thước avatar tùy theo nhu cầu */
+    height: 30px; /* Điều chỉnh kích thước avatar tùy theo nhu cầu */
+  border-radius: 50%; /* Làm cho hình ảnh thành hình tròn */
+  border: 1px solid #ccc;
+}

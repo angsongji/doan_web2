@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 24, 2024 lúc 09:56 AM
+-- Thời gian đã tạo: Th4 29, 2024 lúc 05:36 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -155,6 +155,7 @@ INSERT INTO `chitietquyen_chucnang` (`MAQUYEN`, `MACHUCNANG`, `HANHDONG`) VALUES
 ('QAD', 'TK', 'Sửa'),
 ('QAD', 'TK', 'Thêm'),
 ('QAD', 'TK', 'Xem'),
+('QAD', 'TK', 'Xóa'),
 ('QKH', 'DV', 'Xem'),
 ('QKH', 'LCP', 'Xem'),
 ('QKH', 'PC', 'Xem'),
@@ -728,39 +729,39 @@ CREATE TABLE `lichchieuphim` (
   `MASC` varchar(10) DEFAULT NULL,
   `MAPHONGCHIEU` varchar(10) DEFAULT NULL,
   `MALICHCHIEU` varchar(10) NOT NULL,
-`THOIGIANKETTHUC` varchar(10) NOT NULL
+  `THOIGIANKETTHUC` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `lichchieuphim`
 --
 
-INSERT INTO `lichchieuphim` (`MAPM`, `MASC`, `MAPHONGCHIEU`, `MALICHCHIEU`,`THOIGIANKETTHUC`) VALUES
-('PM001', 'SC0001', 'PC1', 'LC0001','9:33'),
-('PM002', 'SC0001', 'PC2', 'LC0002','9:33'),
-('PM003', 'SC0002', 'PC3', 'LC0003','11:09'),
-('PM004', 'SC0002', 'PC4', 'LC0004','11:19'),
-('PM005', 'SC0003', 'PC5', 'LC0005','13:35'),
-('PM006', 'SC0003', 'PC1', 'LC0006','13:22'),
-('PM007', 'SC0004', 'PC2', 'LC0007','15:24'),
-('PM008', 'SC0004', 'PC3', 'LC0008','15:23'),
-('PM009', 'SC0005', 'PC4', 'LC0009','17:45'),
-('PM010', 'SC0005', 'PC5', 'LC0010','18:16'),
-('PM011', 'SC0006', 'PC1', 'LC0011','19:10'),
-('PM012', 'SC0006', 'PC2', 'LC0012','19:37'),
-('PM013', 'SC0007', 'PC3', 'LC0013','21:22'),
-('PM014', 'SC0007', 'PC4', 'LC0014','21:10'),
-('PM015', 'SC0008', 'PC5', 'LC0015','23:33'),
-('PM016', 'SC0008', 'PC1', 'LC0016','23:24'),
-('PM017', 'SC0009', 'PC2', 'LC0017','1:33'),
-('PM018', 'SC0009', 'PC3', 'LC0018','1:25'),
-(	'PM001','SC00010','PC1','LC000010','11:33'),
-(	'PM001','SC00010','PC2','LC000011','11:33'),
-(	'PM001','SC00011','PC1','LC000012','12:33'),
-(	'PM001','SC00011','PC2','LC000013','12:33'),
-(	'PM001','SC00012','PC4','LC000014','13:33'),
-(	'PM002','SC00011','PC3','LC000015','12:33'),
-(	'PM003','SC00012','PC1','LC000016','14:33');
+INSERT INTO `lichchieuphim` (`MAPM`, `MASC`, `MAPHONGCHIEU`, `MALICHCHIEU`, `THOIGIANKETTHUC`) VALUES
+('PM001', 'SC00010', 'PC1', 'LC000010', '11:33'),
+('PM001', 'SC00010', 'PC2', 'LC000011', '11:33'),
+('PM001', 'SC00011', 'PC1', 'LC000012', '12:33'),
+('PM001', 'SC00011', 'PC2', 'LC000013', '12:33'),
+('PM001', 'SC00012', 'PC4', 'LC000014', '13:33'),
+('PM002', 'SC00011', 'PC3', 'LC000015', '12:33'),
+('PM003', 'SC00012', 'PC1', 'LC000016', '14:33'),
+('PM001', 'SC0001', 'PC1', 'LC0001', '9:33'),
+('PM002', 'SC0001', 'PC2', 'LC0002', '9:33'),
+('PM003', 'SC0002', 'PC3', 'LC0003', '11:09'),
+('PM004', 'SC0002', 'PC4', 'LC0004', '11:19'),
+('PM005', 'SC0003', 'PC5', 'LC0005', '13:35'),
+('PM006', 'SC0003', 'PC1', 'LC0006', '13:22'),
+('PM007', 'SC0004', 'PC2', 'LC0007', '15:24'),
+('PM008', 'SC0004', 'PC3', 'LC0008', '15:23'),
+('PM009', 'SC0005', 'PC4', 'LC0009', '17:45'),
+('PM010', 'SC0005', 'PC5', 'LC0010', '18:16'),
+('PM011', 'SC0006', 'PC1', 'LC0011', '19:10'),
+('PM012', 'SC0006', 'PC2', 'LC0012', '19:37'),
+('PM013', 'SC0007', 'PC3', 'LC0013', '21:22'),
+('PM014', 'SC0007', 'PC4', 'LC0014', '21:10'),
+('PM015', 'SC0008', 'PC5', 'LC0015', '23:33'),
+('PM016', 'SC0008', 'PC1', 'LC0016', '23:24'),
+('PM017', 'SC0009', 'PC2', 'LC0017', '1:33'),
+('PM018', 'SC0009', 'PC3', 'LC0018', '1:25');
 
 -- --------------------------------------------------------
 
@@ -884,7 +885,7 @@ INSERT INTO `phongchieu` (`MAPHONGCHIEU`, `TENPHONGCHIEU`, `TRANGTHAI`, `SOGHE`)
 --
 
 CREATE TABLE `quyen` (
-  `MAQUYEN` varchar(10) DEFAULT NULL,
+  `MAQUYEN` varchar(10) NOT NULL,
   `TENQUYEN` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -893,9 +894,9 @@ CREATE TABLE `quyen` (
 --
 
 INSERT INTO `quyen` (`MAQUYEN`, `TENQUYEN`) VALUES
+('QAD', 'Quyền Admin'),
 ('QKH', 'Quyền khách hàng'),
-('QQL', 'Quyền quản lí'),
-('QAD', 'Quyền Admin');
+('QQL', 'Quyền quản lí');
 
 -- --------------------------------------------------------
 
@@ -915,6 +916,9 @@ CREATE TABLE `suatchieu` (
 
 INSERT INTO `suatchieu` (`MASC`, `NGAY`, `THOIGIANBATDAU`) VALUES
 ('SC0001', '2024-04-11', '7:30'),
+('SC00010', '2024-04-26', '9:30'),
+('SC00011', '2024-04-26', '10:30'),
+('SC00012', '2024-04-26', '11:30'),
 ('SC0002', '2024-04-11', '9:30'),
 ('SC0003', '2024-04-11', '11:30'),
 ('SC0004', '2024-04-11', '13:30'),
@@ -922,10 +926,7 @@ INSERT INTO `suatchieu` (`MASC`, `NGAY`, `THOIGIANBATDAU`) VALUES
 ('SC0006', '2024-04-11', '17:30'),
 ('SC0007', '2024-04-11', '19:30'),
 ('SC0008', '2024-04-11', '21:30'),
-('SC0009', '2024-04-11', '23:30'),
-('SC00010','2024-04-26','9:30'),
-('SC00011','2024-04-26','10:30'),
-('SC00012','2024-04-26','11:30');
+('SC0009', '2024-04-11', '23:30');
 
 -- --------------------------------------------------------
 
@@ -1155,6 +1156,12 @@ ALTER TABLE `phongchieu`
   ADD PRIMARY KEY (`MAPHONGCHIEU`);
 
 --
+-- Chỉ mục cho bảng `quyen`
+--
+ALTER TABLE `quyen`
+  ADD PRIMARY KEY (`MAQUYEN`);
+
+--
 -- Chỉ mục cho bảng `suatchieu`
 --
 ALTER TABLE `suatchieu`
@@ -1194,4 +1201,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-quanaodatabasedichvudichvudichvudichvu

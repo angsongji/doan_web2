@@ -612,7 +612,7 @@ ul{
     border: 1px solid var(--overlay-gray);
 }
 .phanquyen_wrap_quyen li:hover, .phanquyen_wrap_content input[type='checkbox']:hover,.chucnangcon_wrap li:hover{  cursor: pointer;}
-.phanquyen_wrap_quyen #quyen_selected,.chucnangcon_wrap #chucnangconPhim_selected,.phanquyen_wrap_quyen li:hover,.chucnangcon_wrap li:hover{
+.phanquyen_wrap_quyen .quyen_selected,.chucnangcon_wrap #chucnangconPhim_selected,.phanquyen_wrap_quyen li:hover,.chucnangcon_wrap li:hover{
     color: var(--second_color);
     background-color: var(--primary_color);
     border: 1px solid transparent;
@@ -917,3 +917,42 @@ display: none;
     margin-left: 10px;
     margin-top: 8px;
 }
+
+/* --------------------------------- PHAN CUA TUAN ------------------------*/
+.modal_new{
+    display: none;
+}
+.btn_cancel{
+    padding: 10px;
+    background-color: palevioletred;
+}
+.form_modal_input{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(153, 153, 153,0.3);
+}
+
+.modal_input_wrap, .modal_delete_wrap{
+    display: none;
+    flex-direction: column;
+    width: 30%;
+    height: 160px;
+    margin: auto;
+    background-color: aqua;
+    
+}
+
+.modal_input_tenQuyen, .modal_delete_tenQuyen{
+    margin: 20px auto;
+}
+
+.modal_btn_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* --------------------------------- PHAN CUA TUAN ------------------------*/

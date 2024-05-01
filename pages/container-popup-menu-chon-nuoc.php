@@ -124,4 +124,15 @@ for(let i = 0; i < btnCongs.length ; i++) {
         false
     );
 }
+
+// Xử lý sự kiện tiếp tục tới giao diện thanh toán
+const tiepTucComboBapNuoc = document.querySelector('#tong-tien-bap-nuoc h4');
+
+tiepTucComboBapNuoc.addEventListener(
+    'click',
+    (e) => {
+
+    },
+    false
+)
 </script>

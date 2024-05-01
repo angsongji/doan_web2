@@ -5,16 +5,19 @@
         $connect = new connectDatabase();
         $MAPM = $_GET['MAPM'];
         $MASC = $_GET['MASC'];
-        $phongSql = "SELECT * FROM lichchieuphim 
-                    WHERE MAPM = '$MAPM'AND MASC = '$MASC'";
+        $phongSql = "SELECT * FROM lichchieuphim lcp
+                    INNER JOIN phongchieu pc ON pc.MAPHONGCHIEU = lcp.MAPHONGCHIEU
+                    WHERE lcp.MAPM = '$MAPM'AND lcp.MASC = '$MASC'";
         $phongQuery = $connect->executeQuery($phongSql);
 
         while($rowPhong = mysqli_fetch_assoc($phongQuery)) {
             $maphongchieu = $rowPhong['MAPHONGCHIEU'];
             $maphim = $rowPhong['MAPM'];
+            $tenphong = $rowPhong['TENPHONGCHIEU'];
             echo '<div class="phong"'.
-                        "maphongchieu='$maphongchieu'
-                        maphim='$maphim'>";
+                        "maphongchieu='$maphongchieu'   
+                        maphim='$maphim'
+                        tenphong='$tenphong'>";
                         echo $rowPhong['MAPHONGCHIEU'];
             echo '</div>';
         }
@@ -33,7 +36,8 @@
         while($tieuDeRow = mysqli_fetch_assoc($tieuDeQuery)) {
             echo  "<h4>$TENPHIM</h4>";
             echo  '<p>';
-            echo  "<time>" . $tieuDeRow['THOIGIANBATDAU'] . ", </time>";
+            echo  "<time>" . $tieuDeRow['THOIGIANBATDAU'] . "</time>";
+            echo "<span>, </span>";
             echo  '<date>'. $tieuDeRow['NGAY'] .'</date>';
             echo  '</p>';
         }

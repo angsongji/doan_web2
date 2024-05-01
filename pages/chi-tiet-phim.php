@@ -27,6 +27,7 @@
         include('container-popup.php');
         include('container-popup-menu-chon-ghe.php');
         include('container-popup-menu-chon-nuoc.php');
+        include('container-popup-thanh-toan.php');
     ?>
 
 </body>

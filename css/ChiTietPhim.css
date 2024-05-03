@@ -181,6 +181,7 @@ body {
 }
 
 .header-menu-chon-ghe h3{
+    font-size: 18px;
     display: flex;
     justify-content: center;
     color: aliceblue;
@@ -214,6 +215,7 @@ body {
     justify-content: center;
     width: 50%;
     margin: 10px auto;
+    font-size: 18px;
     padding-top: 5px;
     border-top: 4px solid white;
     border-radius: 50%;
@@ -241,17 +243,6 @@ body {
     justify-content: flex-start;
     gap: 5px;
 }
-
-/* .ghe-vip {
-    background-color:black;
-    width: 100%;
-    height: 25px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 5px;
-} */
 
 .ghe-doi {
     background-color:black;
@@ -300,21 +291,9 @@ body {
     cursor: pointer;
 }
 
-/* .ghe-vip div {
-    background-color: red;
-    min-width: 25px;
-    min-height: 25px;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ghe-vip div:hover {
     cursor: pointer;
-} */
+}
 
 .ghe-don div.daChon {
     background-color: var(--color-web);
@@ -322,9 +301,6 @@ body {
 .ghe-doi div.daChon {
     background-color: var(--color-web);
 }
-/* .ghe-vip div.daChon {
-    background-color: var(--color-web);
-} */
 
 #icon-loai-ghe {
     background-color: black;
@@ -369,6 +345,29 @@ body {
     width: 25px;
 }
 
+#icon-loai-ghe .row .phong {
+    color: black;
+    height: 25px;
+    width: 40px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 16px;    
+    padding: 2px 0 0 4px;
+
+    text-align: center;
+}
+
+#icon-loai-ghe .row .phong:hover {
+    cursor: pointer;
+    background-color: var(--color-web);
+    color: white;
+}
+
+#icon-loai-ghe .row span {
+    margin-right: 10px;
+}
+
 #mua-ve {
     display: flex;
     flex-direction: column;
@@ -386,6 +385,10 @@ body {
     border-bottom: 0.5px solid hsl(0, 0%, 50%);
     padding: 10px;
     margin-left: 5px;
+}
+
+#tieu-de-phim h4 {
+    font-size: 16px;
 }
 
 #tieu-de-phim p {
@@ -485,7 +488,7 @@ body {
 .container-popup #icon-close-popup {
     position: fixed;
     font-size: 50px;
-    top: 18%;
+    top: 20%;
     right: 5%;
     color: whitesmoke;
     opacity: 0.5;
@@ -609,23 +612,34 @@ main {
 
 #time #clock-icon p {
     margin-left: 5px;
+    font-size: 14px;
 }
 
 #time #calendar-icon p {
     margin-left: 5px;
+    font-size: 14px;
 }
 
 #clock-icon {
     display: flex;
     margin-right: 40px;
+    font-size: 18px;
 }
 
 #calendar-icon {
     display: flex;
+    font-size: 18px;
+}
+
+#region span {
+    font-size: 14px;
 }
 
 .name h2 {
-    margin-top: 20px;
+    font-size: 20px;
+    margin-top: 10px;
+    height: auto;
+    padding-top: 4px;
 }
 
 /* || Film Content */
@@ -647,6 +661,10 @@ main {
     margin-left: 0;
 }
 
+.filmContent #container-category .title h5 {
+    font-size: 14px;
+}
+
 .filmContent #container-category .category {
     display: flex;
     flex-wrap: wrap;
@@ -662,6 +680,10 @@ main {
     font-size: 14px;
 }
 
+.filmContent #container-category .category div:hover {
+    border: 2px solid var(--color-web);
+}
+
 .content-title {
     margin-top: 10px;
 }
@@ -669,6 +691,7 @@ main {
 .content-title h4 {
     border-left: 5px solid var(--color-web);
     padding-left: 5px;
+    font-size: 16px;
 }
 
 .filmContent .content {
@@ -687,6 +710,7 @@ main {
 }
 
 .filmCalendar h4 {
+    font-size: 16px;
     margin-left: 20px;
     border-left: 5px solid var(--color-web);
     padding-left: 5px;
@@ -738,6 +762,7 @@ main {
     color: rgba(0, 0, 0, 0.807);
     height: 75%;
     padding-top: 10px;
+    font-size: 16px;
 }
 
 .filmCalendar .pre {
@@ -781,6 +806,11 @@ main {
 .filmCalendar .next:hover {
     cursor: pointer;
     color: black;
+}
+
+#btn-right, #btn-left {
+    height: 50px;
+    transform: translateY(20px);
 }
 
 .filmCalendar .list-hours {

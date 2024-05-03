@@ -36,9 +36,6 @@ html{
 .grid__row{
     display: flex;
     align-items: center;
-    overflow-x: auto;
-    /* scroll-behavior: smooth; /* Hiệu ứng cho thanh cuộn mượt hơn :>  */
-    /* scrollbar-width: none; */ 
     flex-wrap: wrap;
     margin-left: -5px;
     margin-right: -5px;
@@ -163,12 +160,18 @@ html{
     margin-top: 5px;
     overflow: hidden;
 
-    /* display: block; */
-    display: -webkit-box;
+    /* display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 1; */
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     transition: all 0.1s linear;
+}
+
+.textMenuFilm{
+    max-width: 194px;
 }
 
 
@@ -207,6 +210,9 @@ html{
     font-size: 1.2rem;
     color: #fff;
     margin-left: 6px;
+}
+.product-item__mark.darkColor{
+    color: #000;
 }
 
 .product-item__age-limit {
@@ -440,8 +446,9 @@ html{
     padding: 50px 0 12px;
 }
 .text-menu{
+    
     line-height: 3rem;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 900;
     color: #000;
     flex: 1;
@@ -490,5 +497,13 @@ html{
     cursor: pointer;
 }
 
-
+.khongcophim{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    color: #a3a3a3;
+    font-size: 1.8rem;
+}
 

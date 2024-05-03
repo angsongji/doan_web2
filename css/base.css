@@ -69,7 +69,7 @@ ul {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 3;
 }
 
 .header__wrap {
@@ -229,7 +229,7 @@ ul {
     border-radius: 8px;
     background: #fff;
     display: none;
-    z-index: 999;
+    z-index: 3;
 }
 
 /* .modal-open {
@@ -274,7 +274,7 @@ ul {
     padding: 10px 20px;
     border-radius: 6px;
     position: relative;
-    z-index: 999;
+    z-index: 3;
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -401,7 +401,7 @@ ul {
     background:#fff;
     display: none;
     position:fixed;
-    z-index: 999;
+    z-index: 3;
     width: 100%;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -427,12 +427,7 @@ ul {
     padding: 40px 0;
     background: #171717;
     position: relative;
-    /* bottom: -1000px; */
-<<<<<<< HEAD
-=======
-
->>>>>>> 91f6a0f0e10caf19665694d66d4741c43b18c319
-    width: 100%;
+    /* bottom: -1000px; *
 }
 
 .footer__bottom{
@@ -692,3 +687,15 @@ ul {
     }
 }
 /*end footer  */
+
+
+.avatar_DN{
+  overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài khung hình */
+}
+
+.avatar_DN img {
+    width: 30px; /* Điều chỉnh kích thước avatar tùy theo nhu cầu */
+    height: 30px; /* Điều chỉnh kích thước avatar tùy theo nhu cầu */
+  border-radius: 50%; /* Làm cho hình ảnh thành hình tròn */
+  border: 1px solid #ccc;
+}

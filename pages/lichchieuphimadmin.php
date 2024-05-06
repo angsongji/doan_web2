@@ -146,6 +146,7 @@ else
 $listPhimtheongay = getListChitietPhimtheoNgay($dayChange);
 
 echo '<div id="lichchieuphim_content">';
+    echo '<div id="btn_add_lichchieuphim" name="'.$dayChange.'"> <i class="fa-solid fa-plus"></i></div>';
     if($listPhimtheongay == null)
         echo '<div id="lichchieuphim_null"><span>Chưa có lịch chiếu vào ngày này</span></div>';
     else{
@@ -178,14 +179,19 @@ echo '<div id="lichchieuphim_content">';
                             
                     $phimvasuatchieu = listPhimvaSuatchieucuaphimtheoMAPM($phim['MAPM'],$dayChange);
                     echo '  <div class="lichchieuphim_lichchieu_wrap">';
-                        foreach($phimvasuatchieu as $row){
-                            echo '  <div class="lichchieuphim_lichchieu" name="'.$row['MALICHCHIEU'].'">
-                                        <span class="time_start">'.$row['THOIGIANBATDAU'].'</span>
-                                        <span>~<span>
-                                        <span class="time_end">'.$row['THOIGIANKETTHUC'].'</span>
-                                        <span class="phongchieuSuatchieu"> '.$row['MAPHONGCHIEU'].'</span>
-                                    </div>';
-                        }    
+                        
+                            foreach($phimvasuatchieu as $row){
+                                if($row['THOIGIANBATDAU']!=''){
+                                echo '  <div class="lichchieuphim_lichchieu" name="'.$row['MALICHCHIEU'].'">
+                                            <span class="time_start">'.$row['THOIGIANBATDAU'].'</span>
+                                            <span>~<span>
+                                            <span class="time_end">'.$row['THOIGIANKETTHUC'].'</span>
+                                            <span class="phongchieuSuatchieu"> '.$row['MAPHONGCHIEU'].'</span>
+                                        </div>';
+                                
+                            }  
+                        }
+                          
                     echo '</div>';
             echo ' </div>';
             echo ' <span class="edit_suatchieu" name="'.$phim['MAPM'].'"><i class="fa-solid fa-pen-to-square fa-fw"></i></span>';
@@ -280,7 +286,7 @@ echo '</div>';
 // ';
 function getListChitietPhimtheoNgay($ngay){
     $list = array();
-    if (isset($_GET['pagecon']) || isset($_GET['day']))
+    if (isset($_GET['pagecon']) || isset($_GET['day'])  || isset($_GET['selectFilm']) )
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
@@ -310,7 +316,7 @@ function getListChitietPhimtheoNgay($ngay){
 function listPhimvaSuatchieucuaphimtheoMAPM($maphim,$ngay){
 
     $table = array();
-    if (isset($_GET['pagecon']) || isset($_GET['day']))
+    if (isset($_GET['pagecon']) || isset($_GET['day']) || isset($_GET['selectFilm']))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
@@ -334,13 +340,56 @@ function listPhimvaSuatchieucuaphimtheoMAPM($maphim,$ngay){
     return  $table;
 }
 
-function getListSuatchieuCuaPhim($MAPM,$listLichchieu){
-    $list= array();
-    foreach($listLichchieu as $row){
-        if($row['MAPM'] == $MAPM){
+function getListLichchieuphim(){
+    $list = array();
+    // require_once('../database/connectDatabase.php');
+    $connection = new connectDatabase();
+
+    // Thực hiện truy vấn (ví dụ)
+    $query = "SELECT 	* FROM lichchieuphim"; // Truy vấn SQL của bạn
+    $result = $connection->executeQuery($query);
+
+    // Xử lý kết quả nếu cần
+    if ($result) {
+        // Thực hiện các thao tác với kết quả
+        while ($row = $result->fetch_assoc()) {
+            if ($row === null) {
+                return null;
+            }
             $list[]=$row;
         }
+    } else {
+        echo 'thất bại roi kiaaa';
+        return null;
+        // Xử lý khi truy vấn thất bại
     }
-    return $list;
+return $list;
+}
+
+
+function getListSuatchieu(){
+    $list = array();
+    // require_once('../database/connectDatabase.php');
+    $connection = new connectDatabase();
+
+    // Thực hiện truy vấn (ví dụ)
+    $query = "SELECT 	* FROM suatchieu"; // Truy vấn SQL của bạn
+    $result = $connection->executeQuery($query);
+
+    // Xử lý kết quả nếu cần
+    if ($result) {
+        // Thực hiện các thao tác với kết quả
+        while ($row = $result->fetch_assoc()) {
+            if ($row === null) {
+                return null;
+            }
+            $list[]=$row;
+        }
+    } else {
+        echo 'thất bại roi kiaaa';
+        return null;
+        // Xử lý khi truy vấn thất bại
+    }
+return $list;
 }
 ?>

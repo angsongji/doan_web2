@@ -43,7 +43,7 @@
                 if (isset($_GET['page'])) {
                     require './pages/' . $_GET['page'] . '.php';
                 } else {
-                    echo '<div id="none_select_cn">Chua lua chon chuc nang</div>';
+                    echo '<div id="none_select_cn">Chưa lựa chọn chức năng</div>';
                 }
                 ?>
             </div>

@@ -48,6 +48,38 @@
                     $data2[] = array("label"=> $row["TENPHIM"], "y"=> $row["TONGDOANHTHU"]);
                 }
             }
+        }elseif($_GET['type'] == 'theloai'){
+            $sql = "SELECT theloai.TENTHELOAI, 
+                           SUM(chitietthongke.TONGDOANHTHU) AS TONGDOANHTHU, 
+                           SUM(chitietthongke.TONGVE) AS TONGVE 
+                    FROM theloai 
+                    JOIN chitietphim_theloai ON theloai.MATHELOAI = chitietphim_theloai.MATHELOAI 
+                    JOIN chitietthongke ON chitietphim_theloai.MAPM = chitietthongke.MAPM 
+                    GROUP BY theloai.MATHELOAI, theloai.TENTHELOAI";
+        
+            $result3 = $conn->executeQuery($sql);
+            if($result3->num_rows > 0){
+                while ($row = $result3->fetch_assoc()) {
+                    $data1[] = array("label"=> $row["TENTHELOAI"], "y"=> $row["TONGVE"]);
+                    $data2[] = array("label"=> $row["TENTHELOAI"], "y"=> $row["TONGDOANHTHU"]);
+                }
+            }
+        }elseif($_GET['type'] == 'vebanchay'){
+            $sql = "SELECT p.TENPHIM, 
+            SUM(t.TONGVE) AS TONGVE 
+     FROM phim p 
+     JOIN chitietthongke t ON p.MAPM = t.MAPM 
+     GROUP BY p.MAPM, p.TENPHIM 
+     ORDER BY SUM(t.TONGVE) DESC 
+     LIMIT 5";
+        
+            $result4 = $conn->executeQuery($sql);
+            if($result4->num_rows > 0){
+                while ($row = $result4->fetch_assoc()) {
+                    $data1[] = array("label"=> $row["TENPHIM"], "y"=> $row["TONGVE"]);
+                    $data2[] = array();
+                }
+            }
         }
     }
 

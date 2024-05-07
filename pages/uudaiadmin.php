@@ -241,7 +241,7 @@
         }
 </style>
 
-<div class="container__endow">
+<div class="container__endow" id="container__endow">
         <div class="endow__add">
             <button>+ Thêm mã code</button>
         </div>
@@ -384,6 +384,7 @@
  </div>
 
  <script>
+        // $()
         document.addEventListener("DOMContentLoaded", function () {
             var editButtons = document.querySelectorAll(".endow__edit");
 

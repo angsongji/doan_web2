@@ -2,6 +2,19 @@
 $(document).ready(function(){
     var chart;
 
+    showDefaultGraph();
+
+    function showDefaultGraph() {
+        $.ajax({
+            url: "pages/xulydoanhthu.php?choose=doanhthu&style=tongtheotheloai",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                updateChart(data);
+            }
+        });
+    }
+
     function showGraph() {
         let thongke = $("#thongke").val();
         let from_date = $("#from_date").val();
@@ -39,37 +52,27 @@ $(document).ready(function(){
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Doanh thu"
+                text: ""
             },
             dataPointWidth: 25,
             dataSpacing: 5,
             axisY: {
                 includeZero: true,
-                title: "Doanh thu (đ)"
+                title: ""
             },
-            legend: {
-                cursor: "pointer",
-                verticalAlign: "center",
-                horizontalAlign: "right",
-                itemclick: toggleDataSeries
-            },
+            legend: null,
             creditText: "", 
             data: [{
                 type: "column",
-                name: "Doanh thu",
+                name: "",
                 yValueFormatString: "#0.##đ",
-                showInLegend: true,
+                showInLegend: false,
                 dataPoints: data,
             }]
         });
         chart.render();
 
         function toggleDataSeries(e) {
-            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                // e.dataSeries.visible = false;
-            } else {
-                // e.dataSeries.visible = true;
-            }
             chart.render();
         }
     }
@@ -88,7 +91,14 @@ $(document).ready(function(){
             $("#type").hide();
         }
     }).change(); 
+
+    $(document).on('keydown', function(e) {
+        if (e.keyCode == 13) { // Kiểm tra nếu phím nhấn là Enter
+            showGraph(); // Gọi hàm vẽ biểu đồ
+        }
+    });
 });
+
 </script>
 
 
@@ -99,8 +109,8 @@ $(document).ready(function(){
             <option value="theloai">Thể loại</option>
         </select>
         <select id="chung" name="chung">
-            <option value="tongtheongay">Tổng theo ngày</option>
             <option value="tongtheotheloai">Tổng theo thể loại</option>
+            <option value="tongtheongay">Tổng theo ngày</option>
             <option value="tongtheophim">Tổng theo phim</option>
         </select>
         <div class="type" id="type" style="display: none;">

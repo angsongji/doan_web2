@@ -39,14 +39,12 @@
         $query_check_duplicate = "SELECT MALOAIGHE FROM loaighe WHERE MALOAIGHE = '$maloaighe'";
         $result_check_duplicate = $conn->executeQuery($query_check_duplicate);
 
-        if($maloaighe == "" || empty($maloaighe)) {
-            header('location: ../admin.php?message= Bạn cần điền mã loại ghế');
-        } else {
+        
             if(mysqli_num_rows($result_check_duplicate) > 0) {
                 header('location: ../admin.php?page=phongchieu&message=Mã loại ghế đã tồn tại, vui lòng chọn một mã khác');
                 exit();
             } else {
-                $query = "INSERT INTO phongchieu (MALOAIGHE, TENLOAIGHE, PRICE) VALUES ('$maloaighe', '$tenloaighe', '$price')";
+                $query = "INSERT INTO loaighe (MALOAIGHE, TENLOAIGHE, PRICE) VALUES ('$maloaighe', '$tenloaighe', '$price')";
                 $result = $conn->executeQuery($query);
             
                 if(!$result) {
@@ -59,5 +57,5 @@
                 }
             }
         }
-    }
+    
 ?>

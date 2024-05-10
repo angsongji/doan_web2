@@ -9,7 +9,7 @@ class connectDatabase{
     public function __construct(){
         $this->servername = "localhost"; // Tên máy chủ cơ sở dữ liệu
         $this->username = "root"; // Tên người dùng cơ sở dữ liệu
-        $this->password = ""; // Mật khẩu của người dùng cơ sở dữ liệu
+        $this->password = "Oanh2004!"; // Mật khẩu của người dùng cơ sở dữ liệu
         $this->database = "cinema"; // Tên cơ sở dữ liệu
         $this->conn= new mysqli($this->servername,$this->username,$this->password,$this->database);
         
@@ -31,7 +31,7 @@ class connectDatabase{
             }
             return $result;
         }catch(Exception $e){
-            echo "Lỗi: " . $e->getMessage();
+            echo "Lỗi roogi kìa aaaaa: " . $e->getMessage();
             return false;
         }
        

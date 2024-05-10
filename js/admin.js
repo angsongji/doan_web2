@@ -15,18 +15,71 @@ function changeDay(i){
             break;
         default:
             document.getElementsByClassName('lichchieuphim_header_btn ')[0].style="display:flex;";
-           // console.log(document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)]);
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
+           
+            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
             quantityClickBtnChangeDayLichchieu--;
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            let itemIsSelected = document.getElementById('lichchieuphim_selected');
+            let dayCurrent = itemIsSelected.getAttribute('name');
+            let arr_dayCurrent = dayCurrent.split('/');
+            arr_dayCurrent[2] = parseInt(arr_dayCurrent[2]) + 1;
+            let dayNew = arr_dayCurrent.join("/");
+            
             lichchieu_wrap.style='transform:  translateX(calc('+quantityClickBtnChangeDayLichchieu+'* 72px));';
+            
             if(quantityClickBtnChangeDayLichchieu==-5)
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:none;";
             else
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
+                $.ajax({
+                    url: "./pages/lichchieuphimadmin.php", 
+                        type: "GET",
+                        data: {day: dayNew},
+                        success: function(response) {
+                            $("#content").html(response); // Thay đổi nội dung của #content
+                            // $('#unclick_behind_this_screen').css('display' , 'block');
+                            // $.ajax({
+                            //     url: "./js/admin.js",
+                            //     success: function(response) {
+                            //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                            //     },
+                            //     error: function(xhr, status, error) {
+                            //         // Xử lý lỗi nếu có
+                            //     }
+                            // });
+                        }
+                });
             break;
     }
 }
+//add lich chieu phim
+$("#btn_add_lichchieuphim").ready(function(){
+    $("#btn_add_lichchieuphim").on('click',function(){
+        let n = btn_add_lichchieuphim.getAttribute('name');
+        $('#unclick_behind_this_screen').css('display' , 'block');
+        $.ajax({
+            url: "./pages/addLichchieuphim.php", 
+            type: "GET",
+            data: {ngay: n},
+            success: function(response) {
+                $("#lichchieuphim_wrap").append(response); 
+                $("#form_addLichchieuphim #btn_exit").on('click',function(){
+                    
+                   $('#unclick_behind_this_screen').css('display' , 'none');
+                   $('#form_addLichchieuphim').remove();
+                  
+               });
+               
+                
+            }
+        });
+        
+   
+    });
+});
+
+//end add lichhcieu phim
+
 
 //user
 $('#users_wrap').ready(function(){
@@ -133,12 +186,19 @@ $('#movies').find('.movie').ready(function(){
                 $('#movie_change_infor').find('#click_show_infor_movie_new').html('<i class="fa-solid fa-arrow-left" style="margin-right:10px;"></i>Quay lại');
                 $('#movie_change_infor').find('#show_infor_movie_new').css('display','block');
                 $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','hide');
+
+                //hiện xóa btn
+                $('.click_show_change_movie').find('.fa-trash').css('display','none');
+                
                 break;
             case "hide":
 
                 $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chỉnh sửa phim<i class="fa-solid fa-arrow-right"></i>');
                 $('#movie_change_infor').find('#show_infor_movie_new').css('display','none');
                 $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','show');
+
+                //ẩn xóa btn
+                $('.click_show_change_movie').find('.fa-trash').css('display','block');
                 break;
         }
         });
@@ -161,6 +221,160 @@ $('#show_infor_movie_new').find('#click_show_theloai').ready(function(){
         }
     });
 }); 
+
+$('#show_infor_movie_new').find('#click_show_dienvien').ready(function(){
+    $('#show_infor_movie_new').find('#click_show_dienvien').on('click',function(){
+        let status= $('#show_infor_movie_new').find('#click_show_dienvien').attr('name');
+        switch(status){
+            case "show":
+                $('#click_show_dienvien').html('Click để ẩn diễn viên');
+                $('#show_list_dienvien').css('display','block');
+                $('#click_show_dienvien').attr('name','hide');
+               break;
+            case "hide":
+                $('#click_show_dienvien').html('Click để chọn diễn viên');
+                $('#show_list_dienvien').css('display','none');
+                $('#click_show_dienvien').attr('name','show');
+                break;
+        }
+    });
+}); 
+
+//add phim
+$("#btn_add_phim").ready(function(){
+    $("#btn_add_phim").on('click',function(){
+        $('#unclick_behind_this_screen').css('display' , 'block');
+        $.ajax({
+            url: "./pages/addMovieadmin.php",
+            success: function(response) {
+                $(".content_chucnangcon_wrap").append(response); 
+                $("#form_addMovie #btn_exit").on('click',function(){
+                    
+                   $('#unclick_behind_this_screen').css('display' , 'none');
+                   $('#form_addMovie').remove();
+                  
+               });
+               
+                
+            }
+        });
+        
+   
+    });
+});
+function clickToSelectTheloaiPhim(div){
+        let select = div.querySelector('#click_show_theloai');
+        let status= select.getAttribute('name');
+        switch(status){
+            case "show":
+                select.innerHTML='Click để ẩn thể loại';
+                div.querySelector('#show_list_theloai').style='display: block;';
+            select.setAttribute('name','hide');
+           break;
+        case "hide":
+            select.innerHTML='Click để chọn thể loại';
+            div.querySelector('#show_list_theloai').style='display: none;';
+            select.setAttribute('name','show');
+            break;
+        }
+    
+}
+
+function clickToSelectDienvienPhim(div){
+    let select = div.querySelector('#click_show_dienvien');
+    let status= select.getAttribute('name');
+    switch(status){
+        case "show":
+            select.innerHTML='Click để ẩn diễn viên';
+            div.querySelector('#show_list_dienvien').style='display: block;';
+        select.setAttribute('name','hide');
+       break;
+    case "hide":
+        select.innerHTML='Click để chọn diễn viên';
+        div.querySelector('#show_list_dienvien').style='display: none;';
+        select.setAttribute('name','show');
+        break;
+    }
+
+}
+function addMovieadmin(){
+    
+        event.preventDefault(); // Ngăn chặn hành động mặc định của form
+    
+        let inputs = document.getElementsByName("THELOAI[]");
+        let inputValues = [];
+    
+        for (let i = 0; i < inputs.length; i++) {
+            if(inputs[i].checked)
+                inputValues.push(inputs[i].value);
+        }
+    
+        // Xử lý dữ liệu ở đây
+        let errorTL = document.getElementById('errorTL');
+        if(inputValues.length==0){
+            errorTL.innerHTML="Chọn thể loại";
+        }else
+        errorTL.innerHTML="";
+
+        
+    
+        // Tiếp tục gửi form đến action bằng cách sử dụng JavaScript
+
+        let form = document.getElementById("form_addMovie");
+let formData = new FormData(form);
+let xhr = new XMLHttpRequest();
+
+xhr.open("POST", form.action, true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Xử lý phản hồi từ server nếu cần
+        form.innerHTML = xhr.responseText;
+    }
+};
+formData.append('thaotac', 'add');
+xhr.send(formData);
+    
+}
+
+let form_updatePhim = document.getElementById("form_updatePhim");
+form_updatePhim.addEventListener('submit',function(event){
+    event.preventDefault();
+    let formData = new FormData(form_updatePhim);
+let xhr = new XMLHttpRequest();
+
+xhr.open(form_updatePhim.method, form_updatePhim.action, true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Xử lý phản hồi từ server nếu cần
+    
+        document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+    }
+};
+formData.append('thaotac', 'update');
+formData.append('MAPM', form_updatePhim.getAttribute('name'));
+xhr.send(formData);
+    
+});
+
+let trash_deletePhim=document.querySelector(".click_show_change_movie .fa-trash");
+trash_deletePhim.addEventListener('click',function(div){
+    let MAPM = trash_deletePhim.getAttribute('name');
+    let xhr = new XMLHttpRequest();
+    var formData = new FormData();
+    
+xhr.open("POST","./pages/addMovieadmin.php", true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Xử lý phản hồi từ server nếu cần
+        document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+    }
+};
+formData.append('thaotac', 'delete');
+formData.append('MAPM', MAPM);
+xhr.send(formData);
+});
+
+//end add phim
 
 
 $('.lichchieuphim_phim').ready(function(){

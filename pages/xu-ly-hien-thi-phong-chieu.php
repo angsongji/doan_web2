@@ -14,10 +14,13 @@
             $maphongchieu = $rowPhong['MAPHONGCHIEU'];
             $maphim = $rowPhong['MAPM'];
             $tenphong = $rowPhong['TENPHONGCHIEU'];
+            $malichchieu = $rowPhong['MALICHCHIEU'];
             echo '<div class="phong"'.
                         "maphongchieu='$maphongchieu'   
                         maphim='$maphim'
-                        tenphong='$tenphong'>";
+                        tenphong='$tenphong'
+                        malichchieu='$malichchieu'    
+                    >";
                         echo $rowPhong['MAPHONGCHIEU'];
             echo '</div>';
         }

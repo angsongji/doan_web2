@@ -14,7 +14,7 @@
     <div id="menu-thanh-toan">
         <div class="menu-thanh-toan_container" id="ten-phim-thanh-toan">
             <?php   while($thanhToanPhimRow = mysqli_fetch_assoc($thanhToanPhimQuery)) { ?>
-                        <h2><?php echo $thanhToanPhimRow['TENPHIM']; ?></h2>
+                        <span><?php echo $thanhToanPhimRow['TENPHIM']; ?></span>
             <?php 
                 } 
             ?>
@@ -55,17 +55,40 @@
         </div>
 
         <div class="menu-thanh-toan_container" id="bap-nuoc-thanh-toan">
-            <span>BẮP-NƯỚC</span>
-            <div id="bap-nuoc-thanh-toan_thucpham">
-                <div>jkahdsjkhjkashjdhjkashdjhashdkj</div>
-                <div>akhskjhahsddjhjashjkhdjkashdhashkd</div>
-                <div>ashdjkhajhsdjhashdjkashdjhajkhdjkhajkhd</div>
+            <div id="ghe-thanh-toan">
+                <span>BẮP-NƯỚC</span>
+                <div id="bap-nuoc-thanh-toan_thucpham">
+                    <!-- Xử lý trong file xu-ly-bap-nuoc-da-chon.php -->
+                </div>
+            </div>
+
+            <div id="so-tien-thanh-toan">
+                <span>SỐ TIỀN</span>
+                <div id="so-tien-thanh-toan_sotien-thucpham">
+                    <!-- Xử lý trong file xu-ly-so-tien-bap-nuoc-da-chon.php -->
+                </div>
             </div>
         </div>
 
         <div class="menu-thanh-toan_container" id="uu-dai-thanh-toan">
             <div>ƯU ĐÃI</div>
         </div>
+
+        <div class="menu-thanh-toan_container" id="tong-tien-thanh-toan">
+            <span>TỔNG TIỀN</span>
+            <div id="tong-tien-thanh-toan_tong-tien"></div>
+        </div>
+
+        <div class="menu-thanh-toan_container" id="phuong-thuc-thanh-toan">
+            <div>CHỌN PHƯƠNG THỨC THANH TOÁN</div>
+            <select>
+                <option value="Banking">Ngân Hàng</option>
+                <option value="Momo">Momo</option>
+                <option value="ZaloPay">ZaloPay</option>
+                <option value="Cashing">Tiền Mặt</option>
+            </select>
+        </div>
+
     </div>
 
     <div id="thanh-toan">

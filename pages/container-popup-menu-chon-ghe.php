@@ -50,6 +50,7 @@
     </div>
 
     <div id="mua-ve">
+        <input type="hidden" id="hide-ma-lich-chieu">
         <div id="tieu-de-phim">
            
         </div>

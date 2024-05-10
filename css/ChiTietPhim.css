@@ -41,12 +41,12 @@ body {
 }
 
 .header-menu-chon-nuoc, #menu-bap-nuoc, #tong-tien-bap-nuoc,
-.header-menu-thanh-toan, #menu-thanh-toan, #tong-tien-thanh-toan {
+.header-menu-thanh-toan, #menu-thanh-toan{
     width: 100%;
 }
 
 .header-menu-chon-nuoc, #tong-tien-bap-nuoc,
-.header-menu-thanh-toan, #tong-tien-thanh-toan {
+.header-menu-thanh-toan{
     position: fixed;
 }
 
@@ -215,19 +215,22 @@ body {
 }
 
 #time-and-date-thanh-toan, 
-#ghe-va-so-tien-thanh-toan {
+#ghe-va-so-tien-thanh-toan,
+#bap-nuoc-thanh-toan {
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-auto-rows: auto;
 }
 
-#ten-phim-thanh-toan h2 {
+#ten-phim-thanh-toan span {
     font-size: 18px;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    /* margin: 10px 0; */
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 #thanh-toan h4 {
@@ -238,7 +241,8 @@ body {
 #ngay-chieu-thanh-toan_nc,
 #phong-chieu-thanh-toan_pc,
 #ghe-thanh-toan_ghe,
-#so-tien-thanh-toan_sotien {
+#so-tien-thanh-toan_sotien,
+#tong-tien-thanh-toan_tong-tien {
     font-weight: bold;
     font-size: 18px;
     margin-top: 5px;
@@ -250,11 +254,20 @@ body {
     height: auto;
 }
 
-#bap-nuoc-thanh-toan_thucpham div{
+#bap-nuoc-thanh-toan_thucpham div,
+#so-tien-thanh-toan_sotien-thucpham div{
     height: auto;
-    width: 100%;
+    width: inherit;
     font-size: 16px;
     margin-top: 4px;
+    font-weight: bold;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#phuong-thuc-thanh-toan > select{
+    width: 25%;
 }
 
 /* || Pop up menu chon ghe*/
@@ -400,6 +413,13 @@ body {
 }
 .ghe-doi div.daChon {
     background-color: var(--color-web);
+}
+
+.ghe-don div.daMua {
+    background-color: gray;
+}
+.ghe-doi div.daMua {
+    background-color: gray;
 }
 
 #icon-loai-ghe {

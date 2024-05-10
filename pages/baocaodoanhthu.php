@@ -2,25 +2,20 @@
 $(document).ready(function(){
     var chart;
 
-    showDefaultGraph();
-
-    function showDefaultGraph() {
-        $.ajax({
-            url: "pages/xulydoanhthu.php?type=thongketong",
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-                updateChart(data[0], data[1]);
-            }
-        });
-    }
-
     function showGraph() {
-        var selectedType = $("#selectType").val();
-        var from_date = $("#from_date").val();
-        var to_date = $("#to_date").val();
+        let thongke = $("#thongke").val();
+        let from_date = $("#from_date").val();
+        let to_date = $("#to_date").val();
 
-        var url = "pages/xulydoanhthu.php?type=" + encodeURIComponent(selectedType);
+        let url = "pages/xulydoanhthu.php?choose=" + encodeURIComponent(thongke);
+        if(thongke == "doanhthu"){
+            let chung = $("#chung").val();
+            url += "&style=" + encodeURIComponent(chung);
+        }else if(thongke == "theloai"){
+            let tenloai = $("#tenloai").val();
+            let thutu = $("#thutu").val();
+            url += "&style=" + encodeURIComponent(tenloai) + "&thutu=" + encodeURIComponent(thutu);
+        }
 
         if (from_date && to_date) {
             url += "&from_date=" + encodeURIComponent(from_date) + "&to_date=" + encodeURIComponent(to_date);
@@ -31,12 +26,12 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success: function(data) {
-                updateChart(data[0], data[1]);
+                updateChart(data);
             }
         });
     }
 
-    function updateChart(data1, data2) {
+    function updateChart(data) {
         if (chart) {
             chart.destroy(); 
         }
@@ -44,17 +39,13 @@ $(document).ready(function(){
             animationEnabled: true,
             theme: "light2",
             title: {
-                text: "Thống kê"
+                text: "Doanh thu"
             },
             dataPointWidth: 25,
             dataSpacing: 5,
             axisY: {
                 includeZero: true,
-                title: "Số lượng"
-            },
-            axisY2: {
-                title: "Doanh thu (đ)",
-                prefix: "đ"
+                title: "Doanh thu (đ)"
             },
             legend: {
                 cursor: "pointer",
@@ -65,26 +56,19 @@ $(document).ready(function(){
             creditText: "", 
             data: [{
                 type: "column",
-                name: "Số vé",
-                yValueFormatString: "#0.##",
-                showInLegend: true,
-                dataPoints: data1,
-            }, {
-                type: "column",
                 name: "Doanh thu",
                 yValueFormatString: "#0.##đ",
-                axisYType: "secondary",
                 showInLegend: true,
-                dataPoints: data2,
+                dataPoints: data,
             }]
         });
         chart.render();
 
         function toggleDataSeries(e) {
             if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                e.dataSeries.visible = false;
+                // e.dataSeries.visible = false;
             } else {
-                e.dataSeries.visible = true;
+                // e.dataSeries.visible = true;
             }
             chart.render();
         }
@@ -94,22 +78,63 @@ $(document).ready(function(){
         showGraph();
         return false;
     });
+
+    $("#thongke").change(function() {
+        if ($(this).val() === "theloai") {
+            $("#chung").hide();
+            $("#type").show();
+        } else {
+            $("#chung").show();
+            $("#type").hide();
+        }
+    }).change(); 
 });
 </script>
 
-<form id="dateForm">
-    <select id="selectType" name="selectType">
-        <option value="thongketong">Thống kê tổng</option>
-        <option value="thongketheophim">Thống kê theo phim</option>
-        <option value="theloai">Thể loại</option>
-        <option value="vebanchay">Phim bán chạy</option>
-    </select>
-    Từ ngày: <input type="date" id="from_date" name="from_date">
-    Đến ngày: <input type="date" id="to_date" name="to_date">
-    <button type="submit">Xem biểu đồ</button>
-</form>
-<br>
-<div id="scroll-stype" style="height:60vh; width: 100%; overflow-x:auto; margin:0px; padding:0px;">
-    <div id="chartContainer" ></div>
+
+<div class="thongke__container">
+    <form id="dateForm">
+        <select name="thongke" id="thongke">
+            <option value="doanhthu">Tổng doanh thu</option>
+            <option value="theloai">Thể loại</option>
+        </select>
+        <select id="chung" name="chung">
+            <option value="tongtheongay">Tổng theo ngày</option>
+            <option value="tongtheotheloai">Tổng theo thể loại</option>
+            <option value="tongtheophim">Tổng theo phim</option>
+        </select>
+        <div class="type" id="type" style="display: none;">
+            <select name="tenloai" id="tenloai">
+                <?php
+                    require_once("./database/connectDatabase.php");
+                    $conn = new connectDatabase();
+                    $sql = "SELECT * FROM theloai";
+                    $result = $conn->executeQuery($sql);
+                    if($result->num_rows > 0){
+                        while($row = $result->fetch_assoc()){
+                            echo '<option value="'.$row['MATHELOAI'].'">'.$row['TENTHELOAI'].'</option>';
+                        }
+                    }
+                ?>
+            </select>
+            <select name="thutu" id="thutu">
+                <option value="1">Top 1</option>
+                <option value="2">Top 2</option>
+                <option value="3">Top 3</option>
+                <option value="4">Top 4</option>
+                <option value="5">Top 5</option>
+                <option value="6">Top 6</option>
+                <option value="7">Top 7</option>
+                <option value="8">Top 8</option>
+                <option value="9">Top 9</option>
+                <option value="10">Top 10</option>
+            </select>
+        </div>
+        Từ ngày: <input type="date" id="from_date" name="from_date">
+        Đến ngày: <input type="date" id="to_date" name="to_date">
+        <button type="submit">Xem biểu đồ</button>
+    </form>
+    <div id="scroll-stype" style="height:60vh; width: 100%; overflow-x:auto; margin:0px; padding:0px;">
+        <div id="chartContainer" ></div>
+    </div>
 </div>
-</html>

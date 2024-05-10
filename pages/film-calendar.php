@@ -1,5 +1,5 @@
 <?php
-    require_once("../database/connectDatabase.php");
+    require_once("./database/connectDatabase.php");
     $connect = new connectDatabase();
     if(isset($_GET['MAPM'])) {
         $MAPM = $_GET['MAPM'];
@@ -10,6 +10,7 @@
 
         $filmCalendarSql2 = "SELECT * FROM lichchieuphim lcp
                         INNER JOIN suatchieu sc ON lcp.MASC = sc.MASC
+                        INNER JOIN phim p ON lcp.MAPM = p.MAPM
                         WHERE lcp.MAPM = '$MAPM'";
         $filmCalendarQuery2 = $connect->executeQuery($filmCalendarSql2);
 
@@ -24,29 +25,64 @@
     <div class="calendar">
         <div class="list-days">
             <?php
+            // Xử lý sự kiện không hiện lịch chiếu cùng ngày nhiều lần
+                $kiemTraNgays = array();
+
                 while( $rowNC = mysqli_fetch_assoc($filmCalendarQuery1) ) {
+
+                    $kiemTraTonTai = false;
+
+                    foreach($kiemTraNgays as $kiemTraNgay) {
+                        if($kiemTraNgay == $rowNC['NGAY']) {
+                            $kiemTraTonTai = true;
+                        }
+                    }
+
+                    if(!$kiemTraTonTai) {
+                        $kiemTraNgays[] = $rowNC['NGAY'];
             ?>
-                <div class="day" name="<?php echo $rowNC['MASC']; ?>">
-                    <label style="font-size:14px;">Ngày Chiếu</label>
-                    <p><?php echo $rowNC['NGAY']; ?> </p>
-                </div>
+                        <div class="day" 
+                            masuatchieu = "<?php echo $rowNC['MASC']; ?>"
+                            ngaychieu = "<?php echo $rowNC['NGAY']; ?>"   
+                        >
+                                <label style="font-size:14px;">Ngày Chiếu</label>
+                                <p><?php echo $rowNC['NGAY']; ?> </p>
+                        </div>
+
             <?php
+                    }
                 }
             ?>
         </div>
 
         <div class="list-hours">
             <?php
-                while( $rowTG = mysqli_fetch_assoc($filmCalendarQuery2) ) {
-            ?>
-                <div class="hour" 
-                    style="display: none;" 
-                    name="<?php echo $rowTG['MASC']; ?>">
-                    <p><?php echo $rowTG['THOIGIANBATDAU']; ?></p>
-                </div>
-            <?php
-                }
+                $kiemTraHours = array();
 
+                while( $rowTG = mysqli_fetch_assoc($filmCalendarQuery2)) {
+                    $kiemTraTonTai = false;
+
+                    foreach($kiemTraHours as $kiemTraHour) {
+                        if($kiemTraHour == $rowTG['THOIGIANBATDAU']) {
+                            $kiemTraTonTai = true;
+                        }
+                    }
+
+                    if(!$kiemTraTonTai) {
+                        $kiemTraHours[] = $rowTG['THOIGIANBATDAU'];;
+            ?>
+                        <div class="hour" 
+                            style="display: none;" 
+                            tenphim = "<?php echo $rowTG['TENPHIM']; ?>"
+                            maphim = "<?php echo $rowTG['MAPM']; ?>"
+                            masuatchieu = "<?php echo $rowTG['MASC']; ?>"
+                            ngaychieu = "<?php echo $rowTG['NGAY']; ?>"
+                        >
+                            <p><?php echo $rowTG['THOIGIANBATDAU']; ?></p>
+                        </div>
+            <?php
+                    }
+                }
                 $connect->disconnect();
             ?>
         </div>
@@ -72,9 +108,8 @@ for(let i = 0; i < day.length; i++) {
     day[i].addEventListener(
         'click',
         (e) => {
-            console.log(day[i].getAttribute('name'));
             for(let j = 0; j < hours.length; j++) {
-                if(day[i].getAttribute('name') == hours[j].getAttribute('name')) {
+                if(day[i].getAttribute('ngaychieu') == hours[j].getAttribute('ngaychieu')) {
                     hours[j].style.display = 'flex';
                 } else {
                     hours[j].style.display = 'none';

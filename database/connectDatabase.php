@@ -31,7 +31,7 @@ class connectDatabase{
             }
             return $result;
         }catch(Exception $e){
-            echo "Lỗi: " . $e->getMessage();
+            echo "Lỗi roogi kìa aaaaa: " . $e->getMessage();
             return false;
         }
        

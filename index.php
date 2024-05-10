@@ -56,10 +56,13 @@
             case 'ticket.php':
                 include "./pages/ticket.php";
                 break;
+            case 'chi-tiet-phim.php':
+                include "./pages/chi-tiet-phim.php";
+                break;
         }
     }else{
         include "./pages/home.php";
-        echo '<script src="./js/slideShow_film.js"></script>';
+        echo '<script src="./js/trangChujs.js"></script>';
     }
     include "./pages/footer.php";
     ?>

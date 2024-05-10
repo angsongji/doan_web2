@@ -14,6 +14,7 @@ function changeDay(i) {
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:flex;";
             break;
         default:
+// <<<<<<< HEAD
             document.getElementsByClassName('lichchieuphim_header_btn ')[0].style = "display:flex;";
             // console.log(document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)]);
             document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id', "");
@@ -24,9 +25,74 @@ function changeDay(i) {
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:none;";
             else
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:flex;";
+// =======
+            document.getElementsByClassName('lichchieuphim_header_btn ')[0].style="display:flex;";
+           
+            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
+            quantityClickBtnChangeDayLichchieu--;
+            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
+            let itemIsSelected = document.getElementById('lichchieuphim_selected');
+            let dayCurrent = itemIsSelected.getAttribute('name');
+            let arr_dayCurrent = dayCurrent.split('/');
+            arr_dayCurrent[2] = parseInt(arr_dayCurrent[2]) + 1;
+            let dayNew = arr_dayCurrent.join("/");
+            
+            lichchieu_wrap.style='transform:  translateX(calc('+quantityClickBtnChangeDayLichchieu+'* 72px));';
+            
+            if(quantityClickBtnChangeDayLichchieu==-5)
+                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:none;";
+            else
+                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
+                $.ajax({
+                    url: "./pages/lichchieuphimadmin.php", 
+                        type: "GET",
+                        data: {day: dayNew},
+                        success: function(response) {
+                            $("#content").html(response); // Thay đổi nội dung của #content
+                            // $('#unclick_behind_this_screen').css('display' , 'block');
+                            // $.ajax({
+                            //     url: "./js/admin.js",
+                            //     success: function(response) {
+                            //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                            //     },
+                            //     error: function(xhr, status, error) {
+                            //         // Xử lý lỗi nếu có
+                            //     }
+                            // });
+                        }
+                });
+// >>>>>>> 48d942de2c813df87924dce9b00ceedd48e3da5f
             break;
     }
 }
+//add lich chieu phim
+$("#btn_add_lichchieuphim").ready(function(){
+    $("#btn_add_lichchieuphim").on('click',function(){
+        let n = btn_add_lichchieuphim.getAttribute('name');
+        $('#unclick_behind_this_screen').css('display' , 'block');
+        $.ajax({
+            url: "./pages/addLichchieuphim.php", 
+            type: "GET",
+            data: {ngay: n},
+            success: function(response) {
+                $("#lichchieuphim_wrap").append(response); 
+                $("#form_addLichchieuphim #btn_exit").on('click',function(){
+                    
+                   $('#unclick_behind_this_screen').css('display' , 'none');
+                   $('#form_addLichchieuphim').remove();
+                  
+               });
+               
+                
+            }
+        });
+        
+   
+    });
+});
+
+//end add lichhcieu phim
+
 
 // user 
 
@@ -161,64 +227,71 @@ $(".chucnangcon_wrap").find(".chucnangcon_Phim").ready(function () {
 
 
 //movie
-$('#movies').find('.movie').ready(function () {
-    $('.movie').on('mouseenter', function () {
+$('#movies').find('.movie').ready(function(){
+    $('.movie').on('mouseenter',function(){
         $(this).find('.click_change_infor_movie').css({
-            'display': 'flex',
+            'display':'flex',
         });
     });
-    $('.movie').on('mouseleave', function () {
-        $(this).find('.click_change_infor_movie').css('display', 'none');
+    $('.movie').on('mouseleave',function(){
+        $(this).find('.click_change_infor_movie').css('display','none');
     });
-    $('.movie').on('click', function () {
-        let maphim = $(this).attr('name');
-
-        $.ajax({
-            url: "./pages/chucnangPhim.php",
-            type: "GET",
-            data: { MAPM: maphim },
-            success: function (response) {
-                $("#content").html(response); // Thay đổi nội dung của #content
-                $('#unclick_behind_this_screen').css('display', 'block');
-                $.ajax({
-                    url: "./js/admin.js",
-                    success: function (response) {
-                        // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
-                    },
-                    error: function (xhr, status, error) {
-                        // Xử lý lỗi nếu có
-                    }
-                });
-            }
+    $('.movie').on('click',function(){
+            let maphim = $(this).attr('name');
+            
+            $.ajax({
+                url: "./pages/chucnangPhim.php", 
+                type: "GET",
+                data: {MAPM: maphim},
+                success: function(response) {
+                    $("#content").html(response); // Thay đổi nội dung của #content
+                    $('#unclick_behind_this_screen').css('display' , 'block');
+                    $.ajax({
+                        url: "./js/admin.js",
+                        success: function(response) {
+                            // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                        },
+                        error: function(xhr, status, error) {
+                            // Xử lý lỗi nếu có
+                        }
+                    });
+                }
+            });
         });
-    });
-    $('#movie_change_infor').ready(function () {
-
-        // $('#movie_change_infor').css('display','flex');
-        $('#movie_change_infor').find('#btn_exit').on('click', function () {
-            $('#unclick_behind_this_screen').css('display', 'none');
-            $('#movie_change_infor').css('display', 'none');
+            $('#movie_change_infor').ready(function(){
+           
+            // $('#movie_change_infor').css('display','flex');
+            $('#movie_change_infor').find('#btn_exit').on('click',function(){
+                $('#unclick_behind_this_screen').css('display' , 'none');
+                $('#movie_change_infor').css('display','none');
+            });
         });
-    });
+    
+    
+    $('#movie_change_infor').find('#click_show_infor_movie_new').ready(function(){
+        $('#movie_change_infor').find('#click_show_infor_movie_new').on('click',function(){
+            let status=$('#movie_change_infor').find('#click_show_infor_movie_new').attr('name');
+        switch(status){
+            case "show":
 
+                $('#movie_change_infor').find('#click_show_infor_movie_new').html('<i class="fa-solid fa-arrow-left" style="margin-right:10px;"></i>Quay lại');
+                $('#movie_change_infor').find('#show_infor_movie_new').css('display','block');
+                $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','hide');
 
-    $('#movie_change_infor').find('#click_show_infor_movie_new').ready(function () {
-        $('#movie_change_infor').find('#click_show_infor_movie_new').on('click', function () {
-            let status = $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name');
-            switch (status) {
-                case "show":
+                //hiện xóa btn
+                $('.click_show_change_movie').find('.fa-trash').css('display','none');
+                
+                break;
+            case "hide":
 
-                    $('#movie_change_infor').find('#click_show_infor_movie_new').html('<i class="fa-solid fa-arrow-left" style="margin-right:10px;"></i>Quay lại');
-                    $('#movie_change_infor').find('#show_infor_movie_new').css('display', 'block');
-                    $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name', 'hide');
-                    break;
-                case "hide":
+                $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chỉnh sửa phim<i class="fa-solid fa-arrow-right"></i>');
+                $('#movie_change_infor').find('#show_infor_movie_new').css('display','none');
+                $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','show');
 
-                    $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chỉnh sửa phim<i class="fa-solid fa-arrow-right"></i>');
-                    $('#movie_change_infor').find('#show_infor_movie_new').css('display', 'none');
-                    $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name', 'show');
-                    break;
-            }
+                //ẩn xóa btn
+                $('.click_show_change_movie').find('.fa-trash').css('display','block');
+                break;
+        }
         });
     });
 });
@@ -239,6 +312,160 @@ $('#show_infor_movie_new').find('#click_show_theloai').ready(function () {
         }
     });
 });
+
+$('#show_infor_movie_new').find('#click_show_dienvien').ready(function(){
+    $('#show_infor_movie_new').find('#click_show_dienvien').on('click',function(){
+        let status= $('#show_infor_movie_new').find('#click_show_dienvien').attr('name');
+        switch(status){
+            case "show":
+                $('#click_show_dienvien').html('Click để ẩn diễn viên');
+                $('#show_list_dienvien').css('display','block');
+                $('#click_show_dienvien').attr('name','hide');
+               break;
+            case "hide":
+                $('#click_show_dienvien').html('Click để chọn diễn viên');
+                $('#show_list_dienvien').css('display','none');
+                $('#click_show_dienvien').attr('name','show');
+                break;
+        }
+    });
+}); 
+
+//add phim
+$("#btn_add_phim").ready(function(){
+    $("#btn_add_phim").on('click',function(){
+        $('#unclick_behind_this_screen').css('display' , 'block');
+        $.ajax({
+            url: "./pages/addMovieadmin.php",
+            success: function(response) {
+                $(".content_chucnangcon_wrap").append(response); 
+                $("#form_addMovie #btn_exit").on('click',function(){
+                    
+                   $('#unclick_behind_this_screen').css('display' , 'none');
+                   $('#form_addMovie').remove();
+                  
+               });
+               
+                
+            }
+        });
+        
+   
+    });
+});
+function clickToSelectTheloaiPhim(div){
+        let select = div.querySelector('#click_show_theloai');
+        let status= select.getAttribute('name');
+        switch(status){
+            case "show":
+                select.innerHTML='Click để ẩn thể loại';
+                div.querySelector('#show_list_theloai').style='display: block;';
+            select.setAttribute('name','hide');
+           break;
+        case "hide":
+            select.innerHTML='Click để chọn thể loại';
+            div.querySelector('#show_list_theloai').style='display: none;';
+            select.setAttribute('name','show');
+            break;
+        }
+    
+}
+
+function clickToSelectDienvienPhim(div){
+    let select = div.querySelector('#click_show_dienvien');
+    let status= select.getAttribute('name');
+    switch(status){
+        case "show":
+            select.innerHTML='Click để ẩn diễn viên';
+            div.querySelector('#show_list_dienvien').style='display: block;';
+        select.setAttribute('name','hide');
+       break;
+    case "hide":
+        select.innerHTML='Click để chọn diễn viên';
+        div.querySelector('#show_list_dienvien').style='display: none;';
+        select.setAttribute('name','show');
+        break;
+    }
+
+}
+function addMovieadmin(){
+    
+        event.preventDefault(); // Ngăn chặn hành động mặc định của form
+    
+        let inputs = document.getElementsByName("THELOAI[]");
+        let inputValues = [];
+    
+        for (let i = 0; i < inputs.length; i++) {
+            if(inputs[i].checked)
+                inputValues.push(inputs[i].value);
+        }
+    
+        // Xử lý dữ liệu ở đây
+        let errorTL = document.getElementById('errorTL');
+        if(inputValues.length==0){
+            errorTL.innerHTML="Chọn thể loại";
+        }else
+        errorTL.innerHTML="";
+
+        
+    
+        // Tiếp tục gửi form đến action bằng cách sử dụng JavaScript
+
+        let form = document.getElementById("form_addMovie");
+let formData = new FormData(form);
+let xhr = new XMLHttpRequest();
+
+xhr.open("POST", form.action, true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Xử lý phản hồi từ server nếu cần
+        form.innerHTML = xhr.responseText;
+    }
+};
+formData.append('thaotac', 'add');
+xhr.send(formData);
+    
+}
+
+let form_updatePhim = document.getElementById("form_updatePhim");
+form_updatePhim.addEventListener('submit',function(event){
+    event.preventDefault();
+    let formData = new FormData(form_updatePhim);
+let xhr = new XMLHttpRequest();
+
+xhr.open(form_updatePhim.method, form_updatePhim.action, true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Xử lý phản hồi từ server nếu cần
+    
+        document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+    }
+};
+formData.append('thaotac', 'update');
+formData.append('MAPM', form_updatePhim.getAttribute('name'));
+xhr.send(formData);
+    
+});
+
+let trash_deletePhim=document.querySelector(".click_show_change_movie .fa-trash");
+trash_deletePhim.addEventListener('click',function(div){
+    let MAPM = trash_deletePhim.getAttribute('name');
+    let xhr = new XMLHttpRequest();
+    var formData = new FormData();
+    
+xhr.open("POST","./pages/addMovieadmin.php", true);
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Xử lý phản hồi từ server nếu cần
+        document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+    }
+};
+formData.append('thaotac', 'delete');
+formData.append('MAPM', MAPM);
+xhr.send(formData);
+});
+
+//end add phim
 
 
 $('.lichchieuphim_phim').ready(function () {
@@ -262,6 +489,7 @@ $('.lichchieuphim_phim').ready(function () {
     });
 });
 
+// <<<<<<< HEAD
 // ticket-history
 $('#history_ticket_wrap').ready(function () {
     $('.icon-show').on('click', function () {
@@ -296,4 +524,195 @@ $('#history_ticket_wrap').ready(function () {
 // end ticket-history
 
 
+// =======
+$("#lichchieuphim_content").ready(function(){
+    $(".btn_changeDayLichchieuphim").on('click',function(){
+        let day = $(this).attr('name');
+        
+        $.ajax({
+            url: "./pages/lichchieuphimadmin.php", 
+                type: "GET",
+                data: {day: day},
+                success: function(response) {
+                    $("#content").html(response); // Thay đổi nội dung của #content
+                    // $('#unclick_behind_this_screen').css('display' , 'block');
+                    // $.ajax({
+                    //     url: "./js/admin.js",
+                    //     success: function(response) {
+                    //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                    //     },
+                    //     error: function(xhr, status, error) {
+                    //         // Xử lý lỗi nếu có
+                    //     }
+                    // });
+                }
+        });
+    });
+});
 
+
+// --------------------------------------PHẦN CỦA BẠN TUẤN DETH ------------------------------
+
+var buttonsPhanQuyen = document.querySelectorAll('.btn_phanquyen');
+
+// Duyệt qua từng nút và gắn sự kiện click cho chúng
+buttonsPhanQuyen.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Thêm class "quyen_selected" cho nút được click
+        this.classList.add('quyen_selected');
+        document.getElementsByName('edit_quyen')[0].classList.remove('quyen_selected');
+        document.getElementsByName('acept_edit')[0].style.display = "none";
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./pages/phanquyenchucnang.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("phanquyen_wrap").innerHTML = this.responseText;
+        }
+        };
+        xhr.send("action="+this.getAttribute("name"));
+        // Duyệt qua từng nút và xóa class "quyen_selected" khỏi các nút khác
+        buttonsPhanQuyen.forEach(function(btn) {
+            if (btn !== button) {
+                btn.classList.remove('quyen_selected');
+            }
+        });
+    });
+    
+});
+
+document.getElementsByClassName('btn_phanquyen')[0].click();
+
+btnEdit = document.getElementsByName('edit_quyen')[0];
+
+btnEdit.addEventListener('click',()=>{
+    let parentElement = document.getElementById('phanquyen_wrap');
+    let inputElements = parentElement.querySelectorAll('input');
+
+    if (btnEdit.classList.contains("quyen_selected")) {
+        btnEdit.classList.remove('quyen_selected');
+        document.getElementsByName('acept_edit')[0].style.display = "none";
+        inputElements.forEach(function(input) {
+            input.disabled = true; 
+        });
+    } else {
+        btnEdit.classList.add('quyen_selected');
+        document.getElementsByName('acept_edit')[0].style.display = "flex";
+        inputElements.forEach(function(input) {
+            input.disabled = false; 
+        });
+    }
+});
+
+document.getElementsByName('acept_edit')[0].addEventListener('click',()=>{
+    document.getElementsByName('acept_edit')[0].style.display = "none";
+    btnEdit.classList.remove('quyen_selected');
+
+    let mangChiTietCN = [];
+    let parentElement = document.getElementById('phanquyen_wrap');
+    let functionDivs = parentElement.getElementsByClassName('phanquyen_wrap_function');
+
+    let elements = document.getElementsByClassName("btn_phanquyen");
+    let maQuyen = null;
+
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].classList.contains("quyen_selected")) {
+            maQuyen = elements[i].getAttribute('name');
+            break;
+        }
+    }
+
+    for (var i = 0; i < functionDivs.length; i++) {
+        var divContent = functionDivs[i].getElementsByClassName('phanquyen_wrap_content')[0];
+            var inputs = divContent.querySelectorAll('input');
+            // Duyệt qua từng input checkbox
+            inputs.forEach(function(input) {
+                input.disabled = true;
+                if(input.checked){
+                   let maCN =  divContent.querySelector('.phanquyen_name').getAttribute('name');
+                   mangChiTietCN.push([maQuyen ,maCN, input.getAttribute('name')]);
+                }
+            });
+    }
+    // console.log(mangChiTietCN);
+    var jsonData = JSON.stringify(mangChiTietCN);
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "./pages/phanquyenchucnang.php", true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        // Xử lý kết quả trả về từ process.php (nếu cần)
+        console.log(xhr.responseText);
+    }
+};
+
+xhr.send(jsonData);
+ 
+});
+
+
+document.getElementsByName('new_quyen')[0].addEventListener('click',()=>{
+    document.querySelector('.modal_new').style.display = "block";
+    document.querySelector('.modal_input_wrap').style.display = "flex";
+});
+
+document.getElementsByName('remove_quyen')[0].addEventListener('click',()=>{
+    document.querySelector('.modal_new').style.display = "block";
+    document.querySelector('.modal_delete_wrap').style.display = "flex";
+
+    let elements = document.getElementsByClassName("btn_phanquyen");
+    let tenQuyen =null;
+
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].classList.contains("quyen_selected")) {
+            tenQuyen = elements[i].innerHTML;
+            break;
+        }
+    }
+    document.querySelector('.modal_delete_tenQuyen').innerText ="Bạn có muốn xóa: "+ tenQuyen +" chứ ?";
+});
+
+
+
+document.querySelector('.btn_cancel').addEventListener('click',()=>{
+    document.querySelector('.modal_new').style.display = "none";
+    document.querySelector('.modal_input_wrap').style.display = "none";
+});
+document.querySelector('.btn_cancel_delete').addEventListener('click',()=>{
+    document.querySelector('.modal_new').style.display = "none";
+    document.querySelector('.modal_delete_wrap').style.display = "none";
+});
+
+document.querySelector('.modal_submit_delete').addEventListener('click',()=>{
+    document.querySelector('.modal_new').style.display = "none";
+    document.querySelector('.modal_delete_wrap').style.display = "none";
+
+    let elements = document.getElementsByClassName("btn_phanquyen");
+    let maQuyen = null;
+    
+// >>>>>>> 48d942de2c813df87924dce9b00ceedd48e3da5f
+
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].classList.contains("quyen_selected")) {
+            maQuyen = elements[i].getAttribute('name');
+            break;
+        }
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', './pages/XoaMaQuyen.php?MaQuyen=' + maQuyen, true);
+    xhr.send();
+    window.location.href = "admin.php?page=phanquyenadmin";
+    // console.log(maQuyen);
+});
+
+// --------------------------------------PHẦN CỦA BẠN TUẤN DETH ------------------------------
+
+
+
+
+
+
+
+
+
+    

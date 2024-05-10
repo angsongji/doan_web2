@@ -16,7 +16,7 @@
     <div id="menu-bap-nuoc">
         <?php while($dichVuRow = mysqli_fetch_assoc($dichVuQuery)) { ?>
         <div class="mon">
-            <img src="../img/<?php echo $dichVuRow['NAMEANH']; ?>" alt="">
+            <img src="./img/<?php echo $dichVuRow['NAMEANH']; ?>" alt="">
 
             <div class="thong-tin-dich-vu">
                 <strong><div class="ten-dich-vu"><?php echo $dichVuRow['TENDICHVU']; ?></div></strong>

@@ -221,6 +221,7 @@ ul{
    
    
    box-shadow: 0 0 5px 0 gray;
+   position: relative;
 }
 #movies{
     
@@ -439,6 +440,7 @@ ul{
 }
 
 #lichchieuphim_wrap{
+    position: relative;
     height: fit-content;
     margin-top: 10px;
 }
@@ -483,6 +485,7 @@ ul{
 }
 
 #lichchieuphim_content{
+    
     width: 100%;
     border-top: 1px solid var(--light-gray);
     padding-bottom:5px ;
@@ -491,6 +494,35 @@ ul{
     overflow-y: auto;
 }
 
+#btn_add_lichchieuphim,#btn_add_phim{
+    z-index: 3;
+    position: absolute;
+    
+    background-color: var(--primary_color);
+    padding: 10px;
+   
+    box-shadow: 5px 5px 15px var(--light-gray);
+    cursor: pointer;
+}
+#btn_add_lichchieuphim{
+    bottom: 10px;
+    left: 10px;
+    border-radius: 50%;
+}
+#btn_add_lichchieuphim i,#btn_add_phim i{
+color: white;
+font-size: 17px;
+}
+#btn_add_phim{
+  
+   font-size: 16px;
+    align-items: center;
+    display: flex;
+    color: white;
+    border-radius: 20px;
+    transform: translateY(-120%);
+    right: 10px;
+}
 #lichchieuphim_content:-webkit-scrollbar{
     width: 8px;
     background-color: #b0a9a9;
@@ -539,7 +571,7 @@ ul{
     font-weight: 600;
     
 }
-.lichchieuphim_mota_phim .type_movie{
+.lichchieuphim_mota_phim .thoiluong_movie{
     color: gray;
     font-size: 0.9rem;
 }
@@ -573,6 +605,7 @@ ul{
     margin-left:20px;
 }
 .edit_suatchieu{
+    cursor: pointer;
     position: absolute;
     top:5px;
     right: 10px;
@@ -619,7 +652,7 @@ ul{
     border: 1px solid var(--overlay-gray);
 }
 .phanquyen_wrap_quyen li:hover, .phanquyen_wrap_content input[type='checkbox']:hover,.chucnangcon_wrap li:hover{  cursor: pointer;}
-.phanquyen_wrap_quyen #quyen_selected,.chucnangcon_wrap #chucnangconPhim_selected,.phanquyen_wrap_quyen li:hover,.chucnangcon_wrap li:hover{
+.phanquyen_wrap_quyen .quyen_selected,.chucnangcon_wrap #chucnangconPhim_selected,.phanquyen_wrap_quyen li:hover,.chucnangcon_wrap li:hover{
     color: var(--second_color);
     background-color: var(--primary_color);
     border: 1px solid transparent;
@@ -812,14 +845,15 @@ ul{
     grid-template-columns: 40% 60%; /* Hai cột có chiều rộng tự động */
     grid-template-rows: auto auto; /* Hai hàng có chiều cao tự động */
     gap: 8px;
-    margin-bottom: 10px;
 }
-.ngaychieu_movie,.theloai_movie{
+.ngaychieu_movie,.theloai_movie,.dienvien_movie{
     font-weight: 600;
     font-size:14px;
+    margin-bottom: 10px;
 }
 .show_trailer_movie{
-    
+    display: block;
+    margin: 10px 0;
     color: var(--primary_color);
     text-decoration: underline;
 }
@@ -855,11 +889,12 @@ font-size: 14px;
 font-weight: 600;
 }
 .show_infor_movie input{
-    border: 0;
+    border: 1px solid var(--light-gray);
     padding: 2px 5px;
     cursor: pointer;
 }
-#list_theloai{
+#list_theloai,#list_dienvien{
+    margin: 2px 0;
     border-radius: 5px;
    color: var(--second_color);
     background-color: var(--light-gray);
@@ -867,20 +902,43 @@ font-weight: 600;
     cursor: pointer;
     position: relative;
 }
-#show_list_theloai{
+#show_list_theloai,#show_list_dienvien{
+    border: 1px solid var(--light-gray);
+    color: var(--primary_color);
 position: absolute;
 top:100%;
 left: 0;
 width: 100%;
-background-color: red;
-height: 100px;
+background-color: white;
+height: 120px;
 overflow-y: scroll;
 display: none;
+
 }
-#show_list_theloai label{
+#show_list_theloai{z-index: 3;}
+#show_list_dienvien{z-index: 2;}
+#show_list_theloai label,#show_list_dienvien label{
     display: block;
  padding: 3px;
     font-size: 15px;
+}
+#add_phim_lichchieuphim:hover{cursor: pointer;}
+#add_phim_lichchieuphim{
+    box-shadow: 10px 3px  10px var(--light-gray);
+    border-radius: 5px;
+    padding-left: 10px;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%,100%);
+    
+    position: absolute;
+    background-color: var(--primary_color);
+    color: white;
+    width: fit-content;
+
+}
+#add_phim_lichchieuphim i{
+    margin: 10px;
 }
 #change_lichchieuphim_phim{
     margin: 0;
@@ -907,6 +965,7 @@ display: none;
     margin-top: 8px;
 }
 
+/* <<<<<<< HEAD */
 /* ticket-history */
 .ticket-history {
     display: none;
@@ -1040,3 +1099,118 @@ display: none;
     margin-left: 27%;
 }
 /*end acount  */
+/* ======= */
+/* --------------------------------- PHAN CUA TUAN ------------------------*/
+.modal_new{
+    display: none;
+}
+.btn_cancel{
+    padding: 10px;
+    background-color: palevioletred;
+}
+.form_modal_input{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(153, 153, 153,0.3);
+}
+
+.modal_input_wrap, .modal_delete_wrap{
+    display: none;
+    flex-direction: column;
+    width: 30%;
+    height: 160px;
+    margin: auto;
+    background-color: aqua;
+    
+}
+
+.modal_input_tenQuyen, .modal_delete_tenQuyen{
+    margin: 20px auto;
+}
+
+.modal_btn_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* --------------------------------- PHAN CUA TUAN ------------------------*/
+/*css form add lich chieuphim*/
+#form_addLichchieuphim{
+    z-index: 21;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+   align-items: center;
+   box-shadow: 3px 3px 10px 2px gray;
+   background-color: white;
+}
+#form_addLichchieuphim label{
+    font-size: 18px;
+    width: 100%;
+    margin: 15px 0;
+}
+#form_addLichchieuphim select{
+    width: 70%;
+    margin-left: 3px;
+    cursor: pointer;
+    height: 20px;
+    outline: none;
+}
+#form_addLichchieuphim #btn_submit{
+ margin-top: 20px;
+ background-color: var(--primary_color);
+ outline: none;
+ border: 0;
+ color: white;
+ border-radius:5px ;
+ padding: 10px;
+ font-size: 17px;
+ cursor: pointer;
+}
+#form_addMovie{
+    border-radius: 10px;
+    z-index: 21;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    box-shadow: 2px 2px 10px 2px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 32%;
+    background-color: white;
+  
+    padding:0;
+}
+#form_addMovie input{
+    outline: none;
+    border: 1px solid var(--light-gray);
+}
+#form_addMovie .show_change_movie{
+    margin: 10px;
+}
+#form_addMovie #show_list_theloai,#form_addMovie #show_list_dienvien{
+    color: var(--primary_color);
+    background-color: white;
+    border: 1px solid gray;
+}
+.errorDataAdmin{
+    color: red;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 200;
+}
+/* >>>>>>> 48d942de2c813df87924dce9b00ceedd48e3da5f */

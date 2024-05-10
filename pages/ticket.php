@@ -4,12 +4,13 @@ if(isset($_GET['mave'])){
     $maVe=$_GET['mave'];
     require_once('./database/connectDatabase.php');
 $conn = new connectDatabase();
-$sql = "SELECT   suatchieu.NGAY AS NGAYCHIEU, ve.NGAY AS NGAYDATVE, THOIGIAN, PHUONGTHUCTHANHTOAN, TONGTIEN, MAPHONGCHIEU, THOIGIANBATDAU, TENPHIM, HOTEN, EMAIL, SODIENTHOAI, PHANTRAMUUDAI
+$sql = "SELECT   suatchieu.NGAY AS NGAYCHIEU, ve.NGAY AS NGAYDATVE, THOIGIAN, PHUONGTHUCTHANHTOAN, TONGTIEN, TENPHONGCHIEU, THOIGIANBATDAU, TENPHIM, HOTEN, EMAIL, SODIENTHOAI, PHANTRAMUUDAI
     FROM ve
     JOIN lichchieuphim ON ve.MALICHCHIEU = lichchieuphim.MALICHCHIEU
     JOIN suatchieu ON lichchieuphim.MASC = suatchieu.MASC
     JOIN phim ON lichchieuphim.MAPM = phim.MAPM
     JOIN taikhoan ON ve.USERNAME = taikhoan.USERNAME
+    JOIN phongchieu ON lichchieuphim.MAPHONGCHIEU = phongchieu.MAPHONGCHIEU
     LEFT JOIN uudai ON ve.MAUUDAI = uudai.CODE
     WHERE ve.MAVE = '$maVe' ";
 
@@ -38,8 +39,27 @@ JOIN chitietve_ghe ON ve.MAVE = chitietve_ghe.MAVE
 WHERE ve.MAVE = '$maVe' ";
 }
 $resultDichVu = $conn->executeQuery($sqlDichVu);
+$resultGiaDichVu = $conn->executeQuery($sqlDichVu);
 $resultGhe = $conn->executeQuery($sqlGhe);
 $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
+if ($resultGiaGhe->num_rows > 0) {
+    $totalsVe = 0;
+    while($rowGiaGhe = $resultGiaGhe->fetch_assoc()) {
+        $totalsVe += $rowGiaGhe['PRICE'];
+    } 
+}
+if ($resultGiaDichVu->num_rows > 0) {
+    $totals = 0;
+    while($row1 = $resultGiaDichVu->fetch_assoc()) {
+        $total =  $row1["SoLuong"] * $row1["PRICE"];
+        $totals += $total;
+    }
+    $tongconglun = $totalsVe + $totals;
+} else {
+    echo "<script>console.log('khong co ve')</script>";
+    $tongconglun = $totalsVe;
+}
+
 
 ?>
 
@@ -115,7 +135,7 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                                 </div>
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
-                                    <?php echo $row["TONGTIEN"]; ?>đ
+                                    <?php echo $tongconglun; ?>đ
                                     </span>
                                 </div>
                             </div>
@@ -129,7 +149,7 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                                     <span class="info-user_item-input_text">
                                         <?php
                                         if($row["PHANTRAMUUDAI"]!=NULL){
-                                            $tienUD = ( $row["PHANTRAMUUDAI"] /100 ) * $row["TONGTIEN"];
+                                            $tienUD = ( $row["PHANTRAMUUDAI"] /100 ) * $tongconglun;
                                         }else{
                                             $tienUD =0;
                                         }
@@ -146,7 +166,7 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                                 </div>
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
-                                    <?php $tienPhaiTra = $row["TONGTIEN"] - $tienUD;
+                                    <?php $tienPhaiTra = $tongconglun - $tienUD;
                                     echo $tienPhaiTra;?>đ
                                     </span>
                                 </div>
@@ -248,7 +268,7 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                                 </div>
                                 <div class="detail_item-content">
                                     <span class="detail_item-content_text">
-                                    <?php echo $row["MAPHONGCHIEU"]; ?>
+                                    <?php echo $row["TENPHONGCHIEU"]; ?>
                                     </span>
                                 </div>
                             </div>
@@ -318,13 +338,7 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                                     <span class="detail_item-content_text">
                                         
                                     <?php 
-                            if ($resultGiaGhe->num_rows > 0) {
-                                $totalsVe = 0;
-                                while($rowGiaGhe = $resultGiaGhe->fetch_assoc()) {
-                                    $totalsVe += $rowGiaGhe['PRICE'];
-                                }
                                 echo $totalsVe;
-                            }
                              ?>đ
                                     </span>
                                 </div>
@@ -339,7 +353,6 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                             <div class="horizontal-line"></div>
                             <?php
                             if ($resultDichVu->num_rows > 0) {
-                                $totals = 0;
                                 while($row = $resultDichVu->fetch_assoc()) {
                                     echo "<div class='detail_food-item'>";
                                     echo "<div class='detail_food-item_name'>";
@@ -351,13 +364,12 @@ $resultGiaGhe = $conn->executeQuery($sqlGiaGhe);
                                     echo "<span class='bold'>X</span>";
                                     echo "<span class='detail_food-item_cost'>".$row["PRICE"]."đ</span>";
                                     echo "</div>";
+                                    $giaTungDV = $row["SoLuong"] * $row["PRICE"];
                                     echo "<div class='detail_food-item_price-total'>";
-                                    $total =  $row["SoLuong"] * $row["PRICE"];
-                                    echo "<span class='detail_food-item_price-total_text bol'>".$total."đ</span>";
+                                    echo "<span class='detail_food-item_price-total_text bol'>".$giaTungDV."đ</span>";
                                     echo "</div>";
                                     echo "</div>";
                                     echo "</div>";
-                                    $totals += $total;
                                 }
                                 
                             } else {

@@ -5,81 +5,123 @@
         $connect = new connectDatabase();
 
         $MAPHONGCHIEU = $_GET['MAPHONGCHIEU'];
-        $gheSql = "SELECT * FROM ghe g
+        $gheSql = " SELECT * FROM ghe g
                     INNER JOIN loaighe lg ON lg.MALOAIGHE = g.MALOAIGHE
                     WHERE MAPHONGCHIEU = '$MAPHONGCHIEU'";
         $gheQuery = $connect->executeQuery($gheSql);
 
-        $rowDonA = array(); $rowGiaA = array();
-        $rowDonB = array(); $rowGiaB = array();
-        $rowDonC = array(); $rowGiaC = array();
-        $rowDonD = array(); $rowGiaD = array();
-        $rowDonE = array(); $rowGiaE = array();
-        $rowDonF = array(); $rowGiaF = array();
-        $rowDonG = array(); $rowDoiG = array(); $rowGiaG = array();
-        $rowDonH = array(); $rowDoiH = array(); $rowGiaH = array();
+        // Kiểm tra số ghế đã đặt
+        $MALICHCHIEU = $_GET['MALICHCHIEU'];
+        $kiemTraVeSql = "  SELECT * FROM ve v
+                        INNER JOIN chitietve_ghe ctv ON v.MAVE = ctv.MAVE
+                        WHERE v.MALICHCHIEU = '$MALICHCHIEU'";
+        $kiemTraVeQuery = $connect->executeQuery($kiemTraVeSql);
+
+        $rowDonA = array(); 
+        $rowDonB = array(); 
+        $rowDonC = array(); 
+        $rowDonD = array(); 
+        $rowDonE = array(); 
+        $rowDonF = array(); 
+        $rowDonG = array(); $rowDoiG = array(); 
+        $rowDonH = array(); $rowDoiH = array(); 
         $kiemTraTonTaiPhongChieu = true;
+        $gheDaMuaArr = array();
+
+        while($gheDaMuaArrRow = mysqli_fetch_assoc($kiemTraVeQuery)) {
+            $gheDaMuaArr[] = $gheDaMuaArrRow['MAGHE'];
+        }
 
         while($gheRow = mysqli_fetch_assoc($gheQuery)) {
             if($gheRow['HANGGHE'] == 'A' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'A' && $gheRow['MALOAIGHE'] == 'BIZ') {
-                $rowDonA[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                $rowGiaA[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                $rowDonA[$gheRow['MAGHE']] = array(
+                    "maloaighe" => $gheRow['MALOAIGHE'],
+                    "price" => $gheRow['PRICE'],
+                    "trangthai" => $gheRow['TRANGTHAI']
+                );
             }
 
             if($gheRow['HANGGHE'] == 'B' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'B' && $gheRow['MALOAIGHE'] == 'BIZ') 
             {
-                $rowDonB[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                $rowGiaB[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                $rowDonB[$gheRow['MAGHE']] = array(
+                    "maloaighe" => $gheRow['MALOAIGHE'],
+                    "price" => $gheRow['PRICE'],
+                    "trangthai" => $gheRow['TRANGTHAI']
+                );
             }
 
             if($gheRow['HANGGHE'] == 'C' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'C' && $gheRow['MALOAIGHE'] == 'BIZ') 
             {
-                $rowDonC[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                $rowGiaC[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                $rowDonC[$gheRow['MAGHE']] = array(
+                    "maloaighe" => $gheRow['MALOAIGHE'],
+                    "price" => $gheRow['PRICE'],
+                    "trangthai" => $gheRow['TRANGTHAI']
+                );
             }
 
             if($gheRow['HANGGHE'] == 'D' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'D' && $gheRow['MALOAIGHE'] == 'BIZ') 
             {
-                $rowDonD[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                $rowGiaD[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                $rowDonD[$gheRow['MAGHE']] = array(
+                    "maloaighe" => $gheRow['MALOAIGHE'],
+                    "price" => $gheRow['PRICE'],
+                    "trangthai" => $gheRow['TRANGTHAI']
+                );
             }
 
             if($gheRow['HANGGHE'] == 'E' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'E' && $gheRow['MALOAIGHE'] == 'BIZ') 
             {
-                $rowDonE[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                $rowGiaE[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                $rowDonE[$gheRow['MAGHE']] = array(
+                    "maloaighe" => $gheRow['MALOAIGHE'],
+                    "price" => $gheRow['PRICE'],
+                    "trangthai" => $gheRow['TRANGTHAI']
+                );
             }
 
             if($gheRow['HANGGHE'] == 'F' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'F' && $gheRow['MALOAIGHE'] == 'BIZ') 
             {
-                $rowDonF[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                $rowGiaF[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                $rowDonF[$gheRow['MAGHE']] = array(
+                    "maloaighe" => $gheRow['MALOAIGHE'],
+                    "price" => $gheRow['PRICE'],
+                    "trangthai" => $gheRow['TRANGTHAI']
+                );
             }
 
             if($gheRow['HANGGHE'] == 'G' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'G' && $gheRow['MALOAIGHE'] == 'BIZ' || 
             $gheRow['HANGGHE'] == 'G' && $gheRow['MALOAIGHE'] == 'DOI') {
                 if($gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'G' && $gheRow['MALOAIGHE'] == 'BIZ')
                 {
-                    $rowDonG[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                    $rowGiaG[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                    $rowDonG[$gheRow['MAGHE']] = array(
+                        "maloaighe" => $gheRow['MALOAIGHE'],
+                        "price" => $gheRow['PRICE'],
+                        "trangthai" => $gheRow['TRANGTHAI']
+                    );
                 }
                 if($gheRow['MALOAIGHE'] == 'DOI')
                 {
-                    $rowDoiG[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                    $rowGiaG[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                    $rowDoiG[$gheRow['MAGHE']] = array(
+                        "maloaighe" => $gheRow['MALOAIGHE'],
+                        "price" => $gheRow['PRICE'],
+                        "trangthai" => $gheRow['TRANGTHAI']
+                    );
                 }
             
             if($gheRow['HANGGHE'] == 'H' && $gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'H' && $gheRow['MALOAIGHE'] == 'BIZ' || 
             $gheRow['HANGGHE'] == 'H' && $gheRow['MALOAIGHE'] == 'DOI') {
                 if($gheRow['MALOAIGHE'] == 'STD' || $gheRow['HANGGHE'] == 'H' && $gheRow['MALOAIGHE'] == 'BIZ')
                 {
-                    $rowDonH[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                    $rowGiaH[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                    $rowDonH[$gheRow['MAGHE']] = array(
+                        "maloaighe" => $gheRow['MALOAIGHE'],
+                        "price" => $gheRow['PRICE'],
+                        "trangthai" => $gheRow['TRANGTHAI']
+                    );
                 }
                 if($gheRow['MALOAIGHE'] == 'DOI')
                 {
-                    $rowDoiH[$gheRow['MAGHE']] = $gheRow['MALOAIGHE'];
-                    $rowGiaH[$gheRow['MAGHE']] = $gheRow['PRICE'];
+                    $rowDoiH[$gheRow['MAGHE']] = array(
+                        "maloaighe" => $gheRow['MALOAIGHE'],
+                        "price" => $gheRow['PRICE'],
+                        "trangthai" => $gheRow['TRANGTHAI']
+                    );
                 }
             }
         }
@@ -88,14 +130,18 @@
             echo    '<div class="ghe-don">';
                         $i = 1;
                         foreach($rowDonA as $key => $value) { 
-                            foreach($rowGiaA as $id => $price)
-                                if($id == $key) {
-                                    $value = $value == 'BIZ'? 'ghe-vip': '';
-                                    echo "<div id='$key' class='$value' price='$price'>".
-                                        "A$i";
-                                        ++$i;
-                                    echo "</div>";
-                                }
+                            if(in_array($key, $gheDaMuaArr)) {
+                                $name = 'daMua';
+                            } else {
+                                $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                            }
+                            
+                            $price = $value["price"];
+                            $trangthai = $value["trangthai"];
+                            echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                                "A$i";
+                                ++$i;
+                            echo "</div>";
                         }
             echo    '</div>';
 
@@ -103,14 +149,18 @@
             echo    '<div class="ghe-don">';
                         $i = 1;
                         foreach($rowDonB as $key => $value) { 
-                            foreach($rowGiaB as $id => $price)
-                                if($id == $key) {
-                                    $value = $value == 'BIZ'? 'ghe-vip': '';
-                                    echo "<div id='$key' class='$value' price='$price'>".
-                                        "B$i";
-                                        ++$i;
-                                    echo "</div>";
-                                }
+                            if(in_array($key, $gheDaMuaArr)) {
+                                $name = 'daMua';
+                            } else {
+                                $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                            }
+
+                            $price = $value["price"];
+                            $trangthai = $value["trangthai"];
+                            echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                                "B$i";
+                                ++$i;
+                            echo "</div>";
                         }
             echo    '</div>';
 
@@ -118,14 +168,18 @@
             echo    '<div class="ghe-don">';
                     $i = 1;
                     foreach($rowDonC as $key => $value) { 
-                        foreach($rowGiaC as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "C$i";
-                                    ++$i;
-                                echo "</div>";
+                        if(in_array($key, $gheDaMuaArr)) {
+                                $name = 'daMua';
+                            } else {
+                                $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
                             }
+                            
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "C$i";
+                            ++$i;
+                        echo "</div>";
                     }
             echo    '</div>';
 
@@ -133,14 +187,18 @@
             echo    '<div class="ghe-don">';
                     $i = 1;
                     foreach($rowDonD as $key => $value) { 
-                        foreach($rowGiaD as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "D$i";
-                                    ++$i;
-                                echo "</div>";
-                            }
+                        if(in_array($key, $gheDaMuaArr)) {
+                            $name = 'daMua';
+                        } else {
+                            $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                        }
+                        
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "D$i";
+                            ++$i;
+                        echo "</div>";
                     }
             echo    '</div>';
 
@@ -148,14 +206,18 @@
             echo    '<div class="ghe-don">';
                     $i = 1;
                     foreach($rowDonE as $key => $value) { 
-                        foreach($rowGiaE as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "E$i";
-                                    ++$i;
-                                echo "</div>";
-                            }
+                        if(in_array($key, $gheDaMuaArr)) {
+                            $name = 'daMua';
+                        } else {
+                            $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                        }
+                        
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "E$i";
+                            ++$i;
+                        echo "</div>";
                     }
             echo    '</div>';
 
@@ -163,14 +225,18 @@
             echo    '<div class="ghe-don">';
                     $i = 1;
                     foreach($rowDonF as $key => $value) { 
-                        foreach($rowGiaF as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "F$i";
-                                    ++$i;
-                                echo "</div>";
-                            }
+                        if(in_array($key, $gheDaMuaArr)) {
+                            $name = 'daMua';
+                        } else {
+                            $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                        }
+                        
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "F$i";
+                            ++$i;
+                        echo "</div>";
                     }
             echo    '</div>';
 
@@ -179,14 +245,18 @@
             echo    '<div class="ghe-don">';
                     $i = 1;
                     foreach($rowDonG as $key => $value) { 
-                        foreach($rowGiaG as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "G$i";
-                                    ++$i;
-                                echo "</div>";
-                            }
+                        if(in_array($key, $gheDaMuaArr)) {
+                            $name = 'daMua';
+                        } else {
+                            $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                        }
+                        
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "G$i";
+                            ++$i;
+                        echo "</div>";
                     }
             echo    '</div>';
             }
@@ -195,14 +265,18 @@
             echo '<div class="ghe-doi">';
                     $i = 1;
                     foreach($rowDoiG as $key => $value) { 
-                        foreach($rowGiaG as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "G$i";
-                                    ++$i;
-                                echo "</div>";
-                            }
+                        if(in_array($key, $gheDaMuaArr)) {
+                            $name = 'daMua';
+                        } else {
+                            $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                        }
+                        
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "G$i";
+                            ++$i;
+                        echo "</div>";
                 }
             echo '</div>';
             }
@@ -212,14 +286,18 @@
             echo    '<div class="ghe-don">';
                     $i = 1;
                     foreach($rowDonH as $key => $value) { 
-                        foreach($rowGiaH as $id => $price)
-                            if($id == $key) {
-                                $value = $value == 'BIZ'? 'ghe-vip': '';
-                                echo "<div id='$key' class='$value' price='$price'>".
-                                    "H$i";
-                                    ++$i;
-                                echo "</div>";
-                            }
+                        if(in_array($key, $gheDaMuaArr)) {
+                            $name = 'daMua';
+                        } else {
+                            $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                        }
+                        
+                        $price = $value["price"];
+                        $trangthai = $value["trangthai"];
+                        echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                            "H$i";
+                            ++$i;
+                        echo "</div>";
                     }
             echo    '</div>';
             }
@@ -228,14 +306,18 @@
             echo '<div class="ghe-doi">';
                 $i = 1;
                 foreach($rowDoiH as $key => $value) { 
-                    foreach($rowGiaH as $id => $price)
-                        if($id == $key) {
-                            $value = $value == 'BIZ'? 'ghe-vip': '';
-                            echo "<div id='$key' class='$value' price='$price'>".
-                                "H$i";
-                                ++$i;
-                            echo "</div>";
-                        }
+                    if(in_array($key, $gheDaMuaArr)) {
+                        $name = 'daMua';
+                    } else {
+                        $name = $value["maloaighe"] == 'BIZ'? 'ghe-vip': '';
+                    }
+                    
+                    $price = $value["price"];
+                    $trangthai = $value["trangthai"];
+                    echo "<div maghe='$key' class='$name' price='$price' trangthai='$trangthai'>".
+                        "H$i";
+                        ++$i;
+                    echo "</div>";
                 }
             echo '</div>';
             }

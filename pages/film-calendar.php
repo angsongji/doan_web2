@@ -101,23 +101,23 @@
 <!-- Xử lý sự kiện hiển thị thời gian khi click vào Ngày Chiếu -->
 <script>
 
-const day = document.querySelectorAll('.day');
-const hours = document.querySelectorAll('.hour');
+// const day = document.querySelectorAll('.day');
+// const hours = document.querySelectorAll('.hour');
 
-for(let i = 0; i < day.length; i++) {
-    day[i].addEventListener(
-        'click',
-        (e) => {
-            for(let j = 0; j < hours.length; j++) {
-                if(day[i].getAttribute('ngaychieu') == hours[j].getAttribute('ngaychieu')) {
-                    hours[j].style.display = 'flex';
-                } else {
-                    hours[j].style.display = 'none';
-                }
-            }
-        }, 
-        false
-    );
-}
+// for(let i = 0; i < day.length; i++) {
+//     day[i].addEventListener(
+//         'click',
+//         (e) => {
+//             for(let j = 0; j < hours.length; j++) {
+//                 if(day[i].getAttribute('ngaychieu') == hours[j].getAttribute('ngaychieu')) {
+//                     hours[j].style.display = 'flex';
+//                 } else {
+//                     hours[j].style.display = 'none';
+//                 }
+//             }
+//         }, 
+//         false
+//     );
+// }
 
 </script>

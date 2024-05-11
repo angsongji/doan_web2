@@ -1,111 +1,150 @@
 <script>
-var chart;
+$(document).ready(function(){
+    var chart;
 
-window.onload = function() {
     showDefaultGraph();
-};
 
-function showDefaultGraph() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            updateChart(data[0], data[1]);
-        }
-    };
-    xhttp.open("GET", "pages/xulydoanhthu.php?type=thongketong", true);
-    xhttp.send();
-}
-
-function showGraph() {
-    var selectedType = document.getElementById("selectType").value;
-    var from_date = document.getElementById("from_date").value;
-    var to_date = document.getElementById("to_date").value;
-    
-    // Gửi yêu cầu AJAX để lấy dữ liệu với khoảng ngày đã chọn
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            updateChart(data[0], data[1]);
-        }
-    };
-    
-    var url = "pages/xulydoanhthu.php?type=" + encodeURIComponent(selectedType);
-
-    if (from_date && to_date) {
-        url += "&from_date=" + encodeURIComponent(from_date) + "&to_date=" + encodeURIComponent(to_date);
+    function showDefaultGraph() {
+        $.ajax({
+            url: "pages/xulydoanhthu.php?choose=doanhthu&style=tongtheotheloai",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                updateChart(data);
+            }
+        });
     }
 
-    xhttp.open("GET", url, true);
-    xhttp.send();
-}
+    function showGraph() {
+        let thongke = $("#thongke").val();
+        let from_date = $("#from_date").val();
+        let to_date = $("#to_date").val();
 
-function updateChart(data1, data2) {
-    if (chart) {
-        chart.destroy(); 
-    }
-    chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        theme: "light2",
-        title: {
-            text: "Thống kê"
-        },
-        dataPointWidth: 25,
-        dataSpacing: 5,
-        axisY: {
-            includeZero: true,
-            title: "Số lượng"
-        },
-        axisY2: {
-            title: "Doanh thu (đ)",
-            prefix: "đ"
-        },
-        legend: {
-            cursor: "pointer",
-            verticalAlign: "center",
-            horizontalAlign: "right",
-            itemclick: toggleDataSeries
-        },
-        creditText: "", 
-        data: [{
-            type: "column",
-            name: "Số vé",
-            yValueFormatString: "#0.##",
-            showInLegend: true,
-            dataPoints: data1,
-        }, {
-            type: "column",
-            name: "Doanh thu",
-            yValueFormatString: "#0.##đ",
-            axisYType: "secondary",
-            showInLegend: true,
-            dataPoints: data2,
-        }]
-    });
-    chart.render();
-
-    function toggleDataSeries(e) {
-        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-            e.dataSeries.visible = false;
-        } else {
-            e.dataSeries.visible = true;
+        let url = "pages/xulydoanhthu.php?choose=" + encodeURIComponent(thongke);
+        if(thongke == "doanhthu"){
+            let chung = $("#chung").val();
+            url += "&style=" + encodeURIComponent(chung);
+        }else if(thongke == "theloai"){
+            let tenloai = $("#tenloai").val();
+            let thutu = $("#thutu").val();
+            url += "&style=" + encodeURIComponent(tenloai) + "&thutu=" + encodeURIComponent(thutu);
         }
+
+        if (from_date && to_date) {
+            url += "&from_date=" + encodeURIComponent(from_date) + "&to_date=" + encodeURIComponent(to_date);
+        }
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                updateChart(data);
+            }
+        });
+    }
+
+    function updateChart(data) {
+        if (chart) {
+            chart.destroy(); 
+        }
+        chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            title: {
+                text: ""
+            },
+            dataPointWidth: 25,
+            dataSpacing: 5,
+            axisY: {
+                includeZero: true,
+                title: ""
+            },
+            legend: null,
+            creditText: "", 
+            data: [{
+                type: "column",
+                name: "",
+                yValueFormatString: "#0.##đ",
+                showInLegend: false,
+                dataPoints: data,
+            }]
+        });
         chart.render();
+
+        function toggleDataSeries(e) {
+            chart.render();
+        }
     }
-}
+
+    $("#dateForm").submit(function() {
+        showGraph();
+        return false;
+    });
+
+    $("#thongke").change(function() {
+        if ($(this).val() === "theloai") {
+            $("#chung").hide();
+            $("#type").show();
+        } else {
+            $("#chung").show();
+            $("#type").hide();
+        }
+    }).change(); 
+
+    $(document).on('keydown', function(e) {
+        if (e.keyCode == 13) { // Kiểm tra nếu phím nhấn là Enter
+            showGraph(); // Gọi hàm vẽ biểu đồ
+        }
+    });
+});
+
 </script>
 
-<form id="dateForm" onsubmit="showGraph(); return false;" action="javascript:void(0);">
-    <select id="selectType" name="selectType">
-        <option value="thongketong">Thống kê tổng</option>
-        <option value="thongketheophim">Thống kê theo phim</option>
-    </select>
-    Từ ngày: <input type="date" id="from_date" name="from_date">
-    Đến ngày: <input type="date" id="to_date" name="to_date">
-    <button type="submit">Xem biểu đồ</button>
-</form>
-<br>
-<div id="scroll-stype" style="height:60vh; width: 100%; overflow-x:auto; margin:0px; padding:0px;">
-    <div id="chartContainer" ></div>
+
+<div class="thongke__container">
+    <form id="dateForm">
+        <select name="thongke" id="thongke">
+            <option value="doanhthu">Tổng doanh thu</option>
+            <option value="theloai">Thể loại</option>
+        </select>
+        <select id="chung" name="chung">
+            <option value="tongtheotheloai">Tổng theo thể loại</option>
+            <option value="tongtheongay">Tổng theo ngày</option>
+            <option value="tongtheophim">Tổng theo phim</option>
+        </select>
+        <div class="type" id="type" style="display: none;">
+            <select name="tenloai" id="tenloai">
+                <?php
+                    require_once("./database/connectDatabase.php");
+                    $conn = new connectDatabase();
+                    $sql = "SELECT * FROM theloai";
+                    $result = $conn->executeQuery($sql);
+                    if($result->num_rows > 0){
+                        while($row = $result->fetch_assoc()){
+                            echo '<option value="'.$row['MATHELOAI'].'">'.$row['TENTHELOAI'].'</option>';
+                        }
+                    }
+                ?>
+            </select>
+            <select name="thutu" id="thutu">
+                <option value="1">Top 1</option>
+                <option value="2">Top 2</option>
+                <option value="3">Top 3</option>
+                <option value="4">Top 4</option>
+                <option value="5">Top 5</option>
+                <option value="6">Top 6</option>
+                <option value="7">Top 7</option>
+                <option value="8">Top 8</option>
+                <option value="9">Top 9</option>
+                <option value="10">Top 10</option>
+            </select>
+        </div>
+        Từ ngày: <input type="date" id="from_date" name="from_date">
+        Đến ngày: <input type="date" id="to_date" name="to_date">
+        <button type="submit">Xem biểu đồ</button>
+    </form>
+    <div id="scroll-stype" style="height:60vh; width: 100%; overflow-x:auto; margin:0px; padding:0px;">
+        <div id="chartContainer" ></div>
+    </div>
 </div>

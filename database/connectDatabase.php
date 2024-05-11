@@ -37,6 +37,14 @@ class connectDatabase{
        
     }
 
+    public function escapeString($value) {
+        return $this->conn->real_escape_string($value);
+    }
+
+    public function escapeInt($value) {
+        return intval($value);
+    }
+
     
 }   
 

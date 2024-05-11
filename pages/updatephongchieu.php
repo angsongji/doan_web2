@@ -3,11 +3,11 @@ require_once('../database/connectDatabase.php');
 $conn = new connectDatabase();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['edit_maphongchieu']) && isset($_POST['edit_tenphongchieu']) && isset($_POST['edit_soghe'])) {
+    if(isset($_POST['edit_maphongchieu']) && isset($_POST['edit_tenphongchieu']) && isset($_POST['edit_soghe']) && isset($_POST['edit_trangThai'])) {
         $maPhongChieu = $_POST['edit_maphongchieu'];
         $tenPhongChieu = $_POST['edit_tenphongchieu'];
         $soGhe = $_POST['edit_soghe'];
-        $trangThai = isset($_POST['edit_trangthai']) ? '1' : '0';
+        $trangThai = $_POST['edit_trangThai'];
 
         if (!empty($maPhongChieu) && !empty($tenPhongChieu) && !empty($soGhe)) {
             $query = "UPDATE phongchieu SET TENPHONGCHIEU='$tenPhongChieu', SOGHE='$soGhe', TRANGTHAI='$trangThai' WHERE MAPHONGCHIEU='$maPhongChieu'";

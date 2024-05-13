@@ -28,6 +28,18 @@
         </div>
     </div>
     <!--end img-main  -->
+    <?php 
+        include_once("./database/connectDatabase.php");
+        $conn = new connectDatabase();
+        $sql = "SELECT CODE FROM uudai WHERE TRANGTHAI = 1";
+        $result = $conn->executeQuery($sql);
+        $code = array();
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $code[] = $row['CODE'];
+            }
+        }
+    ?>
 
     <!-- new friend -->
     <div class="new-friend">
@@ -49,8 +61,8 @@
                             <img src="./img/nhapma.svg" alt="">
                         </div>
                         <span>Nhập mã</span>
-                        <div class="new-friend__cpy">
-                            <span class="textToCopy" >MEME9K</span>
+                        <div class="new-friend__cpy copy-text">
+                            <span class="textToCopy" ><?php echo $code[0] ?></span>
                             <i class="fa-regular fa-copy copyIcon" ></i>
                         </div>
                     </div>
@@ -64,8 +76,8 @@
                             <img src="./img/nhapma.svg" alt="">
                         </div>
                         <span>Hoặc mã</span>
-                        <div class="new-friend__cpy">
-                            <span class="textToCopy">SIUMEME9K</span>
+                        <div class="new-friend__cpy copy-text">
+                            <span class="textToCopy"><?php echo $code[1] ?></span>
                             <i class="fa-regular fa-copy copyIcon" ></i>
                         </div>
                     </div>

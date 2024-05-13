@@ -186,7 +186,7 @@ echo '</span>';
 echo '</div>';
 echo '<div>';
 echo '<label for="password">Password:</label>';
-echo '<input type="text" name="PASSWORD" value="'.((isset($_GET['password'])) ? $_GET['password'] : '').'">';
+echo '<input type="password" name="PASSWORD" value="'.((isset($_GET['password'])) ? $_GET['password'] : '').'">';
 echo '<span class="error">';
          if(isset($_GET['errorPassword'])){
             if($_GET['errorPassword'] == 'empty') {
@@ -226,11 +226,12 @@ echo '<span class="error">';
 echo '</span>';
 echo '</div>';
 echo '<div>';
+$maquyen = isset($_GET['quyen']) ? $_GET['quyen'] : '';
 echo '<label for="quyen">Quyền:</label>';
 echo '<select name="MAQUYEN" id="quyen">';
-echo '<option value="QKH">Quyền khách hàng</option>';
-echo '<option value="QQL">Quyền quản lý</option>';
-echo '<option value="QAD">Quyền Admin</option>';
+echo '<option value="QKH" '.($maquyen == "QKH" ? "selected" : "").'>Quyền khách hàng</option>';
+echo '<option value="QQL" '.($maquyen == "QQL" ? "selected" : "").'>Quyền quản lý</option>';
+echo '<option value="QAD" '.($maquyen == "QAD" ? "selected" : "").'>Quyền Admin</option>';
 echo '</select>';
 echo '</div>';
 echo '<div class="account__btn">';

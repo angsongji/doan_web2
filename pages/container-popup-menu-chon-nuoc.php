@@ -19,7 +19,7 @@
             <img src="./img/<?php echo $dichVuRow['NAMEANH']; ?>" alt="">
 
             <div class="thong-tin-dich-vu">
-                <strong><div class="ten-dich-vu"><?php echo $dichVuRow['TENDICHVU']; ?></div></strong>
+                <strong><div id="<?php echo $dichVuRow['MADICHVU']; ?>" class="ten-dich-vu"><?php echo $dichVuRow['TENDICHVU']; ?></div></strong>
 
                 <div class="mo-ta-dich-vu"><?php echo $dichVuRow['MOTA']; ?></div>
 
@@ -29,9 +29,19 @@
                 </div>
 
                 <div class="so-luong-dich-vu">
-                    <button class="btn-tru" name="<?php echo $dichVuRow['MADICHVU']; ?>">-</button>
-                    <label class="so-luong-label" name="<?php echo $dichVuRow['MADICHVU']; ?>">0</label>
-                    <button class="btn-cong" name="<?php echo $dichVuRow['MADICHVU']; ?>">+</button>
+                    <button class="btn-tru" 
+                    madichvu="<?php echo $dichVuRow['MADICHVU']; ?>"
+                    tendichvu="<?php echo $dichVuRow['TENDICHVU']; ?>"
+                    price="<?php echo $dichVuRow['PRICE']; ?>"
+                    >-</button>
+                    <label class="so-luong-label" 
+                    madichvu="<?php echo $dichVuRow['MADICHVU']; ?>"
+                    tendichvu="<?php echo $dichVuRow['TENDICHVU']; ?>"
+                    price="<?php echo $dichVuRow['PRICE']; ?>">0</label>
+                    <button class="btn-cong" 
+                    madichvu="<?php echo $dichVuRow['MADICHVU']; ?>"
+                    tendichvu="<?php echo $dichVuRow['TENDICHVU']; ?>"
+                    price="<?php echo $dichVuRow['PRICE']; ?>">+</button>
                 </div>
             </div>
         </div>
@@ -52,76 +62,5 @@
 
 <!-- Xử lý sự kiện chọn dịch vụ -->
 <script>
-const btnTrus = document.querySelectorAll('.btn-tru');
-const btnCongs = document.querySelectorAll('.btn-cong');
-let soLuongs = document.querySelectorAll('.so-luong-label');
-const giaDichVus = document.querySelectorAll('.gia-dich-vu');
-const tongCongs = document.querySelector('#tong-cong');
 
-const tangSoLuong = (event) => {
-    for( let i = 0; i < soLuongs.length; i++) {
-        if(event.getAttribute('name') == soLuongs[i].getAttribute('name')) {
-
-            let soLuongStr = soLuongs[i].textContent.trim();
-            let soLuong = isNaN(soLuongStr) ? 0 : parseInt(soLuongStr); 
-            ++soLuong; 
-            
-            let giaDichVuStr = giaDichVus[i].textContent.trim();
-            let giaDichVu = isNaN(giaDichVuStr) ? 0 : parseInt(giaDichVuStr);
-            
-            let tongCongStr = tongCongs.textContent.trim();
-            let tongCong = isNaN(tongCongStr) ? 0 : parseInt(tongCongStr);
-            tongCong += giaDichVu; 
-            
-            soLuongs[i].textContent = soLuong.toString();
-            tongCongs.textContent = tongCong.toString();
-        }
-    }
-}
-
-let flag = true;
-const giamSoLuong = (event) => {
-    for( let i = 0; i < soLuongs.length; i++) {
-        if(event.getAttribute('name') == soLuongs[i].getAttribute('name')) {
-            let soLuongStr = soLuongs[i].textContent.trim(); // Lấy giá trị và loại bỏ khoảng trắng thừa
-            let soLuong = isNaN(soLuongStr) ? 0 : parseInt(soLuongStr); // Chuyển đổi thành số, nếu không thành công sẽ trả về 0
-            if(soLuong > 0) {
-                --soLuong;
-                flag = true;
-            }
-            soLuongs[i].textContent = soLuong.toString();
-
-            let giaDichVuStr = giaDichVus[i].textContent.trim();
-            let giaDichVu = isNaN(giaDichVuStr) ? 0 : parseInt(giaDichVuStr);
-            
-            let tongCongStr = tongCongs.textContent.trim();
-            let tongCong = isNaN(tongCongStr) ? 0 : parseInt(tongCongStr);
-
-            if(soLuong > 0) {
-                tongCong -= giaDichVu;
-            }
-            if(soLuong == 0 && flag == true) {
-                tongCong -= giaDichVu; 
-                flag = false;
-            }
-
-            soLuongs[i].textContent = soLuong.toString();
-            tongCongs.textContent = tongCong.toString();
-        }
-    }
-}
-
-for(let i = 0; i < btnCongs.length ; i++) {
-    btnCongs[i].addEventListener(
-        'click',
-        () => tangSoLuong(btnCongs[i]),
-        false
-    );
-
-    btnTrus[i].addEventListener(
-        'click',
-        () => giamSoLuong(btnTrus[i]),
-        false
-    );
-}
 </script>

@@ -85,8 +85,7 @@
                     JOIN CHITIETPHIM_THELOAI ON PHIM.MAPM = CHITIETPHIM_THELOAI.MAPM
                     JOIN THELOAI ON CHITIETPHIM_THELOAI.MATHELOAI = THELOAI.MATHELOAI
                     JOIN CHITIETTHONGKE ON PHIM.MAPM = CHITIETTHONGKE.MAPM
-                    WHERE THELOAI.MATHELOAI = '$matheloai'
-                    AND CHITIETTHONGKE.NGAY BETWEEN '$from_date' AND '$to_date' 
+                    WHERE THELOAI.MATHELOAI = '$matheloai' AND Ngay BETWEEN '$from_date' AND '$to_date' 
                     GROUP BY PHIM.TENPHIM, CHITIETTHONGKE.MAPM
                     ORDER BY TONGVE DESC
                     LIMIT $thutu ";

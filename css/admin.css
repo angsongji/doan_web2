@@ -48,6 +48,9 @@ ul{
     justify-content: center;
     height: fit-content;
     position: sticky;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 700px;
     top: 0;
     z-index: 2;
 }

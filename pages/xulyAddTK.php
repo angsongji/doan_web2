@@ -74,6 +74,13 @@
         }else{
             $error .= "&sdt=". $SODIENTHOAI;
         }
+
+        if(empty($MAQUYEN)) {
+            $count++;
+            $error .= "&errorQuyen=empty";
+        } else {
+            $error .= "&quyen=". $MAQUYEN;
+        }
     }
 
     if($count > 0){

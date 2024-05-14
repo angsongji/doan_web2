@@ -10,7 +10,7 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success: function(data) {
-                updateChart(data);
+                updateChart(data[0],data[1]);
             }
         });
     }
@@ -39,12 +39,12 @@ $(document).ready(function(){
             type: "GET",
             dataType: "json",
             success: function(data) {
-                updateChart(data);
+                updateChart(data[0],data[1]);
             }
         });
     }
 
-    function updateChart(data) {
+    function updateChart(data1, data2) {
         if (chart) {
             chart.destroy(); 
         }
@@ -64,10 +64,16 @@ $(document).ready(function(){
             creditText: "", 
             data: [{
                 type: "column",
-                name: "",
+                name:"Doanh thu",
                 yValueFormatString: "#0.##đ",
-                showInLegend: false,
-                dataPoints: data,
+                showInLegend: true,
+                dataPoints: data1,
+            },{
+                type: "column",
+                name:  "Số vé",
+                yValueFormatString: "#0. vé",
+                showInLegend: true,
+                dataPoints: data2,
             }]
         });
         chart.render();
@@ -91,12 +97,6 @@ $(document).ready(function(){
             $("#type").hide();
         }
     }).change(); 
-
-    $(document).on('keydown', function(e) {
-        if (e.keyCode == 13) { // Kiểm tra nếu phím nhấn là Enter
-            showGraph(); // Gọi hàm vẽ biểu đồ
-        }
-    });
 });
 
 </script>
@@ -128,6 +128,7 @@ $(document).ready(function(){
                 ?>
             </select>
             <select name="thutu" id="thutu">
+                <option value="0">Chọn top vé bán chạy</option>
                 <option value="1">Top 1</option>
                 <option value="2">Top 2</option>
                 <option value="3">Top 3</option>

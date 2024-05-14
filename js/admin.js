@@ -120,7 +120,7 @@ $('#users_wrap').ready(function () {
 
                 },
                 error: function (xhr, status, error) {
-                    console.error("AJAX request failed:", status, error);
+                    console.error("error:", status, error);
                 }
             });
         });
@@ -152,29 +152,24 @@ $('#users_wrap').ready(function () {
 
 
 $(document).ready(function () {
-    // Hàm kiểm tra nếu trang có tham số 'error' trong URL
     function checkErrorParam() {
         var urlParams = new URLSearchParams(window.location.search);
         return urlParams.has('error');
     }
 
-    // Nếu trang có tham số 'error' thì hiển thị form thêm tài khoản
     if (checkErrorParam()) {
         $("#account__box").css('display', 'block');
         $('#unclick_behind_this_screen').css('display', 'block');
     }
 
-    // Bắt sự kiện click vào nút thêm tài khoản
     $("#acount__add").on('click', function () {
         $("#account__box").css('display', 'block');
         $('#unclick_behind_this_screen').css('display', 'block');
     });
 
-    // Bắt sự kiện click vào biểu tượng đóng form
     $("#account__icon").on('click', function () {
         $("#account__box").css('display', 'none');
         $('#unclick_behind_this_screen').css('display', 'none');
-        window.location.href = 'http://localhost/doan_web2/admin.php?page=usersadmin';
     });
 });
 
@@ -484,11 +479,11 @@ $('.lichchieuphim_phim').ready(function () {
     });
 });
 
-// <<<<<<< HEAD
 // ticket-history
 $('#history_ticket_wrap').ready(function () {
     $('.icon-show').on('click', function () {
         let keywork = $(this).attr('name');
+        // alert(keywork);
         $.ajax({
             url: './pages/lsdatveadmin.php',
             type: 'GET',
@@ -507,7 +502,6 @@ $('#history_ticket_wrap').ready(function () {
 
                     },
                     error: function (xhr, status, error) {
-                        // Xử lý lỗi nếu có
                     }
                 });
             }
@@ -519,7 +513,6 @@ $('#history_ticket_wrap').ready(function () {
 // end ticket-history
 
 
-// =======
 $("#lichchieuphim_content").ready(function(){
     $(".btn_changeDayLichchieuphim").on('click',function(){
         let day = $(this).attr('name');

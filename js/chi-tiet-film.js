@@ -388,16 +388,44 @@ const xuLySuKienHienThiMenuChonGhe = async (tenphim, maphim, masuatchieu) => {
     }
 }
 
+function kiemTraDangNhap(tenphim, maphim, masuatchieu) {
+    let xhttp = new XMLHttpRequest();
+
+    // Xác định hàm xử lý sự kiện khi nhận được phản hồi từ máy chủ
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Phản hồi từ máy chủ đã được nhận và xử lý
+            var response = JSON.parse(this.responseText);
+            thongTinThanhToan.username = response.username;
+            if (response.loggedIn) {
+                // Nếu session tồn tại, thực hiện các hành động khi đã đăng nhập
+                xuLySuKienHienThiMenuChonGhe(tenphim, maphim, masuatchieu);
+                console.log('Người dùng đã đăng nhập.');
+            } else {
+                // Nếu session không tồn tại, thực hiện các hành động khi chưa đăng nhập
+                alert('Vui lòng đăng nhập tài khoản!');
+                console.log('Người dùng chưa đăng nhập.');
+            }
+        }
+    };
+
+    // Mở một yêu cầu GET đến endpoint kiểm tra session trên máy chủ
+    xhttp.open("GET", "./pages/kiem-tra-session.php", true);
+
+    // Bắt đầu gửi yêu cầu
+    xhttp.send();
+}   
 // Xử lý sự kiện click vào thời gian chiếu 
 const hour = document.querySelectorAll(".hour");
 for(let i = 0; i < hour.length; i++) {
     hour[i].addEventListener(
         "click",
         (e) => {
-            xuLySuKienHienThiMenuChonGhe(
+            kiemTraDangNhap(
                 hour[i].getAttribute('tenphim'), 
                 hour[i].getAttribute('maphim'), 
                 hour[i].getAttribute('masuatchieu'));
+            document.querySelector('#row-ghe').innerHTML = '';
         },
         false
     )
@@ -559,22 +587,56 @@ const xuLySoTienSuKienBapNuocDaChon = (jsonData) => {
     });
 }
 
+const loadDuLieuUuDai = (tongtien) => {
+    let xhttp = new XMLHttpRequest();
+
+    // Xác định hàm xử lý sự kiện khi nhận được phản hồi từ máy chủ
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.querySelector('#uu-dai-thanh-toan div').innerHTML = this.responseText;
+        }
+    };
+    // Mở một yêu cầu GET đến endpoint kiểm tra session trên máy chủ
+    xhttp.open("POST", "./pages/load-du-lieu-uu-dai.php", true);
+    xhttp.setRequestHeader("Content-type", "application/json"); // Đặt header cho yêu cầu
+
+    // Chuyển đổi dữ liệu tổng tiền thành JSON và gửi đi
+    xhttp.send(JSON.stringify({ tongtien: tongtien }));
+}
+
 const xuLyTongTienThanhToan = () => {
     let tienGhe = document.querySelector('#tam-tinh').textContent.trim();
     let tienBapNuocs = document.querySelectorAll('#so-tien-thanh-toan_sotien-thucpham div');
-    let tongTien = 0;
+    let tongTienDaGiam = 0;
+    let tongTienBanDau = 0;
 
     tienGhe = isNaN(tienGhe) ? 0 : parseInt(tienGhe);
-    tongTien += tienGhe;
+    tongTienBanDau += tienGhe;
 
     tienBapNuocs.forEach(function(item) {
         let price = parseFloat(item.textContent.trim()); // Extract price as a number
         if (!isNaN(price)) { // Check if the extracted value is a number
-            tongTien += price; // Add the price to the total
+            tongTienBanDau += price; // Add the price to the total
         }
     });
 
-    document.querySelector('#tong-tien-thanh-toan_tong-tien').textContent = tongTien.toString()+"đ";
+    document.querySelector('#tong-tien-thanh-toan_tong-tien').textContent = tongTienBanDau.toString()+"đ";
+    loadDuLieuUuDai(tongTienBanDau);
+
+    // Thêm sự kiện thay đổi ưu đãi
+    let selectElement = document.querySelector('#uu-dai-thanh-toan div');
+    // Thêm sự kiện change
+    selectElement.addEventListener(
+        'change', 
+        (e) => {
+        // Lấy giá trị của tùy chọn đã chọn
+        var selectedOption = selectElement.getAttribute('phantramuudai');
+        selectedOption = parseFloat(selectedOption)/100;
+        tongTienDaGiam = tongTienBanDau;
+        tongTienDaGiam -= (tongTienDaGiam * selectedOption);
+        document.querySelector('#tong-tien-thanh-toan_tong-tien').textContent = tongTienDaGiam.toString()+"đ";
+        }),
+        false
 }
 
 const xuLySuKienThongTinVeDaMuaAsyn = async () => {

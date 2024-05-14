@@ -38,7 +38,11 @@
                         }
                     }
 
-                    if(!$kiemTraTonTai) {
+                    $current_time = new DateTime();
+                    $specified_time_str = $rowNC['NGAY'] . $rowNC['THOIGIANBATDAU'];
+                    $specified_time = new DateTime($specified_time_str);
+                    
+                    if(!$kiemTraTonTai && $specified_time >= $current_time ) {
                         $kiemTraNgays[] = $rowNC['NGAY'];
             ?>
                         <div class="day" 
@@ -62,14 +66,14 @@
                 while( $rowTG = mysqli_fetch_assoc($filmCalendarQuery2)) {
                     $kiemTraTonTai = false;
 
-                    foreach($kiemTraHours as $kiemTraHour) {
-                        if($kiemTraHour == $rowTG['THOIGIANBATDAU']) {
+                    foreach($kiemTraHours as $ngay => $thoigian) {
+                        if($thoigian == $rowTG['THOIGIANBATDAU'] && $ngay == $rowTG['THOIGIANBATDAU']) {
                             $kiemTraTonTai = true;
                         }
                     }
 
                     if(!$kiemTraTonTai) {
-                        $kiemTraHours[] = $rowTG['THOIGIANBATDAU'];;
+                        $kiemTraHours[$rowTG['NGAY']] = $rowTG['THOIGIANBATDAU'];
             ?>
                         <div class="hour" 
                             style="display: none;" 
@@ -97,27 +101,3 @@
     <div id="btn-right"> &rsaquo;</div>
     </div>
 </div>
-
-<!-- Xử lý sự kiện hiển thị thời gian khi click vào Ngày Chiếu -->
-<script>
-
-// const day = document.querySelectorAll('.day');
-// const hours = document.querySelectorAll('.hour');
-
-// for(let i = 0; i < day.length; i++) {
-//     day[i].addEventListener(
-//         'click',
-//         (e) => {
-//             for(let j = 0; j < hours.length; j++) {
-//                 if(day[i].getAttribute('ngaychieu') == hours[j].getAttribute('ngaychieu')) {
-//                     hours[j].style.display = 'flex';
-//                 } else {
-//                     hours[j].style.display = 'none';
-//                 }
-//             }
-//         }, 
-//         false
-//     );
-// }
-
-</script>

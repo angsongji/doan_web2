@@ -721,7 +721,7 @@ font-size: 17px;
 
    z-index:21;
 }
-.btn_exit,#btn_exit,#btn_exit_formAddLCP{
+.btn_exit,#btn_exit,#btn_exit_formAddLCP,#btn_exit_formDeleteLCP{
     position: absolute;
     right: 6px;
     top: 6px;
@@ -1162,7 +1162,7 @@ display: none;
 
 /* --------------------------------- PHAN CUA TUAN ------------------------*/
 /*css form add lich chieuphim*/
-#form_addLichchieuphim{
+#form_addLichchieuphim,#form_deleteLichchieuphim{
     z-index: 21;
     position: fixed;
     top: 50%;
@@ -1192,7 +1192,7 @@ display: none;
     outline: none;
   
 }
-#form_addLichchieuphim #btn_submit{
+#form_addLichchieuphim #btn_submit,#form_deleteLichchieuphim #btn_submit{
  margin-top: 20px;
  background-color: var(--primary_color);
  outline: none;
@@ -1205,18 +1205,22 @@ display: none;
  
 }
 
-.selectSuatchieuandPhC{
+.selectSuatchieuandPhC,.deleteSuatchieuandPhC{
     
     width: 100%;
     justify-content: space-between;
     display: grid;
     grid-template-columns: 49% 49%;
 }
+.deleteSuatchieuandPhC{
+    justify-content: space-around;
+    grid-template-columns: 25% 49%;
+}
 .selectSuatchieuandPhC option{
     width: inherit;
 }
 .wrap_selectSuatchieuandPhC select{outline: none;cursor: pointer;}
-.wrap_selectSuatchieuandPhC{
+.wrap_selectSuatchieuandPhC,.wrap_deleteSuatchieuandPhC{
     width: 95%;
     position: relative;
  background-color: var(--second_color);
@@ -1225,12 +1229,18 @@ display: none;
  padding: 5px 5px 10px 5px;
  margin-bottom: 10px;
 }
-.wrap_selectSuatchieuandPhC  i{
+.wrap_deleteSuatchieuandPhC{
+    padding: 5px 5px 10px 20px;
+}
+.wrap_selectSuatchieuandPhC  i,.wrap_deleteSuatchieuandPhC i{
     position: absolute;
     top:2px;
     right: 0;
    
     cursor: pointer;
+}
+.wrap_deleteSuatchieuandPhC i{
+    right: 10px;
 }
 .wrap_selectSuatchieuandPhC .btn_add {
     text-align: center;

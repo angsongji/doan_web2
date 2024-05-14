@@ -540,9 +540,17 @@ $("#lichchieuphim_content").ready(function(){
     });
 });
 
-function hide_formAddLCP(){
+function hide_formAddLCP(ID){
     document.getElementById('unclick_behind_this_screen').style="display:none;";
-    document.getElementById('form_addLichchieuphim').outerHTML='';
+    switch(ID){
+        case 1:
+            document.getElementById('form_addLichchieuphim').outerHTML='';
+            break;
+        case 2:
+            window.location.replace("../admin.php?page=chucnangLichchieuphim");
+            break;
+    }
+  
 }
 
 $('.edit_suatchieu').ready(function () {
@@ -603,12 +611,13 @@ function deleteLCP(div){
     let mapm = div.getAttribute('id');
     let parent=div.parentElement;
     let list_divLCP=parent.querySelectorAll(".lichchieuphim_lichchieu");
+    let n = btn_add_lichchieuphim.getAttribute('name');
     let arrayselectMLC = [];
-               
-    for(let i=0;i<list_divLCP.length;i++){
-        arrayselectMLC.push(list_divLCP[i].getAttribute('name'));
-    }
-   
+
+    // for(let i=0;i<list_divLCP.length;i++){
+    //     arrayselectMLC.push(list_divLCP[i].getAttribute('name'));
+    // }
+    document.getElementById('unclick_behind_this_screen').style="display:block;";
     let formData = new FormData();
     let xhr = new XMLHttpRequest();
 
@@ -616,10 +625,14 @@ function deleteLCP(div){
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             // Xử lý phản hồi từ server nếu cần
-            alert(xhr.responseText);
+$('#lichchieuphim_wrap').append(xhr.responseText);
+      
+     
             // div.innerHTML = `<option value="">Chọn suất chiếu</option>` + xhr.responseText;
         }
     };
+    formData.append('MAPM',mapm);
+    formData.append('ngay',n);
     formData.append('listLCP', JSON.stringify(arrayselectMLC));
     xhr.send(formData);
 }
@@ -643,7 +656,7 @@ function updateLCP(){
 }
 function hide_formUpdateLCP(){
     document.getElementById('unclick_behind_this_screen').style="display:none;";
-    document.getElementById('change_lichchieuphim_phim').outerHTML='';
+    window.location.replace("../admin.php?page=chucnangLichchieuphim");
 }
 function showListSCcothechonUpdate(div){
     
@@ -1123,4 +1136,28 @@ function removeSelectSCvaPC(div){
         parent.outerHTML='';
     }
     
+}
+
+function deletelichchieuphim(div){
+
+    let parent = div.parentElement;
+    parent.remove();
+    let malichchieu = parent.getAttribute('name');
+   
+    
+    $.ajax({
+        url: "../pages/deleteLichchieuphim.php",
+        type: "POST",
+        data:{MALICHCHIEU : malichchieu},
+        success: function (response) {
+            let div_scvapc= document.getElementsByClassName('wrap_deleteSuatchieuandPhC');
+            if(div_scvapc.length==0){
+                window.location.replace("../admin.php?page=chucnangLichchieuphim");
+            }
+         
+        }
+        
+
+    });
+
 }

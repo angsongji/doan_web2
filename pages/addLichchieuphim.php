@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/admin.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-
-<body>
     <?php
 
     if (!isset($_POST['selectFilm'])) {
@@ -23,7 +12,7 @@
 
             echo '
 <form action="./pages/addLichchieuphim.php" id="form_addLichchieuphim" method="POST" >
-    <div id="btn_exit_formAddLCP" onclick="hide_formAddLCP();"><i class="fa-solid fa-x"></i></div>
+    <div id="btn_exit_formAddLCP" onclick="hide_formAddLCP(1);"><i class="fa-solid fa-x"></i></div>
     <input type="text" value="' . $ngay . '" disabled style="width:100px;text-align:center;">
     <h1 style=" color: var(--primary_color);">Thêm lịch chiếu phim</h1>
     <input type="hidden" name="ngay" value="' . $ngay . '">
@@ -462,6 +451,3 @@
     }
     ?>
    
-</body>
-
-</html>

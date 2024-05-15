@@ -69,11 +69,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="ngay">Ngày</label>
-                        <input type="date" name="ngay" class="form-control">
+                        <input type="date" name="ngay" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="phanTramGiaTang">Phần Trăm Gia Tăng</label>
-                        <input type="number" name="phanTramGiaTang" class="form-control">
+                        <input type="number" name="phanTramGiaTang" class="form-control" required>
                     </div>
                 </div>
             <div class="modal-footer">
@@ -100,11 +100,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="edit_ngay">Ngày</label>
-                        <input type="date" id="edit_ngay" name="edit_ngay" class="form-control">
+                        <input type="date" id="edit_ngay" name="edit_ngay" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="edit_phanTramGiaTang">Phần Trăm Gia Tăng</label>
-                        <input type="number" id="edit_phanTramGiaTang" name="edit_phanTramGiaTang" class="form-control">
+                        <input type="number" id="edit_phanTramGiaTang" name="edit_phanTramGiaTang" class="form-control" required>
                     </div>
 
                 </div>

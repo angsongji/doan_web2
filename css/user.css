@@ -11,7 +11,7 @@
 }
 .left-side{
     flex: 1;
-    background-color: palevioletred;
+    background-color: #A9A9A9;
     height: 420px;
 }
 .right-side{
@@ -25,6 +25,7 @@
 }
 .display-status span{
     font-size: 1.7rem;
+    font-weight: 500;
 }
 .display-status span:last-child{
     margin-left: 7px;

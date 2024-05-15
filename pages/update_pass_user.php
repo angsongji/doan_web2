@@ -8,9 +8,9 @@
                 <input type="password" class="right-info__item-input" id="Mật khẩu hiện tại" name="current_pass">
                 <span class="errorPass"><?php
                 if(isset($_GET['errorCurrentPass'])&&$_GET['errorCurrentPass']=='empty'){
-                    echo 'Không được để trống thông tin';
+                    echo 'Không được để thông tin trống';
                 }else if(isset($_GET['errorCurrentPass'])&&$_GET['errorCurrentPass']=='wrong'){
-                    echo 'Password sai!!!';
+                    echo 'Mật khẩu hiện tại không đúng.';
                 }
                 ?></span>
             </div>
@@ -20,9 +20,9 @@
                 <input type="password" class="right-info__item-input" id="Mật khẩu mới" name="new_pass">
                 <span class="errorPass"><?php
                 if(isset($_GET['errorNewPass'])&&$_GET['errorNewPass']=='empty'){
-                    echo 'Không được để trống thông tin';
+                    echo 'Không được để thông tin trống';
                 }else if(isset($_GET['errorNewPass'])&&$_GET['errorNewPass']=='wrong'){
-                    echo 'Password phai toi thieu 8 ky tu!!!';
+                    echo 'Mật khẩu phải ít nhất 8 ký tự.';
                 }
                     ?></span>
             </div>
@@ -31,11 +31,11 @@
                 <input type="password" class="right-info__item-input" id="Nhập lại mật khẩu" name="re_pass">
                 <span class="errorPass"><?php
                 if(isset($_GET['errorRePass'])&&$_GET['errorRePass']=='emptyNewPass'){
-                    echo 'Password moi chua nhap';
+                    echo 'Mật khẩu mới chưa nhập.';
                 }else if(isset($_GET['errorRePass'])&&$_GET['errorRePass']=='empty'){
-                    echo 'Password chua nhap';
+                    echo 'Không được để thông tin trống';
                 }else if(isset($_GET['errorRePass'])&&$_GET['errorRePass']=='wrong'){
-                    echo 'Password nhap lai sai!!';
+                    echo 'Mật khẩu không trùng khớp.';
                 }
                     ?></span>
             </div>

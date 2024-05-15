@@ -1104,15 +1104,39 @@ display: none;
 .modal_new{
     display: none;
 }
-.btn_cancel{
+.btn_cancel, .btn_cancel_delete{
     padding: 10px;
-    background-color: palevioletred;
+    background-color: #ccc;
+    cursor: pointer;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.model_iput_name{
+    font-size: 1.2rem;
+}
+
+.modal_input_tenQuyen span{
+    font-size: 1.2rem;
+}
+.modal_delete_tenQuyen{
+    font-size: 1.2rem;
+}
+.modal_submit, .modal_submit_delete{
+    padding: 10px;
+    background-color: #ccc;
+    cursor: pointer;
+    border: none;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 .form_modal_input{
     position: absolute;
     display: flex;
-    width: 100%;
-    height: 100vh;
+    height: 106.3vh;
+    width: 68.3rem;
     z-index: 3;
     background-color: rgba(153, 153, 153,0.3);
 }
@@ -1120,10 +1144,13 @@ display: none;
 .modal_input_wrap, .modal_delete_wrap{
     display: none;
     flex-direction: column;
-    width: 30%;
+    position: absolute;
+    top: 150px;
+    left: 350px;
+    width: 400px;
     height: 160px;
-    margin: auto;
-    background-color: aqua;
+
+    background-color: var(--primary_color);
     
 }
 

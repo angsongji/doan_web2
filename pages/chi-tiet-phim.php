@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/ChiTietPhim.css">
     
     <?php
-        include("./database/connectDatabase.php");
+        // include("./database/connectDatabase.php");
     ?>
 </head>
 

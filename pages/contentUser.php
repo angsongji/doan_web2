@@ -45,7 +45,16 @@ $tenDN="";
         <div class="left-side__wrapper">
             <div class="display-status">
                 <span><i class="fa-solid fa-user"></i></span>
-                <span>Thông tin tài khoản</span>
+                <span>
+
+                <?php
+                    if(isset($_GET['id'])&&$_GET['id']==='pass'){
+                        echo "Đổi mật khẩu";
+                    }else{
+                        echo "Thông tin tài khoản";
+                    }
+                ?>
+                </span>
             </div>
             <div class="background-avatar">
                 <div class="avatar">

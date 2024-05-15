@@ -257,7 +257,7 @@ function chuoiTheLoai($maPM) {
                                             "Sao Tome và Principe", "Ả Rập Saudi", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Quần đảo Solomon",
                                             "Somalia", "Nam Phi", "Hàn Quốc", "Nam Sudan", "Tây Ban Nha", "Sri Lanka", "Sudan", "Suriname", "Thụy Điển", "Thụy Sĩ",
                                             "Syria", "Tajikistan", "Tanzania", "Thái Lan", "Togo", "Tonga", "Trinidad và Tobago", "Tunisia", "Thổ Nhĩ Kỳ", "Turkmenistan",
-                                            "Tuvalu", "Uganda", "Ukraine", "Các Tiểu vương quốc Ả Rập Thống nhất", "Vương quốc Anh", "Hoa Kỳ", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican",
+                                            "Tuvalu", "Uganda", "Ukraine", "Các Tiểu vương quốc Ả Rập Thống nhất", "Vương quốc Anh", "Mỹ", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican",
                                             "Venezuela", "Việt Nam", "Yemen", "Zambia", "Zimbabwe"
                                         );
                                         for($i=0;$i < count($countries);$i++){
@@ -287,11 +287,11 @@ function chuoiTheLoai($maPM) {
                                 </div>
                                 </form>
                             </div>
-                            <div class="home-product">
+                            <div class="home-product"  id='conchimnon'>
 
-                                <div class="grid__row" id="conchimnon">
+                                <!-- <div class="grid__row" id="conchimnon">
                     
-                                </div>
+                                </div> -->
 
                                 </div>
                             </div>

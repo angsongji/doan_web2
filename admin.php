@@ -57,7 +57,14 @@
 
         </div>
         <div id="unclick_behind_this_screen"></div>
-        <script src="./js/admin.js"></script>
+        <?php
+            if (isset($_GET['page'])&&$_GET['page']=="phanquyenadmin") {
+                echo '<script src="./js/phanquyenjs.js"></script>';
+            } else {
+                echo '<script src="./js/admin.js"></script>';
+            }
+        ?>
+        
 </body>
 
 </html>

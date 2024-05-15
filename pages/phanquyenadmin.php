@@ -29,11 +29,13 @@ $conn->disconnect();
   <form action="admin.php?page=phanquyenadmin" class="form_modal_input" name="form_modal_input" method="POST">
     <div class="modal_input_wrap">
       <div class="modal_input_tenQuyen">
-        Tên quyền <input type="text" name="model_iput_name" class="model_iput_name" autocomplete="off">
+        <span>Tên quyền</span> 
+        <input type="text" name="model_iput_name" class="model_iput_name" autocomplete="off">
       </div>
       <div class="modal_btn_wrap">
+      <span class="btn_cancel">Cancel </span>
         <input type="submit" value="Submit" name="modal_submit" class="modal_submit">
-        <span class="btn_cancel">Cancel </span>
+        
       </div>
     </div>
     <div class="modal_delete_wrap">
@@ -41,8 +43,9 @@ $conn->disconnect();
         
       </div>
       <div class="modal_btn_wrap">
+      <span class="btn_cancel_delete">Cancel </span>
         <input type="button" value="Submit" name="modal_submit_delete" class="modal_submit_delete">
-        <span class="btn_cancel_delete">Cancel </span>
+        
       </div>
     </div>
   </form>

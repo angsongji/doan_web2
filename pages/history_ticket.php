@@ -17,7 +17,7 @@ $result = $conn->executeQuery($sql);
 
 <title>Lịch sử mua vé</title>
 <div class="main_lsmv">
-        <div class="panel_filter">
+        <!-- <div class="panel_filter">
             <a class="logo" href="index.php">
                 <img class="logo_item" src="./img/logo.jpg" alt="">
             </a>
@@ -41,7 +41,7 @@ $result = $conn->executeQuery($sql);
                 </div>
             </div>
 
-        </div>
+        </div> -->
         <div class="ticket-history">
             <!-- <a class="ticket" href="index.php?pages=ticket.php">
                 <img src="./img/hanhtinhkhi.jpg" alt="Phim 1">
@@ -63,13 +63,16 @@ $result = $conn->executeQuery($sql);
 
                         echo "</div>";
                         echo "</a>";
+                        
                     }
+                    echo "</div>";
                 } else {
-                    echo "<script>console.log('khong co ve')</script>";
+                    echo"</div>";
+                    echo"<div class='no_ticket'>Người dùng chưa từng mua vé</div>";
                 }
                 $conn->disconnect();
             ?>
             
             <!-- Thêm các vé xem phim khác vào đây -->
-        </div>
+        
     </div>

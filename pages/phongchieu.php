@@ -80,7 +80,7 @@
         }
         .modal-content {
     font-size: 16px; /* Kích thước font chữ lớn hơn */
-    width: 130%; /* Độ rộng lớn hơn */
+    width: 100%; /* Độ rộng lớn hơn */
     height: 1000px; /* Chiều cao lớn hơn */
     /* Các thuộc tính khác */
 }
@@ -106,7 +106,7 @@
                             <th>Tên Loại Ghế</th>
                             <th>Giá</th>
                             <th>Cập Nhật</th>
-                            <!-- <th>Xóa</th> -->
+                            <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +123,7 @@
                                         <td><?php echo $row['TENLOAIGHE']; ?></td>
                                         <td><?php echo $row['PRICE']; ?></td>
                                         <td><button class="btn btn-success" onclick="openEditLoaiGheForm('<?php echo $row['MALOAIGHE']; ?>', '<?php echo $row['TENLOAIGHE']; ?>', '<?php echo $row['PRICE']; ?>')">Cập Nhật</button></td>
-                                        <!-- <td><a href="./pages/deletePhongChieu.php?sid=<?php echo $row['MALOAIGHE']; ?>" class="btn btn-danger">Xóa</a></td> -->
+                                        <td><a href="./pages/deletePhongChieu.php?sid=<?php echo $row['MALOAIGHE']; ?>" class="btn btn-danger">Xóa</a></td>
                                     </tr>
                                     <?php
                                 }
@@ -224,7 +224,7 @@
                         <th>Trạng Thái</th>
                         <th>Xem Ghế</th>
                         <th>Cập Nhật</th>
-                        <!-- <th>Xóa</th> -->
+                        <th>Xóa</th>
                     </tr>
                 </thread>
                 <tbody>
@@ -243,7 +243,7 @@
                                 <td><?php echo $row['TRANGTHAI']; ?></td>
                                 <td><button class="btn btn-info" onclick="openSeatMap('<?php echo $row['MAPHONGCHIEU']; ?>')">Xem Ghế</button></td>
                                 <td><button class="btn btn-success" onclick="openEditForm('<?php echo $row['MAPHONGCHIEU']; ?>', '<?php echo $row['TENPHONGCHIEU']; ?>', '<?php echo $row['SOGHE']; ?>', '<?php echo $row['TRANGTHAI']; ?>')">Cập Nhật</button></td>
-                                <!-- <td><a href="./pages/deletePhongChieu.php?id=<?php echo $row['MAPHONGCHIEU']; ?>" class="btn btn-danger">Xóa</a></td> -->
+                                <td><a href="./pages/deletePhongChieu.php?id=<?php echo $row['MAPHONGCHIEU']; ?>" class="btn btn-danger">Xóa</a></td>
                             </tr>
                             <?php
                         }
@@ -283,10 +283,12 @@
                             <input type="text" name="soghe" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="trangthai">Trạng Thái</label>
-                            <input type="checkbox" name="trangthai" class="form-control">
+                                <label for="">Trạng Thái</label><br>
+                                <label for="active">Đang Hoạt Động</label>
+                                <input type="radio" name="trangThai" value="1" id="active" class="form-control" checked>
+                                <label for="inactive">Tạm Dừng Hoạt Động</label>
+                                <input type="radio" name="trangThai" value="0" id="inactive" class="form-control">
                         </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -324,8 +326,11 @@
                             <input type="text" id="edit_soghe" name="edit_soghe" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="edit_trangthai">Trạng Thái</label>
-                            <input type="checkbox" id="edit_trangthai" name="edit_trangthai" class="form-control">
+                                <label for="">Trạng Thái</label><br>
+                                <label for="active">Đang Hoạt Động</label>
+                                <input type="radio" name="edit_trangThai" value="1" id="active" class="form-control" checked>
+                                <label for="inactive">Tạm Dừng Hoạt Động</label>
+                                <input type="radio" name="edit_trangThai" value="0" id="inactive" class="form-control">        
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -367,7 +372,7 @@
             </thead>
             <tbody>
                 <?php 
-                    $query = "SELECT * FROM ghe ORDER BY STT";
+                    $query = "SELECT * FROM ghe ORDER BY STT, MAPHONGCHIEU, HANGGHE, MAGHE";
                     $result = $conn->executeQuery($query);
                     if(!$result) {
                         echo 'failed';
@@ -626,7 +631,13 @@
         document.getElementById("edit_maphongchieu").value = id;
         document.getElementById("edit_tenphongchieu").value = tenPhongChieu;
         document.getElementById("edit_soghe").value = soGhe;
-        document.getElementById("edit_trangthai").checked = trangThai == '1';
+        document.getElementById("active").checked = trangThai;
+        document.getElementById("inactive").checked = trangThai;
+        if (trangThai === "active") {
+            document.getElementById("active").checked = true;
+        } else {
+            document.getElementById("inactive").checked = true;
+        }
         $('#editModal').modal('show');
     }
 

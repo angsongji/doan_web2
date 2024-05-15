@@ -1,14 +1,12 @@
 <?php 
     echo '<div id="history_ticket_wrap">
     <div class="history_ticket header_history_ticket">
-        
             <span>Mã vé</span>
             <span>Mã lịch chiếu</span>
             <span>USERNAME</span>
             <span>Thời gian</span>
             <span>Thành tiền</span>
             <span></span>
-        
     </div>
     <div class="content_history_ticket">';
     $lsdatve=getListLichsudatve();
@@ -48,7 +46,7 @@ if(isset($_GET['MAVE'])) {
     if($result->num_rows > 0){
         $row = $result->fetch_assoc();
     } else{
-        echo "<script> aler('MA VE KHONG TONTAI')</script>";
+        echo "<script> alert('MA VE KHONG TONTAI')</script>";
     }
 
     $queryDichVu = "SELECT dichvu.TENDICHVU, chitietve_dichvu.SOLUONG, dichvu.PRICE
@@ -122,24 +120,19 @@ function getListLichsudatve(){
     } else{
         require_once('./database/connectDatabase.php');
     }
-// Thực hiện kết nối đến cơ sở dữ liệu
 
 $connection = new connectDatabase();
 
-// Thực hiện truy vấn (ví dụ)
-$query = "SELECT * FROM ve "; // Truy vấn SQL của bạn
+$query = "SELECT * FROM ve "; 
 $result = $connection->executeQuery($query);
 
-// Xử lý kết quả nếu cần
 if ($result) {
-    // Thực hiện các thao tác với kết quả
     while ($row = $result->fetch_assoc()) {
        $lsdatve[]=$row;
     }
 } else {
     echo'thất bại';
     return null;
-    // Xử lý khi truy vấn thất bại
 }
 return $lsdatve;
 }

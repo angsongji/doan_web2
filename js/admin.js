@@ -14,20 +14,10 @@ function changeDay(i) {
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:flex;";
             break;
         default:
-// <<<<<<< HEAD
+
             document.getElementsByClassName('lichchieuphim_header_btn ')[0].style = "display:flex;";
-            // console.log(document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)]);
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id', "");
-            quantityClickBtnChangeDayLichchieu--;
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id', "lichchieuphim_selected");
-            lichchieu_wrap.style = 'transform:  translateX(calc(' + quantityClickBtnChangeDayLichchieu + '* 72px));';
-            if (quantityClickBtnChangeDayLichchieu == -5)
-                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:none;";
-            else
-                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:flex;";
-// =======
-            document.getElementsByClassName('lichchieuphim_header_btn ')[0].style="display:flex;";
-           
+
+
             // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
             quantityClickBtnChangeDayLichchieu--;
             // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
@@ -36,12 +26,13 @@ function changeDay(i) {
             let arr_dayCurrent = dayCurrent.split('/');
             arr_dayCurrent[2] = parseInt(arr_dayCurrent[2]) + 1;
             let dayNew = arr_dayCurrent.join("/");
-            
-            lichchieu_wrap.style='transform:  translateX(calc('+quantityClickBtnChangeDayLichchieu+'* 72px));';
-            
-            if(quantityClickBtnChangeDayLichchieu==-5)
-                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:none;";
+
+            lichchieu_wrap.style = 'transform:  translateX(calc(' + quantityClickBtnChangeDayLichchieu + '* 72px));';
+
+            if (quantityClickBtnChangeDayLichchieu == -5)
+                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:none;";
             else
+
                 document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
                 $.ajax({
                     url: "./pages/lichchieuphimadmin.php", 
@@ -72,15 +63,15 @@ $("#btn_add_lichchieuphim").ready(function(){
         $('#unclick_behind_this_screen').css('display' , 'block');
         $.ajax({
             url: "./pages/addLichchieuphim.php", 
-            type: "GET",
+            type: "POST",
             data: {ngay: n},
             success: function(response) {
                 $("#lichchieuphim_wrap").append(response); 
                 $("#form_addLichchieuphim #btn_exit").on('click',function(){
                     
-                   $('#unclick_behind_this_screen').css('display' , 'none');
+                   
                    $('#form_addLichchieuphim').remove();
-                  
+                //    $('#unclick_behind_this_screen').css('display' , 'none');
                });
                
                 
@@ -129,7 +120,7 @@ $('#users_wrap').ready(function () {
 
                 },
                 error: function (xhr, status, error) {
-                    console.error("AJAX request failed:", status, error);
+                    console.error("error:", status, error);
                 }
             });
         });
@@ -161,29 +152,24 @@ $('#users_wrap').ready(function () {
 
 
 $(document).ready(function () {
-    // Hàm kiểm tra nếu trang có tham số 'error' trong URL
     function checkErrorParam() {
         var urlParams = new URLSearchParams(window.location.search);
         return urlParams.has('error');
     }
 
-    // Nếu trang có tham số 'error' thì hiển thị form thêm tài khoản
     if (checkErrorParam()) {
         $("#account__box").css('display', 'block');
         $('#unclick_behind_this_screen').css('display', 'block');
     }
 
-    // Bắt sự kiện click vào nút thêm tài khoản
     $("#acount__add").on('click', function () {
         $("#account__box").css('display', 'block');
         $('#unclick_behind_this_screen').css('display', 'block');
     });
 
-    // Bắt sự kiện click vào biểu tượng đóng form
     $("#account__icon").on('click', function () {
         $("#account__box").css('display', 'none');
         $('#unclick_behind_this_screen').css('display', 'none');
-        window.location.href = 'http://localhost/doan_web2/admin.php?page=usersadmin';
     });
 });
 
@@ -238,9 +224,8 @@ $('#movies').find('.movie').ready(function(){
     });
     $('.movie').on('click',function(){
             let maphim = $(this).attr('name');
-            
             $.ajax({
-                url: "./pages/chucnangPhim.php", 
+                url: "./pages/chucnangPhim.php",
                 type: "GET",
                 data: {MAPM: maphim},
                 success: function(response) {
@@ -284,7 +269,7 @@ $('#movies').find('.movie').ready(function(){
                 break;
             case "hide":
 
-                $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chỉnh sửa phim<i class="fa-solid fa-arrow-right"></i>');
+                $('#movie_change_infor').find('#click_show_infor_movie_new').html('Chỉnh sửa phim<i class="fa-solid fa-arrow-right" style="padding-left:10px;"></i>');
                 $('#movie_change_infor').find('#show_infor_movie_new').css('display','none');
                 $('#movie_change_infor').find('#click_show_infor_movie_new').attr('name','show');
 
@@ -426,45 +411,50 @@ formData.append('thaotac', 'add');
 xhr.send(formData);
     
 }
-// ---------------------
-let form_updatePhim = document.getElementById("form_updatePhim");
-form_updatePhim.addEventListener('submit',function(event){
-    event.preventDefault();
-    let formData = new FormData(form_updatePhim);
-let xhr = new XMLHttpRequest();
 
-xhr.open(form_updatePhim.method, form_updatePhim.action, true);
-xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        // Xử lý phản hồi từ server nếu cần
-    
-        document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
-    }
-};
-formData.append('thaotac', 'update');
-formData.append('MAPM', form_updatePhim.getAttribute('name'));
-xhr.send(formData);
-    
-});
-
-let trash_deletePhim=document.querySelector(".click_show_change_movie .fa-trash");
-trash_deletePhim.addEventListener('click',function(div){
-    let MAPM = trash_deletePhim.getAttribute('name');
+if(document.getElementById("form_updatePhim")!=null){
+    let form_updatePhim = document.getElementById("form_updatePhim");
+    form_updatePhim.addEventListener('submit',function(event){
+        event.preventDefault();
+        let formData = new FormData(form_updatePhim);
     let xhr = new XMLHttpRequest();
-    var formData = new FormData();
     
-xhr.open("POST","./pages/addMovieadmin.php", true);
-xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        // Xử lý phản hồi từ server nếu cần
-        document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
-    }
-};
-formData.append('thaotac', 'delete');
-formData.append('MAPM', MAPM);
-xhr.send(formData);
-});
-// -------------------------------
+    xhr.open(form_updatePhim.method, form_updatePhim.action, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Xử lý phản hồi từ server nếu cần
+        
+            document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+        }
+    };
+    formData.append('thaotac', 'update');
+    formData.append('MAPM', form_updatePhim.getAttribute('name'));
+    xhr.send(formData);
+        
+    });
+}
+
+if(document.querySelector(".click_show_change_movie .fa-trash") != null){
+    let trash_deletePhim=document.querySelector(".click_show_change_movie .fa-trash");
+    trash_deletePhim.addEventListener('click',function(div){
+        let MAPM = trash_deletePhim.getAttribute('name');
+        let xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        
+    xhr.open("POST","./pages/addMovieadmin.php", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Xử lý phản hồi từ server nếu cần
+            document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+        }
+    };
+    formData.append('thaotac', 'delete');
+    formData.append('MAPM', MAPM);
+    xhr.send(formData);
+    });
+}
+
+
 //end add phim
 
 
@@ -489,11 +479,11 @@ $('.lichchieuphim_phim').ready(function () {
     });
 });
 
-// <<<<<<< HEAD
 // ticket-history
 $('#history_ticket_wrap').ready(function () {
     $('.icon-show').on('click', function () {
         let keywork = $(this).attr('name');
+        // alert(keywork);
         $.ajax({
             url: './pages/lsdatveadmin.php',
             type: 'GET',
@@ -512,7 +502,6 @@ $('#history_ticket_wrap').ready(function () {
 
                     },
                     error: function (xhr, status, error) {
-                        // Xử lý lỗi nếu có
                     }
                 });
             }
@@ -524,7 +513,6 @@ $('#history_ticket_wrap').ready(function () {
 // end ticket-history
 
 
-// =======
 $("#lichchieuphim_content").ready(function(){
     $(".btn_changeDayLichchieuphim").on('click',function(){
         let day = $(this).attr('name');
@@ -534,6 +522,7 @@ $("#lichchieuphim_content").ready(function(){
                 type: "GET",
                 data: {day: day},
                 success: function(response) {
+
                     $("#content").html(response); // Thay đổi nội dung của #content
                     // $('#unclick_behind_this_screen').css('display' , 'block');
                     // $.ajax({
@@ -546,8 +535,467 @@ $("#lichchieuphim_content").ready(function(){
                     //     }
                     // });
                 }
+            });
+         
+    });
+});
+
+function hide_formAddLCP(ID){
+    document.getElementById('unclick_behind_this_screen').style="display:none;";
+    switch(ID){
+        case 1:
+            document.getElementById('form_addLichchieuphim').outerHTML='';
+            break;
+        case 2:
+            window.location.replace("../admin.php?page=chucnangLichchieuphim");
+            break;
+    }
+  
+}
+
+$('.edit_suatchieu').ready(function () {
+    $('.lichchieuphim_phim').find('.edit_suatchieu').on('click', function () {
+
+        let MAPM = $(this).attr('name');
+      
+            $('#unclick_behind_this_screen').css('display', 'block');
+            let ngay = document.getElementById('btn_add_lichchieuphim').getAttribute('name');
+            $.ajax({
+                url: "./pages/updateLichchieuphimadmin.php",
+                type: "POST",
+                data: { ngay: ngay,MAPM: MAPM },
+                success: function (response) {
+                    $("#lichchieuphim_wrap").append(response);
+                    $('#change_lichchieuphim_phim .lichchieuphim_lichchieu').on('click', function () {
+                        $('#selectChangeSC').attr('id','');
+                        $(this).attr('id','selectChangeSC');
+                        let masc=$(this).attr('name');
+                        let malichchieu= $(this).find('input').attr('value');
+                        $.ajax({
+                            url: "./pages/updateLichchieuphimadmin.php",
+                            type: "POST",
+                            data: { ngay: ngay,MAPM: MAPM ,selectSC: masc,malichchieu: malichchieu},
+                            success: function (response) {
+                                $("#change_lichchieuphim_phim #hide_choose_new_suatchieu").html(response);
+                                
+                            }
+                        });            
+                                    
+                        });
+    
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
+                }
+            });
+    });
+});
+$('#change_lichchieuphim_phim .lichchieuphim_lichchieu').on('click', function () {
+    $('#selectChangeSC').attr('id','');
+    $(this).attr('id','selectChangeSC');
+    let masc=$(this).attr('name');
+    let malichchieu= $(this).find('input').attr('value');
+    $.ajax({
+        url: "./pages/updateLichchieuphimadmin.php",
+        type: "POST",
+        data: { ngay: ngay,MAPM: MAPM ,selectSC: masc,malichchieu: malichchieu},
+        success: function (response) {
+            $("#change_lichchieuphim_phim #hide_choose_new_suatchieu").html(response);
+
+            
+        }
+    });            
+                
+    });
+function deleteLCP(div){
+    let mapm = div.getAttribute('id');
+    let parent=div.parentElement;
+    let list_divLCP=parent.querySelectorAll(".lichchieuphim_lichchieu");
+    let n = btn_add_lichchieuphim.getAttribute('name');
+    let arrayselectMLC = [];
+
+    // for(let i=0;i<list_divLCP.length;i++){
+    //     arrayselectMLC.push(list_divLCP[i].getAttribute('name'));
+    // }
+    document.getElementById('unclick_behind_this_screen').style="display:block;";
+    let formData = new FormData();
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "../pages/deleteLichchieuphim.php", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Xử lý phản hồi từ server nếu cần
+$('#lichchieuphim_wrap').append(xhr.responseText);
+      
+     
+            // div.innerHTML = `<option value="">Chọn suất chiếu</option>` + xhr.responseText;
+        }
+    };
+    formData.append('MAPM',mapm);
+    formData.append('ngay',n);
+    formData.append('listLCP', JSON.stringify(arrayselectMLC));
+    xhr.send(formData);
+}
+function updateLCP(){
+    event.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+    let form = document.getElementById("div_choose_new_suatchieu");
+    let formData = new FormData(form);
+    let xhr = new XMLHttpRequest();
+
+    xhr.open(form.method, form.action, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // Xử lý phản hồi từ server nếu cần
+            form.innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send(formData);
+
+
+}
+function hide_formUpdateLCP(){
+    document.getElementById('unclick_behind_this_screen').style="display:none;";
+    window.location.replace("../admin.php?page=chucnangLichchieuphim");
+}
+function showListSCcothechonUpdate(div){
+    
+    // Thiết lập thuộc tính "selected" cho phần tử đã chọn
+    let ngay = document.getElementById('btn_add_lichchieuphim').getAttribute('name');
+    let parent = div.parentElement;
+
+    let options=div.querySelectorAll('option');
+    for(let i=0;i<options.length;i++){
+
+            options[i].removeAttribute('selected');
+            
+         
+    }
+     
+   
+    let defaultOption = div.querySelector("option[value="+div.value+"]");
+
+    // Thiết lập thuộc tính "selected" cho phần tử đã chọn
+    defaultOption.setAttribute("selected", "selected");
+                let maphim = document.getElementById("change_lichchieuphim_phim").getAttribute('name');
+
+               
+                let formData = new FormData();
+                let xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "../pages/updateLichchieuphimadmin.php", true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        // Xử lý phản hồi từ server nếu cần
+                     
+                            document.getElementById('showPhongchieu').innerHTML = xhr.responseText;
+                       
+                       
+                        // div.innerHTML = `<option value="">Chọn suất chiếu</option>` + xhr.responseText;
+                    }
+                };
+                formData.append('ngay', ngay);
+                formData.append('PC', '');
+               formData.append('selectSC', '');
+                formData.append('MASC', div.value);
+                formData.append('mapihm', maphim);
+                xhr.send(formData);
+
+}
+
+
+$("#lichchieuphim_content").ready(function () {
+    $(".btn_changeDayLichchieuphim").on('click', function () {
+        let day = $(this).attr('name');
+
+        $.ajax({
+            url: "./pages/lichchieuphimadmin.php",
+            type: "GET",
+            data: { day: day },
+            success: function (response) {
+                $("#content").html(response); // Thay đổi nội dung của #content
+                // $('#unclick_behind_this_screen').css('display' , 'block');
+                // $.ajax({
+                //     url: "./js/admin.js",
+                //     success: function(response) {
+                //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                //     },
+                //     error: function(xhr, status, error) {
+                //         // Xử lý lỗi nếu có
+                //     }
+                // });
+            }
         });
     });
 });
 
-  
+//user
+$('#users_wrap').ready(function () {
+    $('.user > i').on('click', function () {
+        $('#unclick_behind_this_screen').css('display', 'block');
+        $('#users_wrap_change').css({
+            'display': 'grid',
+            //'color' : 'red'
+
+        });
+    });
+    $('#users_wrap_change #btn_exit').on('click', function () {
+        $('#unclick_behind_this_screen').css('display', 'none');
+        $('#users_wrap_change').css({
+            'display': 'none',
+            //'color' : 'red'
+
+        });
+    });
+});
+
+$(".chucnangcon_wrap").find(".chucnangcon_Phim").ready(function () {
+    $(".chucnangcon_Phim").on('click', function () {
+        let luachon = $(this).attr("name");
+        let url_link = '';
+        switch ($(".chucnang_wrap").attr('name')) {
+            case "chucnangPhim":
+                url_link = './pages/chucnangPhim.php';
+                break;
+            case "chucnangLichchieuphim":
+                url_link = './pages/chucnangLichchieuphim.php';
+                break;
+        }
+        $.ajax({
+
+            url: url_link,
+            type: "GET",
+            data: { pagecon: luachon },
+            success: function (response) {
+                $("#content").html(response); // Thay đổi nội dung của #content
+                $.ajax({
+                    url: "./js/admin.js",
+                    success: function (response) {
+                        // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            }
+        });
+    });
+});
+
+
+if( document.getElementById("form_updatePhim") != null){
+    let form_updatePhim = document.getElementById("form_updatePhim");
+    form_updatePhim.addEventListener('submit', function (event) {
+        event.preventDefault();
+        let formData = new FormData(form_updatePhim);
+        let xhr = new XMLHttpRequest();
+    
+        xhr.open(form_updatePhim.method, form_updatePhim.action, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                // Xử lý phản hồi từ server nếu cần
+    
+                document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+            }
+        };
+        formData.append('thaotac', 'update');
+        formData.append('MAPM', form_updatePhim.getAttribute('name'));
+        xhr.send(formData);
+    
+    });
+}
+
+
+
+if(document.querySelector(".click_show_change_movie .fa-trash") != null){
+    let trash_deletePhim = document.querySelector(".click_show_change_movie .fa-trash");
+    trash_deletePhim.addEventListener('click', function (div) {
+        let MAPM = trash_deletePhim.getAttribute('name');
+        let xhr = new XMLHttpRequest();
+        var formData = new FormData();
+    
+        xhr.open("POST", "./pages/addMovieadmin.php", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                // Xử lý phản hồi từ server nếu cần
+                document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+            }
+        };
+        formData.append('thaotac', 'delete');
+        formData.append('MAPM', MAPM);
+        xhr.send(formData);
+    });
+}
+
+
+//end add phim
+
+//an vao chon phim trong them lich chieu phim
+function show_SuatchieuvaPhongchieu_LCP() {
+    let maphim = document.getElementById("selectFilm");
+    let wrapAll = document.getElementById("wrapAll_selectSuatchieuandPhC");
+    let ngay=document.getElementsByClassName('btn_add')[0].getAttribute('name');
+    let formData = new FormData();
+   let xhr = new XMLHttpRequest();
+
+   xhr.open("POST", "../pages/addLichchieuphim.php", true);
+   xhr.onreadystatechange = function () {
+       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+           // Xử lý phản hồi từ server nếu cần
+           wrapAll.innerHTML = xhr.responseText;
+           // div.innerHTML = `<option value="">Chọn suất chiếu</option>` + xhr.responseText;
+       }
+   };
+   formData.append('newSCvaPC', '');
+   let arrayselectSC = [];
+   let arrayselectPC = [];
+   formData.append('ngay', ngay);
+    formData.append('mapihm', maphim.value);
+    formData.append('selectSC', JSON.stringify(arrayselectSC));
+    formData.append('selectPC', JSON.stringify(arrayselectPC));
+   xhr.send(formData);
+}
+//ấn vào nút thêm ở trang thêm lịch chiếu phim
+
+function add_SuatchieuvaPhongchieu_LCP(div) {
+    let maphim = document.getElementById("selectFilm");
+    let ngay=document.getElementsByClassName('btn_add')[0].getAttribute('name');
+    let wrapAll = document.getElementById("wrapAll_selectSuatchieuandPhC");
+    let listselectSC = document.getElementsByName('selectSC[]');
+                let arrayselectSC = [];
+                for (let i = 0; i < listselectSC.length; i++) {
+                    if (listselectSC[i].value != "")
+                        arrayselectSC.push(listselectSC[i].value);
+                }
+                
+
+                let listselectPC = document.getElementsByName('selectPC[]');
+                let arrayselectPC = [];
+                for (let i = 0; i < listselectPC.length; i++) {
+                    if (listselectPC[i].value != "")
+                        arrayselectPC.push(listselectPC[i].value);
+                }
+   let formData = new FormData();
+   let xhr = new XMLHttpRequest();
+
+   xhr.open("POST", "../pages/addLichchieuphim.php", true);
+   xhr.onreadystatechange = function () {
+       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+           // Xử lý phản hồi từ server nếu cần
+           wrapAll.innerHTML += xhr.responseText;
+           // div.innerHTML = `<option value="">Chọn suất chiếu</option>` + xhr.responseText;
+       }
+   };
+   formData.append('newSCvaPC', '');
+   formData.append('ngay', ngay);
+    formData.append('mapihm', maphim.value);
+    formData.append('selectSC', JSON.stringify(arrayselectSC));
+    formData.append('selectPC', JSON.stringify(arrayselectPC));
+    console.log("mang masc");
+    console.log(arrayselectSC);
+    console.log("mang mapc");
+    console.log(arrayselectPC);
+   xhr.send(formData);
+}
+
+//an vao chon suat chieu o trang them lich chieu phim
+
+function showListSCcothechon(div) {
+
+
+
+    // Thiết lập thuộc tính "selected" cho phần tử đã chọn
+    let ngay=document.getElementsByClassName('btn_add')[0].getAttribute('name');
+    let parent = div.parentElement;
+    let options=div.querySelectorAll('option');
+    for(let i=0;i<options.length;i++){
+
+            options[i].removeAttribute('selected');
+            
+         
+    }
+     
+   
+    let defaultOption = div.querySelector("option[value="+div.value+"]");
+
+    // Thiết lập thuộc tính "selected" cho phần tử đã chọn
+    defaultOption.setAttribute("selected", "selected");
+                let maphim = document.getElementById("selectFilm");
+
+                let listselectSC = document.getElementsByName('selectSC[]');
+                let arrayselectSC = [];
+                for (let i = 0; i < listselectSC.length; i++) {
+                    if (listselectSC[i].value != "")
+                        arrayselectSC.push(listselectSC[i].value);
+                }
+                
+
+                let listselectPC = document.getElementsByName('selectPC[]');
+                let arrayselectPC = [];
+                for (let i = 0; i < listselectPC.length; i++) {
+                    if (listselectPC[i].value != "")
+                        arrayselectPC.push(listselectPC[i].value);
+                }
+                
+
+                let formData = new FormData();
+                let xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "../pages/addLichchieuphim.php", true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        // Xử lý phản hồi từ server nếu cần
+                        parent.querySelector("select:last-child").innerHTML = xhr.responseText;
+                        // div.innerHTML = `<option value="">Chọn suất chiếu</option>` + xhr.responseText;
+                    }
+                };
+                formData.append('ngay', ngay);
+                formData.append('PC', '');
+                formData.append('MASC', div.value);
+                formData.append('mapihm', maphim.value);
+                formData.append('selectSC', JSON.stringify(arrayselectSC));
+                formData.append('selectPC', JSON.stringify(arrayselectPC));
+                xhr.send(formData);
+
+      
+       
+   
+}
+
+
+
+
+function removeSelectSCvaPC(div){
+    let wrapAllchild = document.querySelectorAll("#wrapAll_selectSuatchieuandPhC .wrap_selectSuatchieuandPhC");
+    if(wrapAllchild.length == 1) alert('Toi thieu la 1 ');
+    else{
+        let parent=div.parentElement;
+    
+        parent.outerHTML='';
+    }
+    
+}
+
+function deletelichchieuphim(div){
+
+    let parent = div.parentElement;
+    parent.remove();
+    let malichchieu = parent.getAttribute('name');
+   
+    
+    $.ajax({
+        url: "../pages/deleteLichchieuphim.php",
+        type: "POST",
+        data:{MALICHCHIEU : malichchieu},
+        success: function (response) {
+            let div_scvapc= document.getElementsByClassName('wrap_deleteSuatchieuandPhC');
+            if(div_scvapc.length==0){
+                window.location.replace("../admin.php?page=chucnangLichchieuphim");
+            }
+         
+        }
+        
+
+    });
+
+}

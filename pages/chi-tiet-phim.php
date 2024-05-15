@@ -7,10 +7,13 @@
     <script src="https://kit.fontawesome.com/459a7e2db3.js" crossorigin="anonymous"></script>
     <script defer src="./js/chi-tiet-film.js"></script>
     <link rel="stylesheet" href="./css/ChiTietPhim.css">
+<<<<<<< HEAD
     
     <?php
         // include("./database/connectDatabase.php");
     ?>
+=======
+>>>>>>> 391317d5f8a851ee77397208dffc331584b1b99a
 </head>
 
 <body>

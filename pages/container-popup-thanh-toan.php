@@ -72,6 +72,9 @@
 
         <div class="menu-thanh-toan_container" id="uu-dai-thanh-toan">
             <div>ƯU ĐÃI</div>
+            <div>
+                
+            </div>
         </div>
 
         <div class="menu-thanh-toan_container" id="tong-tien-thanh-toan">

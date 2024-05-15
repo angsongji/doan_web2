@@ -17,7 +17,7 @@
     <title>MEME</title>
 </head>
 
-<body>
+<body style="margin: 0;">
     <div class="wrapadmin">
         <nav class="menuadmin">
             <?php require './pages/menuadmin.php' ?> 

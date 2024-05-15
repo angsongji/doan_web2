@@ -33,7 +33,7 @@ function openTab(event, tabName) {
 }
 
 
-document.querySelectorAll(".copyIcon").forEach(function(icon, index) {
+document.querySelectorAll(".copy-text").forEach(function(icon, index) {
     icon.addEventListener("click", function() {
       var copiedText = document.querySelectorAll(".textToCopy")[index].innerText;
       copyTextToClipboard(copiedText);

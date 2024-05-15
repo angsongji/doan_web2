@@ -1,4 +1,5 @@
 <?php
+    require_once('./database/connectDatabase.php');
     $connect = new connectDatabase();
     $trailerSql = "SELECT * FROM phim";
     $trailerQuery = $connect->executeQuery($trailerSql);

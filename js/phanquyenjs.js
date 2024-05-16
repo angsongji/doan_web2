@@ -1,7 +1,4 @@
-// --------------------------------------PHẦN CỦA BẠN TUẤN DETH ------------------------------
-
 var buttonsPhanQuyen = document.querySelectorAll('.btn_phanquyen');
-
 // Duyệt qua từng nút và gắn sự kiện click cho chúng
 buttonsPhanQuyen.forEach(function(button) {
     button.addEventListener('click', function() {
@@ -136,8 +133,7 @@ document.querySelector('.modal_submit_delete').addEventListener('click',()=>{
 
     let elements = document.getElementsByClassName("btn_phanquyen");
     let maQuyen = null;
-    
-// >>>>>>> 48d942de2c813df87924dce9b00ceedd48e3da5f
+
 
     for (var i = 0; i < elements.length; i++) {
         if (elements[i].classList.contains("quyen_selected")) {
@@ -152,6 +148,7 @@ document.querySelector('.modal_submit_delete').addEventListener('click',()=>{
     // console.log(maQuyen);
 });
 
-// --------------------------------------PHẦN CỦA BẠN TUẤN DETH ------------------------------
-
+document.getElementsByName('acept_edit')[0].addEventListener('click',()=>{
+    window.location.href = "admin.php?page=phanquyenadmin";
+});
 

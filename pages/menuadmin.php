@@ -118,7 +118,7 @@ foreach ($chucnang as $tenchucnang) {
             //     unset($_SESSION['TenDN']);
             // }
             // header('location:./index.php');
-            $href = "./";
+            $href = "admin.php?page=index";
             break;
     }
     if ($tenchucnang != "Đăng xuất" && isset($_GET['mode'])){

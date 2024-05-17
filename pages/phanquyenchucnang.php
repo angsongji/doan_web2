@@ -33,7 +33,7 @@ $resultCN = $conn->executeQuery($sqlCN);
 function checkExistence($value1, $value2,$value3) {
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "Oanh2004!";
     $database = "cinema";
 
     // Tạo kết nối

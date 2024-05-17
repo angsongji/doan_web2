@@ -2,13 +2,22 @@
     if(isset($_GET['page'])){
         $chucnang;
         switch($_GET['page']){
+            case "dienvienadmin":
+                $chucnang="Quản lí diễn viên";
+                break;
+            case "ngayleadmin":
+                $chucnang="Quản lí ngày lễ";
+                break;
+            case "suatchieuadmin":
+                $chucnang="Quản lí suất chiếu";
+                break;
             case "usersadmin":
                 $chucnang="Quản lí nguời dùng";
                 break;
-            case "chucnangPhim":
+            case "moviesadmin":
                 $chucnang="Quản lí phim";
                 break;
-            case "chucnangLichchieuphim":
+            case "lichchieuphimadmin":
                 $chucnang="Quản lí lịch chiếu phim";
                 break;
             case "dichvuadmin":
@@ -27,7 +36,10 @@
                 $chucnang="Ưu đãi";
                 break;
             case "phongchieu":
-                $chucnang="Phòng chiếu";
+                $chucnang="Quản lí phòng chiếu";
+                break;
+            case "theloaiadmin":
+                $chucnang="Quản lí thể loại";
                 break;
         }
         echo '<span>'. $chucnang .'</span>';
@@ -56,10 +68,11 @@
         $url='./admin.php?mode=night';
         if(isset($_GET['page'])) $url=$url.'&page='.$_GET['page'];
         echo '<a href="'.$url.'"><i class="fa-solid fa-cloud-sun"></i></a>';    
-    }     
+    }   
+      
     echo    '</div>
         <i class="fa-solid fa-user-tie"></i>
-        <span>Ten admin a</span>
+        <span>'.$USERNAME.'</span>
     </span>';
 
 ?>

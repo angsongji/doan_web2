@@ -25,7 +25,7 @@ echo'</div>
 
 function getListtheloai(){
     $theloai=array();
-    require_once('../database/connectDatabase.php');
+    require_once('./database/connectDatabase.php');
 // Thực hiện kết nối đến cơ sở dữ liệu
 
 $connection = new connectDatabase();

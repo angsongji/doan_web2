@@ -56,10 +56,14 @@
         $url='./admin.php?mode=night';
         if(isset($_GET['page'])) $url=$url.'&page='.$_GET['page'];
         echo '<a href="'.$url.'"><i class="fa-solid fa-cloud-sun"></i></a>';    
-    }     
+    }   
+    if(isset($_SESSION['TenDN'])){
+        $USERNAME=$_SESSION['TenDN'];
+    }
+    else{$USERNAME="chưa có";}  
     echo    '</div>
         <i class="fa-solid fa-user-tie"></i>
-        <span>Ten admin a</span>
+        <span>'.$USERNAME.'</span>
     </span>';
 
 ?>

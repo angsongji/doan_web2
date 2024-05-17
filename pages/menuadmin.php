@@ -1,6 +1,8 @@
 <?php
-$MAQUYEN="";
+
 $chucnang = array();
+if(isset($_SESSION['TenDN'])){$USERNAME=$_SESSION['TenDN'];}
+else{$USERNAME="chưa có";}
 if (isset($_GET['mode'])) {
     $mode = $_GET['mode'];
     switch ($mode) {
@@ -36,6 +38,7 @@ $result = $connection->executeQuery($query);
 if ($result) {
     // Thực hiện các thao tác với kết quả
     while ($row = $result->fetch_assoc()) {
+        
         array_push($chucnang,$row['TENCHUCNANG']);
     }
 } else {
@@ -46,13 +49,10 @@ if ($result) {
 // Ngắt kết nối đến cơ sở dữ liệu khi đã xong
 $connection->disconnect();
 
-// array_push($chucnang, "Quản lí nguời dùng");
-// array_push($chucnang, "Quản lí phim");
-// array_push($chucnang, "Quản lí lịch chiếu phim");
-// array_push($chucnang, "Quản lí dịch vụ");
-// array_push($chucnang, "Lịch sử đặt vé");
-// array_push($chucnang, "Báo cáo doanh thu");
-// array_push($chucnang, "Phân quyền chức năng");
+
+array_push($chucnang, "Quản lý lịch chiếu phim");
+array_push($chucnang, "Quản lý phòng chiếu");
+array_push($chucnang, "Quản lý phim");
 array_push($chucnang, "Vé");
 array_push($chucnang, "Thống kê");
 array_push($chucnang, "Đăng xuất");
@@ -63,22 +63,22 @@ foreach ($chucnang as $tenchucnang) {
     $href;
     $nameChucnang;
     $icon;
-
+    $flag=true;
     switch ($tenchucnang) {
         case "Tài khoản":
             $nameChucnang = "qlnguoidung";
             $icon = "fa-solid fa-user";
             $href = "admin.php?page=usersadmin";
             break;
-        case "Phim":
+        case "Quản lý phim":
             $nameChucnang = "qlphim";
             $icon = "fa-solid fa-video";
-            $href = "admin.php?page=chucnangPhim";
+            $href = "admin.php?page=chucnangPhim&arrCN=".$chucnang ;
             break;
-        case "Lịch chiếu phim":
+        case "Quản lý lịch chiếu phim":
             $nameChucnang = "pllichchieu";
             $icon = "fa-solid fa-calendar-days";
-            $href = "admin.php?page=chucnangLichchieuphim";
+            $href = "admin.php?page=chucnangLichchieuphim&arrCN=".$chucnang;
             break;
         case "Dịch vụ":
             $nameChucnang = "qldichvu";
@@ -105,35 +105,29 @@ foreach ($chucnang as $tenchucnang) {
             $icon = "fa-solid fa-tag";
             $href = "admin.php?page=uudaiadmin";
             break;
-        case "Phòng chiếu":
+        case "Quản lý phòng chiếu":
             $nameChucnang= "phongchieuad";
             $icon = "fa-solid fa-couch";
-            $href = "admin.php?page=phongchieu";
+            $href = "admin.php?page=phongchieu&arrCN=".$chucnang;
             break;
         case "Đăng xuất":
             $nameChucnang = "dangxuat";
             $icon = "fa-regular fa-circle-left";
-            $href = "./";
+            $href = "admin.php?page=index";//quay ve trang index chỗ này
+            break;
+        default:
+            $flag=false;
             break;
     }
-    if ($tenchucnang != "Đăng xuất" && isset($_GET['mode']))
-        $href = $href . '&mode=' . $_GET['mode'];
-    $liItem = $liItem . "<a  href='" . $href . "'><li name='" . $nameChucnang . "'><i class='" . $icon . "'></i><span>" . $tenchucnang . "</span></li></a>";
+    if($flag){
+        if ($tenchucnang != "Đăng xuất" && isset($_GET['mode']))
+            $href = $href . '&mode=' . $_GET['mode'];
+        $liItem = $liItem . "<a  href='" . $href . "'><li name='" . $nameChucnang . "'><i class='" . $icon . "'></i><span>" . $tenchucnang . "</span></li></a>";
+    }
+   
 }
 echo ' 
         <ul>
         ' . $liItem . '
         </ul>
     ';
-/* echo '
-            
-        <ul>
-            <li name="qlphim"><i class="fa-solid fa-user"></i><span>Quản lí nguời dùng</span></li>
-            <li name="qlphim"><i class="fa-solid fa-video"></i><span>Quản lí phim</span></li>
-            <li name="pllichchieu"><i class="fa-solid fa-calendar-days"></i><span>Quản lí lịch chiếu phim</span></li>
-            <li name="qldichvu"><i class="fa-solid fa-mug-saucer"></i><span>Quản lí dịch vụ</span></li>
-            <li name="qldatve"><i class="fa-solid fa-ticket"></i><span>Lịch sử đặt vé</span></li>
-            <li name="qldatve"><i class="fa-solid fa-chart-column"></i><span>Báo cáo doanh thu</span></li>
-            <li name="qldichvu"><i class="fa-solid fa-file-pen"></i><span>Phân quyền chức năng</span></li>
-            <li name="dangxuat"><i class="fa-regular fa-circle-left"></i><span>Đăng xuất</span></li>
-        </ul>';*/

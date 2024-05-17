@@ -1,36 +1,43 @@
 <?php 
-
+$chucnang=$_GET['arrCN'];
 echo '
 <div class="chucnang_wrap" name="chucnangPhim">
         <ul class="chucnangcon_wrap">
             ';
+            
         if(isset($_GET['pagecon'])){
-            switch($_GET['pagecon']){
-                case "moviesadmin.php":
-                    echo'
-            <li class="chucnangcon_Phim" id="chucnangconPhim_selected" name="moviesadmin.php">Phim</li>
-            <li class="chucnangcon_Phim" name="theloaiadmin.php">Thể loại</li>
-            <li class="chucnangcon_Phim"  name="dienvienadmin.php">Diễn viên</li>';
-                    break;
-                case "theloaiadmin.php":
-                    echo'
-            <li class="chucnangcon_Phim"  name="moviesadmin.php">Phim</li>
-            <li class="chucnangcon_Phim" id="chucnangconPhim_selected" name="theloaiadmin.php">Thể loại</li>
-            <li class="chucnangcon_Phim"  name="dienvienadmin.php">Diễn viên</li>';
-                    break;
-                case "dienvienadmin.php":
-                    echo'
-            <li class="chucnangcon_Phim"  name="moviesadmin.php">Phim</li>        
-            <li class="chucnangcon_Phim" name="theloaiadmin.php">Thể loại</li>
-            <li class="chucnangcon_Phim"  id="chucnangconPhim_selected"  name="dienvienadmin.php">Diễn viên</li>';
-                    break;
+            foreach($chucnang as $tenchucnang){
+                switch($tenchucnang){
+                    case "Lịch chiếu phim":
+                        echo'<li class="chucnangcon_Phim" '.((isset($_GET['pagecon']) && $_GET['pagecon']=="moviesadmin.php")?'id="chucnangconPhim_selected"':'').' name="moviesadmin.php">Phim</li>';
+                        break;
+                    case "Thể loại":
+                        echo '<li class="chucnangcon_Phim" '.((isset($_GET['pagecon']) && $_GET['pagecon']=="theloaiadmin.php")?'id="chucnangconPhim_selected"':'').' name="theloaiadmin.php">Thể loại</li>';
+                        break;
+                    case "Diễn viên":
+                        echo ' <li class="chucnangcon_Phim" '.((isset($_GET['pagecon']) && $_GET['pagecon']=="dienvienadmin.php")?'id="chucnangconPhim_selected"':'').' name="dienvienadmin.php">Diễn viên</li>';
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else{
-            echo'
-            <li class="chucnangcon_Phim" id="chucnangconPhim_selected" name="moviesadmin.php">Phim</li>
-            <li class="chucnangcon_Phim" name="theloaiadmin.php">Thể loại</li>
-            <li class="chucnangcon_Phim"  name="dienvienadmin.php">Diễn viên</li>'; 
+            foreach($chucnang as $tenchucnang){
+                switch($tenchucnang){
+                    case "Lịch chiếu phim":
+                        echo'<li class="chucnangcon_Phim" id="chucnangconPhim_selected" name="moviesadmin.php">Phim</li>';
+                        break;
+                    case "Thể loại":
+                        echo '<li class="chucnangcon_Phim" name="theloaiadmin.php">Thể loại</li>';
+                        break;
+                    case "Diễn viên":
+                        echo ' <li class="chucnangcon_Phim" name="dienvienadmin.php">Diễn viên</li>';
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 echo' </ul>
     <div class="content_chucnangcon_wrap">';

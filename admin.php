@@ -18,6 +18,13 @@
 </head>
 
 <body style="margin: 0;">
+    <?php 
+        if (isset($_GET['page']) && $_GET['page'] == "index") {
+            echo "Quay về index sau khi ấn đăng xuất";
+            header("Location: ./");
+            exit;
+        }
+    ?>
     <div class="wrapadmin">
         <nav class="menuadmin">
             <?php require './pages/menuadmin.php' ?> 

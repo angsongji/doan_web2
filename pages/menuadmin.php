@@ -1,8 +1,12 @@
 <?php
 
-$chucnang = array();
-if(isset($_SESSION['TenDN'])){$USERNAME=$_SESSION['TenDN'];}
-else{$USERNAME="chưa có";}
+
+if (isset($_SESSION['TenDN'])) {
+    $USERNAME = $_SESSION['TenDN'];
+} else {
+    $USERNAME = "chưa có";
+}
+
 if (isset($_GET['mode'])) {
     $mode = $_GET['mode'];
     switch ($mode) {
@@ -19,40 +23,8 @@ if (isset($_GET['mode'])) {
     echo '<img src="img/logoweb_admin.png">';
 }
 
-if (isset($_GET['MAQYEN']))
-    $MAQUYEN = $_GET['MAQYEN'];
-else
-    $MAQUYEN = 'QQL';
-
-//Include file chứa class connectDatabase
-require_once('./database/connectDatabase.php');
-// Thực hiện kết nối đến cơ sở dữ liệu
-
-$connection = new connectDatabase();
-
-// Thực hiện truy vấn (ví dụ)
-$query = "SELECT DISTINCT TENCHUCNANG FROM chitietquyen_chucnang,chucnang where maquyen='" . $MAQUYEN . "'AND chitietquyen_chucnang.MACHUCNANG = chucnang.MACHUCNANG;"; // Truy vấn SQL của bạn
-$result = $connection->executeQuery($query);
-
-// Xử lý kết quả nếu cần
-if ($result) {
-    // Thực hiện các thao tác với kết quả
-    while ($row = $result->fetch_assoc()) {
-        
-        array_push($chucnang,$row['TENCHUCNANG']);
-    }
-} else {
-    echo'thất bại';
-    // Xử lý khi truy vấn thất bại
-}
-
-// Ngắt kết nối đến cơ sở dữ liệu khi đã xong
-$connection->disconnect();
-
-
-array_push($chucnang, "Quản lý lịch chiếu phim");
-array_push($chucnang, "Quản lý phòng chiếu");
-array_push($chucnang, "Quản lý phim");
+$MAQUYEN = getMAQUYENtheoUSERNAME($USERNAME);
+$chucnang = getCNtheoMAQUYEN($MAQUYEN);
 array_push($chucnang, "Vé");
 array_push($chucnang, "Thống kê");
 array_push($chucnang, "Đăng xuất");
@@ -63,27 +35,27 @@ foreach ($chucnang as $tenchucnang) {
     $href;
     $nameChucnang;
     $icon;
-    $flag=true;
+    $flag = true;
     switch ($tenchucnang) {
         case "Tài khoản":
             $nameChucnang = "qlnguoidung";
             $icon = "fa-solid fa-user";
             $href = "admin.php?page=usersadmin";
             break;
-        case "Quản lý phim":
-            $nameChucnang = "qlphim";
-            $icon = "fa-solid fa-video";
-            $href = "admin.php?page=chucnangPhim&arrCN=".$chucnang ;
-            break;
-        case "Quản lý lịch chiếu phim":
-            $nameChucnang = "pllichchieu";
-            $icon = "fa-solid fa-calendar-days";
-            $href = "admin.php?page=chucnangLichchieuphim&arrCN=".$chucnang;
+        case "Thể loại":
+            $nameChucnang = "theloai";
+            $icon = "fa-solid fa-list fa-fw";
+            $href = "admin.php?page=theloaiadmin";
             break;
         case "Dịch vụ":
             $nameChucnang = "qldichvu";
             $icon = "fa-solid fa-mug-saucer";
             $href = "admin.php?page=dichvuadmin";
+            break;
+        case "Phòng chiếu":
+            $nameChucnang = "qldichvu";
+            $icon = "fa-solid fa-door-open";
+            $href = "admin.php?page=phongchieu";    
             break;
         case "Vé":
             $nameChucnang = "qldatve";
@@ -101,14 +73,44 @@ foreach ($chucnang as $tenchucnang) {
             $href = "admin.php?page=phanquyenadmin";
             break;
         case "Ưu đãi":
-            $nameChucnang= "uudaiadmin";
+            $nameChucnang = "uudaiadmin";
             $icon = "fa-solid fa-tag";
             $href = "admin.php?page=uudaiadmin";
             break;
-        case "Quản lý phòng chiếu":
-            $nameChucnang= "phongchieuad";
+        case "Lịch chiếu phim":
+            $nameChucnang = "phongchieuad";
+            $icon = "fa-solid fa-calendar-days";
+            $href = "admin.php?page=lichchieuphimadmin";
+            break;
+        case "Suất chiếu":
+            $nameChucnang = "phongchieuad";
+            $icon = "fa-solid fa-clock";
+            $href = "admin.php?page=suatchieuadmin";
+            break;
+        case "Ngày lễ":
+            $nameChucnang = "phongchieuad";
+            $icon = "fa-solid fa-face-laugh-squint";
+            $href = "admin.php?page=ngayleadmin";
+            break;
+        case "Diễn viên":
+            $nameChucnang = "phongchieuad";
+            $icon = "fa-solid fa-masks-theater";
+            $href = "admin.php?page=dienvienadmin";
+            break;
+        case "Ghế":
+            $nameChucnang = "phongchieuad";
             $icon = "fa-solid fa-couch";
-            $href = "admin.php?page=phongchieu&arrCN=".$chucnang;
+            $href = "admin.php?page=phongchieu";
+            break;
+        case "Loại ghế":
+            $nameChucnang = "phongchieuad";
+            $icon = "fa-regular fa-magnifying-glass-dollar";
+            $href = "admin.php?page=phongchieu";
+            break;
+        case "Phim":
+            $nameChucnang = "phongchieuad";
+            $icon = "fa-solid fa-film";
+            $href = "admin.php?page=moviesadmin";
             break;
         case "Đăng xuất":
             $nameChucnang = "dangxuat";
@@ -121,9 +123,9 @@ foreach ($chucnang as $tenchucnang) {
             $href = "admin.php?page=index";
             break;
     }
-    if ($tenchucnang != "Đăng xuất" && isset($_GET['mode'])){
+    if ($tenchucnang != "Đăng xuất" && isset($_GET['mode'])) {
         $href = $href . '&mode=' . $_GET['mode'];
-    }   
+    }
     $liItem = $liItem . "<a  href='" . $href . "'><li name='" . $nameChucnang . "'><i class='" . $icon . "'></i><span>" . $tenchucnang . "</span></li></a>";
 }
 echo ' 
@@ -131,4 +133,50 @@ echo '
         ' . $liItem . '
         </ul>
     ';
+function getMAQUYENtheoUSERNAME($USERNAME)
+{
+    require_once('./database/connectDatabase.php');
+    // Thực hiện kết nối đến cơ sở dữ liệu
 
+    $connection = new connectDatabase();
+
+    // Thực hiện truy vấn (ví dụ)
+    $query = "SELECT MAQUYEN FROM taikhoan WHERE USERNAME = '" . $USERNAME . "'"; // Truy vấn SQL của bạn
+    $result = $connection->executeQuery($query);
+    $MAQUYEN = null;
+    if ($row = $result->fetch_assoc()) {
+        $MAQUYEN = $row['MAQUYEN'];
+    }
+    $connection->disconnect();
+    return $MAQUYEN;
+    
+}
+function getCNtheoMAQUYEN($MAQUYEN)
+{
+    $chucnang = array();
+    //Include file chứa class connectDatabase
+    require_once('./database/connectDatabase.php');
+    // Thực hiện kết nối đến cơ sở dữ liệu
+
+    $connection = new connectDatabase();
+
+    // Thực hiện truy vấn (ví dụ)
+    $query = "SELECT DISTINCT TENCHUCNANG FROM chitietquyen_chucnang,chucnang where maquyen='" . $MAQUYEN . "'AND chitietquyen_chucnang.MACHUCNANG = chucnang.MACHUCNANG;"; // Truy vấn SQL của bạn
+    $result = $connection->executeQuery($query);
+
+    // Xử lý kết quả nếu cần
+    if ($result) {
+        // Thực hiện các thao tác với kết quả
+        while ($row = $result->fetch_assoc()) {
+
+            array_push($chucnang, $row['TENCHUCNANG']);
+        }
+    } else {
+        echo 'thất bại';
+        // Xử lý khi truy vấn thất bại
+    }
+
+    // Ngắt kết nối đến cơ sở dữ liệu khi đã xong
+    $connection->disconnect();
+    return $chucnang;
+}

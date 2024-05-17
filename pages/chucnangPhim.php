@@ -1,5 +1,5 @@
 <?php 
-$chucnang=$_GET['arrCN'];
+
 echo '
 <div class="chucnang_wrap" name="chucnangPhim">
         <ul class="chucnangcon_wrap">

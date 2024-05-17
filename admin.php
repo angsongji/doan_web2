@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['TenDN'])){
-    header('location:index.php');
+    header('location: ./index.php');
 }
 ?>
 
@@ -42,16 +42,16 @@ if(!isset($_SESSION['TenDN'])){
                 <?php require './pages/headeradmin.php' ?>
             </div>
             <?php
-            if (isset($_GET['page'])) {
-                echo '<div class="name_model" >Tìm kiếm</div>
-                    <form class="searchadmin" action="">
-                         ';
-                require "./pages/searchadmin.php";
-                echo ' 
-                    </form>';
-                // <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
-            }
-            ?>
+            // if (isset($_GET['page'])) {
+            //     echo '<div class="name_model" >Tìm kiếm</div>
+            //         <form class="searchadmin" action="">
+            //              ';
+            //     require "./pages/searchadmin.php";
+            //     echo ' 
+            //         </form>';
+            //     // <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
+            // }
+            ?> 
             <div id="content">
                 <?php
 
@@ -63,11 +63,11 @@ if(!isset($_SESSION['TenDN'])){
                 ?>
             </div>
             <div><?php
-                    if (isset($_GET['page'])) {
-                        echo '<span id="list_page">';
-                        require "./pages/list_page_admin.php";
-                        echo '</span>';
-                    }
+                    // if (isset($_GET['page'])) {
+                    //     echo '<span id="list_page">';
+                    //     require "./pages/list_page_admin.php";
+                    //     echo '</span>';
+                    // }
                     ?></div>
 
         </div>

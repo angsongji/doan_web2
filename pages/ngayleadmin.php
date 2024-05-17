@@ -1,5 +1,5 @@
 <?php 
-    require_once('../database/connectDatabase.php');
+    require_once('./database/connectDatabase.php');
     $conn = new connectDatabase;
 ?>
 <!DOCTYPE html>

@@ -113,11 +113,17 @@ foreach ($chucnang as $tenchucnang) {
         case "Đăng xuất":
             $nameChucnang = "dangxuat";
             $icon = "fa-regular fa-circle-left";
-            $href = "./";
+            // chay dong nay
+            // if(isset($_SESSION['TenDN'])){
+            //     unset($_SESSION['TenDN']);
+            // }
+            // header('location:./index.php');
+            $href = "admin.php?page=index";
             break;
     }
-    if ($tenchucnang != "Đăng xuất" && isset($_GET['mode']))
+    if ($tenchucnang != "Đăng xuất" && isset($_GET['mode'])){
         $href = $href . '&mode=' . $_GET['mode'];
+    }   
     $liItem = $liItem . "<a  href='" . $href . "'><li name='" . $nameChucnang . "'><i class='" . $icon . "'></i><span>" . $tenchucnang . "</span></li></a>";
 }
 echo ' 
@@ -125,6 +131,11 @@ echo '
         ' . $liItem . '
         </ul>
     ';
+
+    // if (isset($_POST['dangxuat'])) {
+    //     // include "./pages/logout.php";
+    //     echo "dddd";
+    // }
 /* echo '
             
         <ul>

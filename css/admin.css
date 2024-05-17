@@ -14,7 +14,8 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: rgb(232, 228, 228)/* color of the track */
+    background: var(--second_color)/* color of the track */
+
 }
 
 ::-webkit-scrollbar-thumb {
@@ -26,7 +27,7 @@
   
 a{
     text-decoration: none;
-    
+   
 }
 ul{
     list-style: none;
@@ -186,25 +187,27 @@ ul{
     width:98%;height: 100vh;background-color:white;
     margin: 10px 0 0 10px;
 }
-.searchadmin{
+#searchadmin{
     
     font-size: 15px;
+    padding: 0 20px;
     margin-left: 10px;
     height: 60px;
-    width: 98%;
+    width: fit-content;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 20px;
    background-color: white;
    box-shadow: 0 0 5px 0 gray;
    border-left: 4px solid var(--primary_color);
 }
-.searchadmin input{
+#searchadmin input{
     display: inline;
     border: 1px solid gray;/*sáng*/
     
     outline: none;
-    height: 20px;
+    
 }
 
 #searchPriceRange input{
@@ -232,6 +235,7 @@ ul{
     transform: scale(1.05);
 }
 #movies/*,#dichvu_wrap*/{
+    transform: translateY(45px);
     border-radius: 10px;
     width:98%;
     margin: 0 0 10px 10px;
@@ -317,7 +321,7 @@ ul{
 }
 .name_model{
    
-    font-weight: 600;width: 95%;
+    font-weight: 600;width: fit-content;
     padding: 10px 0 10px 20px;
    
 }
@@ -432,8 +436,8 @@ ul{
 
 #lichchieuphim_header{
    position: relative;
-   overflow: hidden; 
-
+   width: 100%;
+  overflow: hidden;
 }
 .lichchieuphim_header_btn{
     height: 100%;
@@ -453,7 +457,7 @@ ul{
     cursor: pointer;
 }
 
-.btn_right{
+#btn_right_Ngay{
     right:0;
 }
 
@@ -462,14 +466,25 @@ ul{
     height: fit-content;
     margin-top: 10px;
 }
+#lichchieuphim_daytime{
+    
+    width: 100%;
+}
 #lichchieuphim_daytime ul{
-    transform: translateX(0px);
+   
+  position: relative;
     display: flex;
-   width: calc(100% + 350px);
+   width: fit-content;
+   /* width: 100%; */
+   padding: 0;
+    margin: 0;
+}
+#lichchieuphim_daytime li span{
+    width: 60px;
 }
 #lichchieuphim_daytime li{
     border-radius:5px ;
-    width: 62px;
+    
     border: 1.3px solid var(--light-gray);
     color: var(--light-gray);
     margin: 10px 0 10px 10px;

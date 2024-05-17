@@ -25,7 +25,7 @@ if(!isset($_POST['MALICHCHIEU'])){
     $listSCandPCcuaphim=listPhimvaSuatchieucuaphimtheoMAPM($MAPM,$ngay);
         echo '
         <form action="./pages/deleteLichchieuphim.php" id="form_deleteLichchieuphim" method="POST" >
-            <div id="btn_exit_formAddLCP" onclick="hide_formAddLCP(2);"><i class="fa-solid fa-x"></i></div>
+            <div id="btn_exit_formAddLCP" name="'.$ngay.'" onclick="hide_formAddLCP(2);"><i class="fa-solid fa-x"></i></div>
             <input type="text" value="' . $ngay . '" disabled style="width:100px;text-align:center;">
             <h1 style=" color: var(--primary_color);">Xóa lịch chiếu phim</h1>
             
@@ -58,7 +58,7 @@ echo '</div>';
  if(is_array($malichchieu)){
     foreach($malichchieu as $malc)
     deleteInSQL( $malc);
-header("Location: ../admin.php?page=chucnangLichchieuphim");
+header("Location: ../admin.php?page=lichchieuphimadmin");
 exit;
  }else
  deleteInSQL($malichchieu);

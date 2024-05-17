@@ -1,64 +1,41 @@
 
-let quantityClickBtnChangeDayLichchieu = 0;
-function changeDay(i) {
-    let lichchieu_wrap = document.querySelector("#lichchieuphim_daytime ul");
-    switch (i.getAttribute('name')) {
-        case "btn_left":
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id', "");
-            quantityClickBtnChangeDayLichchieu++;
-            document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id', "lichchieuphim_selected");
-            lichchieu_wrap.style = 'transform:  translateX(calc(' + quantityClickBtnChangeDayLichchieu + '* 72px));';
-            if (quantityClickBtnChangeDayLichchieu == 0)
-                document.getElementsByClassName('lichchieuphim_header_btn ')[0].style = "display:none;";
-            else
-                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:flex;";
-            break;
-        default:
-
-            document.getElementsByClassName('lichchieuphim_header_btn ')[0].style = "display:flex;";
-
-
-            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"");
-            quantityClickBtnChangeDayLichchieu--;
-            // document.querySelectorAll("#lichchieuphim_daytime ul li")[Math.abs(-quantityClickBtnChangeDayLichchieu)].setAttribute('id',"lichchieuphim_selected");
-            let itemIsSelected = document.getElementById('lichchieuphim_selected');
-            let dayCurrent = itemIsSelected.getAttribute('name');
-            let arr_dayCurrent = dayCurrent.split('/');
-            arr_dayCurrent[2] = parseInt(arr_dayCurrent[2]) + 1;
-            let dayNew = arr_dayCurrent.join("/");
-
-            lichchieu_wrap.style = 'transform:  translateX(calc(' + quantityClickBtnChangeDayLichchieu + '* 72px));';
-
-            if (quantityClickBtnChangeDayLichchieu == -5)
-                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style = "display:none;";
-            else
-
-                document.getElementsByClassName('lichchieuphim_header_btn ')[1].style="display:flex;";
-                $.ajax({
-                    url: "./pages/lichchieuphimadmin.php", 
-                        type: "GET",
-                        data: {day: dayNew},
-                        success: function(response) {
-                            $("#content").html(response); // Thay đổi nội dung của #content
-                            // $('#unclick_behind_this_screen').css('display' , 'block');
-                            // $.ajax({
-                            //     url: "./js/admin.js",
-                            //     success: function(response) {
-                            //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
-                            //     },
-                            //     error: function(xhr, status, error) {
-                            //         // Xử lý lỗi nếu có
-                            //     }
-                            // });
-                        }
-                });
-// >>>>>>> 48d942de2c813df87924dce9b00ceedd48e3da5f
-            break;
+$('#lichchieuphim_wrap').ready(function(){
+    const divWrap_btnNgay = document.querySelector("#lichchieuphim_daytime ul");
+    let btnPrevNgay = document.getElementById("btn_left_Ngay");
+    let btnNextNgay = document.getElementById("btn_right_Ngay");
+    let index = 0; // Mỗi lần cuộn qua một ô
+    
+    if(btnNextNgay!=null){
+        btnNextNgay.addEventListener("click", () => {
+            let ngay = divWrap_btnNgay.querySelectorAll('li');
+            btnPrevNgay.style.display='flex';
+            
+            if(15+index<ngay.length){
+                index++;
+                divWrap_btnNgay.style.left='calc( -74px * '+index+')';
+                if(15+index>=ngay.length) btnNextNgay.style.display='none';
+            }
+        });
     }
-}
+    
+    if(btnPrevNgay!=null){
+        btnPrevNgay.addEventListener("click", () => {
+        
+            index--;
+            btnNextNgay.style.display='flex';
+            divWrap_btnNgay.style.left='calc( -74px * '+index+')';
+            if(index == 0) btnPrevNgay.style.display='none';
+            
+        });
+    }
+    
+});
+
+
+
 //add lich chieu phim
-$("#btn_add_lichchieuphim").ready(function(){
-    $("#btn_add_lichchieuphim").on('click',function(){
+function showAddFormLichchieuphim(){
+
         let n = btn_add_lichchieuphim.getAttribute('name');
         $('#unclick_behind_this_screen').css('display' , 'block');
         $.ajax({
@@ -69,9 +46,9 @@ $("#btn_add_lichchieuphim").ready(function(){
                 $("#lichchieuphim_wrap").append(response); 
                 $("#form_addLichchieuphim #btn_exit").on('click',function(){
                     
-                   
+                     $('#unclick_behind_this_screen').css('display' , 'none');
                    $('#form_addLichchieuphim').remove();
-                //    $('#unclick_behind_this_screen').css('display' , 'none');
+                
                });
                
                 
@@ -79,8 +56,10 @@ $("#btn_add_lichchieuphim").ready(function(){
         });
         
    
-    });
-});
+ 
+}
+    
+
 
 //end add lichhcieu phim
 
@@ -225,7 +204,7 @@ $('#movies').find('.movie').ready(function(){
     $('.movie').on('click',function(){
             let maphim = $(this).attr('name');
             $.ajax({
-                url: "./pages/chucnangPhim.php",
+                url: "./pages/moviesadmin.php",
                 type: "GET",
                 data: {MAPM: maphim},
                 success: function(response) {
@@ -323,7 +302,7 @@ $("#btn_add_phim").ready(function(){
         $.ajax({
             url: "./pages/addMovieadmin.php",
             success: function(response) {
-                $(".content_chucnangcon_wrap").append(response); 
+                $("#content").append(response); 
                 $("#form_addMovie #btn_exit").on('click',function(){
                     
                    $('#unclick_behind_this_screen').css('display' , 'none');
@@ -458,26 +437,26 @@ if(document.querySelector(".click_show_change_movie .fa-trash") != null){
 //end add phim
 
 
-$('.lichchieuphim_phim').ready(function () {
-    $('.lichchieuphim_phim').find('.edit_suatchieu').on('click', function () {
-        $('#change_lichchieuphim_phim').ready(function () {
-            $('#unclick_behind_this_screen').css('display', 'block');
-            $('#change_lichchieuphim_phim').css('display', 'flex');
-            $('.lichchieuphim_lichchieu').on('click', function () {
-                $('#hide_choose_new_suatchieu').css('display', 'none');
-                $('#div_choose_new_suatchieu').ready(function () {
-                    $('#div_choose_new_suatchieu').css('display', 'grid');
-                });
-            });
-            $('#exit_edit_suatchieu').on('click', function () {
-                $('#hide_choose_new_suatchieu').css('display', 'block');
-                $('#div_choose_new_suatchieu').css('display', 'none');
-                $('#unclick_behind_this_screen').css('display', 'none');
-                $('#change_lichchieuphim_phim').css('display', 'none');
-            });
-        });
-    });
-});
+
+    // $('.lichchieuphim_phim').find('.edit_suatchieu').on('click', function () {
+    //     $('#change_lichchieuphim_phim').ready(function () {
+    //         $('#unclick_behind_this_screen').css('display', 'block');
+    //         $('#change_lichchieuphim_phim').css('display', 'flex');
+    //         $('.lichchieuphim_lichchieu').on('click', function () {
+    //             $('#hide_choose_new_suatchieu').css('display', 'none');
+    //             $('#div_choose_new_suatchieu').ready(function () {
+    //                 $('#div_choose_new_suatchieu').css('display', 'grid');
+    //             });
+    //         });
+    //         $('#exit_edit_suatchieu').on('click', function () {
+    //             $('#hide_choose_new_suatchieu').css('display', 'block');
+    //             $('#div_choose_new_suatchieu').css('display', 'none');
+    //             $('#unclick_behind_this_screen').css('display', 'none');
+    //             $('#change_lichchieuphim_phim').css('display', 'none');
+    //         });
+    //     });
+    // });
+
 
 // ticket-history
 $('#history_ticket_wrap').ready(function () {
@@ -513,32 +492,24 @@ $('#history_ticket_wrap').ready(function () {
 // end ticket-history
 
 
-$("#lichchieuphim_content").ready(function(){
+
     $(".btn_changeDayLichchieuphim").on('click',function(){
         let day = $(this).attr('name');
-        
+        $('#lichchieuphim_selected').attr('id','');
+        $(this).attr('id','lichchieuphim_selected');
         $.ajax({
             url: "./pages/lichchieuphimadmin.php", 
                 type: "GET",
                 data: {day: day},
                 success: function(response) {
-
-                    $("#content").html(response); // Thay đổi nội dung của #content
+                    document.getElementById('lichchieuphim_content').outerHTML=response;
+                    // $("#lichchieuphim_content").html(response); // Thay đổi nội dung của #content
                     // $('#unclick_behind_this_screen').css('display' , 'block');
-                    // $.ajax({
-                    //     url: "./js/admin.js",
-                    //     success: function(response) {
-                    //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
-                    //     },
-                    //     error: function(xhr, status, error) {
-                    //         // Xử lý lỗi nếu có
-                    //     }
-                    // });
+                    
                 }
             });
          
     });
-});
 
 function hide_formAddLCP(ID){
     document.getElementById('unclick_behind_this_screen').style="display:none;";
@@ -547,49 +518,65 @@ function hide_formAddLCP(ID){
             document.getElementById('form_addLichchieuphim').outerHTML='';
             break;
         case 2:
-            window.location.replace("../admin.php?page=chucnangLichchieuphim");
+          
+            let day = document.getElementById("btn_exit_formAddLCP").getAttribute('name');
+            
+            $.ajax({
+                url: "./pages/lichchieuphimadmin.php", 
+                    type: "GET",
+                    data: {day: day},
+                    success: function(response) {
+              $('#form_deleteLichchieuphim').remove();
+                        document.getElementById('lichchieuphim_content').outerHTML=response;
+                        // $("#lichchieuphim_content").html(response); // Thay đổi nội dung của #content
+                        // $('#unclick_behind_this_screen').css('display' , 'block');
+                        
+                    }
+                });
             break;
     }
   
 }
 
-$('.edit_suatchieu').ready(function () {
-    $('.lichchieuphim_phim').find('.edit_suatchieu').on('click', function () {
-
-        let MAPM = $(this).attr('name');
+function showUpdateFormLichchieuphim(div){
+    let MAPM = div.getAttribute('name');
       
-            $('#unclick_behind_this_screen').css('display', 'block');
-            let ngay = document.getElementById('btn_add_lichchieuphim').getAttribute('name');
-            $.ajax({
-                url: "./pages/updateLichchieuphimadmin.php",
-                type: "POST",
-                data: { ngay: ngay,MAPM: MAPM },
-                success: function (response) {
-                    $("#lichchieuphim_wrap").append(response);
-                    $('#change_lichchieuphim_phim .lichchieuphim_lichchieu').on('click', function () {
-                        $('#selectChangeSC').attr('id','');
-                        $(this).attr('id','selectChangeSC');
-                        let masc=$(this).attr('name');
-                        let malichchieu= $(this).find('input').attr('value');
-                        $.ajax({
-                            url: "./pages/updateLichchieuphimadmin.php",
-                            type: "POST",
-                            data: { ngay: ngay,MAPM: MAPM ,selectSC: masc,malichchieu: malichchieu},
-                            success: function (response) {
-                                $("#change_lichchieuphim_phim #hide_choose_new_suatchieu").html(response);
-                                
-                            }
-                        });            
-                                    
-                        });
-    
-                },
-                error: function (xhr, status, error) {
-                    alert(error);
-                }
-            });
+    $('#unclick_behind_this_screen').css('display', 'block');
+    let ngay = document.getElementById('btn_add_lichchieuphim').getAttribute('name');
+    $.ajax({
+        url: "./pages/updateLichchieuphimadmin.php",
+        type: "POST",
+        data: { ngay: ngay,MAPM: MAPM },
+        success: function (response) {
+            $("#lichchieuphim_wrap").append(response);
+            $('#change_lichchieuphim_phim .lichchieuphim_lichchieu').on('click', function () {
+                $('#selectChangeSC').attr('id','');
+                $(this).attr('id','selectChangeSC');
+                let masc=$(this).attr('name');
+                let malichchieu= $(this).find('input').attr('value');
+                $.ajax({
+                    url: "./pages/updateLichchieuphimadmin.php",
+                    type: "POST",
+                    data: { ngay: ngay,MAPM: MAPM ,selectSC: masc,malichchieu: malichchieu},
+                    success: function (response) {
+                        $("#change_lichchieuphim_phim #hide_choose_new_suatchieu").html(response);
+                        
+                    }
+                });            
+                            
+                });
+
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
     });
-});
+}
+
+
+       
+
+
 $('#change_lichchieuphim_phim .lichchieuphim_lichchieu').on('click', function () {
     $('#selectChangeSC').attr('id','');
     $(this).attr('id','selectChangeSC');
@@ -656,7 +643,21 @@ function updateLCP(){
 }
 function hide_formUpdateLCP(){
     document.getElementById('unclick_behind_this_screen').style="display:none;";
-    window.location.replace("../admin.php?page=chucnangLichchieuphim");
+    let day = document.getElementById("exit_edit_suatchieu").getAttribute('name');
+            
+            $.ajax({
+                url: "./pages/lichchieuphimadmin.php", 
+                    type: "GET",
+                    data: {day: day},
+                    success: function(response) {
+              $('#change_lichchieuphim_phim').remove();
+                        document.getElementById('lichchieuphim_content').outerHTML=response;
+                        // $("#lichchieuphim_content").html(response); // Thay đổi nội dung của #content
+                        // $('#unclick_behind_this_screen').css('display' , 'block');
+                        
+                    }
+                });
+            
 }
 function showListSCcothechonUpdate(div){
     
@@ -704,30 +705,7 @@ function showListSCcothechonUpdate(div){
 }
 
 
-$("#lichchieuphim_content").ready(function () {
-    $(".btn_changeDayLichchieuphim").on('click', function () {
-        let day = $(this).attr('name');
 
-        $.ajax({
-            url: "./pages/lichchieuphimadmin.php",
-            type: "GET",
-            data: { day: day },
-            success: function (response) {
-                $("#content").html(response); // Thay đổi nội dung của #content
-                // $('#unclick_behind_this_screen').css('display' , 'block');
-                // $.ajax({
-                //     url: "./js/admin.js",
-                //     success: function(response) {
-                //         // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
-                //     },
-                //     error: function(xhr, status, error) {
-                //         // Xử lý lỗi nếu có
-                //     }
-                // });
-            }
-        });
-    });
-});
 
 //user
 $('#users_wrap').ready(function () {
@@ -990,7 +968,7 @@ function deletelichchieuphim(div){
         success: function (response) {
             let div_scvapc= document.getElementsByClassName('wrap_deleteSuatchieuandPhC');
             if(div_scvapc.length==0){
-                window.location.replace("../admin.php?page=chucnangLichchieuphim");
+                window.location.replace("../admin.php?page=lichchieuphimadmin");
             }
          
         }
@@ -998,4 +976,26 @@ function deletelichchieuphim(div){
 
     });
 
+}
+if( document.getElementById("searchadmin") != null){
+    let searchadmin = document.getElementById("searchadmin");
+    searchadmin.addEventListener('submit', function (event) {
+        alert( searchadmin.getAttribute('name'));
+        event.preventDefault();
+        let formData = new FormData(searchadmin);
+        let xhr = new XMLHttpRequest();
+    
+        xhr.open(searchadmin.method, searchadmin.action, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                // Xử lý phản hồi từ server nếu cần
+                alert(xhr.responseText);
+                document.getElementById('content').innerHTML=xhr.responseText;
+                // document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+            }
+        };
+        formData.append('chucnang', searchadmin.getAttribute('name'));
+        xhr.send(formData);
+    
+    });
 }

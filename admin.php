@@ -42,17 +42,21 @@ if(!isset($_SESSION['TenDN'])){
                 <?php require './pages/headeradmin.php' ?>
             </div>
             <?php
-            // if (isset($_GET['page'])) {
-            //     echo '<div class="name_model" >Tìm kiếm</div>
-            //         <form class="searchadmin" action="">
-            //              ';
-            //     require "./pages/searchadmin.php";
-            //     echo ' 
-            //         </form>';
-            //     // <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
-            // }
+            if (isset($_GET['page'])) {
+                        switch($_GET['page']){
+                            case "moviesadmin":
+                            case "lichchieuphimadmin":
+                                echo '<div class="name_model" >Tìm kiếm</div>';
+                                require "./pages/searchadmin.php";
+                                break;
+                        }
+                        
+                       
+                
+            }
+           
             ?> 
-            <div id="content">
+            <div id="content" style="padding-top: 10px;">
                 <?php
 
                 if (isset($_GET['page'])) {

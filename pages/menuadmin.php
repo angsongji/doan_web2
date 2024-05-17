@@ -113,21 +113,22 @@ foreach ($chucnang as $tenchucnang) {
         case "Đăng xuất":
             $nameChucnang = "dangxuat";
             $icon = "fa-regular fa-circle-left";
-            $href = "admin.php?page=index";//quay ve trang index chỗ này
-            break;
-        default:
-            $flag=false;
+            // chay dong nay
+            // if(isset($_SESSION['TenDN'])){
+            //     unset($_SESSION['TenDN']);
+            // }
+            // header('location:./index.php');
+            $href = "admin.php?page=index";
             break;
     }
-    if($flag){
-        if ($tenchucnang != "Đăng xuất" && isset($_GET['mode']))
-            $href = $href . '&mode=' . $_GET['mode'];
-        $liItem = $liItem . "<a  href='" . $href . "'><li name='" . $nameChucnang . "'><i class='" . $icon . "'></i><span>" . $tenchucnang . "</span></li></a>";
-    }
-   
+    if ($tenchucnang != "Đăng xuất" && isset($_GET['mode'])){
+        $href = $href . '&mode=' . $_GET['mode'];
+    }   
+    $liItem = $liItem . "<a  href='" . $href . "'><li name='" . $nameChucnang . "'><i class='" . $icon . "'></i><span>" . $tenchucnang . "</span></li></a>";
 }
 echo ' 
         <ul>
         ' . $liItem . '
         </ul>
     ';
+

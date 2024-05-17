@@ -4,14 +4,19 @@ if(isset($_SESSION['TenDN'])){
     $tenDN = $_SESSION['TenDN'];
     require_once('./database/connectDatabase.php');
 $conn = new connectDatabase();
-$sql = "SELECT NAMEANH FROM taikhoan WHERE USERNAME = '$tenDN' ";
+$sql = "SELECT NAMEANH, MAQUYEN FROM taikhoan WHERE USERNAME = '$tenDN' ";
 $result = $conn->executeQuery($sql);
-
+$maquyen="";
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $tenAnh = $row['NAMEANH'];
+    $maquyen = $row['MAQUYEN'];
+    
 } else {
     echo "<script>console.log('Chua dang nhap')</script>";
+}
+if($maquyen!="QKH"){
+    header('Location: http://localhost:8080/doan_web2/admin.php');
 }
 
 }

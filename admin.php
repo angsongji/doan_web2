@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['TenDN'])){
+    header('location:index.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,10 +26,10 @@
 </head>
 
 <body style="margin: 0;">
-    <?php 
-        if (isset($_GET['page']) && $_GET['page'] == "index") {
-            echo "Quay về index sau khi ấn đăng xuất";
-            header("Location: ./");
+    <?php
+        if(isset($_GET['page']) && $_GET['page']=="index"){
+            include "./pages/logout.php";
+            header("Location: ./index.php");
             exit;
         }
     ?>

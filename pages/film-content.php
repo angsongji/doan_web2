@@ -59,8 +59,12 @@
             <?php
                 while( $rowDV = mysqli_fetch_assoc($filmContentQuery2) ) {
             ?>
-                <div>
-                    <?php echo $rowDV['TENDV'] ?>
+                <div style="border: none">
+                    <figure>
+                        <img src="./img/<?php echo $rowDV['NAMEANH'] ?>" alt="Elephant at sunset" 
+                            style="width: 100px;height: 100px; border: 1px dotted black; border-radius: 50%"/>
+                        <figcaption style="text-align: center;"><?php echo $rowDV['TENDV'] ?></figcaption>
+                    </figure>
                 </div>     
             <?php
                 }

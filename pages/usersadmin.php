@@ -46,7 +46,7 @@ function del(){
         require_once("./database/connectDatabase.php");
     }
     $conn = new connectDatabase();
-    $username = $conn->escapeString($_GET['userdel']);
+    $username = $_GET['userdel'];
     $sql = "UPDATE  taikhoan SET TRANGTHAI = 2 WHERE USERNAME='$username'";
     $conn->executeQuery($sql);
 }

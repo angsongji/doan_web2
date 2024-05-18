@@ -80,9 +80,9 @@
                     <span class="error" style="margin-left: 81px;">
                     <?php
                         if(isset($_GET['errorTenDN'])&&$_GET['errorTenDN']=='empty'){
-                            echo "Chua nhap ten DN";
+                            echo "Không được để thông tin trống.";
                         }else if(isset($_GET['errorTenDN'])&&$_GET['errorTenDN']=='wrong'){
-                            echo "Co the ten dn chua dung";
+                            echo "Tên đăng nhập không tồn tại hoặc không đúng.";
                         }
                     ?>
                     </span>
@@ -102,9 +102,9 @@
                 <span class="error" style="margin-left: 81px;">
                 <?php
                         if(isset($_GET['errorPass'])&&$_GET['errorPass']=='empty'){
-                            echo "Chua nhap pass";
+                            echo "Không được để thông tin trống.";
                         }else if(isset($_GET['errorPass'])&&$_GET['errorPass']=='wrong'){
-                            echo "Co the pass chua dung";
+                            echo "Mật khẩu có thể chưa đúng.";
                         }
                     ?>
                     </span>

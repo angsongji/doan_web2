@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['TenDN'])){
+    header('location: ./index.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +26,13 @@
 </head>
 
 <body style="margin: 0;">
+    <?php
+        if(isset($_GET['page']) && $_GET['page']=="index"){
+            include "./pages/logout.php";
+            header("Location: ./index.php");
+            exit;
+        }
+    ?>
     <div class="wrapadmin">
         <nav class="menuadmin">
             <?php require './pages/menuadmin.php' ?> 
@@ -28,16 +43,20 @@
             </div>
             <?php
             if (isset($_GET['page'])) {
-                echo '<div class="name_model" >Tìm kiếm</div>
-                    <form class="searchadmin" action="">
-                         ';
-                require "./pages/searchadmin.php";
-                echo ' 
-                    </form>';
-                // <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
+                        switch($_GET['page']){
+                            case "moviesadmin":
+                            case "lichchieuphimadmin":
+                                echo '<div class="name_model" >Tìm kiếm</div>';
+                                require "./pages/searchadmin.php";
+                                break;
+                        }
+                        
+                       
+                
             }
-            ?>
-            <div id="content">
+           
+            ?> 
+            <div id="content" style="padding-top: 10px;">
                 <?php
 
                 if (isset($_GET['page'])) {
@@ -48,16 +67,23 @@
                 ?>
             </div>
             <div><?php
-                    if (isset($_GET['page'])) {
-                        echo '<span id="list_page">';
-                        require "./pages/list_page_admin.php";
-                        echo '</span>';
-                    }
+                    // if (isset($_GET['page'])) {
+                    //     echo '<span id="list_page">';
+                    //     require "./pages/list_page_admin.php";
+                    //     echo '</span>';
+                    // }
                     ?></div>
 
         </div>
         <div id="unclick_behind_this_screen"></div>
-        <script src="./js/admin.js"></script>
+        <?php
+            if (isset($_GET['page'])&&$_GET['page']=="phanquyenadmin") {
+                echo '<script src="./js/phanquyenjs.js"></script>';
+            } else {
+                echo '<script src="./js/admin.js"></script>';
+            }
+        ?>
+        
 </body>
 
 </html>

@@ -177,6 +177,12 @@ html{
 
 .product-item__category-name {
     font-size: 1.2rem;
+    line-height: 1.4rem;
+    height: 1.4rem;
+    overflow: hidden;
+    max-width: 194px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: #777;
     transition: all 0.1s linear;
 }
@@ -505,5 +511,34 @@ html{
     height: 150px;
     color: #a3a3a3;
     font-size: 1.8rem;
+}
+
+/* phan trang css */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination__item {
+    font-size: 1.3rem;
+    margin: 0 5px;
+    padding: 7px 12px;
+    cursor: pointer;
+    border: solid 1px #d5d5d5;
+    background-color: #f5f5f5;
+    border-radius: 2px;
+    color: #757575;
+}
+
+.pagination__item.active {
+    font-weight: 700;
+    color: #404040;
+    background-color: #fff;
+}
+
+.pagination__item:hover {
+    background-color: #f0f0f0;
 }
 

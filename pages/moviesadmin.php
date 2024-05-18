@@ -1,4 +1,5 @@
 <?php
+
 $phim = getListMovie();
 echo '<div id="movies" >';
 echo '<div id="btn_add_phim" name="">Thêm phim <i class="fa-solid fa-plus" style="padding-left:10px;"></i></div>';
@@ -219,8 +220,12 @@ if (isset($_GET['MAPM'])) {
 }
 function getListMovie()
 {
+    if(isset($_GET['valueName']))  $name=$_GET['valueName'];
+    if(isset($_GET['start_date'])) $startDate=$_GET['start_date'];
+    if(isset($_GET['end_date']))   $endDate=$_GET['end_date'];
+    if(isset($_GET['valueTheloai'])) $theloai=$_GET['valueTheloai'];
     $phim = array();
-    if (isset($_GET['pagecon']) || isset($_GET['MAPM']))
+    if(file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
@@ -229,7 +234,10 @@ function getListMovie()
     $connection = new connectDatabase();
 
     // Thực hiện truy vấn (ví dụ)
+    if(!isset($name))
     $query = "SELECT * FROM phim "; // Truy vấn SQL của bạn
+    else
+    $query = "SELECT * FROM phim,chitietphim_theloai WHERE phim.MAPM = chitietphim_theloai.MAPM AND TENPHIM LIKE '%".$name."%' OR MATHELOAI='%".$theloai."%' OR NGAYCHIEU BETWEEN '%".$startDate."%' AND '%".$endDate."%'";
     $result = $connection->executeQuery($query);
 
     // Xử lý kết quả nếu cần
@@ -248,7 +256,10 @@ function getListMovie()
 }
 function getListFullTheloai(){
     $theloaiofphim = array();
-    require_once('../database/connectDatabase.php');
+    if(file_exists('../database/connectDatabase.php'))
+        require_once('../database/connectDatabase.php');
+    else
+        require_once('./database/connectDatabase.php');
     $connection = new connectDatabase();
 
     // Thực hiện truy vấn (ví dụ)
@@ -271,10 +282,10 @@ function getListFullTheloai(){
 function getListTheloai($MAPM)
 {
     $theloaiofphim = array();
-    if (isset($_GET['pagecon']) || isset($_GET['MAPM']))
-        require_once('../database/connectDatabase.php');
-    else
-        require_once('./database/connectDatabase.php');
+    if(file_exists('../database/connectDatabase.php'))
+    require_once('../database/connectDatabase.php');
+else
+    require_once('./database/connectDatabase.php');
     // Thực hiện kết nối đến cơ sở dữ liệu
 
     $connection = new connectDatabase();
@@ -298,7 +309,10 @@ function getListTheloai($MAPM)
 }
 function getListFullDienvien(){
     $dienvien = array();
-    require_once('../database/connectDatabase.php');
+    if(file_exists('../database/connectDatabase.php'))
+        require_once('../database/connectDatabase.php');
+    else
+        require_once('./database/connectDatabase.php');
     $connection = new connectDatabase();
 
     // Thực hiện truy vấn (ví dụ)
@@ -321,7 +335,7 @@ function getListFullDienvien(){
 function getListDienvien($MAPM)
 {
     $dienvien = array();
-    if (isset($_GET['pagecon']) || isset($_GET['MAPM']))
+    if(file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');

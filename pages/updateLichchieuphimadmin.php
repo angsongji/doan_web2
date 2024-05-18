@@ -98,7 +98,7 @@
      }
     
     echo '</div>
-       <span class="edit_suatchieu" id="exit_edit_suatchieu" style="cursor:pointer;" onclick="hide_formUpdateLCP();"><i class="fa-solid fa-x"></i></span>
+       <span class="edit_suatchieu" id="exit_edit_suatchieu" name="'.$ngay.'" style="cursor:pointer;" onclick="hide_formUpdateLCP();"><i class="fa-solid fa-x"></i></span>
 </form>';
     }else{
         $MASCluachon=$_POST['selectSC'];

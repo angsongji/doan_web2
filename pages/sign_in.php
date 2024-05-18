@@ -10,9 +10,9 @@
                     </div>
                     <span class="error"><?php 
                         if(isset($_GET['errorName'])&&$_GET['errorName']=='empty'){
-                            echo 'Không được để trống thông tin';
+                            echo 'Không được để thông tin trống.';
                         }else if(isset($_GET['errorName'])&&$_GET['errorName']=='wrong'){
-                            echo 'Khong dc nhap so va ky tu dac biet nha con cho';
+                            echo 'Tên không được có ký tự đặc biệt hoặc số.';
                         }?> 
 
                     </span>
@@ -23,11 +23,11 @@
                     </div>
                     <span class="error"><?php 
                         if(isset($_GET['errorEmail'])&&$_GET['errorEmail']=='empty'){
-                            echo 'Không được để trống thông tin';
+                            echo 'Không được để thông tin trống.';
                         }else if(isset($_GET['errorEmail'])&&$_GET['errorEmail']=='wrong'){
-                            echo 'Email sai!';
+                            echo 'Email không hợp lệ (vd: abc@gmail.com)';
                         }else if(isset($_GET['errorEmail'])&&$_GET['errorEmail']=='trung'){
-                            echo 'Email trung!';
+                            echo 'Email đã tồn tại.';
                         }?> 
 
                     </span>
@@ -38,11 +38,11 @@
                     </div>
                     <span class="error"><?php 
                         if(isset($_GET['errorName_account'])&&$_GET['errorName_account']=='empty'){
-                            echo 'Không được để trống thông tin';
+                            echo 'Không được để thông tin trống.';
                         }else if(isset($_GET['errorName_account'])&&$_GET['errorName_account']=='wrong'){
-                            echo 'Ten Dang nhap sai!';
+                            echo 'Tên đăng nhập phải chứa ít nhất một chữ cái in hoa, một số và có ít nhất 6 ký tự.';
                         }else if(isset($_GET['errorName_account'])&&$_GET['errorName_account']=='trung'){
-                            echo 'Ten bi trung roi con cho!';
+                            echo 'Tên đăng nhập đã tồn tại.';
                         }?>
                     </span>
                 </div>
@@ -55,9 +55,9 @@
                     </div>
                     <span class="error"><?php 
                         if(isset($_GET['errorPassword'])&&$_GET['errorPassword']=='empty'){
-                            echo 'Không được để trống thông tin';
+                            echo 'Không được để thông tin trống.';
                         }else if(isset($_GET['errorPassword'])&&$_GET['errorPassword']=='wrong'){
-                            echo 'Password sai!';
+                            echo 'Mật khẩu có có ít nhất 8 ký tự.';
                         }?> 
                     </span>
                 </div>
@@ -71,11 +71,11 @@
                     </div>
                     <span class="error"><?php 
                         if(isset($_GET['errorRe_password'])&&$_GET['errorRe_password']=='emptyPass'){
-                            echo 'Password chưa được nhập';
+                            echo 'Bạn chưa nhập mật khẩu.';
                         }else if(isset($_GET['errorRe_password'])&&$_GET['errorRe_password']=='empty'){
-                            echo 'Không được để trống thông tin';
+                            echo 'Không được để thông tin trống.';
                         }else if(isset($_GET['errorRe_password'])&&$_GET['errorRe_password']=='wrong'){
-                            echo 'Nhap lai Password sai!';
+                            echo 'Mật khẩu không trùng khớp.';
                         }?> 
                     </span>
                 </div>

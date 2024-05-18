@@ -84,7 +84,22 @@
     height: 1000px; /* Chiều cao lớn hơn */
     /* Các thuộc tính khác */
 }
-        
+        .maPhongChieu, .maLoaiGhe, .stt, .hangGhe {
+            float: left;
+        }
+        .maPhongChieu {
+            width: 17%;
+        }
+        .maLoaiGhe {
+            width: 14%;
+        }
+        .stt {
+            width: 12%;
+        }
+        .hangGhe {
+            width: 12%;
+        }
+
     </style>
 </head>
 <body>
@@ -357,44 +372,123 @@
         <div class="box1">
             <button class="btn btn-primary themGhe" data-toggle="modal" data-target="#addGheModal">Thêm</button>
         </div>
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Mã Phòng Chiếu</th>
-                    <th>Mã Loại Ghế</th>
-                    <th>Số Thứ Tự</th>
-                    <th>Hàng Ghế</th>
-                    <th>Trạng Thái</th>
-                    <th>Mã Ghế</th>
-                    <th>Cập Nhật</th>
-                    <th>Xóa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    $query = "SELECT * FROM ghe ORDER BY STT, MAPHONGCHIEU, HANGGHE, MAGHE";
-                    $result = $conn->executeQuery($query);
-                    if(!$result) {
-                        echo 'failed';
-                    } else {
-                        while($row = mysqli_fetch_assoc($result)) {
-                            ?>
-                            <tr>
-                                <td><?php echo $row['MAPHONGCHIEU']; ?></td>
-                                <td><?php echo $row['MALOAIGHE']; ?></td>
-                                <td><?php echo $row['STT']; ?></td>
-                                <td><?php echo $row['HANGGHE']; ?></td>
-                                <td><?php echo $row['TRANGTHAI']; ?></td>
-                                <td><?php echo $row['MAGHE'] ?></td>
-                                <td><button class="btn btn-success" onclick="openEditGheForm('<?php echo $row['MAPHONGCHIEU']; ?>', '<?php echo $row['MALOAIGHE']; ?>', '<?php echo $row['STT']; ?>', '<?php echo $row['HANGGHE']; ?>', '<?php echo $row['TRANGTHAI']; ?>', '<?php echo $row['MAGHE']; ?>')">Cập Nhật</button></td>
-                                <td><a href="./pages/deleteGhe.php?id=<?php echo $row['MAGHE']; ?>" class="btn btn-danger">Xóa</a></td>
-                            </tr>
-                            <?php
-                        }
+        <div class="maPhongChieu">
+            <label for="maPhongChieu">Mã Phòng Chiếu</label>
+            <?php 
+                $query = "SELECT MAPHONGCHIEU, TENPHONGCHIEU FROM phongchieu";
+                $result = $conn->executeQuery($query);
+                if(!$result) {
+                    echo 'Failed';
+                } else {
+                    echo '<select class="form-control" name="maPhongChieu" id="maPhongChieu">';
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo '<option value="' . $row['MAPHONGCHIEU'] . '">' . $row['TENPHONGCHIEU'] . '</option>';
                     }
-                ?>
-            </tbody>
-        </table>
+                    echo '</select>';
+                }
+            ?>
+        </div>
+
+        <div class="maLoaiGhe">
+            <label for="maLoaiGhe">Mã Loại Ghế</label>
+            <?php 
+                $query = "SELECT MALOAIGHE, TENLOAIGHE FROM loaighe";
+                $result = $conn->executeQuery($query);
+                if(!$result) {
+                    echo 'Failed';
+                } else {
+                    echo '<select class="form-control" name="maLoaiGhe" id="maLoaiGhe">';
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo '<option value="' . $row['MALOAIGHE'] . '">' . $row['TENLOAIGHE'] . '</option>';
+                    }
+                    echo '</select>';
+                }
+            ?>
+        </div>
+
+        <div class="stt">
+            <label for="stt">Số Thứ Tự</label>
+            <?php 
+                $query = "SELECT DISTINCT STT FROM ghe ORDER BY STT";
+                $result = $conn->executeQuery($query);
+                if(!$result) {
+                    echo 'Failed';
+                } else {
+                    echo '<select class="form-control" name="stt" id="stt">';
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo '<option value="' . $row['STT'] . '">' . $row['STT'] . '</option>';
+                    }
+                    echo '</select>';
+                }
+            ?>
+        </div>
+
+        <div class="hangGhe">
+            <label for="hangGhe">Hàng Ghế</label>
+            <?php 
+                $query = "SELECT DISTINCT HANGGHE FROM ghe ORDER BY HANGGHE";
+                $result = $conn->executeQuery($query);
+                if(!$result) {
+                    echo 'Failed';
+                } else {
+                    echo '<select class="form-control" name="hangGhe" id="hangGhe">';
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo '<option value="' . $row['HANGGHE'] . '">' . $row['HANGGHE'] . '</option>';
+                    }
+                    echo '</select>';
+                }
+            ?>
+        </div>
+
+
+        <!-- Nút Lọc -->
+        <div class="filterButton">
+            <button id="filterButton" class="btn btn-primary">Lọc</button>
+            <button id="showAllButton" class="btn btn-primary">Hiển thị tất cả</button>
+        </div>
+        
+        <!-- Bảng kết quả -->
+        <div id="resultTable">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã Phòng Chiếu</th>
+                        <th>Mã Loại Ghế</th>
+                        <th>Số Thứ Tự</th>
+                        <th>Hàng Ghế</th>
+                        <th>Trạng Thái</th>
+                        <th>Mã Ghế</th>
+                        <th>Cập Nhật</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $query = "SELECT * FROM ghe ORDER BY STT, MAPHONGCHIEU, HANGGHE, MAGHE";
+                        $result = $conn->executeQuery($query);
+                        if(!$result) {
+                            echo 'failed';
+                        } else {
+                            while($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row['MAPHONGCHIEU']; ?></td>
+                                    <td><?php echo $row['MALOAIGHE']; ?></td>
+                                    <td><?php echo $row['STT']; ?></td>
+                                    <td><?php echo $row['HANGGHE']; ?></td>
+                                    <td><?php echo $row['TRANGTHAI']; ?></td>
+                                    <td><?php echo $row['MAGHE'] ?></td>
+                                    <td><button class="btn btn-success" onclick="openEditGheForm('<?php echo $row['MAPHONGCHIEU']; ?>', '<?php echo $row['MALOAIGHE']; ?>', '<?php echo $row['STT']; ?>', '<?php echo $row['HANGGHE']; ?>', '<?php echo $row['TRANGTHAI']; ?>', '<?php echo $row['MAGHE']; ?>')">Cập Nhật</button></td>
+                                    <td><a href="./pages/deleteGhe.php?id=<?php echo $row['MAGHE']; ?>" class="btn btn-danger">Xóa</a></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        
 
         <!-- Form thêm ghế -->
         <form id="themGhe" action="./pages/insertGhe.php"  method="post">
@@ -886,60 +980,60 @@ function validateSuaPhongChieuForm() {
     return isValid;
 }
 
-document.getElementById("suaPhongChieu").onsubmit = function() {
-    return validateSuaPhongChieuForm();
-};
+    document.getElementById("suaPhongChieu").onsubmit = function() {
+        return validateSuaPhongChieuForm();
+    };
 
-document.getElementsByName("maphongchieu")[0].oninput = function() {
-    var maPhongChieuError = document.getElementById("them_maphongchieuError");
-    if (this.value.trim() !== "") {
-        maPhongChieuError.innerHTML = "";
-    }
-    else {
-        maPhongChieuError.innerHTML = "Vui lòng điền mã phòng chiếu";
-    }
-};
+    document.getElementsByName("maphongchieu")[0].oninput = function() {
+        var maPhongChieuError = document.getElementById("them_maphongchieuError");
+        if (this.value.trim() !== "") {
+            maPhongChieuError.innerHTML = "";
+        }
+        else {
+            maPhongChieuError.innerHTML = "Vui lòng điền mã phòng chiếu";
+        }
+    };
 
-document.getElementsByName("tenphongchieu")[0].oninput = function() {
-    var tenPhongChieuError = document.getElementById("them_tenPhongChieuError");
-    if (this.value.trim() !== "") {
-        tenPhongChieuError.innerHTML = "";
-    }
-    else {
-        tenPhongChieuError.innerHTML = "Vui lòng điền tên phòng chiếu";
-    }
-};
+    document.getElementsByName("tenphongchieu")[0].oninput = function() {
+        var tenPhongChieuError = document.getElementById("them_tenPhongChieuError");
+        if (this.value.trim() !== "") {
+            tenPhongChieuError.innerHTML = "";
+        }
+        else {
+            tenPhongChieuError.innerHTML = "Vui lòng điền tên phòng chiếu";
+        }
+    };
 
-document.getElementsByName("soghe")[0].oninput = function() {
-    var soGheError = document.getElementById("them_soGheError");
-    if (this.value.trim() !== "") {
-        soGheError.innerHTML = "";
-    }
-    else {
-        soGheError.innerHTML = "Vui lòng điền số ghế";
-    }
-};
+    document.getElementsByName("soghe")[0].oninput = function() {
+        var soGheError = document.getElementById("them_soGheError");
+        if (this.value.trim() !== "") {
+            soGheError.innerHTML = "";
+        }
+        else {
+            soGheError.innerHTML = "Vui lòng điền số ghế";
+        }
+    };
 
 
-document.getElementById("edit_tenphongchieu").oninput = function() {
-    var tenPhongChieuError = document.getElementById("edit_tenPhongChieuError");
-    if (this.value.trim() !== "") {
-        tenPhongChieuError.innerHTML = "";
-    }
-    else {
-        tenPhongChieuError.innerHTML = "Vui lòng điền tên phòng chiếu";
-    }
-};
+    document.getElementById("edit_tenphongchieu").oninput = function() {
+        var tenPhongChieuError = document.getElementById("edit_tenPhongChieuError");
+        if (this.value.trim() !== "") {
+            tenPhongChieuError.innerHTML = "";
+        }
+        else {
+            tenPhongChieuError.innerHTML = "Vui lòng điền tên phòng chiếu";
+        }
+    };
 
-document.getElementById("edit_soghe").oninput = function() {
-    var soGheError = document.getElementById("edit_soGheError");
-    if (this.value.trim() !== "") {
-        soGheError.innerHTML = "";
-    }
-    else {
-        soGheError.innerHTML = "Vui lòng điền số ghế";
-    }
-};
+    document.getElementById("edit_soghe").oninput = function() {
+        var soGheError = document.getElementById("edit_soGheError");
+        if (this.value.trim() !== "") {
+            soGheError.innerHTML = "";
+        }
+        else {
+            soGheError.innerHTML = "Vui lòng điền số ghế";
+        }
+    };
 
 
 
@@ -1007,9 +1101,8 @@ document.getElementById("edit_soghe").oninput = function() {
         var modalContent = $('.modal-content');
         var windowHeight = $(window).height();
         var modalHeight = modalContent.height();
-        var modalMargin = 60; // margin và padding mặc định của modal
+        var modalMargin = 60;
 
-        // Kiểm tra nếu nội dung modal vượt quá chiều cao của cửa sổ
         if (modalHeight + modalMargin > windowHeight) {
             var newModalHeight = windowHeight - modalMargin;
             modalContent.css('max-height', newModalHeight);
@@ -1025,18 +1118,37 @@ document.getElementById("edit_soghe").oninput = function() {
     });
 
 
+    // Lọc ghế
+    document.getElementById('filterButton').addEventListener('click', function() {
+        var maPhongChieu = document.getElementById('maPhongChieu').value;
+        var maLoaiGhe = document.getElementById('maLoaiGhe').value;
+        var stt = document.getElementById('stt').value;
+        var hangGhe = document.getElementById('hangGhe').value;
+        // var maGhe = document.getElementById('maGhe').value;
 
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './pages/filterGhe.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById('resultTable').innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send('maPhongChieu=' + maPhongChieu + '&maLoaiGhe=' + maLoaiGhe + '&stt=' + stt + '&hangGhe=' + hangGhe);
+    });
 
-    // Xử lý khi form được gửi đi
-    // document.getElementById("themGhe").addEventListener("submit", function(event) {
-    //     var stt = document.getElementById("stt").value.trim();
-    //     if (stt === "") {
-    //         // Hiển thị thông báo lỗi
-    //         document.getElementById("sttError").style.display = "block";
-    //         // Ngăn chặn form được gửi đi
-    //         event.preventDefault();
-    //     }
-    // });
+    //hiển thị tất cả ghế
+    document.getElementById('showAllButton').addEventListener('click', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './pages/allData.php', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById('resultTable').innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    });
+
 
 </script>
 

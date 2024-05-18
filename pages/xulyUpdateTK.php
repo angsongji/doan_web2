@@ -9,11 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $quyen = $_GET['quyen'];
     $trangthai = $_GET['trangthai'];
 
-    $hoten = $conn->escapeString($hoten);
-    $email = $conn->escapeString($email);
-    $quyen = $conn->escapeString($quyen);
-    $trangthai = intval($trangthai);
-
     if (!empty($hoten) || !empty($email) || !empty($quyen) || isset($trangthai)) {
         $sql = "UPDATE taikhoan SET ";
 

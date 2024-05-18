@@ -82,8 +82,9 @@ ul{
     display: flex;
     justify-content: flex-end;
     list-style: none;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+    height: 450px;
 }
 .menuadmin ul a{
     text-decoration:none;

@@ -44,6 +44,7 @@ $(document).ready(function(){
         });
     }
 
+
     function updateChart(data1, data2) {
         if (chart) {
             chart.destroy(); 

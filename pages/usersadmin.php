@@ -240,9 +240,5 @@ echo '</div>';
 echo '</form>';
 echo '</div>';
 
-// if(isset($_GET['EMAIL'])){
-//     $email = $_GET['EMAIL'];
-//     echo "<script>user.EMAIL.value ='$email';</script>";
-// }
 
 ?>

@@ -112,11 +112,12 @@ $('#users_wrap').ready(function () {
                 type: 'GET',
                 data: {userdel: keywork},
                 success: function(result){
+                    $('#unclick_behind_this_screen').css('display', 'none');
+                    $('#users_wrap_change').css({ 'display': 'none' });
                     $("#content").html(result);
                     $.ajax({
                         url: './js/admin.js',
                         success: function (result) {
-
                         },
                         error: function (xhr, status, error) {
                             // Xử lý lỗi nếu có
@@ -127,7 +128,6 @@ $('#users_wrap').ready(function () {
         })
     })
 });
-
 
 
 $(document).ready(function () {

@@ -60,7 +60,7 @@ if ($resultGiaDichVu->num_rows > 0) {
     $tongconglun = $totalsVe;
 }
 
-
+$conn->disconnect();
 ?>
 
 <title>Chi tiết vé</title>
@@ -148,13 +148,10 @@ if ($resultGiaDichVu->num_rows > 0) {
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
                                         <?php
-                                        if($row["PHANTRAMUUDAI"]!=NULL){
-                                            $tienUD = ( $row["PHANTRAMUUDAI"] /100 ) * $tongconglun;
-                                        }else{
-                                            $tienUD =0;
-                                        }
-                                        
-                                        echo $tienUD; ?>đ
+                                        $tienPhaiTra = $row["TONGTIEN"];
+                                        $tienUD = $tongconglun - $tienPhaiTra;
+                                        echo $tienUD;
+                                        ?>
                                     </span>
                                 </div>
                             </div>
@@ -166,7 +163,7 @@ if ($resultGiaDichVu->num_rows > 0) {
                                 </div>
                                 <div class="money_item-input">
                                     <span class="info-user_item-input_text">
-                                    <?php $tienPhaiTra = $tongconglun - $tienUD;
+                                    <?php 
                                     echo $tienPhaiTra;?>đ
                                     </span>
                                 </div>

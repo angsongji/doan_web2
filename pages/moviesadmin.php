@@ -1,7 +1,10 @@
 <?php
 
-$phim = getListMovie();
-echo '<div id="movies" >';
+$listphim = getListMovie();
+
+showMovies($listphim);
+function showMovies($phim){
+    echo '<div id="movies" >';
 echo '<div id="btn_add_phim" name="">Thêm phim <i class="fa-solid fa-plus" style="padding-left:10px;"></i></div>';
 foreach ($phim as $row) {
     echo '<span class="movie" name="' . $row['MAPM'] . '">';
@@ -11,7 +14,7 @@ foreach ($phim as $row) {
     echo '<h5>';
     if (!empty($theloai) && is_array($theloai)) {
         foreach ($theloai as $key => $t) {
-            echo " ".$t['TENTHELOAI'];
+            echo " " . $t['TENTHELOAI'];
             if ($key != count($theloai) - 1) echo ",";
         }
     }
@@ -35,11 +38,11 @@ foreach ($phim as $row) {
             echo $row['DOTUOI'] . '+</span>';
             break;
         default:
-                echo ' style="background-color: violet;">';
-                echo $row['DOTUOI'] . '+</span>';
-                break;
+            echo ' style="background-color: violet;">';
+            echo $row['DOTUOI'] . '+</span>';
+            break;
     }
-    
+
     echo '<div class="click_change_infor_movie">Click để xóa/sửa</div>';
     echo '</span>';
 }
@@ -77,7 +80,7 @@ if (isset($_GET['MAPM'])) {
                     echo $row['DOTUOI'] . '+</span>';
                     break;
             }
-            
+
             echo '<h3 style="text-transform:uppercase;">' . $row['TENPHIM'] . '</h3> ';
             echo '<div class="quocgia_movie">' . $row['QUOCGIA'] . '</div>';
             echo '<div class="thoiluong_movie">' . $row['THOILUONG'] . '</div>';
@@ -87,10 +90,10 @@ if (isset($_GET['MAPM'])) {
                          <div>Thể loại</div>';
             echo '<div class="ngaychieu_movie">' . $row['NGAYCHIEU'] . '</div>';
             echo '<div class="theloai_movie">';
-            
+
             if (!empty($theloai) && is_array($theloai)) {
                 foreach ($theloai as $key => $t) {
-                    echo " ".$t['TENTHELOAI'];
+                    echo " " . $t['TENTHELOAI'];
                     if ($key != count($theloai) - 1) echo ",";
                 }
             }
@@ -100,23 +103,25 @@ if (isset($_GET['MAPM'])) {
             <div style="margin-bottom:4px;">Diễn viên</div>
             <span class="dienvien_movie">';
             $dienvien = getListDienvien($row['MAPM']);
-    if (!empty($dienvien) && is_array($dienvien)) {
-        foreach ($dienvien as $key => $t) {
-            echo " ".$t['TENDV'];
-            if ($key != count($dienvien) - 1) echo ",";
-        }
-    }else{echo "Chưa cập nhật thông tin này";}
+            if (!empty($dienvien) && is_array($dienvien)) {
+                foreach ($dienvien as $key => $t) {
+                    echo " " . $t['TENDV'];
+                    if ($key != count($dienvien) - 1) echo ",";
+                }
+            } else {
+                echo "Chưa cập nhật thông tin này";
+            }
             echo '</span>
             </div>';
             echo ' <a href="' . $row['PATHTRAILER'] . '" class="show_trailer_movie" target="_blank">Click để xem Trailer</a>';
             echo '<div class="click_show_change_movie">
-                            <i class="fa-solid fa-trash" name="'.$row['MAPM'].'"></i>
+                            <i class="fa-solid fa-trash" name="' . $row['MAPM'] . '"></i>
                             <span id="click_show_infor_movie_new" name="show">Chỉnh sửa phim<i class="fa-solid fa-arrow-right" style="padding-left:10px;"></i><span>
                           </div>';
             echo '</span>';
             echo '</div>';
             echo '<span id="btn_exit"><i class="fa-solid fa-x"></i></span>';
-            echo '<form style="padding:0;" action="./pages/addMovieadmin.php" method="POST" id="form_updatePhim" name="'.$row['MAPM'].'">';
+            echo '<form style="padding:0;" action="./pages/addMovieadmin.php" method="POST" id="form_updatePhim" name="' . $row['MAPM'] . '">';
             echo '<div id="show_infor_movie_new" class="show_change_movie">';
             echo ' <span class="show_infor_movie">';
 
@@ -124,10 +129,10 @@ if (isset($_GET['MAPM'])) {
                                 <span>Thay đổi ảnh</span>
                                 <input type="file" style="margin:8px 0;border:0;" name="NAMEANH" accept=".png, .jpg" name="NAMEANH">
                               </div>';
-             echo '<div id="change_danhgia_movie" class="change_infor_movie">
+            echo '<div id="change_danhgia_movie" class="change_infor_movie">
                                      <span>Đánh giá</span>
                                      <input type="number" style="margin:8px 0;" placeholder="' . $row['DANHGIA'] . '" name="DANHGIA" step="0.1" min="0" max="10">
-                                </div>';                  
+                                </div>';
             echo '<div id="change_dotuoi_movie" class="change_infor_movie">
                                      <span>Độ tuổi</span>
                                      <input type="number" style="margin:8px 0;" placeholder="' . $row['DOTUOI'] . '" name="DOTUOI">
@@ -139,73 +144,71 @@ if (isset($_GET['MAPM'])) {
             echo '
             <div id="change_quocgia_movie" class="change_infor_movie">
             <span>Quốc gia</span>
-            <input type="text" style="margin:8px 0;" placeholder="'.$row['QUOCGIA'].'" pattern="^[\\p{L} ]+$" title="Vui lòng chỉ nhập chữ cái" name="QUOCGIA">
+            <input type="text" style="margin:8px 0;" placeholder="' . $row['QUOCGIA'] . '" pattern="^[\\p{L} ]+$" title="Vui lòng chỉ nhập chữ cái" name="QUOCGIA">
             </div>';
             echo '            <div id="change_thoiluong_movie" class="change_infor_movie">
             <span>Thời lượng</span>
-            <input type="number" style="margin:8px 0;" placeholder="'.$row['THOILUONG'].'" name="THOILUONG">
+            <input type="number" style="margin:8px 0;" placeholder="' . $row['THOILUONG'] . '" name="THOILUONG">
             </div>';
             echo '            <div id="change_noidung_movie" class="change_infor_movie">
             <span>Nội dung</span>
-            <input type="text" style="margin:8px 0;" placeholder="'.$row['MOTA'].'" name="MOTA">
+            <input type="text" style="margin:8px 0;" placeholder="' . $row['MOTA'] . '" name="MOTA">
             </div>';
             echo '            <div id="change_ngaychieu_movie" class="change_infor_movie">
             <span>Ngày chiếu</span>
-            <input type="date" style="margin:8px 0;" value="'.$row['NGAYCHIEU'].'" name="NGAYCHIEU">
+            <input type="date" style="margin:8px 0;" value="' . $row['NGAYCHIEU'] . '" name="NGAYCHIEU">
             </div>';
             echo '<div id="change_theloai_movie" class="change_infor_movie">
                          <span>Thể loại</span>
                          <span id="list_theloai">
                          <div id="click_show_theloai"   name="show" >Click để chọn thể loại</div>
                          <span id="show_list_theloai">';
-                         $fulltheloai =getListFullTheloai();
-                         foreach ($fulltheloai as $t) {
-                            echo '<label for="'.$t['MATHELOAI'].'">
-                                                     <input type="checkbox" id="'.$t['MATHELOAI'].'"';
-                                                     foreach ($theloai as $tl) {
-                                                        if ($t['MATHELOAI'] == $tl['MATHELOAI'])  
-                                                            echo 'checked';
-                                                     }
-                                                     
-                                                    
-                                                     echo ' name="THELOAI[]" value="' . $t['MATHELOAI'] . '">
-                                                     <span>'.$t['TENTHELOAI'].'</span>
-                                                 </label>';
+            $fulltheloai = getListFullTheloai();
+            foreach ($fulltheloai as $t) {
+                echo '<label for="' . $t['MATHELOAI'] . '">
+                                                     <input type="checkbox" id="' . $t['MATHELOAI'] . '"';
+                foreach ($theloai as $tl) {
+                    if ($t['MATHELOAI'] == $tl['MATHELOAI'])
+                        echo 'checked';
+                }
 
-                        }
-                        echo '</span>
+
+                echo ' name="THELOAI[]" value="' . $t['MATHELOAI'] . '">
+                                                     <span>' . $t['TENTHELOAI'] . '</span>
+                                                 </label>';
+            }
+            echo '</span>
                          </span>
                          </div>';
-                         //start hện diễn viên
-                         echo '<div id="change_dienvien_movie" class="change_infor_movie">
+            //start hện diễn viên
+            echo '<div id="change_dienvien_movie" class="change_infor_movie">
                          <span>Diễn viên</span>
                          <span id="list_dienvien">
                          <div id="click_show_dienvien"   name="show" >Click để chọn diễn viên</div>
                          <span id="show_list_dienvien">';
-                         $fulldienvien =getListFullDienvien();
-                         foreach ($fulldienvien as $t) {
-                            echo '<label for="'.$t['MADV'].'">
-                                                     <input type="checkbox" id="'.$t['MADV'].'"';
-                                                     foreach ($dienvien as $tl) {
-                                                        if ($t['MADV'] == $tl['MADV'])  
-                                                            echo 'checked';
-                                                     }
-                                                     
-                                                    
-                                                     echo ' name="DIENVIEN[]" value="' . $t['MADV'] . '">
-                                                     <span>'.$t['TENDV'].'</span>
-                                                 </label>';
+            $fulldienvien = getListFullDienvien();
+            foreach ($fulldienvien as $t) {
+                echo '<label for="' . $t['MADV'] . '">
+                                                     <input type="checkbox" id="' . $t['MADV'] . '"';
+                foreach ($dienvien as $tl) {
+                    if ($t['MADV'] == $tl['MADV'])
+                        echo 'checked';
+                }
 
-                        }
-                        echo '</span>
+
+                echo ' name="DIENVIEN[]" value="' . $t['MADV'] . '">
+                                                     <span>' . $t['TENDV'] . '</span>
+                                                 </label>';
+            }
+            echo '</span>
                          </span>
                          </div>';
-                         //end hện diễn viên
-                        echo '            <div id="change_trailer_movie" class="change_infor_movie">
+            //end hện diễn viên
+            echo '            <div id="change_trailer_movie" class="change_infor_movie">
                         <span>Trailer</span>
-                        <input type="text" style="margin:8px 0;" placeholder="'.$row['PATHTRAILER'].'" name="PATHTRAILER">
+                        <input type="text" style="margin:8px 0;" placeholder="' . $row['PATHTRAILER'] . '" name="PATHTRAILER">
                         </div>';
-                        echo '
+            echo '
                         <div id="btn_wrap_change_user">
                             <button type="reset">Xóa tất cả</button>
                             <button type="submit">Xác nhận</button>
@@ -218,45 +221,63 @@ if (isset($_GET['MAPM'])) {
         }
     }
 }
+}
 function getListMovie()
 {
-    if(isset($_GET['valueName']))  $name=$_GET['valueName'];
-    if(isset($_GET['start_date'])) $startDate=$_GET['start_date'];
-    if(isset($_GET['end_date']))   $endDate=$_GET['end_date'];
-    if(isset($_GET['valueTheloai'])) $theloai=$_GET['valueTheloai'];
-    $phim = array();
-    if(file_exists('../database/connectDatabase.php'))
+    
+    // if(isset($_GET['valueName']))  $name=$_GET['valueName'];
+    // if(isset($_GET['valueTheloai'])) $theloai=$_GET['valueTheloai'];
+
+    if (file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
     // Thực hiện kết nối đến cơ sở dữ liệu
 
     $connection = new connectDatabase();
+    $phim = array();
 
     // Thực hiện truy vấn (ví dụ)
-    if(!isset($name))
-    $query = "SELECT * FROM phim "; // Truy vấn SQL của bạn
-    else
-    $query = "SELECT * FROM phim,chitietphim_theloai WHERE phim.MAPM = chitietphim_theloai.MAPM AND TENPHIM LIKE '%".$name."%' OR MATHELOAI='%".$theloai."%' OR NGAYCHIEU BETWEEN '%".$startDate."%' AND '%".$endDate."%'";
+    if (!isset($_POST['valueName']) && !isset($_POST['valueTheloai']) || $_POST['valueTheloai'] == "" && $_POST['valueName'] == "") {
+        $query = "SELECT * FROM phim ";
+    }
+    else if (isset($_POST['valueName']) && isset($_POST['valueTheloai']) ) {
+        $name = $_POST['valueName'];
+        $theloai = $_POST['valueTheloai'];
+        $query = "SELECT * FROM phim,chitietphim_theloai WHERE phim.MAPM = chitietphim_theloai.MAPM AND MATHELOAI = '".$theloai."' AND TENPHIM LIKE '%".$name."%';";
+    }else
+    
+     // Truy vấn SQL của bạn
     $result = $connection->executeQuery($query);
 
-    // Xử lý kết quả nếu cần
+
+
+
+
+
+
+
     if ($result) {
         // Thực hiện các thao tác với kết quả
         while ($row = $result->fetch_assoc()) {
-            if($row['TRANGTHAI']==1)
+            if ($row['TRANGTHAI'] == 1)
                 $phim[] = $row;
         }
     } else {
         echo 'thất bại';
         return null;
         // Xử lý khi truy vấn thất bại
+
+
     }
+    // Xử lý kết quả nếu cần
+
     return $phim;
 }
-function getListFullTheloai(){
+function getListFullTheloai()
+{
     $theloaiofphim = array();
-    if(file_exists('../database/connectDatabase.php'))
+    if (file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
@@ -282,10 +303,10 @@ function getListFullTheloai(){
 function getListTheloai($MAPM)
 {
     $theloaiofphim = array();
-    if(file_exists('../database/connectDatabase.php'))
-    require_once('../database/connectDatabase.php');
-else
-    require_once('./database/connectDatabase.php');
+    if (file_exists('../database/connectDatabase.php'))
+        require_once('../database/connectDatabase.php');
+    else
+        require_once('./database/connectDatabase.php');
     // Thực hiện kết nối đến cơ sở dữ liệu
 
     $connection = new connectDatabase();
@@ -307,9 +328,10 @@ else
     }
     return $theloaiofphim;
 }
-function getListFullDienvien(){
+function getListFullDienvien()
+{
     $dienvien = array();
-    if(file_exists('../database/connectDatabase.php'))
+    if (file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
@@ -335,7 +357,7 @@ function getListFullDienvien(){
 function getListDienvien($MAPM)
 {
     $dienvien = array();
-    if(file_exists('../database/connectDatabase.php'))
+    if (file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
@@ -360,6 +382,3 @@ function getListDienvien($MAPM)
     }
     return $dienvien;
 }
-
-
-?>

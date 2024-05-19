@@ -91,7 +91,6 @@ xhr.onreadystatechange = function () {
 };
 
 xhr.send(jsonData);
- 
 });
 
 
@@ -148,7 +147,5 @@ document.querySelector('.modal_submit_delete').addEventListener('click',()=>{
     // console.log(maQuyen);
 });
 
-document.getElementsByName('acept_edit')[0].addEventListener('click',()=>{
-    window.location.href = "admin.php?page=phanquyenadmin";
-});
+
 

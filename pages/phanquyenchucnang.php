@@ -9,17 +9,8 @@ if(!empty($dataArray)){
     $sqlDelete = "DELETE FROM chitietquyen_chucnang WHERE MAQUYEN = '$maQuyen1'";
     $conn->executeQuery($sqlDelete);
     foreach ($dataArray as $row) {
-        
-
-        // Câu lệnh SQL
         $sql = "INSERT INTO chitietquyen_chucnang (MAQUYEN, MACHUCNANG, HANHDONG) VALUES ('$row[0]', '$row[1]', '$row[2]') ";
         $conn->executeQuery($sql);
-        // Thực thi câu lệnh SQL
-        // if ($conn->query($sql) === TRUE) {
-        //     echo "Record inserted/updated successfully<br>";
-        // } else {
-        //     echo "Error: " . $sql . "<br>" . $conn->error;
-        // }
     }
 }
 

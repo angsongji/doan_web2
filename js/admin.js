@@ -494,6 +494,7 @@ $('#history_ticket_wrap').ready(function () {
 
 
     $(".btn_changeDayLichchieuphim").on('click',function(){
+        
         let day = $(this).attr('name');
         $('#lichchieuphim_selected').attr('id','');
         $(this).attr('id','lichchieuphim_selected');
@@ -977,25 +978,36 @@ function deletelichchieuphim(div){
     });
 
 }
-if( document.getElementById("searchadmin") != null){
-    let searchadmin = document.getElementById("searchadmin");
-    searchadmin.addEventListener('submit', function (event) {
-        alert( searchadmin.getAttribute('name'));
-        event.preventDefault();
-        let formData = new FormData(searchadmin);
-        let xhr = new XMLHttpRequest();
+function searchAdmin(event){
+    event.preventDefault();
     
-        xhr.open(searchadmin.method, searchadmin.action, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                // Xử lý phản hồi từ server nếu cần
-                alert(xhr.responseText);
-                document.getElementById('content').innerHTML=xhr.responseText;
-                // document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
-            }
-        };
-        formData.append('chucnang', searchadmin.getAttribute('name'));
-        xhr.send(formData);
+        let searchadmin = document.getElementById("searchadmin");
+       
+            
+            let formData = new FormData(searchadmin);
+            let xhr = new XMLHttpRequest();
+        
+            xhr.open(searchadmin.method, searchadmin.action, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    // Xử lý phản hồi từ server nếu cần
+                    document.getElementById('content').innerHTML = xhr.responseText;
+                    // document.getElementById('movie_change_infor').innerHTML = xhr.responseText;
+                   
+                $.ajax({
+                    url: "./js/admin.js",
+                    success: function (response) {
+                        // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                    }
+                });
+                }
+            };
+            formData.append('chucnang', searchadmin.getAttribute('name'));
+            xhr.send(formData);
+        
+     
     
-    });
 }

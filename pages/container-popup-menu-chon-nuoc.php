@@ -59,8 +59,3 @@
         <h4>Tiếp tục</h4>
     </div>
 </div>
-
-<!-- Xử lý sự kiện chọn dịch vụ -->
-<script>
-
-</script>

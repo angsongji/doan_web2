@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
     echo "<script>console.log('Chua dang nhap')</script>";
 }
 if($maquyen!="QKH"){
-    header('Location: http://localhost:8080/doan_web2/admin.php');
+    header('Location: ./admin.php');
 }
 
 }

@@ -1,5 +1,5 @@
 <?php 
-    require_once('../database/connectDatabase.php');
+    require_once('./database/connectDatabase.php');
     $conn = new connectDatabase();
 ?>
 
@@ -62,44 +62,47 @@
     </div>
 
     <!-- form them suat chieu -->
-    <form action="./pages/insertSuatChieu.php" method="post">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thêm Suất Chiếu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="ngay">Ngày</label>
-                            <input type="date" name="ngay" class="form-control">
+    <form action="./pages/insertSuatChieu.php" method="post" id="themSuatChieu">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thêm Suất Chiếu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="thoiGianBatDau">Thời Gian Bắt Đầu</label>
-                            <select name="thoiGianBatDau" id="thoiGianBatDau" class="form-control">
-                                <option value="7:30:00">7:30:00</option>
-                                <option value="9:30:00">9:30:00</option>
-                                <option value="11:30:00">11:30:00</option>
-                                <option value="13:30:00">13:30:00</option>
-                                <option value="15:30:00">15:30:00</option>
-                                <option value="17:30:00">17:30:00</option>
-                                <option value="19:30:00">19:30:00</option>
-                                <option value="21:30:00">21:30:00</option>
-                                <option value="23:30:00">23:30:00</option>
-                            </select>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="ngay">Ngày</label>
+                                <input type="date" name="ngay" id="ngay" class="form-control" required>
+                                <span id="ngayError" style="color: red;"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="gioBatDau">Giờ Bắt Đầu</label>
+                                <select name="gioBatDau" id="gioBatDau" class="form-control">
+                                    <?php for($i = 1; $i <= 24; $i++): ?>
+                                        <option value="<?= $i ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT) ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="phutBatDau">Phút Bắt Đầu</label>
+                                <select name="phutBatDau" id="phutBatDau" class="form-control">
+                                    <?php for($i = 0; $i <= 59; $i++): ?>
+                                        <option value="<?= $i ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT) ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <input type="submit" class="btn btn-success" name="them_suatchieu" value="Lưu">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <input type="submit" class="btn btn-success" name="them_suatchieu" value="Lưu">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
     <!-- form sua suat chieu -->
     <form action="./pages/updateSuatChieu.php" method="post">
@@ -119,20 +122,22 @@
                         </div>
                         <div class="form-group">
                             <label for="edit_ngay">Ngày</label>
-                            <input type="date" name="edit_ngay" id="edit_ngay" class="form-control">
+                            <input type="date" name="edit_ngay" id="edit_ngay" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="edit_thoiGianBatDau">Thời Gian Bắt Đầu</label>
-                            <select name="edit_thoiGianBatDau" id="edit_thoiGianBatDau" class="form-control">
-                                <option value="7:30:00">7:30:00</option>
-                                <option value="9:30:00">9:30:00</option>
-                                <option value="11:30:00">11:30:00</option>
-                                <option value="13:30:00">13:30:00</option>
-                                <option value="15:30:00">15:30:00</option>
-                                <option value="17:30:00">17:30:00</option>
-                                <option value="19:30:00">19:30:00</option>
-                                <option value="21:30:00">21:30:00</option>
-                                <option value="23:30:00">23:30:00</option>
+                            <label for="gioBatDau">Giờ Bắt Đầu</label>
+                            <select name="gioBatDau" id="gioBatDau" class="form-control">
+                                <?php for($i = 1; $i <= 24; $i++): ?>
+                                    <option value="<?= $i ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT) ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phutBatDau">Phút Bắt Đầu</label>
+                            <select name="phutBatDau" id="phutBatDau" class="form-control">
+                                <?php for($i = 0; $i <= 59; $i++): ?>
+                                    <option value="<?= $i ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT) ?></option>
+                                <?php endfor; ?>
                             </select>
                         </div>
                     </div>
@@ -149,11 +154,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function openEditNgayLeForm(maSuatChieu, ngay, thoiGianBatDau) {
-            $('#edit_ngay').val(ngay);
-            $('#edit_thoiGianBatDau').val(thoiGianBatDau);
-            $('#edit_maSuatChieu').val(maSuatChieu);
-            $('#editModal').modal('show');
+
+    function openEditNgayLeForm(maSuatChieu, ngay, thoiGianBatDau) {
+        $('#edit_ngay').val(ngay);
+        $('#edit_thoiGianBatDau').val(thoiGianBatDau);
+        $('#edit_maSuatChieu').val(maSuatChieu);
+        $('#editModal').modal('show');
         }
     function filterByDate() {
         var selectedDate = document.getElementById('ngay').value;

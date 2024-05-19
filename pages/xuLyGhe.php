@@ -69,4 +69,7 @@ if(isset($_POST['maPhongChieu'])) {
 } else {
     echo "<p>Không có mã phòng chiếu được gửi.</p>";
 }
+
+
+
 ?>

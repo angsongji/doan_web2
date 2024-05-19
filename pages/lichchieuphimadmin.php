@@ -32,25 +32,25 @@ function calendar($month,$year){
 
 function nameDayVietnamese($num){
     switch($num){
-        case 2:
+        case 0:
             return "Thứ 2";
             break;
-        case 3:
+        case 1:
             return "Thứ 3";
             break;   
-        case 4:
+        case 2:
             return "Thứ 4";
             break; 
-        case 5:
+        case 3:
             return "Thứ 5";
             break;
-        case 6:
+        case 4:
             return "Thứ 6";
             break;   
-        case 7:
+        case 5:
             return "Thứ 7";
             break; 
-        case 8:
+        case 6:
             return "Chủ nhật";
             break;
     }
@@ -82,71 +82,60 @@ function numberDay($day){
     }
 }
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-$numberDay= numberDay(date('D'));
-$day= (int)date('d');
-$month= (int)date('m');
-$year= (int)date('Y');
-echo '<div id="lichchieuphim_wrap">
-<div id="lichchieuphim_header">
-    <span class="lichchieuphim_header_btn btn_left" style="display:none;"><i class="fa-solid fa-chevron-left" name="btn_left" onclick="changeDay(this)"></i></span>
-    <span class="lichchieuphim_header_btn btn_right"><i class="fa-solid fa-chevron-right" name="btn_right" onclick="changeDay(this)"></i></span>
-    <nav id="lichchieuphim_daytime"> 
-    <ul>';
-    // (isset($_GET['day'])<=calendar($month,$year))?isset($_GET['day']):$day
-    for($i=0;$i<19;$i++){
-        if($day<=calendar($month,$year)){
-            echo'<li class="btn_changeDayLichchieuphim" ';
-            if(isset($_GET['day'])){
-                $arr_dayCurrent = explode("/", $_GET['day']);
-                if($arr_dayCurrent[2]>calendar($month-1,$year))  $_GET['day'] = $year.'/'.$month.'/1';
-                if($year.'/'.$month.'/'.$day ==  $_GET['day'])
-                    echo' id="lichchieuphim_selected"';
+if(!isset($_GET['day'])){
 
-            }
-            else if($i==0)
-                echo' id="lichchieuphim_selected"';
-
-
-            
-              
-            echo' name="'.$year.'/'.$month.'/'.$day.'"><span class="lichchieuphim_day">';
-            echo $day++;
-            if($month!= (int)date('m')) echo '/'.$month;
-            echo '</span><span class="lichchieuphim_mota">';
-            if($i==0) echo 'Hôm nay';
-            else      echo nameDayVietnamese($numberDay);
-            if(++$numberDay==9) $numberDay=2;
-            echo '</span></li>';
-        }
-        else {
-            if($year==12) $year++;
-            $month++;
-            $day=1;
-            
-        }
-        
-        
-        
+    if(!isset($_GET['dayStart']) && !isset($_GET['dayEnd'])){
+        $dayFull=date("Y/m/d");
+        $daySelect=$dayFull;
+        $parts = explode("/", $dayFull);
+        $day= $parts[2];
+        $month= $parts[1];
+        $year=$parts[0];
+        $numberdayOfWeekNumber = date("w",strtotime($dayFull)); 
+        echo '<div id="lichchieuphim_wrap">
+        <div id="lichchieuphim_header">
+            <span class="lichchieuphim_header_btn" id="btn_left_Ngay" style="display:none;"><i class="fa-solid fa-chevron-left" name="btn_left" ></i></span>
+            <span class="lichchieuphim_header_btn " id="btn_right_Ngay"><i class="fa-solid fa-chevron-right" name="btn_right" ></i></span>
+            <nav id="lichchieuphim_daytime"> 
+            <ul>';
+            // (isset($_GET['day'])<=calendar($month,$year))?isset($_GET['day']):$day
+            for($i=0;$i<22;$i++){
+                if($day<=calendar($month,$year)){
+                    echo'<li class="btn_changeDayLichchieuphim" ';
+                    if($i==0) echo 'id="lichchieuphim_selected"';
+                    echo' name="'.$year.'/'.$month.'/'.$day.'"><span class="lichchieuphim_day">';
+                    echo $day++;
+                    if($month!= (int)date('m')) echo '/'.$month;
+                    echo '</span><span class="lichchieuphim_mota">';
+                    if($i==0) echo 'Hôm nay';
+                    else      echo nameDayVietnamese($numberdayOfWeekNumber);
+                    if(++$numberdayOfWeekNumber==7) $numberdayOfWeekNumber=0;
+                    echo '</span></li>';
+                }
+                else {
+                    if($year==12) $year++;
+                    $month++;
+                    $day=1;
+                    
+                }
                 
+                
+                
+                        
+            }
+        echo'</ul>
+            </nav>
+        </div>';
+        // echo '<div id="add_phim_lichchieuphim" name="'.$day.'">Thêm phim<i class="fa-solid fa-plus"></i></div>';
     }
-echo'</ul>
-    </nav>
-</div>';
-// echo '<div id="add_phim_lichchieuphim" name="'.$day.'">Thêm phim<i class="fa-solid fa-plus"></i></div>';
-$listPhimtheongay;
-$dayChange;
-if(isset($_GET['day'])){
+    showLichchieuphimtheongay($daySelect);
+}else  showLichchieuphimtheongay($_GET['day']);
 
-    
-    $dayChange = $_GET['day'];
-}
-    
-else 
-    $dayChange = date('Y/m/d');
-$listPhimtheongay = getListChitietPhimtheoNgay($dayChange);
 
-echo '<div id="lichchieuphim_content">';
-    echo '<div id="btn_add_lichchieuphim" name="'.$dayChange.'"> <i class="fa-solid fa-plus"></i></div>';
+function showLichchieuphimtheongay($day){
+    $listPhimtheongay = getListChitietPhimtheoNgay($day);
+    echo '<div id="lichchieuphim_content">';
+    echo '<div id="btn_add_lichchieuphim" name="'.$day.'" onclick="showAddFormLichchieuphim();"> <i class="fa-solid fa-plus"></i></div>';
     if($listPhimtheongay == null)
         echo '<div id="lichchieuphim_null"><span>Chưa có lịch chiếu vào ngày này</span></div>';
     else{
@@ -182,7 +171,7 @@ echo '<div id="lichchieuphim_content">';
                                 <span class="thoiluong_movie">'.$phim['THOILUONG'].' phút</span>
                             </div>';
                             
-                    $phimvasuatchieu = listPhimvaSuatchieucuaphimtheoMAPM($phim['MAPM'],$dayChange);
+                    $phimvasuatchieu = listPhimvaSuatchieucuaphimtheoMAPM($phim['MAPM'],$day);
                     echo '  <div class="lichchieuphim_lichchieu_wrap">';
                         
                             foreach($phimvasuatchieu as $row){
@@ -199,7 +188,7 @@ echo '<div id="lichchieuphim_content">';
                           
                     echo '</div>';
             echo ' </div>';
-            echo ' <span class="edit_suatchieu" name="'.$phim['MAPM'].'" id="'.$dayChange.'"><i class="fa-solid fa-pen-to-square fa-fw"></i></span>';
+            echo ' <span class="edit_suatchieu" name="'.$phim['MAPM'].'" id="'.$day.'" onclick="showUpdateFormLichchieuphim(this);"><i class="fa-solid fa-pen-to-square fa-fw"></i></span>';
             echo ' <span class="delete_suatchieu" id="'.$phim['MAPM'].'" onclick="deleteLCP(this);"><i class="fa-solid fa-xmark"></i></span>';
             
             echo '</div>';
@@ -208,15 +197,15 @@ echo '<div id="lichchieuphim_content">';
     }
 echo '</div>';
 echo '</div>';
-
-    
+}    
 
 function getListChitietPhimtheoNgay($ngay){
     $list = array();
-    if (isset($_GET['pagecon']) || isset($_GET['day'])  || isset($_GET['selectFilm']) )
+    if(file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');
+    
         $connection = new connectDatabase();
 
         // Thực hiện truy vấn (ví dụ)
@@ -243,7 +232,7 @@ function getListChitietPhimtheoNgay($ngay){
 function listPhimvaSuatchieucuaphimtheoMAPM($maphim,$ngay){
 
     $table = array();
-    if (isset($_GET['pagecon']) || isset($_GET['day']) || isset($_GET['selectFilm']))
+    if(file_exists('../database/connectDatabase.php'))
         require_once('../database/connectDatabase.php');
     else
         require_once('./database/connectDatabase.php');

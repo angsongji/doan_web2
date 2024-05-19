@@ -158,7 +158,7 @@
                    
             }
         }
-        header("Location: ../admin.php?page=chucnangLichchieuphim");
+        header("Location: ../admin.php?page=lichchieuphimadmin");
         exit;
     }
 

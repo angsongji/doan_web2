@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['TenDN'])){
-    header('location:index.php');
+    header('location: ./index.php');
 }
 ?>
 
@@ -33,7 +33,6 @@ if(!isset($_SESSION['TenDN'])){
             exit;
         }
     ?>
-
     <div class="wrapadmin">
         <nav class="menuadmin">
             <?php require './pages/menuadmin.php' ?> 
@@ -44,16 +43,20 @@ if(!isset($_SESSION['TenDN'])){
             </div>
             <?php
             if (isset($_GET['page'])) {
-                echo '<div class="name_model" >Tìm kiếm</div>
-                    <form class="searchadmin" action="">
-                         ';
-                require "./pages/searchadmin.php";
-                echo ' 
-                    </form>';
-                // <div class="name_model" >Tổng cộng: <span id="quantity_movies">13</span> phim</div> ';
+                        switch($_GET['page']){
+                            case "moviesadmin":
+                            case "lichchieuphimadmin":
+                                echo '<div class="name_model" >Tìm kiếm</div>';
+                                require "./pages/searchadmin.php";
+                                break;
+                        }
+                        
+                       
+                
             }
-            ?>
-            <div id="content">
+           
+            ?> 
+            <div id="content" style="padding-top: 10px;">
                 <?php
 
                 if (isset($_GET['page'])) {
@@ -64,11 +67,11 @@ if(!isset($_SESSION['TenDN'])){
                 ?>
             </div>
             <div><?php
-                    if (isset($_GET['page'])) {
-                        echo '<span id="list_page">';
-                        require "./pages/list_page_admin.php";
-                        echo '</span>';
-                    }
+                    // if (isset($_GET['page'])) {
+                    //     echo '<span id="list_page">';
+                    //     require "./pages/list_page_admin.php";
+                    //     echo '</span>';
+                    // }
                     ?></div>
 
         </div>

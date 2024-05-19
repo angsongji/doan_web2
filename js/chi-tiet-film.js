@@ -61,11 +61,13 @@ btnRight.addEventListener(
 // Xử lý sự kiện click vào ngày chiếu hiển thị giờ chiếu tương ứng
 const day = document.querySelectorAll('.day');
 const hours = document.querySelectorAll('.hour');
+let temp = document.querySelector('.temp');
 
 for(let i = 0; i < day.length; i++) {
     day[i].addEventListener(
         'click',
         (e) => {
+            temp.style.display = 'none';
             for(let j = 0; j < hours.length; j++) {
                 if(day[i].getAttribute('ngaychieu') == hours[j].getAttribute('ngaychieu')) {
                     hours[j].style.display = 'flex';
@@ -520,10 +522,12 @@ function showThongTinVeDaMua() {
         for(let i = 0; i < soLuongDichVuThanhToans.length; i++) {
             let tendichvu = soLuongDichVuThanhToans[i].getAttribute('tendichvu');
             let price = soLuongDichVuThanhToans[i].getAttribute('price');
+            let madichvu = soLuongDichVuThanhToans[i].getAttribute('madichvu');
             let soLuong = soLuongDichVuThanhToans[i].textContent;
         
             // Tạo một cặp khóa / giá trị trong đối tượng jsonData cho mỗi phần tử
             jsonData[tendichvu] = {
+                madichvu: madichvu,
                 price: price,
                 soluong: soLuong
             };
@@ -666,6 +670,7 @@ let thongTinThanhToan = {
     username:'Trung',
     malichchieu: '',
     maghes: {},
+    bapnuocs: jsonData,
     tongtien: 0,
     ngay: '',
     thoigian: '',

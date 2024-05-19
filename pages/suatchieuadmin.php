@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="gioBatDau">Giờ Bắt Đầu</label>
                                 <select name="gioBatDau" id="gioBatDau" class="form-control">
-                                    <?php for($i = 1; $i <= 24; $i++): ?>
+                                    <?php for($i = 1; $i <= 23; $i++): ?>
                                         <option value="<?= $i ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT) ?></option>
                                     <?php endfor; ?>
                                 </select>
@@ -127,7 +127,7 @@
                         <div class="form-group">
                             <label for="gioBatDau">Giờ Bắt Đầu</label>
                             <select name="gioBatDau" id="gioBatDau" class="form-control">
-                                <?php for($i = 1; $i <= 24; $i++): ?>
+                                <?php for($i = 1; $i <= 23; $i++): ?>
                                     <option value="<?= $i ?>"><?= str_pad($i, 2, '0', STR_PAD_LEFT) ?></option>
                                 <?php endfor; ?>
                             </select>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['TenDN'])){
+if (!isset($_SESSION['TenDN'])) {
     header('location: ./index.php');
 }
 ?>
@@ -20,22 +20,23 @@ if(!isset($_SESSION['TenDN'])){
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- them  -->  <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script> 
+    <!-- them  -->
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <link rel="stylesheet" href="./css/thongke.css" />
     <title>MEME</title>
 </head>
 
 <body style="margin: 0;">
     <?php
-        if(isset($_GET['page']) && $_GET['page']=="index"){
-            include "./pages/logout.php";
-            header("Location: ./index.php");
-            exit;
-        }
+    if (isset($_GET['page']) && $_GET['page'] == "index") {
+        include "./pages/logout.php";
+        header("Location: ./index.php");
+        exit;
+    }
     ?>
     <div class="wrapadmin">
         <nav class="menuadmin">
-            <?php require './pages/menuadmin.php' ?> 
+            <?php require './pages/menuadmin.php' ?>
         </nav>
         <div class="contentadmin">
             <div class="headeradmin">
@@ -43,19 +44,16 @@ if(!isset($_SESSION['TenDN'])){
             </div>
             <?php
             if (isset($_GET['page'])) {
-                        switch($_GET['page']){
-                            case "moviesadmin":
-                            case "lichchieuphimadmin":
-                                echo '<div class="name_model" >Tìm kiếm</div>';
-                                require "./pages/searchadmin.php";
-                                break;
-                        }
-                        
-                       
-                
+                switch ($_GET['page']) {
+                    case "moviesadmin":
+                    case "lichchieuphimadmin":
+                        echo '<div class="name_model" >Tìm kiếm</div>';
+                        require "./pages/searchadmin.php";
+                        break;
+                }
             }
-           
-            ?> 
+
+            ?>
             <div id="content" style="padding-top: 10px;">
                 <?php
 
@@ -66,24 +64,19 @@ if(!isset($_SESSION['TenDN'])){
                 }
                 ?>
             </div>
-            <div><?php
-                    // if (isset($_GET['page'])) {
-                    //     echo '<span id="list_page">';
-                    //     require "./pages/list_page_admin.php";
-                    //     echo '</span>';
-                    // }
-                    ?></div>
-
+           
         </div>
+    </div>
         <div id="unclick_behind_this_screen"></div>
+    
         <?php
-            if (isset($_GET['page'])&&$_GET['page']=="phanquyenadmin") {
-                echo '<script src="./js/phanquyenjs.js"></script>';
-            } else {
-                echo '<script src="./js/admin.js"></script>';
-            }
+        if (isset($_GET['page']) && $_GET['page'] == "phanquyenadmin") {
+            echo '<script src="./js/phanquyenjs.js"></script>';
+        } else {
+            echo '<script src="./js/admin.js"></script>';
+        }
         ?>
-        
+
 </body>
 
 </html>

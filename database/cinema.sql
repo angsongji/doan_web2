@@ -283,7 +283,13 @@ INSERT INTO `chucnang` (`MACHUCNANG`, `TENCHUCNANG`) VALUES
 ('PM', 'Phim'),
 ('PQ', 'Phân quyền'),
 ('TK', 'Tài khoản'),
-('UUDAI', 'Ưu đãi');
+('UUDAI', 'Ưu đãi'),
+('DIENVIEN','Diễn viên'),
+('GHE','Ghế'),
+('LG','Loại ghế'),
+('NGAYLE','Ngày lễ'),
+('SUATCHIEU','Suất chiếu'),
+('THELOAI','Thể loại');
 
 -- --------------------------------------------------------
 

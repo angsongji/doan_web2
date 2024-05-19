@@ -38,7 +38,7 @@ if (isset($_GET['page'])) {
             if ($date1 <= $date2)
                 require_once('./lichchieuphimadmin.php');
             else
-                echo "Không có kết quả phù hợp do ngày bắt đầu lớn hơn ngày kết thúc";
+                echo "<div style=' text-align: center;'><h3>Không có kết quả phù hợp do ngày bắt đầu lớn hơn ngày kết thúc</h3></div>";
             break;
         case "moviesadmin":
             // header('Location: ../pages/'.$page.'.php');

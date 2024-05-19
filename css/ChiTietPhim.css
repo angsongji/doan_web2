@@ -602,7 +602,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 14;
+    z-index: 2;
 }
 
 .container-popup #icon-close-popup {
@@ -612,7 +612,7 @@ body {
     right: 5%;
     color: whitesmoke;
     opacity: 0.5;
-    z-index: 16;
+    z-index: 3;
 }
 
 .container-popup #icon-close-popup:hover {
@@ -623,7 +623,7 @@ body {
     position: fixed;
     width: 90%;
     top: 20%;
-    z-index: 15;
+    z-index: 2;
     left: 5%;
 }
 
@@ -636,18 +636,18 @@ body {
 }
 
 
-header, main, footer {
+main, footer {
     display: grid;
     grid-template-columns: 100%;
 }
 
 /* || Header */
-header {
+/* header {
     background-color: var(--color-web);
     position: relative;
     top: 0;
     z-index: 100;
-}
+} */
 
 /* || Main */
 main {
@@ -669,7 +669,7 @@ main {
     position: relative;
     margin-top: 0px;
     object-fit: fill;
-    z-index: 10;
+    z-index: 1;
 }
 
 .trailer img {
@@ -942,7 +942,8 @@ main {
     flex-wrap: wrap;
 }
 
-.filmCalendar .list-hours .hour {
+.filmCalendar .list-hours .hour, 
+.filmCalendar .list-hours .temp{
     background-color: white;
     border: 1px solid black;
     border-radius: 8px;

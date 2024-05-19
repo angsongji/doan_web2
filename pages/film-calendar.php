@@ -60,6 +60,31 @@
         </div>
 
         <div class="list-hours">
+            <?php 
+                $filmCalendarQuery1 = $connect->executeQuery($filmCalendarSql1);
+                $kiemTraTonTai = false;
+
+                while( $rowNC = mysqli_fetch_assoc($filmCalendarQuery1) ) {
+                    $current_time = new DateTime();
+                    $specified_time_str = $rowNC['NGAY'] . $rowNC['THOIGIANBATDAU'];
+                    $specified_time = new DateTime($specified_time_str);
+                    
+                    if($specified_time >= $current_time) { ?>
+                        <div class="temp" style="display: flex;">
+                            <p>--Mời Bạn Chọn Suất Chiếu-- </p>
+                        </div>
+                    <?php 
+                        $kiemTraTonTai = true; 
+                        break;}?>
+            <?php } ?>
+            
+            <?php 
+                if(!$kiemTraTonTai) { ?>
+                    <div class="temp" style="display: flex;">
+                            <p>--Hiện Không Có Suất Chiếu Nào--</p>
+                        </div>
+            <?php } ?>
+
             <?php
                 $kiemTraHours = array();
 
@@ -67,7 +92,7 @@
                     $kiemTraTonTai = false;
 
                     foreach($kiemTraHours as $ngay => $thoigian) {
-                        if($thoigian == $rowTG['THOIGIANBATDAU'] && $ngay == $rowTG['THOIGIANBATDAU']) {
+                        if($thoigian == $rowTG['THOIGIANBATDAU'] && $ngay == $rowTG['NGAY']) {
                             $kiemTraTonTai = true;
                         }
                     }

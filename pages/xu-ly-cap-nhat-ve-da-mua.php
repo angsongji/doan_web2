@@ -12,6 +12,7 @@
         $ngay = $data['ngay'];
         $thoigian = $data['thoigian'];
         $phuongthucthanhtoan = $data['phuongthucthanhtoan'];
+        $bapnuocs = $data['bapnuocs'];
 
         // Tạo mã vé tự động
         $veSql = "SELECT COUNT(*) AS total_rows FROM ve";
@@ -21,6 +22,16 @@
 
         $remainingLength = 4; // độ dài phần sau tiền tố 'MV'
         $mave =  'MV' . str_pad($totalRows, $remainingLength, '0', STR_PAD_LEFT);
+
+        // UPDATE table chitietve_dichvu
+        foreach($bapnuocs as $tendichvu => $thongtin) {
+            $madichvu = $thongtin['madichvu'];
+            $soluong = $thongtin['soluong'];
+
+            $upDateChiTietVeDichVuSql  = " INSERT INTO chitietve_dichvu(MAVE, MADICHVU, SOLUONG)
+                        VALUES ('$mave', '$madichvu', '$soluong') ";
+            $connect->executeQuery($upDateChiTietVeDichVuSql); // trả về true nếu thành công, ngược lại là false
+        }
 
         // UPDATE table ve
         $upDateSql  = " INSERT INTO ve(MAVE, USERNAME, MALICHCHIEU, TONGTIEN, NGAY, THOIGIAN, PHUONGTHUCTHANHTOAN)

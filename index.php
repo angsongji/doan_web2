@@ -28,6 +28,9 @@
                 echo '<link rel="stylesheet" href="./css/base_user.css">
                 <link rel="stylesheet" href="./css/ticket_css.css">';
                 break;
+            case 'chi-tiet-phim.php':
+                echo '<link rel="stylesheet" href="./css/ChiTietPhim.css">';
+                break;
         }
     }
     ?>
@@ -57,7 +60,8 @@
                 include "./pages/ticket.php";
                 break;
             case 'chi-tiet-phim.php':
-                include "./pages/chi-tiet-phim.php";
+                include "./pages/chi-tiet-phim.php";   
+                echo '<script defer src="./js/chi-tiet-film.js"></script>';
                 break;
         }
     }else{
@@ -67,6 +71,7 @@
     include "./pages/footer.php";
     ?>
     
-    <script src="./js/header.js"></script>
+    
 </body>
+<script src="./js/header.js"></script>
 </html>

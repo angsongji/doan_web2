@@ -28,9 +28,11 @@
             $madichvu = $thongtin['madichvu'];
             $soluong = $thongtin['soluong'];
 
-            $upDateChiTietVeDichVuSql  = " INSERT INTO chitietve_dichvu(MAVE, MADICHVU, SOLUONG)
-                        VALUES ('$mave', '$madichvu', '$soluong') ";
-            $connect->executeQuery($upDateChiTietVeDichVuSql); // trả về true nếu thành công, ngược lại là false
+            if($soluong > 0) {
+                $upDateChiTietVeDichVuSql  = " INSERT INTO chitietve_dichvu(MAVE, MADICHVU, SOLUONG)
+                VALUES ('$mave', '$madichvu', '$soluong') ";
+                $connect->executeQuery($upDateChiTietVeDichVuSql); // trả về true nếu thành công, ngược lại là false
+            }  
         }
 
         // UPDATE table ve

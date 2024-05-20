@@ -25,6 +25,6 @@
                 }
         }
 
-        echo "<div style='font-size: 16px; font-weight: bold' phantramuudai='$maxPhanTramUuDai'>'$tenUuDai'</div>";
+        echo "<div id='phantramuudai' style='font-size: 16px; font-weight: bold' phantramuudai='$maxPhanTramUuDai'>'$tenUuDai'</div>";
     }
 ?>

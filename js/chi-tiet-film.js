@@ -628,19 +628,16 @@ const xuLyTongTienThanhToan = () => {
     loadDuLieuUuDai(tongTienBanDau);
 
     // Thêm sự kiện thay đổi ưu đãi
-    let selectElement = document.querySelector('#uu-dai-thanh-toan div');
-    // Thêm sự kiện change
-    selectElement.addEventListener(
-        'change', 
-        (e) => {
-        // Lấy giá trị của tùy chọn đã chọn
-        var selectedOption = selectElement.getAttribute('phantramuudai');
+    // let selectElement = document.querySelector('#phantramuudai');
+    // Thêm sự kiện xử lý vé đã giảm
+    setTimeout((e) => {
+        var selectedOption = document.getElementById('phantramuudai').getAttribute('phantramuudai');
         selectedOption = parseFloat(selectedOption)/100;
         tongTienDaGiam = tongTienBanDau;
-        tongTienDaGiam -= (tongTienDaGiam * selectedOption);
+        tongTienDaGiam -= (tongTienBanDau * selectedOption);
+        console.log(tongTienDaGiam);
         document.querySelector('#tong-tien-thanh-toan_tong-tien').textContent = tongTienDaGiam.toString()+"đ";
-        }),
-        false
+    },1000);
 }
 
 const xuLySuKienThongTinVeDaMuaAsyn = async () => {

@@ -265,7 +265,10 @@ function showMovies($phim)
     echo '<span id="list_page">';
     echo '<ul name="'.$current_page.'">';
     for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<li><a href='../pages/moviesadmin.php?index=$i'>$i</a></li> ";
+        if($i == $current_page)
+            echo "<li id='active'><a href='../pages/moviesadmin.php?index=$i'>$i</a></li> ";
+        else
+            echo "<li ><a href='../pages/moviesadmin.php?index=$i'>$i</a></li> ";
     }
     echo '</ul>';
     echo '</span>';

@@ -203,10 +203,11 @@ $('#movies').find('.movie').ready(function(){
     });
     $('.movie').on('click',function(){
             let maphim = $(this).attr('name');
+            let page = (document.querySelector("#list_page ul ")).getAttribute('name');
             $.ajax({
                 url: "./pages/moviesadmin.php",
                 type: "GET",
-                data: {MAPM: maphim},
+                data: {MAPM: maphim,index: page},
                 success: function(response) {
                     $("#content").html(response); // Thay đổi nội dung của #content
                     $('#unclick_behind_this_screen').css('display' , 'block');
@@ -228,6 +229,7 @@ $('#movies').find('.movie').ready(function(){
             $('#movie_change_infor').find('#btn_exit').on('click',function(){
                 $('#unclick_behind_this_screen').css('display' , 'none');
                 $('#movie_change_infor').css('display','none');
+                
             });
         });
     
@@ -1011,3 +1013,25 @@ function searchAdmin(event){
      
     
 }
+$('#list_page').ready(function() {
+    $('#list_page ul a').click(function(e){
+        e.preventDefault();
+        let page = $(this).attr('href');
+        $.ajax({
+            type: 'GET',
+            url: page, 
+            success: function(data){
+                $('#content').html(data);
+                $.ajax({
+                    url: "./js/admin.js",
+                    success: function (response) {
+                        // Xử lý dữ liệu từ yêu cầu AJAX thứ hai
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            }
+        });
+    });
+});

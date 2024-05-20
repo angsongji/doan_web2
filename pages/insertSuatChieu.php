@@ -6,21 +6,23 @@ if(isset($_POST['them_suatchieu'])) {
     $ngay = $_POST['ngay'];
     $gioBatDau = $_POST['gioBatDau'];
     $phutBatDau = $_POST['phutBatDau'];
-    $thoiGianBatDau = str_pad($gioBatDau, 2, '0', STR_PAD_LEFT) . ':' . str_pad($phutBatDau, 2, '0', STR_PAD_LEFT) . ':00';
+    $thoiGianBatDau = str_pad($gioBatDau, 2, '0', STR_PAD_LEFT) . ':' . str_pad($phutBatDau, 2, '0', STR_PAD_LEFT) ;
 
     // Lấy giá trị lớn nhất của MASC và tăng thêm 1 để tạo mã mới
-    $query_max_id = "SELECT MAX(RIGHT(MASC, 4)) AS max_id FROM suatchieu";
+    // $query_max_id = "SELECT MAX(RIGHT(MASC, 4)) AS max_id FROM suatchieu";
+    $query_max_id = "SELECT MASC AS max_id FROM suatchieu";
     $result_max_id = $conn->executeQuery($query_max_id);
     
     if($result_max_id->num_rows > 0) {
-        $row = $result_max_id->fetch_assoc();
-        $max_id = $row['max_id'];
-        if($max_id === null || $max_id === '') {
-            $next_id = 1;
-        } else {
-            $next_id = (int)$max_id + 1; 
+        $max = 0;
+        while ($row = $result_max_id->fetch_assoc()) {
+            $MASClast = $row['max_id'];
+            $so = preg_replace("/[^0-9]/", "", $MASClast);
+            $stt = (int)$so;
+            if ($stt > $max) $max = $stt;
         }
-        $new_ma_suatchieu = 'SC' . str_pad($next_id, 4, '0', STR_PAD_LEFT);
+        $new_ma_suatchieu = 'SC'.($max+1);
+        
     } else {
         echo 'failed';
     }
@@ -30,7 +32,7 @@ if(isset($_POST['them_suatchieu'])) {
     $result_check_duplicate = $conn->executeQuery($query_check_duplicate);
 
     if(mysqli_num_rows($result_check_duplicate) > 0) {
-        header('location: ../admin.php?page=chucnangLichchieuphim&message=Suất chiếu đã tồn tại, vui lòng chọn một ngày khác');
+        header('location: ../admin.php?page=suatchieuadmin&message=Suất chiếu đã tồn tại, vui lòng chọn một ngày khác');
         exit();
     } else {
         if(isset($ngay)) {
@@ -40,10 +42,10 @@ if(isset($_POST['them_suatchieu'])) {
             if($result_insert_suatchieu) {
                 echo '<script>
                     window.history.replaceState({}, document.title, window.location.href.split("?")[0]);
-                    window.location.href = "../admin.php?page=chucnangLichchieuphim&message=Thêm suất chiếu thành công";
+                    window.location.href = "../admin.php?page=suatchieuadmin&message=Thêm suất chiếu thành công";
                 </script>';  
             } else {
-                echo "Lỗi khi thêm suất chiếu: " . $conn->error;
+                echo "Lỗi khi thêm suất chiếu: ";
             }
         } else {
             echo 'failed';

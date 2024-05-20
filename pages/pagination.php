@@ -55,6 +55,7 @@ class pagination {
             $this->_config['min'] = max(1, $this->_config['current_page'] - 1);
             $this->_config['max'] = min($this->_config['total_page'], $this->_config['current_page'] + 1);
         }
+        echo "max ".$this->_config['max'] ;
     }
 
     //Tạo url cho trang
